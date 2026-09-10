@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-primary-fixed-variant": "#2b486a",
+          "secondary": "#466082",
+          "on-tertiary-container": "#42aaea",
+          "error": "#ba1a1a",
+          "surface-variant": "#d3e4fe",
+          "inverse-surface": "#213145",
+          "on-tertiary-fixed-variant": "#004b6f",
+          "surface-container-highest": "#d3e4fe",
+          "surface-bright": "#f8f9ff",
+          "tertiary-container": "#003c5a",
+          "on-secondary-fixed": "#001c39",
+          "surface-container-lowest": "#ffffff",
+          "secondary-fixed": "#d3e3ff",
+          "surface-container-low": "#eff4ff",
+          "on-secondary-container": "#435d7f",
+          "tertiary": "#00253a",
+          "surface-container-high": "#dce9ff",
+          "surface": "#f8f9ff",
+          "primary": "#002444",
+          "on-surface-variant": "#43474e",
+          "tertiary-fixed": "#cae6ff",
+          "background": "#f8f9ff",
+          "on-surface": "#0b1c30",
+          "inverse-primary": "#abc9f1",
+          "on-primary-fixed": "#001c37",
+          "secondary-container": "#bcd6ff",
+          "primary-fixed": "#d2e4ff",
+          "on-primary-container": "#87a4cb",
+          "on-tertiary-fixed": "#001e2f",
+          "on-error": "#ffffff",
+          "inverse-on-surface": "#eaf1ff",
+          "secondary-fixed-dim": "#aec8f0",
+          "primary-fixed-dim": "#abc9f1",
+          "on-error-container": "#93000a",
+          "on-tertiary": "#ffffff",
+          "tertiary-fixed-dim": "#8ccdff",
+          "on-background": "#0b1c30",
+          "on-secondary-fixed-variant": "#2e4869",
+          "on-primary": "#ffffff",
+          "surface-tint": "#436083",
+          "on-secondary": "#ffffff",
+          "primary-container": "#1b3a5b",
+          "error-container": "#ffdad6",
+          "surface-container": "#e5eeff",
+          "outline": "#73777f",
+          "surface-dim": "#cbdbf5",
+          "outline-variant": "#c3c6cf"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-lg": "1.5rem",
+          "margin-tablet": "1.5rem",
+          "gutter-mobile": "0.75rem",
+          "space-xl": "2rem",
+          "space-sm": "0.5rem",
+          "space-2xs": "0.125rem",
+          "space-md": "0.75rem",
+          "space-base": "1rem",
+          "margin-mobile": "1rem",
+          "gutter-tablet": "1rem",
+          "space-2xl": "3rem",
+          "margin-desktop": "2rem",
+          "gutter-desktop": "1.5rem",
+          "space-xs": "0.25rem"
+        },
+        "fontFamily": {
+          "headline-md": [
+            "IBM Plex Serif"
+          ],
+          "body-md": [
+            "Hanken Grotesk"
+          ],
+          "label-md": [
+            "Hanken Grotesk"
+          ],
+          "headline-lg": [
+            "IBM Plex Serif"
+          ],
+          "label-sm": [
+            "Hanken Grotesk"
+          ],
+          "body-lg": [
+            "Hanken Grotesk"
+          ],
+          "body-sm": [
+            "Hanken Grotesk"
+          ],
+          "display-lg": [
+            "IBM Plex Serif"
+          ],
+          "display-lg-mobile": [
+            "IBM Plex Serif"
+          ],
+          "headline-sm": [
+            "IBM Plex Serif"
+          ],
+          "data-mono": [
+            "Hanken Grotesk"
+          ]
+        },
+        "fontSize": {
+          "headline-md": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "700"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-lg": [
+            "36px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-lg-mobile": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-sm": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "0em",
+              "fontWeight": "600"
+            }
+          ],
+          "data-mono": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "500"
+            }
+          ]
+        }
+      },
+    },
+  }</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased"><div class="fixed top-0 w-full z-50"><div class="w-full bg-primary-container text-on-primary py-1 px-margin-desktop text-center text-label-sm font-label-sm tracking-wider flex items-center justify-center gap-space-sm shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><span class="inline-block w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span><span>DEMO PROTOTYPE ONLY · All data shown is fictional illustrative sample data · Smart India Hackathon 2026</span></div><header class="w-full bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 max-w-7xl mx-auto px-margin-desktop flex items-center justify-between gap-space-base"><div class="flex items-center gap-space-base"><img alt="LandWatch Civic Intelligence Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WR-zCbFjV48jtBoqiqCNzqnnXlVibU3Ysqa6En-DVIoXPtWl5t-OjYjMrvTzg6hKoOEaEScxMCwAR-YOyafpWaLBf0KhtU-jbCNQIkCisDTjjdMe1Xs3U9wmxVQP6XOGk4oqvVC3mWQUnb-WlTGNt5jDRTyW9eTv7V_2A2McU9P1Z_n8pjXMdnWA3TC_49wfBtTMEkjFTe-rT0ig62O__9xkkWEmXqxPnkZAD7v7PQdRF1iBE46ZyHyQ"/><div class="flex flex-col"><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">LandWatch</span><span class="bg-surface-container-high text-on-surface px-space-xs py-0.5 rounded-lg text-label-sm font-label-sm uppercase">GovTech</span></div><span class="font-label-sm text-label-sm text-on-surface-variant font-normal">Civic Intelligence &amp; Statutory Risk System</span></div><div class="hidden xl:flex items-center gap-space-xs pl-space-sm"><span class="bg-surface-container-low text-secondary px-space-sm py-1 rounded-lg text-label-sm font-label-sm uppercase">Gov of India · MoRD / DoLR Target</span><span class="bg-secondary-fixed text-on-secondary-fixed px-space-sm py-1 rounded-lg text-label-sm font-label-sm uppercase">SIH 2026 · Team Stack Overflow(ed)</span></div></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-surface-container text-on-surface font-semibold rounded-lg"><a aria-current="page" class="px-space-sm py-space-xs transition-colors bg-surface-container text-on-surface font-semibold rounded-lg" data-path="home" href="#">Home</a><a class="px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-label-md font-label-md transition-colors" data-path="problem" href="#">Problem</a><a class="px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-label-md font-label-md transition-colors" data-path="solution" href="#">Solution</a><a class="px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-label-md font-label-md transition-colors" data-path="how-it-works" href="#">How It Works</a><a class="px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-label-md font-label-md transition-colors" data-path="feasibility" href="#">Feasibility</a><a class="px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-label-md font-label-md transition-colors" data-path="impact" href="#">Impact</a><a class="px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface text-label-md font-label-md transition-colors" data-path="research" href="#">Research</a></nav><div class="flex items-center gap-space-base"><a class="hidden sm:inline-flex items-center justify-center px-space-base py-space-sm bg-primary text-on-primary text-label-md font-label-md rounded-lg shadow-[0_1px_8px_rgba(0,0,0,0.04)] hover:bg-primary-container transition-colors gap-space-xs" data-path="dashboard-demo" href="#"><span>View Live Demo</span><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header></div><main class="w-full pt-28 bg-surface"><div class="flex flex-col w-full">
+<!-- 1. DEMO WATERMARK & CIVIC NOTICE BANNER -->
+<section class="w-full bg-surface-container-high py-space-sm px-margin-mobile md:px-margin-desktop">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<span class="material-symbols-outlined text-secondary text-[20px] flex-shrink-0">gavel</span>
+<p class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider truncate">
+          DEMO PROTOTYPE ONLY · Fictional illustrative sample data · Smart India Hackathon 2026 (SIH26017) · Target: Ministry of Rural Development / Dept of Land Resources
+        </p>
+</div>
+<div class="flex items-center gap-space-xs flex-shrink-0">
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-sm bg-surface-container-lowest text-on-surface text-label-sm font-label-sm">
+          RFCTLARR Act 2013 Engine
+        </span>
+<span class="inline-flex items-center px-space-xs py-0.5 rounded-sm bg-primary text-on-primary text-label-sm font-label-sm">
+          v0.9.4 Preview
+        </span>
+</div>
+</div>
+</section>
+<!-- 2. HERO SECTION -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-space-xl lg:py-space-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
+<!-- Left Editorial Pitch -->
+<div class="lg:col-span-7 flex flex-col items-start space-y-space-md">
+<div class="flex flex-wrap items-center gap-space-xs">
+<span class="inline-flex items-center gap-1.5 px-space-sm py-1 rounded-sm bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm uppercase tracking-wide">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            SIH 2026 · Problem SIH26017 · Software · Smart Governance
+          </span>
+<span class="inline-flex items-center px-space-sm py-1 rounded-sm bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
+            9-stage statutory tracking + explainable prediction
+          </span>
+</div>
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight font-headline-lg max-w-2xl">
+          Early Warning, Before the Delay
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+          An AI early-warning platform that predicts land acquisition delays before they happen, explains why with SHAP reasoning, and tells officials exactly where to act next under statutory RFCTLARR timelines.
+        </p>
+<!-- CTA Buttons -->
+<div class="pt-space-xs flex flex-wrap items-center gap-space-sm">
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-primary-container transition-all gap-space-xs" href="#dashboard-demo">
+<span>Explore the Dashboard Demo</span>
+<span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+</a>
+<a class="inline-flex items-center justify-center px-space-lg py-space-sm bg-surface-container-lowest text-primary font-label-md text-label-md rounded-lg shadow-sm hover:bg-surface-container transition-all gap-space-xs" href="#how-it-works">
+<span class="material-symbols-outlined text-[18px]">account_tree</span>
+<span>How It Works</span>
+</a>
+</div>
+<!-- Micro stats ticker under hero -->
+<div class="pt-space-md grid grid-cols-3 gap-space-base w-full max-w-lg">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">150ms</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Inference Latency</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">9-Stage</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Clock Pipeline</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-primary font-bold">100%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">SHAP Attributed</span>
+</div>
+</div>
+</div>
+<!-- Right Visual Artifact: Stylized Funnel & Gauge Card -->
+<div class="lg:col-span-5 flex flex-col">
+<div class="bg-surface-container-lowest rounded-xl shadow-md p-space-base md:p-space-lg relative overflow-hidden">
+<!-- Background decorative radial highlight -->
+<div class="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-secondary-container/40 blur-2xl pointer-events-none"></div>
+<!-- Header badge of parcel -->
+<div class="flex items-center justify-between mb-space-base relative z-10">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">pin_drop</span>
+<div>
+<p class="font-headline-sm text-headline-sm text-primary leading-tight">Parcel #TN-CH-4521</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">NH-45 Corridor Tambaram Bypass Bypass Expansion</p>
+</div>
+</div>
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-sm bg-error-container text-on-error-container font-label-sm text-label-sm uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-ping"></span>
+              Critical Slip
+            </span>
+</div>
+<!-- The Funnel Process Indicator -->
+<div class="grid grid-cols-3 gap-space-xs bg-surface-container-low p-space-xs rounded-lg mb-space-base text-center">
+<div class="bg-surface-container-lowest py-space-xs px-1 rounded-sm shadow-sm">
+<span class="block font-label-sm text-label-sm text-on-surface-variant uppercase">Step 01</span>
+<span class="block font-label-md text-label-md text-primary font-bold">PARCEL</span>
+</div>
+<div class="bg-primary-container text-on-primary py-space-xs px-1 rounded-sm shadow-sm">
+<span class="block font-label-sm text-label-sm text-on-primary-container uppercase">Step 02</span>
+<span class="block font-label-md text-label-md text-on-primary font-bold">RISK (84%)</span>
+</div>
+<div class="bg-secondary text-on-secondary py-space-xs px-1 rounded-sm shadow-sm">
+<span class="block font-label-sm text-label-sm text-secondary-fixed uppercase">Step 03</span>
+<span class="block font-label-md text-label-md text-on-secondary font-bold">ACTION</span>
+</div>
+</div>
+<!-- ML Gauge & Probability Breakdown -->
+<div class="flex items-center gap-space-base bg-surface-container rounded-lg p-space-base mb-space-base">
+<!-- Inline SVG Gauge -->
+<div class="relative flex-shrink-0 w-24 h-24 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-variant" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<path class="text-error" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="84, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-headline-lg text-headline-lg text-primary leading-none font-bold">84%</span>
+<span class="font-label-sm text-label-sm text-error uppercase font-bold">Risk</span>
+</div>
+</div>
+<!-- Metric stats breakdown -->
+<div class="flex flex-col space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">ML Model Delay Forecast</span>
+<p class="font-headline-sm text-headline-sm text-primary">+28 Days Overdue</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Statutory deadline breach projected at Sec 15 Objections stage.</p>
+</div>
+</div>
+<!-- SHAP Localized Attribution -->
+<div class="space-y-space-xs mb-space-base">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-primary uppercase font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-secondary">psychology</span>
+                Top SHAP Reason Code
+              </span>
+<span class="font-data-mono text-data-mono text-error font-bold">+0.41 impact</span>
+</div>
+<div class="bg-surface-container-low p-space-sm rounded-lg">
+<p class="font-body-sm text-body-sm text-on-surface font-semibold">
+                Survey objection response lag (+28 days expected delay)
+              </p>
+<div class="w-full bg-surface-variant rounded-full h-1.5 mt-2 overflow-hidden">
+<div class="bg-error h-1.5 rounded-full" style="width: 78%"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant mt-1">
+<span>Taluk Revenue Office Backlog</span>
+<span>Weight: 0.78</span>
+</div>
+</div>
+</div>
+<!-- Prescribed Immediate Action -->
+<div class="bg-primary text-on-primary rounded-lg p-space-sm flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px] mt-0.5">priority_high</span>
+<div class="space-y-0.5">
+<p class="font-label-sm text-label-sm text-secondary-fixed uppercase font-bold tracking-wider">
+                Prescribed Immediate Action
+              </p>
+<p class="font-body-sm text-body-sm text-on-primary">
+                Auto-escalate to Chengalpattu DLAO for joint hearing within 48h under RFCTLARR Sec 15(2).
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. THE PROBLEM SECTION -->
+<section class="w-full bg-surface-container-low py-space-2xl" id="problem">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+<!-- Section Header -->
+<div class="max-w-3xl space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+          Statutory Friction Vectors
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+          Land acquisition delays are detected too late.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Under the Right to Fair Compensation and Transparency in Land Acquisition, Rehabilitation and Resettlement Act (RFCTLARR 2013), delays surface only after statutory deadlines lapse.
+        </p>
+</div>
+<!-- Problem Triad Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-sm flex flex-col justify-between">
+<div class="space-y-space-xs">
+<span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[24px]">timer_off</span>
+</span>
+<span class="block font-label-sm text-label-sm uppercase text-secondary font-bold">Hackathon Focus</span>
+<h3 class="font-headline-md text-headline-md text-primary">Problem Statement SIH26017</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Predictive Analytics System for Early Detection of Land Acquisition Delays in key highway, rail, and industrial corridors.
+            </p>
+</div>
+<div class="pt-space-sm border-t-0 bg-surface-container-low p-space-xs rounded-sm">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Priority: High Capital Exposure</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-sm flex flex-col justify-between">
+<div class="space-y-space-xs">
+<span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[24px]">account_balance</span>
+</span>
+<span class="block font-label-sm text-label-sm uppercase text-secondary font-bold">Institutional Scope</span>
+<h3 class="font-headline-md text-headline-md text-primary">DoLR / MoRD Ministry</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Department of Land Resources (DoLR), Ministry of Rural Development, Government of India along with State Revenue Departments.
+            </p>
+</div>
+<div class="pt-space-sm border-t-0 bg-surface-container-low p-space-xs rounded-sm">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Coverage: All 766 Districts</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-sm flex flex-col justify-between">
+<div class="space-y-space-xs">
+<span class="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-surface-container-high text-primary">
+<span class="material-symbols-outlined text-[24px]">balance</span>
+</span>
+<span class="block font-label-sm text-label-sm uppercase text-secondary font-bold">Civic Domain</span>
+<h3 class="font-headline-md text-headline-md text-primary">Smart Public Governance</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Shifting from reactive post-mortems to proactive legal compliance, safeguarding farmer rights and preventing public fund lockup.
+            </p>
+</div>
+<div class="pt-space-sm border-t-0 bg-surface-container-low p-space-xs rounded-sm">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Outcome: Transparent Awarding</span>
+</div>
+</div>
+</div>
+<!-- Statutory Fallout Banner -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col md:flex-row items-center gap-space-lg">
+<div class="w-14 h-14 rounded-full bg-error-container text-on-error-container flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[32px]">warning</span>
+</div>
+<div class="space-y-1">
+<h4 class="font-headline-sm text-headline-sm text-primary">
+            The Statutory Cascading Trap of RFCTLARR 2013
+          </h4>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-4xl">
+            When preliminary notifications expire under Section 19(1) or Section 25, the entire legal acquisition lapses by operation of law. Government agencies must re-initiate surveys from scratch—costing taxpayers billions in revised market multipliers, interest penalties under Section 80, and citizen displacement distress.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. THE SOLUTION & 9-STAGE STATUTORY TRACKER -->
+<section class="w-full py-space-2xl" id="solution">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-2xl">
+<!-- Header -->
+<div class="text-center max-w-3xl mx-auto space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+          The Solution Framework
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+          LandWatch — Predict. Explain. Prevent.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          An explainable intelligence layer mounted atop state land portals and DILRMP data pipes.
+        </p>
+</div>
+<!-- 3 Feature Pillars -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+<!-- Col A: Problem Fit -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="p-2 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</span>
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold">Core Pillar 01</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Problem Fit</h3>
+<ul class="space-y-space-sm font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_circle</span>
+<span><strong>9-stage RFCTLARR 2013 tracker:</strong> Complete digital mapping of all mandatory legal milestones.</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_circle</span>
+<span><strong>Statutory Clock Engine:</strong> Real-time comparison of district casework against statutory drop-dead dates.</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">check_circle</span>
+<span><strong>Contributing Factor Diagnosis:</strong> Highlights revenue officer vacancy, title complexity, and Gram Sabha delays.</span>
+</li>
+</ul>
+</div>
+<!-- Col B: Innovation -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="p-2 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[24px]">insights</span>
+</span>
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold">Core Pillar 02</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Predictive Innovation</h3>
+<ul class="space-y-space-sm font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">bolt</span>
+<span><strong>Dual XGBoost Ensemble:</strong> Simultaneously infers slippage probability (%) and anticipated delay volume (days).</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">bolt</span>
+<span><strong>Slippage Pre-Flagging:</strong> Detects procedural stalls up to 120 days before a formal lapse occurs.</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">bolt</span>
+<span><strong>Prioritized Collector Docket:</strong> Ranks thousands of parcels into actionable daily officer queues.</span>
+</li>
+</ul>
+</div>
+<!-- Col C: Explainability -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-xs">
+<span class="p-2 rounded-lg bg-surface-container text-primary">
+<span class="material-symbols-outlined text-[24px]">balance</span>
+</span>
+<span class="font-label-sm text-label-sm uppercase text-secondary font-bold">Core Pillar 03</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Explainability (XAI)</h3>
+<ul class="space-y-space-sm font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">visibility</span>
+<span><strong>Granular SHAP Reason Codes:</strong> Generates legally sound, plain-English rationales for every predicted bottleneck.</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">visibility</span>
+<span><strong>Statutory Intelligence Rules:</strong> Evaluates Section 11(5) survey limits, Section 15 hearings, and Section 19 declarations.</span>
+</li>
+<li class="flex items-start gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px] mt-0.5">visibility</span>
+<span><strong>Actionable Directives:</strong> Converts post-delay administrative remorse into concrete preventative orders.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- The 9-Step Connected Statutory Timeline Component -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg md:p-space-xl shadow-sm space-y-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary">RFCTLARR 2013 Statutory Lifecycle Tracker</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live acquisition timeline tracking parcel progress against statutory expiration clocks.</p>
+</div>
+<span class="inline-flex items-center px-space-sm py-1 bg-surface-container text-primary rounded font-label-sm text-label-sm">
+            Statutory Framework: Act 30 of 2013
+          </span>
+</div>
+<!-- Connected Pipeline Scroll Container -->
+<div class="overflow-x-auto pb-space-sm">
+<div class="min-w-[980px] grid grid-cols-9 gap-2 relative">
+<!-- Connecting continuous bar background -->
+<div class="absolute top-5 left-4 right-4 h-1 bg-surface-container-high -z-0"></div>
+<!-- Stage 1 -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">done</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">1. Sec 11 Notice</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Preliminary</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface font-label-sm text-[10px]">T-0 d</span>
+</div>
+<!-- Stage 2 -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">done</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">2. SIA Study</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Impact Assessment</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface font-label-sm text-[10px]">Sec 4(2)</span>
+</div>
+<!-- Stage 3 -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">done</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">3. Sec 19 Decl.</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">&lt; 12 mo limit</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface font-label-sm text-[10px]">Statutory Pass</span>
+</div>
+<!-- Stage 4: AT RISK -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-primary flex items-center justify-center font-bold text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[20px]">schedule</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-primary">4. Land Survey</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold text-[11px]">Slippage +18d</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-secondary-fixed text-on-secondary-fixed font-label-sm text-[10px]">At Risk</span>
+</div>
+<!-- Stage 5: CRITICAL BOTTLENECK -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-error text-on-error flex items-center justify-center font-bold text-label-sm shadow-md animate-pulse">
+<span class="material-symbols-outlined text-[20px]">error</span>
+</div>
+<span class="font-label-sm text-label-sm font-bold text-error">5. Objections</span>
+<span class="font-body-sm text-body-sm text-error font-bold text-[11px]">Sec 15 Hearing</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-error-container text-on-error-container font-label-sm text-[10px]">High Delay</span>
+</div>
+<!-- Stage 6 -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-on-surface-variant flex items-center justify-center font-bold text-label-sm">
+                6
+              </div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant">6. Sec 25 Award</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">&lt; 12 mo limit</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Pending</span>
+</div>
+<!-- Stage 7 -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-label-sm">
+                7
+              </div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant">7. Compensation</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Solatium 100%</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Upcoming</span>
+</div>
+<!-- Stage 8 -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-label-sm">
+                8
+              </div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant">8. R&amp;R / Rehab</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Schedule II/III</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Upcoming</span>
+</div>
+<!-- Stage 9 -->
+<div class="flex flex-col items-center text-center relative z-10 space-y-space-xs">
+<div class="w-10 h-10 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center font-bold text-label-sm">
+                9
+              </div>
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant">9. Possession</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant text-[11px]">Sec 38 Transfer</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-surface-container text-on-surface-variant font-label-sm text-[10px]">Upcoming</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. HOW IT WORKS / TECHNICAL APPROACH -->
+<section class="w-full bg-surface-container-low py-space-2xl" id="how-it-works">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-2xl">
+<!-- Section Header -->
+<div class="max-w-3xl space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+          Technical Architecture
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+          Modular, explainable, and cloud-ready
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Built for seamless enterprise hosting on MeghRaj (NIC National Cloud) with zero dependency on proprietary AI APIs.
+        </p>
+</div>
+<!-- 4-Box Architecture Stack -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop relative">
+<!-- Box 1 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-space-xs">
+<span class="text-secondary font-label-sm text-label-sm uppercase font-bold">Tier 01</span>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">Frontend UI</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            React 19 + TypeScript + Tailwind CSS design system tailored for District Collector Command Centers.
+          </p>
+<div class="pt-space-xs">
+<span class="inline-block px-space-xs py-0.5 bg-surface-container text-on-surface font-label-sm text-[11px] rounded">
+              Tailwind UI Kit
+            </span>
+</div>
+</div>
+<!-- Box 2 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-space-xs">
+<span class="text-secondary font-label-sm text-label-sm uppercase font-bold">Tier 02</span>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">Backend Engine</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Node.js &amp; Express RESTful statutory gateway with PostgreSQL &amp; PostGIS spatial boundary mapping.
+          </p>
+<div class="pt-space-xs">
+<span class="inline-block px-space-xs py-0.5 bg-surface-container text-on-surface font-label-sm text-[11px] rounded">
+              PostGIS / REST APIs
+            </span>
+</div>
+</div>
+<!-- Box 3 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-space-xs">
+<span class="text-secondary font-label-sm text-label-sm uppercase font-bold">Tier 03</span>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">Predictive Microservice</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Python + FastAPI serving twin XGBoost models with integrated TreeSHAP local explainer modules.
+          </p>
+<div class="pt-space-xs">
+<span class="inline-block px-space-xs py-0.5 bg-surface-container text-on-surface font-label-sm text-[11px] rounded">
+              XGBoost + SHAP
+            </span>
+</div>
+</div>
+<!-- Box 4 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-space-xs">
+<span class="text-secondary font-label-sm text-label-sm uppercase font-bold">Tier 04</span>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">NIC Cloud Deployment</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Docker containers orchestratable on MeghRaj (Government of India Cloud) with strict air-gapped security.
+          </p>
+<div class="pt-space-xs">
+<span class="inline-block px-space-xs py-0.5 bg-surface-container text-on-surface font-label-sm text-[11px] rounded">
+              MeghRaj / OCI
+            </span>
+</div>
+</div>
+</div>
+<!-- 5-Step Horizontal Data Pipeline -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<h3 class="font-headline-sm text-headline-sm text-primary">5-Stage Continuous Data &amp; Inference Pipeline</h3>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-space-base">
+<!-- Step 1 -->
+<div class="bg-surface-container p-space-sm rounded-lg space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">01. Ingestion</span>
+<p class="font-body-sm text-body-sm text-primary font-semibold">DILRMP Integration</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+              Extracts revenue records, cadastral surveys, and notice dates from state revenue databases.
+            </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container p-space-sm rounded-lg space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">02. Engineering</span>
+<p class="font-body-sm text-body-sm text-primary font-semibold">Feature Extraction</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+              Computes tenure fragmentation, disputed co-shares, survey officer caseload, and local land type.
+            </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container p-space-sm rounded-lg space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">03. Dual ML</span>
+<p class="font-body-sm text-body-sm text-primary font-semibold">XGBoost Inference</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+              Model A predicts delay probability (0–100%); Model B forecasts delay extent (in days).
+            </p>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container p-space-sm rounded-lg space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">04. XAI Synthesis</span>
+<p class="font-body-sm text-body-sm text-primary font-semibold">SHAP Explanation</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+              Deconstructs model output into human-verifiable statutory driver weights for each parcel.
+            </p>
+</div>
+<!-- Step 5 -->
+<div class="bg-surface-container p-space-sm rounded-lg space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold">05. Action Alerts</span>
+<p class="font-body-sm text-body-sm text-primary font-semibold">Automated Dockets</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+              Dispatches prioritized intervention briefs directly to District Land Acquisition Officers (DLAO).
+            </p>
+</div>
+</div>
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant pt-space-xs">
+          Illustrative prototype architecture preview for Smart India Hackathon 2026.
+        </p>
+</div>
+</div>
+</section>
+<!-- 6. DASHBOARD DEMO PREVIEW -->
+<section class="w-full py-space-2xl" id="dashboard-demo">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+<!-- Section Header with District Context -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-base">
+<div class="space-y-space-2xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm uppercase font-bold text-secondary">Live Operational View</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+            Chengalpattu District — LIVE (Demo Preview)
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Simulated collectorate overview tracking national highway and industrial corridor acquisitions.
+          </p>
+</div>
+<!-- Status Filter Badge -->
+<div class="flex items-center gap-space-xs bg-surface-container-lowest p-1 rounded-lg shadow-sm">
+<span class="px-space-sm py-1 rounded bg-primary text-on-primary font-label-sm text-label-sm">All Sectors</span>
+<span class="px-space-sm py-1 rounded text-on-surface-variant font-label-sm text-label-sm">Highways (NH-45)</span>
+<span class="px-space-sm py-1 rounded text-on-surface-variant font-label-sm text-label-sm">SIPCOT Ind.</span>
+</div>
+</div>
+<!-- 4 Stat Tiles Grid -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+<!-- Tile 1 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-bold">Active Cases</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">248</span>
+<span class="text-label-sm font-label-sm text-secondary flex items-center">
+<span class="material-symbols-outlined text-[16px]">folder_open</span> 7 Taluks
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Under active statutory RFCTLARR notice</p>
+</div>
+<!-- Tile 2 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<span class="font-label-sm text-label-sm text-error uppercase font-bold">High Risk</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-error font-bold">19</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-error-container text-on-error-container text-label-sm font-label-sm">
+              &gt; 75% Risk
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Predicted to lapse statutory clock</p>
+</div>
+<!-- Tile 3 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold">Overdue Notices</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">7</span>
+<span class="px-1.5 py-0.5 rounded-sm bg-secondary-container text-on-secondary-container text-label-sm font-label-sm">
+              Immediate
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Past Sec 15 hearing deadlines</p>
+</div>
+<!-- Tile 4 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<span class="font-label-sm text-label-sm text-secondary font-bold uppercase">On Track</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-primary font-bold">222</span>
+<span class="text-label-sm font-label-sm text-secondary flex items-center">
+<span class="material-symbols-outlined text-[16px]">check_circle</span> 89.5%
+            </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Within normal statutory variance</p>
+</div>
+</div>
+<!-- Split Analytical View: Risk Heatmap Matrix & Alert Feed -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start">
+<!-- Left: Interactive Risk Matrix Grid (7 cols) -->
+<div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Cadastral Risk Density Heatmap</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Grid cell representation of 64 monitored parcel clusters across Chengalpattu Taluks.</p>
+</div>
+<div class="flex items-center gap-space-xs text-label-sm font-label-sm">
+<span class="w-3 h-3 rounded bg-surface-container"></span> Normal
+              <span class="w-3 h-3 rounded bg-secondary-container"></span> Moderate
+              <span class="w-3 h-3 rounded bg-error"></span> Critical
+            </div>
+</div>
+<!-- Heatmap interactive visual block -->
+<div class="grid grid-cols-8 gap-2 p-space-sm bg-surface-container-low rounded-lg">
+<!-- Row 1 -->
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P01</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P02</div>
+<div class="h-10 rounded bg-error text-on-error hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 4521 - 84% Risk">4521</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P04</div>
+<div class="h-10 rounded bg-secondary-container text-on-secondary-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold">P05</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P06</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P07</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P08</div>
+<!-- Row 2 -->
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P09</div>
+<div class="h-10 rounded bg-secondary-container text-on-secondary-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold">P10</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P11</div>
+<div class="h-10 rounded bg-error text-on-error hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 3110 - 79% Risk">3110</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P13</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P14</div>
+<div class="h-10 rounded bg-secondary-container text-on-secondary-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold">P15</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P16</div>
+<!-- Row 3 -->
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P17</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P18</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P19</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P20</div>
+<div class="h-10 rounded bg-secondary-container text-on-secondary-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold">P21</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P22</div>
+<div class="h-10 rounded bg-error text-on-error hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 2894 - 88% Risk">2894</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P24</div>
+<!-- Row 4 -->
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P25</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P26</div>
+<div class="h-10 rounded bg-secondary-container text-on-secondary-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold">P27</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P28</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P29</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P30</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P31</div>
+<div class="h-10 rounded bg-surface-container hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold text-on-surface">P32</div>
+</div>
+<div class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Focus Zone: NH-45 Bypass (Chainage km 28 to 44)</span>
+<span class="font-data-mono text-data-mono text-primary font-bold">Sync: 2 mins ago</span>
+</div>
+</div>
+<!-- Right: Real-time Alert Feed (5 cols) -->
+<div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-base">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Priority Action Dockets</h3>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Top 3 Critical</span>
+</div>
+<div class="space-y-space-sm">
+<!-- Alert 1 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-1">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded-sm bg-error-container text-on-error-container text-label-sm font-label-sm font-bold">
+                  9 Days Left
+                </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Tambaram Taluk</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary font-bold">
+                Survey deadline in 9 days — Parcel #4521
+              </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+                Bottleneck: 14 unresolved landowner title boundaries pending joint tahsildar signoff.
+              </p>
+</div>
+<!-- Alert 2 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-1">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded-sm bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm font-bold">
+                  Data Quality
+                </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Chengalpattu Bypass</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary font-bold">
+                SIA gap / record quality issue — Parcel #3110
+              </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+                Bottleneck: Missing patta co-sharer records in e-District portal; risk of Section 15 stay.
+              </p>
+</div>
+<!-- Alert 3 -->
+<div class="p-space-sm bg-surface-container-low rounded-lg space-y-1">
+<div class="flex items-center justify-between">
+<span class="px-1.5 py-0.5 rounded-sm bg-error-container text-on-error-container text-label-sm font-label-sm font-bold">
+                  Sec 25 Risk
+                </span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Industrial Corridor</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary font-bold">
+                Award delay — high risk — Parcel #2894
+              </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant text-[12px]">
+                Bottleneck: Valuation consensus pending with Forest &amp; PWD valuation committee.
+              </p>
+</div>
+</div>
+<!-- CTA to full demo -->
+<button class="w-full py-space-sm px-space-base bg-primary text-on-primary rounded-lg font-label-md text-label-md flex items-center justify-center gap-space-xs hover:bg-primary-container transition-colors shadow-sm">
+<span>Open full district dashboard demo</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. FEASIBILITY & VIABILITY -->
+<section class="w-full bg-surface-container-low py-space-2xl" id="feasibility">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-2xl">
+<!-- Header -->
+<div class="max-w-3xl space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+          Institutional Readiness
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+          Ready for district-scale adoption
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Engineered to sit comfortably within state administrative constraints without requiring new hardware procurements.
+        </p>
+</div>
+<!-- 2x2 Grid of Feasibility Dimensions -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
+<!-- Card 1: Technical -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[24px]">memory</span>
+<h3 class="font-headline-sm text-headline-sm font-bold">Technical Feasibility</h3>
+</div>
+<ul class="space-y-space-xs font-body-md text-body-md text-on-surface-variant pt-space-xs">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>CPU-only inference &lt;150ms:</strong> No costly GPU servers required; runs on standard commodity cloud instances.</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>NIC Workflow Friendly:</strong> Connects via read-only APIs to state portals like Bhoomi, Dharani, and e-Bhoomi.</span>
+</li>
+</ul>
+</div>
+<!-- Card 2: Operational -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[24px]">engineering</span>
+<h3 class="font-headline-sm text-headline-sm font-bold">Operational Feasibility</h3>
+</div>
+<ul class="space-y-space-xs font-body-md text-body-md text-on-surface-variant pt-space-xs">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>Zero Disruption:</strong> Field revenue inspectors and patwaris continue their regular filings without re-training.</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>100% Open Source Stack:</strong> No recurring vendor lock-in or proprietary licensing fees for district administrations.</span>
+</li>
+</ul>
+</div>
+<!-- Card 3: Regulatory -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[24px]">policy</span>
+<h3 class="font-headline-sm text-headline-sm font-bold">Regulatory Feasibility</h3>
+</div>
+<ul class="space-y-space-xs font-body-md text-body-md text-on-surface-variant pt-space-xs">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>RFCTLARR Pre-calibrated:</strong> Statutory clock algorithms strictly follow Central Act 30 of 2013 provisions.</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>State Rule Flexibility:</strong> Customizable for state-specific amendments and local circle rate calculation rules.</span>
+</li>
+</ul>
+</div>
+<!-- Card 4: Financial -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-xs">
+<div class="flex items-center gap-space-xs text-primary">
+<span class="material-symbols-outlined text-[24px]">savings</span>
+<h3 class="font-headline-sm text-headline-sm font-bold">Financial Feasibility</h3>
+</div>
+<ul class="space-y-space-xs font-body-md text-body-md text-on-surface-variant pt-space-xs">
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>Near-Zero Marginal Cost:</strong> Efficient caching and batched inference keep monthly hosting well under ₹12,000/district.</span>
+</li>
+<li class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-secondary text-[18px]">check</span>
+<span><strong>MeghRaj Shared Tiers:</strong> Leverages existing central government cloud allocations without new budgetary approvals.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Risk -> Mitigation Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg space-y-space-md">
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Risk Management &amp; Mitigation Framework</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="bg-surface-container text-on-surface font-label-md text-label-md uppercase tracking-wider">
+<th class="py-space-xs px-space-sm rounded-l">Potential Failure Vector</th>
+<th class="py-space-xs px-space-sm">Severity</th>
+<th class="py-space-xs px-space-sm rounded-r">LandWatch Architectural Mitigation</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 space-y-1">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-semibold text-primary">1. Fragmented &amp; Inconsistent Records</td>
+<td class="py-space-sm px-space-sm">
+<span class="px-2 py-0.5 rounded-sm bg-error-container text-on-error-container text-label-sm font-label-sm font-bold">High</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant">
+                  Standardized DILRMP data adapters with automatic record-hygiene checks and confidence scoring flags.
+                </td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-semibold text-primary">2. Black-Box Hesitation by Officers</td>
+<td class="py-space-sm px-space-sm">
+<span class="px-2 py-0.5 rounded-sm bg-secondary-fixed text-on-secondary-fixed text-label-sm font-label-sm font-bold">Medium</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant">
+                  Localized SHAP waterfall explanations attached to every single alert, ensuring full administrative explainability.
+                </td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-semibold text-primary">3. New-District Data Scarcity (Cold Start)</td>
+<td class="py-space-sm px-space-sm">
+<span class="px-2 py-0.5 rounded-sm bg-surface-container text-on-surface text-label-sm font-label-sm font-bold">Low</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant">
+                  Cross-district transfer learning with hierarchical Bayesian priors calibrated against state-wide averages.
+                </td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-space-sm px-space-sm font-semibold text-primary">4. Citizen Privacy &amp; PII Vulnerability</td>
+<td class="py-space-sm px-space-sm">
+<span class="px-2 py-0.5 rounded-sm bg-error-container text-on-error-container text-label-sm font-label-sm font-bold">High</span>
+</td>
+<td class="py-space-sm px-space-sm text-on-surface-variant">
+                  Strict Role-Based Access Control (RBAC), automatic Aadhaar/PAN hashing, and anonymized public dashboard exports.
+                </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. IMPACT & BENEFITS -->
+<section class="w-full py-space-2xl" id="impact">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-2xl">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+          Quantifiable Public Value
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+          From late response to early action
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Empowering the revenue machinery to protect public capital, accelerate critical infrastructure, and safeguard citizen dignity.
+        </p>
+</div>
+<!-- 4 Big Stat Callouts -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm text-center space-y-space-xs">
+<span class="font-display-lg text-display-lg text-primary font-bold">60–120</span>
+<span class="block font-label-sm text-label-sm text-secondary uppercase font-bold">Days Earlier</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Delays detected before statutory legal expiration under Sec 19/25.</p>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm text-center space-y-space-xs">
+<span class="font-display-lg text-display-lg text-primary font-bold">₹ 100s Cr</span>
+<span class="block font-label-sm text-label-sm text-secondary uppercase font-bold">Taxpayer Savings</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Avoided capital escalation and Section 80 interest rate penalties.</p>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm text-center space-y-space-xs">
+<span class="font-display-lg text-display-lg text-primary font-bold">100%</span>
+<span class="block font-label-sm text-label-sm text-secondary uppercase font-bold">Statutory Clarity</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Predictable compensation and R&amp;R tracking for displaced families.</p>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm text-center space-y-space-xs">
+<span class="font-display-lg text-display-lg text-primary font-bold">65% Less</span>
+<span class="block font-label-sm text-label-sm text-secondary uppercase font-bold">Litigation Stays</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Fewer writ petitions through early objection settlement in Section 15.</p>
+</div>
+</div>
+<!-- Target Beneficiaries (3-column cards) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
+<!-- Beneficiary 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">shield_person</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">District Collectors &amp; DMs</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Provides a single, ranked intervention queue. Replaces massive paper review meetings with instant exception-based governance.
+          </p>
+</div>
+<!-- Beneficiary 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">assignment_turned_in</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">DLAOs &amp; Field Officers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Automated statutory-clock monitoring protects officers against unintended procedural lapses and departmental inquiries.
+          </p>
+</div>
+<!-- Beneficiary 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-sm">
+<div class="w-12 h-12 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">groups</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Farmers &amp; Project Displaced</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Guarantees fair compensation timelines, transparent solatium calculations, and rapid grievance addressal before eviction.
+          </p>
+</div>
+</div>
+<!-- UN Sustainable Development Goals (SDGs) Row -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between">
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">Alignment with UN Sustainable Development Goals (2030)</h4>
+<span class="font-label-sm text-label-sm text-secondary font-bold">Global Impact</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-base">
+<!-- SDG 1 -->
+<div class="p-space-base rounded-lg bg-surface-container-low space-y-space-xs">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded bg-error text-on-error flex items-center justify-center font-bold text-label-sm">1</span>
+<span class="font-label-md text-label-md text-primary font-bold">No Poverty</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Timely compensation disbursement protects vulnerable agrarian families from severe debt traps.
+            </p>
+</div>
+<!-- SDG 9 -->
+<div class="p-space-base rounded-lg bg-surface-container-low space-y-space-xs">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded bg-primary text-on-primary flex items-center justify-center font-bold text-label-sm">9</span>
+<span class="font-label-md text-label-md text-primary font-bold">Industry &amp; Infra</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Predictable public digital rails speed up national highway, rail, and renewable energy corridors.
+            </p>
+</div>
+<!-- SDG 11 -->
+<div class="p-space-base rounded-lg bg-surface-container-low space-y-space-xs">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-sm">11</span>
+<span class="font-label-md text-label-md text-primary font-bold">Sustainable Cities</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Responsible, legally compliant urban land assembly for clean mass transit and municipal bypasses.
+            </p>
+</div>
+<!-- SDG 16 -->
+<div class="p-space-base rounded-lg bg-surface-container-low space-y-space-xs">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded bg-primary-container text-on-primary flex items-center justify-center font-bold text-label-sm">16</span>
+<span class="font-label-md text-label-md text-primary font-bold">Strong Institutions</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+              Transparent administrative records reduce the massive burden of land acquisition writs in High Courts.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. RESEARCH & REFERENCES -->
+<section class="w-full bg-surface-container-low py-space-2xl" id="research">
+<div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-2xl">
+<!-- Header -->
+<div class="max-w-3xl space-y-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
+          Empirical &amp; Statutory Foundations
+        </span>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+          Evidence based. Policy aligned.
+        </h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          LandWatch synthesizes statutory administrative law with peer-reviewed machine learning architectures.
+        </p>
+</div>
+<!-- 2-column, 3-row Reference Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-desktop">
+<!-- Ref 1 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold">[REF 01 · STATUTE]</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Ministry of Law &amp; Justice</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">The RFCTLARR Act, 2013 (Act 30 of 2013)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Provides mandatory procedural milestones, Section 11 publication windows, Section 19(1) declaration caps, and Section 25 award timelines.
+          </p>
+</div>
+<!-- Ref 2 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold">[REF 02 · POLICY]</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">DoLR / MoRD</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">DILRMP Technical Guidelines &amp; Cadastral Standards</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Digital India Land Records Modernization Programme standards for spatial vector mapping, RoR integration, and sub-registrar deeds.
+          </p>
+</div>
+<!-- Ref 3 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold">[REF 03 · EMPIRICAL]</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">NITI Aayog / CAG</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">CAG Performance Audit of Major Highway &amp; Railway Corridors</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Empirical identification that land acquisition and Right of Way (RoW) disputes account for &gt;62% of all capital infrastructure delays.
+          </p>
+</div>
+<!-- Ref 4 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold">[REF 04 · ML ENGINE]</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">KDD 2016</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">Chen &amp; Guestrin (2016) — XGBoost</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            A Scalable Tree Boosting System. Formulates the core regression and classification backend for tabular administrative casework.
+          </p>
+</div>
+<!-- Ref 5 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold">[REF 05 · EXPLAINABILITY]</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">NeurIPS 2017</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">Lundberg &amp; Lee (2017) — Unified Approach to SHAP</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Provides game-theoretic Shapley Additive Explanations (TreeSHAP) to attribute statutory delay likelihoods to individual procedural lags.
+          </p>
+</div>
+<!-- Ref 6 -->
+<div class="bg-surface-container-lowest p-space-base rounded-xl shadow-sm space-y-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-bold">[REF 06 · GOV STANDARDS]</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">MeitY, GoI</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm text-primary font-bold">India Enterprise Architecture (IndEA 2.0)</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            MeitY framework ensuring seamless interoperability across National, State, and District government digital application registries.
+          </p>
+</div>
+</div>
+<!-- Closing Authoritative Quote Banner -->
+<div class="bg-primary text-on-primary rounded-xl p-space-xl text-center space-y-space-sm shadow-md">
+<span class="material-symbols-outlined text-secondary-container text-[36px]">format_quote</span>
+<blockquote class="font-headline-lg text-headline-lg max-w-3xl mx-auto leading-snug">
+          “LandWatch turns statutory knowledge and explainable ML into earlier, fairer decisions.”
+        </blockquote>
+<p class="font-label-md text-label-md text-secondary-fixed tracking-wide uppercase">
+          Smart India Hackathon 2026 · Team Stack Overflow(ed)
+        </p>
+</div>
+</div>
+</section>
+<!-- 10. COMPLIANCE & TEAM IDENTIFICATION STRIP -->
+<section class="w-full bg-surface-container-high py-space-md px-margin-mobile md:px-margin-desktop">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-sm text-center md:text-left">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">verified_user</span>
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">
+            SIH 2026 Project SIH26017 · Team Stack Overflow(ed)
+          </p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            SRM Institute of Science and Technology, Vadapalani Campus · Internal Hackathon Submission
+          </p>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant max-w-md">
+        This is an SIH 2026 Hackathon prototype and software demonstration, not an official deployment of the Ministry of Rural Development or Government of India.
+      </p>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-lowest mt-space-2xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="max-w-7xl mx-auto px-margin-desktop py-space-xl"><div class="grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop mb-space-xl"><div class="space-y-space-sm md:col-span-2"><div class="flex items-center gap-space-sm"><img alt="LandWatch Logo" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WR-zCbFjV48jtBoqiqCNzqnnXlVibU3Ysqa6En-DVIoXPtWl5t-OjYjMrvTzg6hKoOEaEScxMCwAR-YOyafpWaLBf0KhtU-jbCNQIkCisDTjjdMe1Xs3U9wmxVQP6XOGk4oqvVC3mWQUnb-WlTGNt5jDRTyW9eTv7V_2A2McU9P1Z_n8pjXMdnWA3TC_49wfBtTMEkjFTe-rT0ig62O__9xkkWEmXqxPnkZAD7v7PQdRF1iBE46ZyHyQ"/><span class="font-headline-sm text-headline-sm text-primary font-bold">LandWatch</span></div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-lg">Predict. Explain. Prevent. — Statutory Early Warning and Automated Land Acquisition Intelligence System architected for Smart India Hackathon 2026. Target: Ministry of Rural Development (MoRD) &amp; Department of Land Resources (DoLR).</p><p class="font-label-sm text-label-sm text-secondary">Developed by Team Stack Overflow(ed) · SRM Institute of Science and Technology, Vadapalani Campus</p></div><div class="space-y-space-sm"><h4 class="font-label-md text-label-md text-primary uppercase">System Architecture</h4><ul class="space-y-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="problem" href="#">Statutory Friction Vectors</a></li><li><a class="hover:text-on-surface transition-colors" data-path="solution" href="#">Predictive LARR Engine</a></li><li><a class="hover:text-on-surface transition-colors" data-path="how-it-works" href="#">Algorithm &amp; Pipeline</a></li><li><a class="hover:text-on-surface transition-colors" data-path="feasibility" href="#">Institutional Feasibility</a></li><li><a class="hover:text-on-surface transition-colors" data-path="research" href="#">Empirical Research &amp; Papers</a></li></ul></div><div class="space-y-space-sm"><h4 class="font-label-md text-label-md text-primary uppercase">Statutory Disclaimers</h4><p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">Built strictly for academic competition and prototype validation under Smart India Hackathon 2026 guidelines. All district data, notifications, and dispute alerts are synthetic illustrations.</p><div class="pt-space-xs"><span class="inline-block bg-surface-container px-space-sm py-1 rounded-lg text-label-sm font-label-sm text-on-surface">Compliance: RFCTLARR Act 2013</span></div></div></div><div class="pt-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-base font-body-sm text-body-sm text-on-surface-variant"><p>© 2026 LandWatch Civic Intelligence. Smart India Hackathon 2026 Prototype Submission.</p><div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors font-label-md text-label-md" data-path="dashboard-demo" href="#">Dashboard Demo</a><span class="text-outline-variant">·</span><a class="hover:text-on-surface transition-colors font-label-md text-label-md" data-path="research" href="#">Whitepaper</a></div></div></div></footer></body></html>

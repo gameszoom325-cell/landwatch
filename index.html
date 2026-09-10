@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en"><head>
+<html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>LandWatch · Civic Intelligence &amp; Delay Warning System</title>
@@ -16,6 +16,9 @@
       main > :last-child { margin-bottom: 0 !important; }
     }
     ::-webkit-scrollbar { display: none; }
+    .scroll-mt-header {
+      scroll-margin-top: 104px;
+    }
   </style>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -137,39 +140,65 @@
 <div class="h-20 max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop flex items-center justify-between gap-space-base">
 <!-- Logo + Hackathon Badge -->
 <div class="flex items-center gap-space-base">
-<a class="flex items-center gap-space-sm group" href="#">
-<img alt="LandWatch Logo" class="h-9 w-auto object-contain transition-transform group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AEtjO1WR-zCbFjV48jtBoqiqCNzqnnXlVibU3Ysqa6En-DVIoXPtWl5t-OjYjMrvTzg6hKoOEaEScxMCwAR-YOyafpWaLBf0KhtU-jbCNQIkCisDTjjdMe1Xs3U9wmxVQP6XOGk4oqvVC3mWQUnb-WlTGNt5jDRTyW9eTv7V_2A2McU9P1Z_n8pjXMdnWA3TC_49wfBtTMEkjFTe-rT0ig62O__9xkkWEmXqxPnkZAD7v7PQdRF1iBE46ZyHyQ"/>
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight leading-tight">LandWatch</span>
-<span class="text-[10px] text-secondary font-medium tracking-wide">Smart India Hackathon 2026 · SIH26017</span>
-</div>
+<a class="flex items-center gap-space-sm group" href="#home">
+https://lh3.googleusercontent.com/aida/AEtjO1WR-zCbFjV48jtBoqiqCNzqnnXlVibU3Ysqa6En-DVIoXPtWl5t-OjYjMrvTzg6hKoOEaEScxMCwAR-YOyafpWaLBf0KhtU-jbCNQIkCisDTjjdMe1Xs3U9wmxVQP6XOGk4oqvVC3mWQUnb-WlTGNt5jDRTyW9eTv7V_2A2McU9P1Z_n8pjXMdnWA3TC_49wfBtTMEkjFTe-rT0ig62O__9xkkWEmXqxPnkZAD7v7PQdRF1iBE46ZyHyQ
 </a>
 </div>
-<!-- Task-Oriented Nav Items -->
+<!-- Task-Oriented Nav Items with Clear Anchor Targets -->
 <nav class="hidden xl:flex items-center gap-1">
-<a class="px-3 py-2 rounded-lg bg-surface-container text-primary font-semibold text-label-md flex items-center gap-1.5 transition-colors" href="#">
-<span>🏠</span> Home
-          </a>
-<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#dashboard-demo">
-<span>📊</span> Dashboard
-          </a>
-<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#risk-cases">
-<span>⚠️</span> High Risk Cases
-          </a>
-<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#map-view">
-<span>🗺️</span> Map
-          </a>
-<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#actions-required">
-<span>📋</span> Actions Required
-          </a>
-<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#about-landwatch">
-<span>ℹ️</span> About LandWatch
-          </a>
+<a class="px-3 py-2 rounded-lg bg-surface-container text-primary font-semibold text-label-md flex items-center gap-1.5 transition-colors" href="#home">
+<span>🏠</span> <span data-i18n="nav_home">Home</span>
+</a>
+<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#how-it-works">
+<span>⚙️</span> <span data-i18n="nav_how">How It Works</span>
+</a>
+<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#dashboard-preview">
+<span>📊</span> <span data-i18n="nav_dashboard">Dashboard</span>
+</a>
+<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#case-queue">
+<span>⚠️</span> <span data-i18n="nav_risk">High Risk Cases</span>
+</a>
+<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#cadastral-map">
+<span>🗺️</span> <span data-i18n="nav_map">Map</span>
+</a>
+<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#worked-example">
+<span>📋</span> <span data-i18n="nav_actions">Actions Required</span>
+</a>
+<a class="px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#architecture">
+<span>ℹ️</span> <span data-i18n="nav_about">About LandWatch</span>
+</a>
 </nav>
-<!-- Right Action Button -->
-<div class="flex items-center gap-space-sm">
-<a class="inline-flex items-center justify-center px-4 py-2.5 bg-primary text-on-primary text-label-md font-semibold rounded-lg shadow-sm hover:bg-primary-container transition-all gap-2" href="#dashboard-demo">
-<span>Open Simulated Demo</span>
+<!-- Right Controls: Accessible Language Selector + Demo CTA -->
+<div class="flex items-center gap-space-sm relative">
+<!-- Language Switcher Dropdown -->
+<div class="relative inline-block text-left" id="lang-selector-container">
+<button aria-expanded="false" aria-haspopup="true" class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md font-semibold rounded-lg border border-outline-variant/60 shadow-sm focus:outline-none focus:ring-2 focus:ring-primary transition-all" id="lang-btn" type="button">
+<span class="text-base leading-none">🌐</span>
+<span id="current-lang-label">EN (English)</span>
+<span class="material-symbols-outlined text-[16px] transition-transform duration-200" id="lang-arrow">expand_more</span>
+</button>
+<div class="hidden absolute right-0 mt-2 w-48 rounded-lg bg-surface-container-lowest shadow-xl border border-surface-container-high py-1.5 z-50 focus:outline-none animate-fadeIn" id="lang-dropdown">
+<button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-primary font-semibold hover:bg-surface-container-low transition-colors" data-lang="en" type="button">
+<span class="flex items-center gap-2"><span>English (Default)</span></span>
+<span class="lang-check text-primary font-bold">✓</span>
+</button>
+<button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors" data-lang="hi" type="button">
+<span class="flex items-center gap-2"><span>हिंदी (Hindi)</span></span>
+<span class="lang-check hidden text-primary font-bold">✓</span>
+</button>
+<button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors" data-lang="ta" type="button">
+<span class="flex items-center gap-2"><span>தமிழ் (Tamil)</span></span>
+<span class="lang-check hidden text-primary font-bold">✓</span>
+</button>
+<button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors" data-lang="pa" type="button">
+<span class="flex items-center gap-2"><span>ਪੰਜਾਬੀ (Punjabi)</span></span>
+<span class="lang-check hidden text-primary font-bold">✓</span>
+</button>
+</div>
+</div>
+<!-- Primary Demo Action Button -->
+<a class="inline-flex items-center justify-center px-4 py-2 bg-primary text-on-primary text-label-md font-semibold rounded-lg shadow-sm hover:bg-primary-container transition-all gap-1.5" href="#dashboard-preview">
+<span data-i18n="cta_demo">Open Simulated Demo</span>
 <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
 </a>
 </div>
@@ -177,31 +206,31 @@
 </header>
 </div>
 <!-- MAIN CONTENT CONTAINER -->
-<main class="w-full pt-28 bg-surface">
+<main class="w-full pt-28 bg-surface" id="home">
 <!-- 2. HERO — LEAD WITH PLAIN LANGUAGE -->
-<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-space-xl lg:py-space-2xl">
+<section class="w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-space-xl lg:py-space-2xl scroll-mt-header">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-center">
 <!-- Left Plain-Language Pitch -->
 <div class="lg:col-span-7 flex flex-col items-start space-y-space-md">
 <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-label-sm font-semibold uppercase tracking-wider">
 <span class="w-2 h-2 rounded-full bg-[#9333ea]"></span>
-            Officer-First Land Intelligence · SIH 2026
+            SIMULATED DEMO — Chengalpattu District · SIH 2026
           </div>
-<h1 class="font-display-lg text-display-lg text-primary tracking-tight max-w-2xl font-bold">
+<h1 class="font-display-lg text-display-lg text-primary tracking-tight max-w-2xl font-bold" data-i18n="hero_title">
             Catch land acquisition problems before they cause delays
           </h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed" data-i18n="hero_subtitle">
             LandWatch helps government officers spot risky land cases early, understand why they're at risk, and know what to do next.
           </p>
 <!-- Plain CTA Buttons -->
 <div class="pt-space-xs flex flex-wrap items-center gap-space-sm">
-<a class="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-md hover:bg-primary-container transition-all gap-2 font-semibold" href="#dashboard-demo">
-<span>Explore the Dashboard</span>
+<a class="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-md hover:bg-primary-container transition-all gap-2 font-semibold" href="#dashboard-preview">
+<span data-i18n="cta_explore">Explore the Dashboard Demo</span>
 <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
 </a>
 <a class="inline-flex items-center justify-center px-6 py-3 bg-surface-container-lowest text-primary border border-outline-variant/60 font-label-md text-label-md rounded-lg shadow-sm hover:bg-surface-container transition-all gap-2 font-semibold" href="#worked-example">
 <span class="material-symbols-outlined text-[18px]">visibility</span>
-<span>See Worked Example</span>
+<span data-i18n="cta_example">See Worked Example</span>
 </a>
 </div>
 <!-- Plain Quick Metrics -->
@@ -227,10 +256,10 @@
 <div class="flex items-center justify-between mb-space-base pb-space-sm border-b border-surface-container">
 <div>
 <p class="font-headline-sm text-headline-sm text-primary font-bold leading-tight">Case Alert Preview — Parcel #4521</p>
-<p class="text-[12px] text-on-surface-variant">Tambaram Taluk · Highway Expansion Corridor</p>
+<p class="text-[12px] text-on-surface-variant">NH-45 Corridor — Tambaram Bypass Expansion</p>
 </div>
-<span class="inline-flex items-center px-2 py-1 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-[10px] font-bold uppercase tracking-wide">
-                SIMULATED DEMO
+<span class="inline-flex items-center px-2.5 py-1 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-[10px] font-bold uppercase tracking-wide">
+                SIMULATED DEMO — Chengalpattu District
               </span>
 </div>
 <!-- Clear percentage meaning & prediction label -->
@@ -276,14 +305,14 @@
 </div>
 </section>
 <!-- 3. THE PROBLEM ("Where Delays Happen") -->
-<section class="w-full bg-surface-container-low py-space-2xl border-y border-surface-container-high" id="problem">
+<section class="w-full bg-surface-container-low py-space-2xl border-y border-surface-container-high scroll-mt-header" id="the-problem">
 <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
 <!-- Section Header -->
 <div class="max-w-3xl space-y-space-xs">
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
             The Core Dilemma
           </span>
-<h2 class="font-headline-lg text-headline-lg text-primary">
+<h2 class="font-headline-lg text-headline-lg text-primary" data-i18n="problem_title">
             Where Delays Happen in Land Acquisition
           </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
@@ -341,14 +370,14 @@
 </div>
 </section>
 <!-- 4. WORKED EXAMPLE (Concrete Before / After Story) -->
-<section class="w-full py-space-2xl" id="worked-example">
+<section class="w-full py-space-2xl scroll-mt-header" id="worked-example">
 <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
 <div class="max-w-3xl space-y-space-xs">
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
             Concrete Case Study
           </span>
 <h2 class="font-headline-lg text-headline-lg text-primary font-bold">
-            A Real-World Scenario: Parcel #4521 in Chengalpattu
+            A Real-World Scenario: Parcel #4521 (NH-45 Corridor — Tambaram Bypass Expansion)
           </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
             See how the traditional approach leads to costly 14-month freezes, and how LandWatch changes the outcome with proactive warnings.
@@ -390,7 +419,7 @@
 <span class="w-7 h-7 rounded-full bg-red-200 text-error font-bold text-label-sm flex items-center justify-center flex-shrink-0">4</span>
 <div>
 <p class="font-semibold text-error">High Court stay filed</p>
-<p class="text-body-sm text-on-surface-variant">Landowner petitions court for lapse of statutory procedure. Entire highway bypass expansion frozen for 14 months.</p>
+<p class="text-body-sm text-on-surface-variant">Landowner petitions court for lapse of statutory procedure. Entire highway expansion frozen for 14 months.</p>
 </div>
 </div>
 </div>
@@ -438,15 +467,15 @@
 </div>
 </div>
 </section>
-<!-- 5. HOW LANDWATCH HELPS (Solution + 9-Stage Tracker) -->
-<section class="w-full bg-surface-container-low py-space-2xl border-y border-surface-container-high" id="solution">
+<!-- 5. HOW IT WORKS (Solution + 9-Stage Tracker) -->
+<section class="w-full bg-surface-container-low py-space-2xl border-y border-surface-container-high scroll-mt-header" id="how-it-works">
 <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-2xl">
 <!-- Header -->
 <div class="text-center max-w-3xl mx-auto space-y-space-xs">
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
             How LandWatch Helps
           </span>
-<h2 class="font-headline-lg text-headline-lg text-primary font-bold">
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="how_title">
             Three simple steps to keep land acquisition on track
           </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
@@ -490,7 +519,7 @@
 <h3 class="font-headline-md text-headline-md text-primary font-bold">The 9 Steps of Land Acquisition</h3>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Track parcel progress through every stage. Plain label shown first, official legal section underneath.</p>
 </div>
-<span class="inline-flex items-center px-3 py-1 bg-surface-container text-primary rounded font-label-sm text-label-sm">
+<span class="inline-flex items-center px-3 py-1 bg-surface-container text-primary rounded font-label-sm text-label-sm font-semibold">
               Standard 9-Stage Acquisition Flow
             </span>
 </div>
@@ -586,7 +615,7 @@
 </div>
 </section>
 <!-- 6. THE DASHBOARD DEMO (BUILT FOR THE OFFICER) -->
-<section class="w-full py-space-2xl" id="dashboard-demo">
+<section class="w-full py-space-2xl scroll-mt-header" id="dashboard-preview">
 <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
 <!-- Section Header with Simulated Demo Badge -->
 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-base">
@@ -596,7 +625,7 @@
                 SIMULATED DEMO — Chengalpattu District
               </span>
 </div>
-<h2 class="font-headline-lg text-headline-lg text-primary font-bold pt-1">
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold pt-1" data-i18n="dash_title">
               District Collectorate Early Warning Command
             </h2>
 <p class="font-body-md text-body-md text-on-surface-variant">
@@ -651,112 +680,110 @@
 <p class="text-body-sm text-on-surface-variant">Milestones met on time</p>
 </div>
 </div>
-<!-- Split View: Risk Heatmap Matrix + Detailed Officer Inspector Card -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start" id="map-view">
+<!-- Split View: Interactive Risk Heatmap Matrix + Dynamic Officer Inspector Card -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-desktop items-start scroll-mt-header" id="cadastral-map">
 <!-- Left: Heatmap (7 cols) -->
 <div class="lg:col-span-7 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-md">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
 <div>
 <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Cadastral Risk Density Heatmap</h3>
-<p class="text-body-sm text-on-surface-variant">Click a parcel to see the problem (interactive simulation)</p>
+<p class="text-body-sm text-on-surface-variant">Click any parcel below to inspect case specifics</p>
 </div>
 <!-- Clear Legend -->
 <div class="flex items-center gap-3 text-label-sm font-semibold">
-<span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span> 🟢 Safe</span>
-<span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span> 🟡 Attention</span>
-<span class="flex items-center gap-1"><span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span> 🔴 Critical</span>
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-emerald-100 border border-emerald-400 inline-block"></span> 🟢 Safe</span>
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-amber-100 border border-amber-400 inline-block"></span> 🟡 Attention</span>
+<span class="flex items-center gap-1.5"><span class="w-3.5 h-3.5 rounded bg-red-100 border border-red-400 inline-block"></span> 🔴 Critical</span>
 </div>
 </div>
-<!-- Heatmap Grid -->
-<div class="grid grid-cols-8 gap-2 p-space-sm bg-surface-container-low rounded-lg border border-surface-container">
+<!-- Interactive Heatmap Grid: Accessible, >=42px target, dynamic inspector binding -->
+<div aria-label="Cadastral Parcels" class="grid grid-cols-8 gap-2 p-space-sm bg-surface-container-low rounded-lg border border-surface-container" id="heatmap-grid" role="grid">
 <!-- Row 1 -->
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 101 · Safe">P01</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 102 · Safe">P02</div>
-<!-- Selected Critical Parcel 4521 -->
-<div class="h-10 rounded bg-red-600 text-white ring-4 ring-red-300 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-extrabold cursor-pointer animate-pulse" title="Parcel 4521 · 84% Risk (Currently Selected)">
-                4521
-              </div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P04</div>
-<div class="h-10 rounded bg-amber-300 text-amber-950 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 105 · Moderate Risk">P05</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P06</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P07</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P08</div>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P01" title="Parcel P01 · Safe" type="button">P01</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P02" title="Parcel P02 · Safe" type="button">P02</button>
+<!-- Selected Critical Parcel 4521 by default -->
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-red-600 text-white border-2 border-primary ring-2 ring-offset-2 ring-primary scale-105 font-extrabold shadow-sm hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] focus:outline-none focus:ring-2 focus:ring-amber-500 animate-pulse" data-parcel="4521" title="Parcel 4521 · 84% Critical Risk (Selected)" type="button">4521</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P04" title="Parcel P04 · Safe" type="button">P04</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-amber-50 text-amber-900 border border-amber-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P05" title="Parcel P05 · Moderate Risk" type="button">P05</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P06" title="Parcel P06 · Safe" type="button">P06</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P07" title="Parcel P07 · Safe" type="button">P07</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P08" title="Parcel P08 · Safe" type="button">P08</button>
 <!-- Row 2 -->
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P09</div>
-<div class="h-10 rounded bg-amber-300 text-amber-950 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P10</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P11</div>
-<div class="h-10 rounded bg-red-600 text-white hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 3110 · 79% Risk">3110</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P13</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P14</div>
-<div class="h-10 rounded bg-amber-300 text-amber-950 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P15</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P16</div>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P09" title="Parcel P09 · Safe" type="button">P09</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-amber-50 text-amber-900 border border-amber-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P10" title="Parcel P10 · Moderate Risk" type="button">P10</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P11" title="Parcel P11 · Safe" type="button">P11</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-red-50 text-red-800 border border-red-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="3110" title="Parcel 3110 · 79% Attention Risk" type="button">3110</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P13" title="Parcel P13 · Safe" type="button">P13</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P14" title="Parcel P14 · Safe" type="button">P14</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-amber-50 text-amber-900 border border-amber-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P15" title="Parcel P15 · Moderate Risk" type="button">P15</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P16" title="Parcel P16 · Safe" type="button">P16</button>
 <!-- Row 3 -->
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P17</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P18</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P19</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P20</div>
-<div class="h-10 rounded bg-amber-300 text-amber-950 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P21</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P22</div>
-<div class="h-10 rounded bg-red-600 text-white hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer" title="Parcel 2894 · 88% Risk">2894</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P24</div>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P17" title="Parcel P17 · Safe" type="button">P17</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P18" title="Parcel P18 · Safe" type="button">P18</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P19" title="Parcel P19 · Safe" type="button">P19</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P20" title="Parcel P20 · Safe" type="button">P20</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-amber-50 text-amber-900 border border-amber-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P21" title="Parcel P21 · Moderate Risk" type="button">P21</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P22" title="Parcel P22 · Safe" type="button">P22</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-red-50 text-red-800 border border-red-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="2894" title="Parcel 2894 · 88% Critical Risk" type="button">2894</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P24" title="Parcel P24 · Safe" type="button">P24</button>
 <!-- Row 4 -->
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P25</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P26</div>
-<div class="h-10 rounded bg-amber-300 text-amber-950 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P27</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P28</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P29</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P30</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P31</div>
-<div class="h-10 rounded bg-emerald-100 text-emerald-900 hover:scale-105 transition-transform flex items-center justify-center text-[10px] font-bold cursor-pointer">P32</div>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P25" title="Parcel P25 · Safe" type="button">P25</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P26" title="Parcel P26 · Safe" type="button">P26</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-amber-50 text-amber-900 border border-amber-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P27" title="Parcel P27 · Moderate Risk" type="button">P27</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P28" title="Parcel P28 · Safe" type="button">P28</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P29" title="Parcel P29 · Safe" type="button">P29</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P30" title="Parcel P30 · Safe" type="button">P30</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P31" title="Parcel P31 · Safe" type="button">P31</button>
+<button class="parcel-cell min-w-[42px] min-h-[42px] rounded bg-emerald-50 text-emerald-800 border border-emerald-300 hover:scale-110 hover:shadow-md hover:border-slate-800 cursor-pointer transition-all duration-150 flex items-center justify-center text-[11px] font-bold focus:outline-none focus:ring-2 focus:ring-amber-500" data-parcel="P32" title="Parcel P32 · Safe" type="button">P32</button>
 </div>
 <div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-1">
-<span>Focus Zone: NH-45 Widening (Chainage km 28 to 44)</span>
+<span>Focus Zone: NH-45 Corridor — Tambaram Bypass Expansion (Chainage km 28 to 44)</span>
 <span class="text-secondary font-semibold">Simulated dataset sync: Complete</span>
 </div>
 </div>
 <!-- Right: Detailed Officer Inspector Card (5 cols) Answering 5 CORE QUESTIONS -->
-<div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-md border-2 border-primary/20 space-y-space-md" id="actions-required">
+<div class="lg:col-span-5 bg-surface-container-lowest p-space-lg rounded-xl shadow-md border-2 border-primary/20 space-y-space-md" id="inspector-card">
 <div class="flex items-center justify-between pb-space-xs border-b border-surface-container">
 <div>
 <span class="text-[11px] font-bold uppercase tracking-wider text-secondary">Officer Inspector Card</span>
-<h3 class="font-headline-sm text-headline-sm text-primary font-bold">5 Key Case Questions</h3>
+<h3 class="font-headline-sm text-headline-sm text-primary font-bold" id="insp-header">5 Key Case Questions · Parcel #4521</h3>
 </div>
-<span class="px-2.5 py-1 rounded bg-red-100 text-error font-bold text-[11px]">Active Focus</span>
+<span class="px-2.5 py-1 rounded bg-red-100 text-error font-bold text-[11px]" id="insp-status-badge">Active Focus (84% Risk)</span>
 </div>
 <!-- 5 Questions Structured Output -->
 <div class="space-y-space-sm">
 <!-- Q1: What is wrong? -->
 <div class="p-3 bg-red-50/70 border border-red-200 rounded-lg">
 <span class="text-error font-bold text-label-sm block">🔴 1. What is wrong?</span>
-<p class="text-body-md text-on-surface font-semibold mt-0.5">
+<p class="text-body-md text-on-surface font-semibold mt-0.5" id="insp-q1">
                   Survey boundary objection response pending for 18 days
                 </p>
 </div>
 <!-- Q2: Where is it happening? -->
 <div class="p-3 bg-surface-container-low border border-surface-container rounded-lg">
 <span class="text-primary font-bold text-label-sm block">📍 2. Where is it happening?</span>
-<p class="text-body-md text-on-surface font-medium mt-0.5">
-                  Parcel #4521 · NH-45 Widening, Tambaram Taluk
+<p class="text-body-md text-on-surface font-medium mt-0.5" id="insp-q2">
+                  Parcel #4521 · NH-45 Corridor — Tambaram Bypass Expansion
                 </p>
 </div>
 <!-- Q3: How much time is left? -->
 <div class="p-3 bg-amber-50/70 border border-amber-200 rounded-lg">
 <span class="text-amber-900 font-bold text-label-sm block">⏰ 3. How much time is left?</span>
-<p class="text-body-md text-amber-950 font-medium mt-0.5">
+<p class="text-body-md text-amber-950 font-medium mt-0.5" id="insp-q3">
 <strong>9 days</strong> until survey deadline expires · <span class="text-error font-semibold">⚠️ Predicted to be delayed by 28 days if unaddressed</span>
 </p>
 </div>
 <!-- Q4: Who should act? -->
 <div class="p-3 bg-surface-container-low border border-surface-container rounded-lg">
 <span class="text-primary font-bold text-label-sm block">👤 4. Who should act?</span>
-<p class="text-body-md text-on-surface font-semibold mt-0.5">
+<p class="text-body-md text-on-surface font-semibold mt-0.5" id="insp-q4">
                   District Land Acquisition Officer (DLAO) &amp; Tahsildar
                 </p>
 </div>
 <!-- Q5: What should they do? -->
 <div class="p-3 bg-primary text-white rounded-lg shadow-sm">
 <span class="text-secondary-container font-bold text-label-sm block">✅ 5. What should they do?</span>
-<p class="text-body-sm text-white font-medium mt-1 leading-snug">
+<p class="text-body-sm text-white font-medium mt-1 leading-snug" id="insp-q5">
                   Convene expedited joint boundary demarcation with NHAI field team by 12 March.
                 </p>
 </div>
@@ -774,18 +801,18 @@
 <div class="mt-2 p-3 bg-surface-container-low rounded-lg text-body-sm text-on-surface-variant space-y-1.5 border border-surface-container">
 <p class="font-semibold text-primary text-[12px]">XGBoost + SHAP Attribution Weights:</p>
 <div class="flex justify-between text-[11px]">
-<span>Boundary Dispute Response Delay</span>
-<strong class="text-error">+0.41 impact (+28d)</strong>
+<span id="shap-feature-1">Boundary Dispute Response Delay</span>
+<strong class="text-error" id="shap-val-1">+0.41 impact (+28d)</strong>
 </div>
 <div class="w-full bg-surface-variant rounded-full h-1.5 overflow-hidden">
-<div class="bg-error h-1.5 rounded-full" style="width: 78%"></div>
+<div class="bg-error h-1.5 rounded-full" id="shap-bar-1" style="width: 78%"></div>
 </div>
 <div class="flex justify-between text-[11px] pt-1">
-<span>Survey Officer Caseload Saturation</span>
-<strong class="text-amber-800">+0.22 impact</strong>
+<span id="shap-feature-2">Survey Officer Caseload Saturation</span>
+<strong class="text-amber-800" id="shap-val-2">+0.22 impact</strong>
 </div>
 <div class="w-full bg-surface-variant rounded-full h-1.5 overflow-hidden">
-<div class="bg-amber-600 h-1.5 rounded-full" style="width: 44%"></div>
+<div class="bg-amber-600 h-1.5 rounded-full" id="shap-bar-2" style="width: 44%"></div>
 </div>
 </div>
 </details>
@@ -793,13 +820,18 @@
 </div>
 </div>
 <!-- High Risk Cases Table (Answering the 5 Questions) -->
-<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container p-space-lg space-y-space-md" id="risk-cases">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container p-space-lg space-y-space-md scroll-mt-header" id="case-queue">
 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
 <div>
 <h3 class="font-headline-sm text-headline-sm text-primary font-bold">Priority Case Queue</h3>
 <p class="text-body-sm text-on-surface-variant">Top priority cases filtered by impending statutory deadlines.</p>
 </div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-[11px] font-bold">
+            SIMULATED DEMO — Chengalpattu District
+          </span>
 <span class="text-label-sm font-semibold text-secondary">Showing 3 of 19 flagged cases</span>
+</div>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left font-body-md border-collapse">
@@ -813,7 +845,7 @@
 </tr>
 </thead>
 <tbody class="divide-y divide-surface-container text-body-sm">
-<tr class="hover:bg-surface-container-low transition-colors">
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer" onclick="selectParcel('4521')">
 <td class="py-3 px-3">
 <span class="font-bold text-primary block">#4521</span>
 <span class="text-[12px] text-on-surface-variant">Tambaram Taluk · NH-45</span>
@@ -834,7 +866,7 @@
                     Convene expedited joint boundary demarcation
                   </td>
 </tr>
-<tr class="hover:bg-surface-container-low transition-colors">
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer" onclick="selectParcel('3110')">
 <td class="py-3 px-3">
 <span class="font-bold text-primary block">#3110</span>
 <span class="text-[12px] text-on-surface-variant">Chengalpattu Bypass</span>
@@ -855,7 +887,7 @@
                     Upload digitized revenue title extract
                   </td>
 </tr>
-<tr class="hover:bg-surface-container-low transition-colors">
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer" onclick="selectParcel('2894')">
 <td class="py-3 px-3">
 <span class="font-bold text-primary block">#2894</span>
 <span class="text-[12px] text-on-surface-variant">Industrial Corridor (SIPCOT)</span>
@@ -883,14 +915,14 @@
 </div>
 </section>
 <!-- 7. IMPACT NUMBERS (Every Stat Rigorously Tagged) -->
-<section class="w-full bg-surface-container-low py-space-2xl border-y border-surface-container-high" id="impact">
+<section class="w-full bg-surface-container-low py-space-2xl border-y border-surface-container-high scroll-mt-header" id="projected-impact">
 <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-2xl">
 <!-- Section Header -->
 <div class="text-center max-w-3xl mx-auto space-y-space-xs">
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
             Anticipated Civic Benefits
           </span>
-<h2 class="font-headline-lg text-headline-lg text-primary font-bold">
+<h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="impact_title">
             Projected Impact of Proactive Detection
           </h2>
 <p class="font-body-lg text-body-lg text-on-surface-variant">
@@ -969,7 +1001,7 @@
 </div>
 </section>
 <!-- 8. SECONDARY PAGES & REFERENCE TABS (FOR REVIEWERS / JUDGES) -->
-<section class="w-full py-space-2xl" id="about-landwatch">
+<section class="w-full py-space-2xl scroll-mt-header" id="architecture">
 <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
 <div class="max-w-3xl space-y-space-xs">
 <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
@@ -1011,7 +1043,7 @@
 <ul class="text-body-sm text-on-surface-variant space-y-1.5 pt-1">
 <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold">✓</span> CPU-only inference under 150ms</li>
 <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold">✓</span> 100% open source technology stack</li>
-<li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold">✓</span> PII masking &amp; Aadhaar/PAN hash hashing</li>
+<li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold">✓</span> PII masking &amp; Aadhaar/PAN cryptographic hashing</li>
 </ul>
 </div>
 <!-- Card 3: Research -->
@@ -1057,7 +1089,7 @@
 </div>
 </div>
 <p class="font-label-sm text-label-sm text-on-surface-variant max-w-md">
-          This is an SIH 2026 Hackathon prototype and simulated software demonstration, not an official deployment of the Ministry of Rural Development or Government of India.
+          SIMULATED DEMO — Chengalpattu District. This is an SIH 2026 Hackathon prototype and simulated software demonstration, not an official deployment of the Ministry of Rural Development or Government of India.
         </p>
 </div>
 </section>
@@ -1068,7 +1100,6 @@
 <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter-desktop mb-space-xl">
 <div class="space-y-space-sm md:col-span-2">
 <div class="flex items-center gap-space-sm">
-<img alt="LandWatch Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WR-zCbFjV48jtBoqiqCNzqnnXlVibU3Ysqa6En-DVIoXPtWl5t-OjYjMrvTzg6hKoOEaEScxMCwAR-YOyafpWaLBf0KhtU-jbCNQIkCisDTjjdMe1Xs3U9wmxVQP6XOGk4oqvVC3mWQUnb-WlTGNt5jDRTyW9eTv7V_2A2McU9P1Z_n8pjXMdnWA3TC_49wfBtTMEkjFTe-rT0ig62O__9xkkWEmXqxPnkZAD7v7PQdRF1iBE46ZyHyQ"/>
 <span class="font-headline-sm text-headline-sm text-primary font-bold">LandWatch</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface-variant max-w-lg leading-relaxed">
@@ -1081,11 +1112,17 @@
 <div class="space-y-space-sm">
 <h4 class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Quick Navigation</h4>
 <ul class="space-y-space-xs font-body-sm text-on-surface-variant">
-<li><a class="hover:text-primary transition-colors" href="#problem">Where Delays Happen</a></li>
+<li><a class="hover:text-primary transition-colors" href="#the-problem">Where Delays Happen</a></li>
 <li><a class="hover:text-primary transition-colors" href="#worked-example">Worked Case Scenario</a></li>
-<li><a class="hover:text-primary transition-colors" href="#solution">The 9-Step Tracker</a></li>
-<li><a class="hover:text-primary transition-colors" href="#dashboard-demo">Simulated Dashboard Demo</a></li>
-<li><a class="hover:text-primary transition-colors" href="#impact">Projected Impact</a></li>
+<li><a class="hover:text-primary transition-colors" href="#how-it-works">The 9-Step Tracker</a></li>
+<li><a class="hover:text-primary transition-colors" href="#dashboard-preview">Dashboard Demo</a></li>
+<li><a class="hover:text-primary transition-colors" href="#projected-impact">Projected Impact</a></li>
+<li>
+<span class="inline-flex items-center gap-1.5 text-on-surface-variant/70 cursor-not-allowed text-[13px]">
+<span>Whitepaper (Coming Soon)</span>
+<span class="text-[9px] uppercase tracking-wider bg-surface-container px-1.5 py-0.5 rounded text-secondary font-bold">Coming Soon</span>
+</span>
+</li>
 </ul>
 </div>
 <div class="space-y-space-sm">
@@ -1094,8 +1131,8 @@
             Built strictly for hackathon evaluation under SIH 2026 problem SIH26017. All parcel identifiers, boundary objections, and timelines shown are synthetic illustrative data.
           </p>
 <div class="pt-space-xs">
-<span class="inline-block bg-surface-container px-2.5 py-1 rounded text-label-sm font-semibold text-primary">
-              Central Act 30 of 2013 Model
+<span class="inline-block bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] px-2.5 py-1 rounded text-label-sm font-bold">
+              SIMULATED DEMO — Chengalpattu District
             </span>
 </div>
 </div>
@@ -1103,11 +1140,316 @@
 <div class="pt-space-lg border-t border-surface-container flex flex-col sm:flex-row items-center justify-between gap-space-base font-body-sm text-body-sm text-on-surface-variant">
 <p>© 2026 LandWatch Civic Intelligence. Smart India Hackathon 2026 Prototype Submission.</p>
 <div class="flex items-center gap-space-lg">
-<a class="hover:text-primary transition-colors font-label-md" href="#dashboard-demo">Simulated Demo</a>
+<a class="hover:text-primary transition-colors font-label-md" href="#dashboard-preview">Dashboard Demo</a>
 <span class="text-outline-variant">·</span>
-<a class="hover:text-primary transition-colors font-label-md" href="#about-landwatch">Architecture Notes</a>
+<a class="hover:text-primary transition-colors font-label-md" href="#architecture">Architecture Notes</a>
 </div>
 </div>
 </div>
 </footer>
+<!-- Interactive Heatmap Data & Language Switcher Scripts -->
+<script>
+  // 1. Parcel Details Database for Cadastral Interactive Inspector
+  const parcelDatabase = {
+    "4521": {
+      title: "5 Key Case Questions · Parcel #4521",
+      badge: "Active Focus (84% Risk)",
+      badgeClass: "bg-red-100 text-error",
+      q1: "Survey boundary objection response pending for 18 days",
+      q2: "Parcel #4521 · NH-45 Corridor — Tambaram Bypass Expansion",
+      q3: "<strong>9 days</strong> until survey deadline expires · <span class='text-error font-semibold'>⚠️ Predicted to be delayed by 28 days if unaddressed</span>",
+      q4: "District Land Acquisition Officer (DLAO) & Tahsildar",
+      q5: "Convene expedited joint boundary demarcation with NHAI field team by 12 March.",
+      shap1: "Boundary Dispute Response Delay",
+      shapVal1: "+0.41 impact (+28d)",
+      shapBar1: "78%",
+      shapBarColor1: "bg-error",
+      shap2: "Survey Officer Caseload Saturation",
+      shapVal2: "+0.22 impact",
+      shapBar2: "44%"
+    },
+    "3110": {
+      title: "5 Key Case Questions · Parcel #3110",
+      badge: "Attention (79% Risk)",
+      badgeClass: "bg-amber-100 text-amber-900",
+      q1: "Patta co-sharer records missing in revenue system extract",
+      q2: "Parcel #3110 · Chengalpattu Bypass Connector",
+      q3: "<strong>16 days</strong> until hearing expires · <span class='text-amber-800 font-semibold'>⚠️ Predicted to be delayed by 18 days</span>",
+      q4: "Village Administrative Officer (VAO) & Revenue Inspector",
+      q5: "Upload digitized revenue title extract and notify rightful coparceners before notice hearing.",
+      shap1: "Missing Title Documentation",
+      shapVal1: "+0.34 impact (+18d)",
+      shapBar1: "65%",
+      shapBarColor1: "bg-amber-600",
+      shap2: "Pending Co-sharer Identity Verification",
+      shapVal2: "+0.18 impact",
+      shapBar2: "35%"
+    },
+    "2894": {
+      title: "5 Key Case Questions · Parcel #2894",
+      badge: "Overdue (88% Risk)",
+      badgeClass: "bg-red-100 text-error",
+      q1: "Tree & structure valuation delayed · Forest department signoff overdue",
+      q2: "Parcel #2894 · Industrial Corridor (SIPCOT Expansion)",
+      q3: "<strong>🔴 Overdue by 14 days</strong> · <span class='text-error font-semibold'>Critical notice lapse hazard in 7 days</span>",
+      q4: "Special Tahsildar (Valuation) & Forest Department Liaison",
+      q5: "Issue emergency inter-departmental valuation summons to avoid Section 25 notice nullification.",
+      shap1: "Inter-Agency Tree Valuation Backlog",
+      shapVal1: "+0.48 impact (+36d)",
+      shapBar1: "90%",
+      shapBarColor1: "bg-error",
+      shap2: "Special Tahsildar Docket Congestion",
+      shapVal2: "+0.29 impact",
+      shapBar2: "55%"
+    },
+    "P05": {
+      title: "5 Key Case Questions · Parcel #P05",
+      badge: "Moderate Attention",
+      badgeClass: "bg-amber-100 text-amber-900",
+      q1: "Minor classification ambiguity between dry agricultural & wet land",
+      q2: "Parcel #P05 · Tambaram Peripheral Ring Road",
+      q3: "<strong>24 days</strong> remaining for Section 15 objection review",
+      q4: "Zonal Deputy Tahsildar",
+      q5: "Verify agricultural revenue classification against 1987 UDR records.",
+      shap1: "Land Classification Audit Lag",
+      shapVal1: "+0.19 impact (+10d)",
+      shapBar1: "38%",
+      shapBarColor1: "bg-amber-500",
+      shap2: "Local Revenue Clerk Verification",
+      shapVal2: "+0.11 impact",
+      shapBar2: "22%"
+    },
+    "P11": {
+      title: "5 Key Case Questions · Parcel #P11",
+      badge: "Safe / On Track",
+      badgeClass: "bg-emerald-100 text-emerald-800",
+      q1: "No statutory milestones in jeopardy · All hearings completed",
+      q2: "Parcel #P11 · NH-45 Corridor Sector 2",
+      q3: "<strong>45 days</strong> remaining for statutory award finalization",
+      q4: "Land Acquisition Officer (General)",
+      q5: "Proceed with standard compensation ledger preparation.",
+      shap1: "Normal Progress Track",
+      shapVal1: "Nominal (-2d)",
+      shapBar1: "10%",
+      shapBarColor1: "bg-emerald-600",
+      shap2: "Records Validated",
+      shapVal2: "0.00 impact",
+      shapBar2: "5%"
+    },
+    "P19": {
+      title: "5 Key Case Questions · Parcel #P19",
+      badge: "Safe / On Track",
+      badgeClass: "bg-emerald-100 text-emerald-800",
+      q1: "All field surveys completed without counter-claims",
+      q2: "Parcel #P19 · Singaperumal Koil Sector",
+      q3: "<strong>52 days</strong> ahead of scheduled award announcement",
+      q4: "Tahsildar & Sub-Collector",
+      q5: "Schedule compensation account verification with bank branch manager.",
+      shap1: "Full Procedural Compliance",
+      shapVal1: "Safe (-5d)",
+      shapBar1: "8%",
+      shapBarColor1: "bg-emerald-600",
+      shap2: "Field Coordinates Signed",
+      shapVal2: "0.00 impact",
+      shapBar2: "5%"
+    }
+  };
+
+  function selectParcel(parcelId) {
+    const data = parcelDatabase[parcelId] || {
+      title: `5 Key Case Questions · Parcel #${parcelId}`,
+      badge: "Standard Monitored Parcel",
+      badgeClass: "bg-surface-container text-primary",
+      q1: "Scheduled stage-gate reviews underway in accordance with RFCTLARR Act 2013.",
+      q2: `Parcel #${parcelId} · Chengalpattu Administrative Division`,
+      q3: "Timeline within designated statutory window (30+ days remaining).",
+      q4: "Assistant Revenue Officer",
+      q5: "Maintain continuous bi-weekly survey progress logging.",
+      shap1: "Routine Milestone Progress",
+      shapVal1: "+0.04 impact",
+      shapBar1: "15%",
+      shapBarColor1: "bg-primary",
+      shap2: "Standard Taluk Processing Rate",
+      shapVal2: "+0.02 impact",
+      shapBar2: "10%"
+    };
+
+    // Update inspector card
+    document.getElementById('insp-header').textContent = data.title;
+    const badgeElem = document.getElementById('insp-status-badge');
+    badgeElem.textContent = data.badge;
+    badgeElem.className = `px-2.5 py-1 rounded font-bold text-[11px] ${data.badgeClass}`;
+
+    document.getElementById('insp-q1').innerHTML = data.q1;
+    document.getElementById('insp-q2').innerHTML = data.q2;
+    document.getElementById('insp-q3').innerHTML = data.q3;
+    document.getElementById('insp-q4').innerHTML = data.q4;
+    document.getElementById('insp-q5').innerHTML = data.q5;
+
+    document.getElementById('shap-feature-1').textContent = data.shap1;
+    document.getElementById('shap-val-1').textContent = data.shapVal1;
+    const bar1 = document.getElementById('shap-bar-1');
+    bar1.style.width = data.shapBar1;
+    bar1.className = `h-1.5 rounded-full ${data.shapBarColor1 || 'bg-error'}`;
+
+    document.getElementById('shap-feature-2').textContent = data.shap2;
+    document.getElementById('shap-val-2').textContent = data.shapVal2;
+    document.getElementById('shap-bar-2').style.width = data.shapBar2;
+
+    // Visual selection state update in heatmap cells
+    document.querySelectorAll('.parcel-cell').forEach(btn => {
+      btn.classList.remove('ring-2', 'ring-offset-2', 'ring-primary', 'border-primary', 'font-extrabold', 'scale-105', 'animate-pulse');
+      if (btn.getAttribute('data-parcel') === parcelId) {
+        btn.classList.add('ring-2', 'ring-offset-2', 'ring-primary', 'border-primary', 'font-extrabold', 'scale-105');
+      }
+    });
+  }
+
+  // Attach click listeners to all parcel cells
+  document.querySelectorAll('.parcel-cell').forEach(button => {
+    button.addEventListener('click', () => {
+      const pid = button.getAttribute('data-parcel');
+      selectParcel(pid);
+    });
+  });
+
+  // 2. Language Switcher Functionality
+  const translations = {
+    en: {
+      langLabel: "EN (English)",
+      nav_home: "Home",
+      nav_how: "How It Works",
+      nav_dashboard: "Dashboard",
+      nav_risk: "High Risk Cases",
+      nav_map: "Map",
+      nav_actions: "Actions Required",
+      nav_about: "About LandWatch",
+      cta_demo: "Open Simulated Demo",
+      cta_explore: "Explore the Dashboard Demo",
+      cta_example: "See Worked Example",
+      hero_title: "Catch land acquisition problems before they cause delays",
+      hero_subtitle: "LandWatch helps government officers spot risky land cases early, understand why they're at risk, and know what to do next.",
+      problem_title: "Where Delays Happen in Land Acquisition",
+      how_title: "Three simple steps to keep land acquisition on track",
+      dash_title: "District Collectorate Early Warning Command",
+      impact_title: "Projected Impact of Proactive Detection"
+    },
+    hi: {
+      langLabel: "HI (हिंदी)",
+      nav_home: "मुख्य पृष्ठ",
+      nav_how: "कार्यप्रणाली",
+      nav_dashboard: "डैशबोर्ड",
+      nav_risk: "उच्च जोखिम मामले",
+      nav_map: "मानचित्र",
+      nav_actions: "आवश्यक कार्रवाई",
+      nav_about: "लैंडवॉच परिचय",
+      cta_demo: "सिम्युलेटेड डेमो खोलें",
+      cta_explore: "डैशबोर्ड डेमो देखें",
+      cta_example: "उदाहरण देखें",
+      hero_title: "भूमि अधिग्रहण की समस्याओं को देरी बनने से पहले ही पहचानें",
+      hero_subtitle: "लैंडवॉच सरकारी अधिकारियों को जोखिम भरे मामलों की समय रहते पहचान, कारण विश्लेषण और आवश्यक कदम सुझाने में मदद करता है।",
+      problem_title: "भूमि अधिग्रहण में देरी कहाँ होती है",
+      how_title: "भूमि अधिग्रहण को समय पर रखने के तीन आसान चरण",
+      dash_title: "जिला समाहर्ता प्रारंभिक चेतावनी कमान",
+      impact_title: "सक्रिय निगरानी से अनुमानित लाभ"
+    },
+    ta: {
+      langLabel: "TA (தமிழ்)",
+      nav_home: "முகப்பு",
+      nav_how: "செயல்முறை",
+      nav_dashboard: "டாஷ்போர்டு",
+      nav_risk: "அதிக ஆபத்துள்ள வழக்குகள்",
+      nav_map: "வரைபடம்",
+      nav_actions: "தேவையான நடவடிக்கைகள்",
+      nav_about: "லேண்ட்வாட்ச் பற்றி",
+      cta_demo: "மாதிரி டெமோவை திறக்கவும்",
+      cta_explore: "டாஷ்போர்டு டெமோவை காண்க",
+      cta_example: "உதாரணத்தை காண்க",
+      hero_title: "நிலம் கையகப்படுத்துதல் தாமதமாவதற்கு முன்பே சிக்கல்களை கண்டறியுங்கள்",
+      hero_subtitle: "அரசு அதிகாரிகளுக்கு அபாயகரமான நில வழக்குகளை முன்கூட்டியே கண்டறியவும், காரணங்களை புரிந்து கொள்ளவும், உடனடி நடவடிக்கை எடுக்கவும் லேண்ட்வாட்ச் உதவுகிறது.",
+      problem_title: "நிலம் கையகப்படுத்துதலில் தாமதங்கள் எங்கு ஏற்படுகின்றன",
+      how_title: "திட்டங்களை தாமதமின்றி நடத்த 3 எளிய வழிகள்",
+      dash_title: "மாவட்ட ஆட்சியர் எச்சரிக்கை கட்டளை மையம்",
+      impact_title: "முன்கூட்டியே கண்டறிவதன் திட்டமிடப்பட்ட பலன்கள்"
+    },
+    pa: {
+      langLabel: "PA (ਪੰਜਾਬੀ)",
+      nav_home: "ਮੁੱਖ ਪੰਨਾ",
+      nav_how: "ਕਿਵੇਂ ਕੰਮ ਕਰਦਾ ਹੈ",
+      nav_dashboard: "ਡੈਸ਼ਬੋਰਡ",
+      nav_risk: "ਉੱਚ ਜੋਖਮ ਵਾਲੇ ਕੇਸ",
+      nav_map: "ਨਕਸ਼ਾ",
+      nav_actions: "ਲੋੜੀਂਦੀ ਕਾਰਵਾਈ",
+      nav_about: "ਲੈਂਡਵਾਚ ਬਾਰੇ",
+      cta_demo: "ਸਿਮੂਲੇਟਡ ਡੈਮੋ ਖੋਲ੍ਹੋ",
+      cta_explore: "ਡੈਸ਼ਬੋਰਡ ਡੈਮੋ ਦੇਖੋ",
+      cta_example: "ਉਦਾਹਰਣ ਦੇਖੋ",
+      hero_title: "ਜ਼ਮੀਨ ਪ੍ਰਾਪਤੀ ਦੀਆਂ ਸਮੱਸਿਆਵਾਂ ਨੂੰ ਦੇਰੀ ਬਣਨ ਤੋਂ ਪਹਿਲਾਂ ਹੀ ਫੜੋ",
+      hero_subtitle: "ਲੈਂਡਵਾਚ ਸਰਕਾਰੀ ਅਧਿਕਾਰੀਆਂ ਨੂੰ ਜੋਖਮ ਭਰੇ ਕੇਸਾਂ ਨੂੰ ਜਲਦੀ ਪਛਾਣਨ, ਕਾਰਨ ਸਮਝਣ ਅਤੇ ਅਗਲੀ ਕਾਰਵਾਈ ਦੱਸਣ ਵਿੱਚ ਮਦਦ ਕਰਦਾ ਹੈ।",
+      problem_title: "ਜ਼ਮੀਨ ਪ੍ਰਾਪਤੀ ਵਿੱਚ ਦੇਰੀ ਕਿੱਥੇ ਹੁੰਦੀ ਹੈ",
+      how_title: "ਕੰਮ ਨੂੰ ਠੀਕ ਰੱਖਣ ਲਈ ਤਿੰਨ ਆਸਾਨ ਕਦਮ",
+      dash_title: "ਜ਼ਿਲ੍ਹਾ ਕਮਾਂਡ ਸੈਂਟਰ",
+      impact_title: "ਸਮੇਂ ਸਿਰ ਨਿਗਰਾਨੀ ਦੇ ਲਾਭ"
+    }
+  };
+
+  const langBtn = document.getElementById('lang-btn');
+  const langDropdown = document.getElementById('lang-dropdown');
+  const langArrow = document.getElementById('lang-arrow');
+  const currentLangLabel = document.getElementById('current-lang-label');
+
+  langBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isHidden = langDropdown.classList.contains('hidden');
+    if (isHidden) {
+      langDropdown.classList.remove('hidden');
+      langArrow.classList.add('rotate-180');
+      langBtn.setAttribute('aria-expanded', 'true');
+    } else {
+      langDropdown.classList.add('hidden');
+      langArrow.classList.remove('rotate-180');
+      langBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('click', () => {
+    if (!langDropdown.classList.contains('hidden')) {
+      langDropdown.classList.add('hidden');
+      langArrow.classList.remove('rotate-180');
+      langBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.querySelectorAll('.lang-option').forEach(opt => {
+    opt.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const selected = opt.getAttribute('data-lang');
+      const dict = translations[selected];
+      if (dict) {
+        currentLangLabel.textContent = dict.langLabel;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (dict[key]) {
+            el.textContent = dict[key];
+          }
+        });
+        document.querySelectorAll('.lang-option').forEach(o => {
+          const check = o.querySelector('.lang-check');
+          if (o === opt) {
+            check.classList.remove('hidden');
+            o.classList.add('font-semibold', 'text-primary');
+            o.classList.remove('text-on-surface-variant');
+          } else {
+            check.classList.add('hidden');
+            o.classList.remove('font-semibold', 'text-primary');
+            o.classList.add('text-on-surface-variant');
+          }
+        });
+      }
+      langDropdown.classList.add('hidden');
+      langArrow.classList.remove('rotate-180');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 </body></html>

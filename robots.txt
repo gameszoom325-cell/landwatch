@@ -1,0 +1,5 @@
+# LandWatch Civic Intelligence Robots Configuration
+User-agent: *
+Allow: /
+
+Sitemap: https://landwatch.gov.in/sitemap.xml

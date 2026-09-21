@@ -225,20 +225,20 @@
           <div class="relative inline-block text-left" id="lang-selector-container">
             <button aria-expanded="false" aria-haspopup="listbox" aria-label="Select language" class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md font-semibold rounded-lg border border-outline-variant/60 shadow-sm focus:outline-none transition-all cursor-pointer" id="lang-btn" type="button">
               <span class="text-base leading-none" aria-hidden="true">🌐</span>
-              <span id="current-lang-label">தமிழ் (Tamil)</span>
+              <span id="current-lang-label">English</span>
               <span class="material-symbols-outlined text-[16px] transition-transform duration-200" id="lang-arrow" aria-hidden="true">expand_more</span>
             </button>
             <div class="hidden absolute right-0 mt-2 w-48 rounded-lg bg-surface-container-lowest shadow-xl border border-surface-container-high py-1.5 z-50 focus:outline-none animate-fadeIn" id="lang-dropdown" role="listbox" aria-label="Language options">
-              <button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-primary font-semibold hover:bg-surface-container-low transition-colors cursor-pointer" data-lang="ta" role="option" aria-selected="true" type="button">
-                <span class="flex items-center gap-2">தமிழ் (Tamil - முதன்மை)</span>
-                <span class="lang-check text-primary font-bold" aria-hidden="true">✓</span>
-              </button>
-              <button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors cursor-pointer" data-lang="en" role="option" aria-selected="false" type="button">
-                <span class="flex items-center gap-2">English</span>
+              <button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors cursor-pointer" data-lang="ta" role="option" aria-selected="false" type="button">
+                <span class="flex items-center gap-2">Tamil</span>
                 <span class="lang-check hidden text-primary font-bold" aria-hidden="true">✓</span>
               </button>
+              <button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-primary font-semibold hover:bg-surface-container-low transition-colors cursor-pointer" data-lang="en" role="option" aria-selected="true" type="button">
+                <span class="flex items-center gap-2">English</span>
+                <span class="lang-check text-primary font-bold" aria-hidden="true">✓</span>
+              </button>
               <button class="lang-option w-full flex items-center justify-between px-3.5 py-2 text-left text-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-primary transition-colors cursor-pointer" data-lang="hi" role="option" aria-selected="false" type="button">
-                <span class="flex items-center gap-2">हिंदी (Hindi)</span>
+                <span class="flex items-center gap-2">Hindi</span>
                 <span class="lang-check hidden text-primary font-bold" aria-hidden="true">✓</span>
               </button>
             </div>
@@ -419,40 +419,40 @@
         <div class="lg:col-span-7 flex flex-col items-start space-y-space-md">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-label-sm font-semibold uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-[#9333ea]" aria-hidden="true"></span>
-            <span data-i18n="hero_badge">செங்கல்பட்டு மாவட்டம் · அரசு நில எடுப்பு கண்காணிப்பு · SIH 2026</span>
+            <span data-i18n="hero_badge">Chengalpattu District · Land Acquisition Monitoring · SIH 2026</span>
           </div>
           <h1 class="font-display-lg text-display-lg text-primary tracking-tight max-w-2xl font-bold" data-i18n="hero_title">
-            நிலம் கையகப்படுத்துதல் தாமதமாவதற்கு முன்பே சிக்கல்களை கண்டறியுங்கள்
+            Catch land acquisition problems before they cause delays
           </h1>
           <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed" data-i18n="hero_subtitle">
-            அரசு அதிகாரிகளுக்கு அபாயகரமான நில வழக்குகளை முன்கூட்டியே கண்டறியவும், காரணங்களை புரிந்து கொள்ளவும், உடனடி நடவடிக்கை எடுக்கவும் லேண்ட்வாட்ச் உதவுகிறது.
+            LandWatch helps government officers identify risky land cases early, understand root causes, and take prompt action.
           </p>
 
           <!-- Plain CTA Buttons -->
           <div class="pt-space-xs flex flex-wrap items-center gap-space-sm">
             <a class="inline-flex items-center justify-center px-6 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-lg shadow-md hover:bg-primary-container transition-all gap-2 font-semibold" href="#cadastral-map">
-              <span data-i18n="cta_explore">ஊடாடும் GIS வரைபடத்தை காண்க</span>
+              <span data-i18n="cta_explore">Explore the GIS map</span>
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">map</span>
             </a>
             <a class="inline-flex items-center justify-center px-6 py-3 bg-surface-container-lowest text-primary border border-outline-variant/60 font-label-md text-label-md rounded-lg shadow-sm hover:bg-surface-container transition-all gap-2 font-semibold" href="#public-tracking">
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">search</span>
-              <span data-i18n="cta_track">பொதுமக்கள் நில நிலை அறிதல்</span>
+              <span data-i18n="cta_track">Track a public land case</span>
             </a>
           </div>
 
           <!-- Plain Quick Metrics -->
           <div class="pt-space-md grid grid-cols-3 gap-space-base w-full max-w-lg border-t border-surface-container-high">
             <div class="flex flex-col pt-3">
-              <span class="font-headline-sm text-headline-sm text-primary font-bold tabular-nums" data-i18n="metric_1_val">60–120 நாட்கள்</span>
-              <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="metric_1_lbl">முன்னெச்சரிக்கை சாளரம்</span>
+              <span class="font-headline-sm text-headline-sm text-primary font-bold tabular-nums" data-i18n="metric_1_val">60–120 days</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="metric_1_lbl">Early warning window</span>
             </div>
             <div class="flex flex-col pt-3">
-              <span class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="metric_2_val">எளிய தமிழ்</span>
-              <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="metric_2_lbl">காரண விளக்கங்கள்</span>
+              <span class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="metric_2_val">Plain language</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="metric_2_lbl">Root-cause explanations</span>
             </div>
             <div class="flex flex-col pt-3">
-              <span class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="metric_3_val">1-கிளிக்</span>
-              <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="metric_3_lbl">அதிகாரி உத்தரவுகள்</span>
+              <span class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="metric_3_val">1-click</span>
+              <span class="font-body-sm text-body-sm text-on-surface-variant" data-i18n="metric_3_lbl">Officer directives</span>
             </div>
           </div>
         </div>
@@ -462,11 +462,11 @@
           <div class="bg-surface-container-lowest rounded-xl shadow-lg border border-surface-container-high p-space-base md:p-space-lg relative overflow-hidden">
             <div class="flex items-center justify-between mb-space-base pb-space-sm border-b border-surface-container">
               <div>
-                <h3 class="font-headline-sm text-headline-sm text-primary font-bold leading-tight" id="hero-card-title">வழக்கு எச்சரிக்கை முன்னோட்டம் — பார்சல் #4521</h3>
-                <p class="text-[12px] text-on-surface-variant" id="hero-card-subtitle">NH-45 தாம்பரம் பைபாஸ் விரிவாக்க வழித்தடம்</p>
+                <h3 class="font-headline-sm text-headline-sm text-primary font-bold leading-tight" id="hero-card-title" data-i18n="hero_card_title">Case Warning Preview — Parcel #4521</h3>
+                <p class="text-[12px] text-on-surface-variant" id="hero-card-subtitle" data-i18n="hero_card_subtitle">NH-45 Tambaram bypass expansion corridor</p>
               </div>
               <span class="inline-flex items-center px-2.5 py-1 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-[10px] font-bold uppercase tracking-wide">
-                செங்கல்பட்டு
+                <span data-i18n="district_chengalpattu">Chengalpattu</span>
               </span>
             </div>
             
@@ -475,11 +475,11 @@
                 87%
               </div>
               <div>
-                <p class="text-error font-bold text-[15px] leading-tight" id="hero-risk-heading">
-                  87% சட்டப்பூர்வ காலக்கெடு தவற வாய்ப்பு
+                <p class="text-error font-bold text-[15px] leading-tight" id="hero-risk-heading" data-i18n="hero_risk_heading">
+                  87% statutory deadline risk
                 </p>
                 <p class="text-[13px] text-red-900 font-semibold mt-1 flex items-center gap-1" id="hero-delay-warning">
-                  <span aria-hidden="true">⚠️</span> கணிக்கப்பட்ட தாமதம்: 28 நாட்கள்
+                  <span aria-hidden="true">⚠️</span> <span data-i18n="hero_delay_warning">Predicted delay: 28 days</span>
                 </p>
               </div>
             </div>
@@ -487,24 +487,24 @@
             <div class="space-y-space-xs mb-space-base bg-surface-container-low p-3.5 rounded-lg border border-surface-container">
               <div class="flex items-center gap-1.5 text-primary font-semibold text-label-md">
                 <span aria-hidden="true">🤖</span>
-                <span data-i18n="hero_why_risky">இந்த வழக்கு ஏன் ஆபத்தானது?</span>
+                <span data-i18n="hero_why_risky">Why is this case risky?</span>
               </div>
               <p class="text-body-md text-on-surface font-medium pt-1" id="hero-main-reason">
-                <strong>முக்கிய காரணம்:</strong> கள எல்லை ஆட்சேபனை தீர்வு நிலுவை (18 நாட்கள்)
+                <strong data-i18n="hero_reason_label">Primary reason:</strong> <span data-i18n="hero_reason_text">Field boundary objection resolution pending (18 days)</span>
               </p>
               <div class="flex items-center justify-between text-body-sm text-on-surface-variant pt-1">
-                <span>தாக்கம்: <strong class="text-error">அதிகம் (+0.42)</strong></span>
-                <span>எதிர்பார்க்கப்படும் தாமதம்: <strong class="tabular-nums">28 நாட்கள்</strong></span>
+                <span><span data-i18n="hero_impact_label">Impact:</span> <strong class="text-error" data-i18n="hero_impact_value">High (+0.42)</strong></span>
+                <span><span data-i18n="hero_expected_delay_label">Expected delay:</span> <strong class="tabular-nums">28 <span data-i18n="days">days</span></strong></span>
               </div>
             </div>
 
             <div class="bg-primary text-on-primary rounded-lg p-space-sm space-y-1.5 shadow-sm">
               <div class="flex items-center gap-1 text-[#cae6ff] text-[11px] font-bold uppercase tracking-wider">
                 <span class="material-symbols-outlined text-[16px]" aria-hidden="true">person_check</span>
-                <span>நடவடிக்கை எடுக்க வேண்டியவர்: வட்டாட்சியர் / DLAO</span>
+                <span data-i18n="hero_assignee">Action owner: Tahsildar / DLAO</span>
               </div>
               <p class="text-body-sm text-white font-medium" id="hero-action-directive">
-                <strong>பரிந்துரை:</strong> NHAI பொறியாளர்களுடன் 7 நாட்களுக்குள் அவசர கூட்டு எல்லை மறுநிர்ணயம் நடத்தவும்.
+                <strong data-i18n="hero_recommendation_label">Recommendation:</strong> <span data-i18n="hero_recommendation_text">Conduct an urgent joint boundary verification with NHAI engineers within 7 days.</span>
               </p>
             </div>
           </div>
@@ -522,14 +522,12 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-base bg-surface-container-lowest p-space-base rounded-xl shadow-sm border border-surface-container">
           <div>
             <div class="flex items-center gap-2">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-bold">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 text-[11px] font-bold" data-i18n="gis_badge">
                 GIS SPATIAL CADASTRE
               </span>
-              <span class="text-[12px] text-secondary font-semibold">PostGIS &amp; Leaflet Engine</span>
+              <span class="text-[12px] text-secondary font-semibold" data-i18n="gis_engine">PostGIS &amp; Leaflet Engine</span>
             </div>
-            <h2 class="font-headline-lg text-headline-lg text-primary font-bold pt-1" data-i18n="gis_title">
-              ஊடாடும் நில வரைபட மையம் (Interactive GIS Cadastre)
-            </h2>
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold pt-1" data-i18n="gis_title">Interactive GIS Cadastre</h2>
             <p class="text-body-sm text-on-surface-variant" data-i18n="gis_subtitle">
               Zoom, pan, and click real cadastral survey parcels. Filter by Taluk and Village to isolate risk zones.
             </p>
@@ -539,35 +537,35 @@
           <div class="flex flex-wrap items-center gap-2">
             <!-- Taluk Filter -->
             <div class="flex flex-col">
-              <label for="gis-filter-taluk" class="text-[10px] font-bold uppercase text-on-surface-variant">வட்டம் (Taluk)</label>
+              <label for="gis-filter-taluk" class="text-[10px] font-bold uppercase text-on-surface-variant" data-i18n="filter_taluk_label">Taluk</label>
               <select id="gis-filter-taluk" class="bg-surface text-primary border border-outline-variant/60 rounded-lg px-2.5 py-1.5 text-label-md font-semibold focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
                 <option value="all" data-i18n="filter_all_taluks">All Taluks</option>
-                <option value="Tambaram" selected>Tambaram (தாம்பரம்)</option>
-                <option value="Sriperumbudur">Sriperumbudur (ஸ்ரீபெரும்புதூர்)</option>
-                <option value="Chengalpattu">Chengalpattu (செங்கல்பட்டு)</option>
+                <option value="Tambaram" selected data-i18n="filter_tambaram">Tambaram</option>
+                <option value="Sriperumbudur" data-i18n="filter_sriperumbudur">Sriperumbudur</option>
+                <option value="Chengalpattu" data-i18n="filter_chengalpattu">Chengalpattu</option>
               </select>
             </div>
 
             <!-- Village Filter -->
             <div class="flex flex-col">
-              <label for="gis-filter-village" class="text-[10px] font-bold uppercase text-on-surface-variant">கிராமம் (Village)</label>
+              <label for="gis-filter-village" class="text-[10px] font-bold uppercase text-on-surface-variant" data-i18n="filter_village_label">Village</label>
               <select id="gis-filter-village" class="bg-surface text-primary border border-outline-variant/60 rounded-lg px-2.5 py-1.5 text-label-md font-semibold focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
                 <option value="all" data-i18n="filter_all_villages">All Villages</option>
-                <option value="Perungalathur">Perungalathur (பெருங்களத்தூர்)</option>
-                <option value="Vandalur">Vandalur (வண்டலூர்)</option>
-                <option value="Guduvanchery">Guduvanchery (கூடுவாஞ்சேரி)</option>
-                <option value="Oragadam">Oragadam (ஒரகடம்)</option>
+                <option value="Perungalathur" data-i18n="filter_perungalathur">Perungalathur</option>
+                <option value="Vandalur" data-i18n="filter_vandalur">Vandalur</option>
+                <option value="Guduvanchery" data-i18n="filter_guduvanchery">Guduvanchery</option>
+                <option value="Oragadam" data-i18n="filter_oragadam">Oragadam</option>
               </select>
             </div>
 
             <!-- Risk Status Filter -->
             <div class="flex flex-col">
-              <label for="gis-filter-risk" class="text-[10px] font-bold uppercase text-on-surface-variant">அபாய நிலை (Status)</label>
+              <label for="gis-filter-risk" class="text-[10px] font-bold uppercase text-on-surface-variant" data-i18n="filter_risk_label">Risk status</label>
               <select id="gis-filter-risk" class="bg-surface text-primary border border-outline-variant/60 rounded-lg px-2.5 py-1.5 text-label-md font-semibold focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
                 <option value="all" data-i18n="filter_all_risks">All Risks</option>
-                <option value="Critical">🔴 High Risk (அதிக அபாயம்)</option>
-                <option value="Attention">🟡 Warning (கவனம்)</option>
-                <option value="Safe">🟢 On Schedule (சரியான நேரம்)</option>
+                <option value="Critical" data-i18n="filter_high_risk">🔴 High Risk</option>
+                <option value="Attention" data-i18n="filter_warning">🟡 Warning</option>
+                <option value="Safe" data-i18n="filter_on_schedule">🟢 On Schedule</option>
               </select>
             </div>
 
@@ -590,9 +588,9 @@
               </div>
               <!-- Map Layer Legend -->
               <div class="flex items-center gap-2.5 text-[11px] font-bold">
-                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-red-600 inline-block"></span> 🔴 High Risk</span>
-                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-amber-500 inline-block"></span> 🟡 Warning</span>
-                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-600 inline-block"></span> 🟢 Safe</span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-red-600 inline-block"></span> <span data-i18n="filter_high_risk">🔴 High Risk</span></span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-amber-500 inline-block"></span> <span data-i18n="filter_warning">🟡 Warning</span></span>
+                <span class="flex items-center gap-1"><span class="w-3 h-3 rounded bg-emerald-600 inline-block"></span> <span data-i18n="filter_on_schedule">🟢 Safe</span></span>
               </div>
             </div>
 
@@ -918,7 +916,7 @@
             Citizen Transparency Portal
           </span>
           <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="track_title">
-            பொதுமக்கள் நில நிலை அறிதல் (Public Land Tracking Portal)
+            Public Land Tracking Portal
           </h2>
           <p class="font-body-lg text-body-lg text-on-surface-variant" data-i18n="track_subtitle">
             Enter your Case ID or Survey Number to track acquisition milestones, compensation schedules, and inspection notices without login.
@@ -1051,7 +1049,7 @@
               Executive Supervision Metrics
             </span>
             <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="analytics_title">
-              அரசு நில எடுப்பு பகுப்பாய்வு மையம் (GovTech Analytics)
+              GovTech Analytics Command
             </h2>
           </div>
           <span class="px-3 py-1 bg-surface-container text-primary rounded font-label-sm font-semibold">
@@ -1088,7 +1086,7 @@
           <!-- Chart 1: Taluk Performance -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-sm">
             <div class="flex items-center justify-between">
-              <h3 class="font-headline-sm text-[16px] font-bold text-primary">வட்ட வாரியாக செயல்திறன் (Taluk Performance)</h3>
+              <h3 class="font-headline-sm text-[16px] font-bold text-primary" data-i18n="taluk_performance_title">Taluk Performance</h3>
               <span class="text-[11px] text-secondary font-semibold">Resolution Rate</span>
             </div>
             <div class="h-64 relative">
@@ -1099,7 +1097,7 @@
           <!-- Chart 2: Delay Root Causes Funnel -->
           <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-sm">
             <div class="flex items-center justify-between">
-              <h3 class="font-headline-sm text-[16px] font-bold text-primary">தாமத காரணிகள் விநியோகம் (Delay Bottlenecks)</h3>
+              <h3 class="font-headline-sm text-[16px] font-bold text-primary" data-i18n="delay_bottlenecks_title">Delay Bottlenecks</h3>
               <span class="text-[11px] text-secondary font-semibold">XGBoost Attribution</span>
             </div>
             <div class="h-64 relative">
@@ -1302,7 +1300,7 @@
         <div class="space-y-space-sm md:col-span-2">
           <div class="flex items-center gap-space-sm">
             <div class="w-7 h-7 rounded bg-primary flex items-center justify-center text-white font-bold text-[11px]" aria-hidden="true">LW</div>
-            <span class="font-headline-sm text-headline-sm text-primary font-bold">LandWatch · நிலவழிகாட்டி</span>
+            <span class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="brand_footer">LandWatch · Civic Intelligence</span>
           </div>
           <p class="font-body-sm text-body-sm text-on-surface-variant max-w-lg leading-relaxed">
             Officer-first early warning and land acquisition delay prevention system architected for Smart India Hackathon 2026. Designed for District Land Acquisition Officers, Collectors, and infrastructure planners.
@@ -1625,7 +1623,7 @@
       script.onerror = () => {
         leafletFallbackLoading = false;
         const mapContainer = document.getElementById('gis-map');
-        if (mapContainer) mapContainer.textContent = 'The map library could not be loaded. Please refresh and try again.';
+        if (mapContainer) mapContainer.textContent = t('map_load_error');
         console.error('LandWatch: Leaflet could not be loaded from the primary or fallback CDN.');
       };
       document.head.appendChild(script);
@@ -1705,8 +1703,8 @@
           const container = L.DomUtil.create('div', 'leaflet-control leaflet-bar leaflet-control-gis-fullscreen');
           const button = L.DomUtil.create('a', '', container);
           button.href = '#';
-          button.title = 'Toggle fullscreen map';
-          button.setAttribute('aria-label', 'Toggle fullscreen map');
+          button.title = t('map_fullscreen');
+          button.setAttribute('aria-label', t('map_fullscreen'));
           button.textContent = '⛶';
           L.DomEvent.disableClickPropagation(container);
           L.DomEvent.on(button, 'click', event => {
@@ -1789,7 +1787,7 @@
         const marker = L.circleMarker([Number(report.latitude), Number(report.longitude)], {
           radius: 7, color: '#ffffff', weight: 2, fillColor: '#ba1a1a', fillOpacity: 0.95
         });
-        marker.bindPopup(`<div class="gis-popup"><strong>${escapeMapHtml(report.id)}</strong><span class="gis-popup-category">${escapeMapHtml(report.category)}</span><p>${escapeMapHtml(report.location)}</p></div>`);
+        marker.bindPopup(`<div class="gis-popup"><strong>${escapeMapHtml(report.id)}</strong><span class="gis-popup-category">${t('report_marker')}</span><p>${escapeMapHtml(report.category)} · ${escapeMapHtml(report.location)}</p></div>`);
         marker.addTo(markerLayerGroups.citizen);
         });
       } catch (error) {
@@ -1799,7 +1797,7 @@
 
       const statsElem = document.getElementById('map-active-stats');
       if (statsElem) {
-        statsElem.textContent = `Displaying ${count} Survey Parcels · Filters Active`;
+        statsElem.textContent = formatTranslation('map_stats', { count });
       }
     }
 
@@ -1809,32 +1807,32 @@
       const data = parcelDatabase[parcelId] || parcelDatabase["4521"];
 
       // Update Inspector Card
-      document.getElementById('insp-header').textContent = `Case ID: ${data.id} · Survey No. ${data.surveyNo}`;
+      document.getElementById('insp-header').textContent = `${t('case_id')}: ${data.id} · ${t('survey_no')} ${data.surveyNo}`;
       const badgeElem = document.getElementById('insp-status-badge');
-      badgeElem.textContent = `${data.riskPercent}% Delay Probability`;
+      badgeElem.textContent = `${data.riskPercent}% ${t('delay_probability')}`;
       badgeElem.className = `px-2.5 py-1 rounded font-bold text-[11px] ${data.badgeClass}`;
 
-      document.getElementById('insp-prob-val').textContent = `${data.riskPercent}% PROBABILITY`;
+      document.getElementById('insp-prob-val').textContent = `${data.riskPercent}% ${t('probability')}`;
       document.getElementById('insp-prob-bar').style.width = `${data.riskPercent}%`;
-      document.getElementById('insp-delay-estimate').innerHTML = `⚠️ Predicted statutory delay: <strong>${data.delayDays} days</strong> if unaddressed`;
+      document.getElementById('insp-delay-estimate').innerHTML = `⚠️ ${t('predicted_delay')}: <strong>${data.delayDays} ${t('days')}</strong> ${t('if_unaddressed')}`;
 
       // Update Risk Factors (1, 2, 3)
       if (data.riskFactors && data.riskFactors.length >= 3) {
         document.getElementById('risk-factor-1-name').textContent = data.riskFactors[0].name;
-        document.getElementById('risk-factor-1-val').textContent = `${data.riskFactors[0].pct}% impact`;
+        document.getElementById('risk-factor-1-val').textContent = `${data.riskFactors[0].pct}% ${t('impact')}`;
         document.getElementById('risk-factor-1-bar').style.width = data.riskFactors[0].bar;
 
         document.getElementById('risk-factor-2-name').textContent = data.riskFactors[1].name;
-        document.getElementById('risk-factor-2-val').textContent = `${data.riskFactors[1].pct}% impact`;
+        document.getElementById('risk-factor-2-val').textContent = `${data.riskFactors[1].pct}% ${t('impact')}`;
         document.getElementById('risk-factor-2-bar').style.width = data.riskFactors[1].bar;
 
         document.getElementById('risk-factor-3-name').textContent = data.riskFactors[2].name;
-        document.getElementById('risk-factor-3-val').textContent = `${data.riskFactors[2].pct}% impact`;
+        document.getElementById('risk-factor-3-val').textContent = `${data.riskFactors[2].pct}% ${t('impact')}`;
         document.getElementById('risk-factor-3-bar').style.width = data.riskFactors[2].bar;
       }
 
       document.getElementById('insp-suggested-action').textContent = `“${data.q5}”`;
-      document.getElementById('insp-assigned-officer').textContent = `Assigned: ${data.q4}`;
+      document.getElementById('insp-assigned-officer').textContent = `${t('assigned')}: ${data.q4}`;
 
       // Update Documents List
       renderCaseDocuments(data.documents);
@@ -1859,7 +1857,7 @@
       listElem.innerHTML = '';
 
       if (!docs || docs.length === 0) {
-        listElem.innerHTML = `<p class="text-[12px] text-on-surface-variant italic">No documents indexed yet.</p>`;
+        listElem.innerHTML = `<p class="text-[12px] text-on-surface-variant italic">${t('no_documents')}</p>`;
         return;
       }
 
@@ -1870,7 +1868,7 @@
         
         let borderClass = isVerified ? 'doc-verified bg-emerald-50/60' : isMissing ? 'doc-missing bg-red-50/60' : 'doc-pending bg-amber-50/60';
         let icon = isVerified ? '✓' : isMissing ? '❌' : '⚠️';
-        let statusText = isVerified ? 'Verified' : isMissing ? 'Missing' : 'Pending Review';
+        let statusText = isVerified ? t('verified') : isMissing ? t('missing') : t('pending_review');
         let statusColor = isVerified ? 'text-emerald-800' : isMissing ? 'text-error' : 'text-amber-800';
 
         row.className = `flex items-center justify-between p-2 rounded-lg border border-surface-container ${borderClass} text-[12px]`;
@@ -1879,12 +1877,12 @@
             <span class="font-bold text-[14px]">${icon}</span>
             <div>
               <p class="font-semibold text-primary">${doc.name}</p>
-              <p class="text-[10px] text-on-surface-variant">Date: ${doc.date}</p>
+              <p class="text-[10px] text-on-surface-variant">${t('date_label')}: ${doc.date}</p>
             </div>
           </div>
           <div class="flex items-center gap-2">
             <span class="font-bold ${statusColor}">${statusText}</span>
-            <button class="px-2 py-0.5 rounded bg-surface border border-outline-variant/60 text-primary text-[10px] hover:bg-surface-container cursor-pointer" onclick="previewDocument('${doc.name}', '${doc.status}')">Preview</button>
+            <button class="px-2 py-0.5 rounded bg-surface border border-outline-variant/60 text-primary text-[10px] hover:bg-surface-container cursor-pointer" onclick="previewDocument('${doc.name}', '${doc.status}')">${t('preview')}</button>
           </div>
         `;
         listElem.appendChild(row);
@@ -2118,6 +2116,12 @@
       chatContainer.scrollTop = chatContainer.scrollHeight;
     }
 
+    function refreshChatMessages() {
+      if (!chatContainer) return;
+      chatContainer.innerHTML = `<div class="chat-msg-bot p-3 text-[13px] leading-relaxed">${escapeMapHtml(t('assistant_welcome'))}</div>`;
+    }
+    window.refreshChatMessages = refreshChatMessages;
+
     function handleChatQuery(question) {
       appendChatMessage(question, true);
       const q = question.toLowerCase();
@@ -2126,11 +2130,11 @@
         const curData = parcelDatabase[currentSelectedParcel] || parcelDatabase["4521"];
         let answer = "";
 
-        if (q.includes("delay") || q.includes("தாமத") || q.includes("देरी") || q.includes("why") || q.includes("क्यों")) {
+        if (q.includes(t('chat_keyword_delay').toLowerCase()) || q.includes(t('chat_keyword_why').toLowerCase())) {
           answer = formatTranslation('chat_delay_answer', { id: curData.id, q1: curData.q1, days: curData.delayDays, action: curData.q5 });
-        } else if (q.includes("இழப்பீடு") || q.includes("compensation") || q.includes("मुआवज़") || q.includes("money") || q.includes("பணம்")) {
+        } else if (q.includes(t('chat_keyword_compensation').toLowerCase()) || q.includes(t('chat_keyword_money').toLowerCase())) {
           answer = formatTranslation('chat_compensation_answer', { id: curData.id });
-        } else if (q.includes("section 15") || q.includes("objection") || q.includes("ஆட்சேபனை") || q.includes("आपत्ति")) {
+        } else if (q.includes("section 15") || q.includes(t('chat_keyword_objection').toLowerCase())) {
           answer = translate('chat_objection_answer');
         } else {
           answer = formatTranslation('chat_default_answer', { question, name: curData.name, village: curData.village, taluk: curData.taluk, status: curData.status });
@@ -2544,7 +2548,7 @@
     }
 
     // --- 12. Multi-Language (Tamil-First) Dictionary ---
-    const i18nDictionary = {
+    const translations = {
       ta: {
         langLabel: "தமிழ் (Tamil)",
         demo_banner: "மாதிரி டெமோ · செங்கல்பட்டு மாவட்டம் · ஸ்மார்ட் இந்தியா ஹேக்கத்தான் 2026",
@@ -2576,7 +2580,7 @@
         track_subtitle: "வழக்கு எண் அல்லது புல எண் உள்ளிட்டு உங்கள் நில இழப்பீடு மற்றும் மைல்கல் நிலையை அறியவும்.",
         analytics_tag: "நிர்வாக கண்காணிப்பு மையம்",
         analytics_title: "அரசு நில எடுப்பு பகுப்பாய்வு மையம் (GovTech Analytics)",
-        queue_title: "முன்னுரிமை வழக்கு வரிசை (Priority High Risk Queue)",
+        queue_title: "முன்னுரிமை அதிக அபாய வழக்கு வரிசை",
         queue_subtitle: "சட்டப்பூர்வ காலக்கெடு அடிப்படையில் வரிசைப்படுத்தப்பட்ட வழக்குகள். வரைபடத்தில் பார்க்க கிளிக் செய்யவும்.",
         tts_read: "சத்தமாக வாசிக்க",
         map_search_placeholder: "நாடு, மாவட்டம், நகரம் அல்லது கிராமத்தை தேடுக...",
@@ -2914,7 +2918,11 @@
       }
     };
 
-    Object.assign(i18nDictionary.ta, {
+    Object.assign(translations.ta, {
+      map_load_error: "வரைபட நூலகத்தை ஏற்ற முடியவில்லை. புதுப்பித்து மீண்டும் முயற்சிக்கவும்.", map_fullscreen: "வரைபட முழுத்திரையை மாற்றவும்", map_stats: "{count} சர்வே நிலப்பகுதிகள் காட்டப்படுகின்றன · வடிகட்டிகள் செயலில்", case_id: "வழக்கு ID", survey_no: "சர்வே எண்", delay_probability: "தாமத நிகழ்தகவு", probability: "நிகழ்தகவு", predicted_delay: "கணிக்கப்பட்ட சட்டப்பூர்வ தாமதம்", if_unaddressed: "நடவடிக்கை எடுக்காவிட்டால்", impact: "தாக்கம்", assigned: "ஒதுக்கப்பட்டது", date_label: "தேதி", no_documents: "ஆவணங்கள் இன்னும் பதிவிடப்படவில்லை.", verified: "சரிபார்க்கப்பட்டது", missing: "காணவில்லை", pending_review: "மதிப்பாய்வு நிலுவையில்", preview: "முன்னோட்டம்", no_results: "பொருந்தும் நிலப் பதிவுகள் இல்லை", search_try: "142/3A, பெருங்களத்தூர் அல்லது LW-4521 மூலம் தேடவும்", report_marker: "குடிமக்கள் புகார்", map_filter_active: "வடிகட்டிகள் செயலில்", map_search_result: "தேடல் முடிவு", location_label: "இடம்", live_result: "நேரடி புவியிட முடிவு", approximate_location: "உங்கள் தோராயமான இருப்பிடம்", browser_location: "உலாவி புவியிடம்", accuracy: "துல்லியம்", last_updated: "கடைசியாக புதுப்பிக்கப்பட்டது",
+      taluk_performance_title: "வட்ட செயல்திறன்", delay_bottlenecks_title: "தாமத இடையூறுகள்", brand_footer: "LandWatch · குடிமக்கள் நுண்ணறிவு", chat_keyword_delay: "தாமத", chat_keyword_why: "ஏன்", chat_keyword_compensation: "இழப்பீடு", chat_keyword_money: "பணம்", chat_keyword_objection: "ஆட்சேபனை",
+      gis_badge: "GIS இடஞ்சார் நிலப் பதிவேடு", gis_engine: "PostGIS & Leaflet இயந்திரம்", filter_taluk_label: "வட்டம்", filter_village_label: "கிராமம்", filter_risk_label: "அபாய நிலை", filter_tambaram: "தாம்பரம்", filter_sriperumbudur: "ஸ்ரீபெரும்புதூர்", filter_chengalpattu: "செங்கல்பட்டு", filter_perungalathur: "பெருங்களத்தூர்", filter_vandalur: "வண்டலூர்", filter_guduvanchery: "கூடுவாஞ்சேரி", filter_oragadam: "ஒரகடம்", filter_high_risk: "🔴 அதிக அபாயம்", filter_warning: "🟡 எச்சரிக்கை", filter_on_schedule: "🟢 சரியான நேரம்", district_chengalpattu: "செங்கல்பட்டு",
+      hero_card_title: "வழக்கு எச்சரிக்கை முன்னோட்டம் — பார்சல் #4521", hero_card_subtitle: "NH-45 தாம்பரம் பைபாஸ் விரிவாக்க வழித்தடம்", hero_risk_heading: "87% சட்டப்பூர்வ காலக்கெடு அபாயம்", hero_delay_warning: "கணிக்கப்பட்ட தாமதம்: 28 நாட்கள்", hero_reason_label: "முக்கிய காரணம்:", hero_reason_text: "கள எல்லை ஆட்சேபனை தீர்வு நிலுவை (18 நாட்கள்)", hero_impact_label: "தாக்கம்:", hero_impact_value: "அதிகம் (+0.42)", hero_expected_delay_label: "எதிர்பார்க்கப்படும் தாமதம்:", days: "நாட்கள்", hero_assignee: "நடவடிக்கை பொறுப்பு: வட்டாட்சியர் / DLAO", hero_recommendation_label: "பரிந்துரை:", hero_recommendation_text: "NHAI பொறியாளர்களுடன் 7 நாட்களுக்குள் அவசர கூட்டு எல்லை மறுநிர்ணயம் நடத்தவும்.",
       smart_alerts_label: "சுற்றுச்சூழல் எச்சரிக்கைகள்", smart_active_alerts: "செயலில் உள்ள எச்சரிக்கைகள்", smart_resolved_label: "தீர்க்கப்பட்ட வழக்குகள்", smart_completed: "நிறைவடைந்தது", smart_reports_chart_title: "குடிமக்கள் புகார் பகுப்பாய்வு",
       ai_area_type: "பகுதி வகை", ai_classification: "நில வகைப்பாடு", ai_confidence: "நம்பகத்தன்மை", ai_flood_risk: "வெள்ள அபாயம்", ai_development_risk: "வளர்ச்சி அபாயம்",
       risk_density: "🏙 நகர அடர்த்தி", risk_recommendation: "பரிந்துரை", risk_recommendation_text: "பசுமை வழித்தடங்களைப் பாதுகாத்து புதிய வளர்ச்சி முன்மொழிவுகளை ஆய்வு செய்யவும்.",
@@ -2925,7 +2933,11 @@
       chart_agriculture: "வேளாண்மை", chart_forest: "காடு", chart_urban: "நகர்ப்புறம்", chart_water: "நீர்நிலைகள்", chart_industrial: "தொழில்", chart_vegetation: "தாவரங்கள்", chart_water_safety: "நீர் பாதுகாப்பு", chart_locations: "இடங்கள்", chart_urban_growth: "நகர வளர்ச்சி", chart_green_cover: "பசுமை மூடல்", chart_development: "வளர்ச்சி செயல்பாடு", chart_reports: "புகார்கள்"
       ,layer_heat: "அபாய வெப்ப வரைபடம்", dashboard_range: "தேதி வரம்பு", dashboard_30: "கடந்த 30 நாட்கள்", dashboard_90: "கடந்த 90 நாட்கள்", dashboard_365: "கடந்த ஆண்டு", dashboard_area: "பகுதி", dashboard_all_areas: "அனைத்து பகுதிகளும்", dashboard_export: "அறிக்கையை ஏற்றுமதி செய்க", ai_stage_gis: "GIS தரவுடன் இணைக்கிறது", ai_stage_satellite: "செயற்கைக்கோள் படங்களை ஆய்வு செய்கிறது", ai_stage_vegetation: "தாவர மாற்றங்களைக் கண்டறிகிறது", ai_stage_urban: "நகர விரிவாக்கத்தைச் சரிபார்க்கிறது", ai_stage_risk: "சுற்றுச்சூழல் அபாயத்தைக் கணக்கிடுகிறது", ai_stage_report: "இறுதி அறிக்கையை உருவாக்குகிறது", risk_safe: "பாதுகாப்பானது", risk_reasons: "அபாய காரணிகள்", risk_reason_green: "பசுமை மூடல் குறைந்துள்ளது", risk_reason_water: "நீர் அழுத்தம் அதிகமாக உள்ளது", risk_reason_urban: "நகர வளர்ச்சி அழுத்தம் அதிகமாக உள்ளது", risk_reason_stable: "முக்கிய அபாய காரணிகள் கண்டறியப்படவில்லை", risk_recommendation_high: "வளர்ச்சி முன்மொழிவுகளைத் தடுத்து, சுற்றுச்சூழல் ஆய்வை முன்னுரிமைப்படுத்தவும்", ai_pollution_risk: "மாசு அபாயம்", ai_illegal_probability: "சட்டவிரோத செயல்பாட்டு வாய்ப்பு", report_encroachment: "நில ஆக்கிரமிப்பு", report_unauthorized: "அங்கீகரிக்கப்படாத வளர்ச்சி", report_other: "மற்றவை"
     });
-    Object.assign(i18nDictionary.en, {
+    Object.assign(translations.en, {
+      map_load_error: "The map library could not be loaded. Please refresh and try again.", map_fullscreen: "Toggle fullscreen map", map_stats: "Displaying {count} survey parcels · Filters active", case_id: "Case ID", survey_no: "Survey No.", delay_probability: "Delay Probability", probability: "PROBABILITY", predicted_delay: "Predicted statutory delay", if_unaddressed: "if unaddressed", impact: "Impact", assigned: "Assigned", date_label: "Date", no_documents: "No documents indexed yet.", verified: "Verified", missing: "Missing", pending_review: "Pending Review", preview: "Preview", no_results: "No matching land records found", search_try: "Try searching by 142/3A, Perungalathur, or LW-4521", report_marker: "Citizen report", map_filter_active: "Filters active", map_search_result: "Search result", location_label: "Location", live_result: "Live geocoding result", approximate_location: "Your approximate location", browser_location: "Browser geolocation", accuracy: "Accuracy", last_updated: "Last updated",
+      taluk_performance_title: "Taluk Performance", delay_bottlenecks_title: "Delay Bottlenecks", brand_footer: "LandWatch · Civic Intelligence", chat_keyword_delay: "delay", chat_keyword_why: "why", chat_keyword_compensation: "compensation", chat_keyword_money: "money", chat_keyword_objection: "objection",
+      gis_badge: "GIS SPATIAL CADASTRE", gis_engine: "PostGIS & Leaflet Engine", filter_taluk_label: "Taluk", filter_village_label: "Village", filter_risk_label: "Risk status", filter_tambaram: "Tambaram", filter_sriperumbudur: "Sriperumbudur", filter_chengalpattu: "Chengalpattu", filter_perungalathur: "Perungalathur", filter_vandalur: "Vandalur", filter_guduvanchery: "Guduvanchery", filter_oragadam: "Oragadam", filter_high_risk: "🔴 High Risk", filter_warning: "🟡 Warning", filter_on_schedule: "🟢 On Schedule", district_chengalpattu: "Chengalpattu",
+      hero_card_title: "Case Warning Preview — Parcel #4521", hero_card_subtitle: "NH-45 Tambaram bypass expansion corridor", hero_risk_heading: "87% statutory deadline risk", hero_delay_warning: "Predicted delay: 28 days", hero_reason_label: "Primary reason:", hero_reason_text: "Field boundary objection resolution pending (18 days)", hero_impact_label: "Impact:", hero_impact_value: "High (+0.42)", hero_expected_delay_label: "Expected delay:", days: "days", hero_assignee: "Action owner: Tahsildar / DLAO", hero_recommendation_label: "Recommendation:", hero_recommendation_text: "Conduct an urgent joint boundary verification with NHAI engineers within 7 days.",
       smart_alerts_label: "Environmental Alerts", smart_active_alerts: "active alerts", smart_resolved_label: "Resolved Cases", smart_completed: "completed", smart_reports_chart_title: "Citizen Report Analytics",
       ai_area_type: "Area Type", ai_classification: "Land Classification", ai_confidence: "Confidence", ai_flood_risk: "Flood Risk", ai_development_risk: "Development Risk",
       risk_density: "🏙 Urban Density", risk_recommendation: "Recommendation", risk_recommendation_text: "Protect green corridors and review new development proposals.",
@@ -2935,7 +2947,11 @@
       chart_agriculture: "Agriculture", chart_forest: "Forest", chart_urban: "Urban", chart_water: "Water bodies", chart_industrial: "Industrial", chart_vegetation: "Vegetation", chart_water_safety: "Water safety", chart_locations: "Locations", chart_urban_growth: "Urban growth", chart_green_cover: "Green cover", chart_development: "Development activity", chart_reports: "Reports"
       ,layer_heat: "Risk heatmap", dashboard_range: "Date range", dashboard_30: "Last 30 days", dashboard_90: "Last 90 days", dashboard_365: "Last year", dashboard_area: "Area", dashboard_all_areas: "All monitored areas", dashboard_export: "Export report", ai_stage_gis: "Connecting to GIS data", ai_stage_satellite: "Analysing satellite imagery", ai_stage_vegetation: "Detecting vegetation changes", ai_stage_urban: "Checking urban expansion", ai_stage_risk: "Calculating environmental risk", ai_stage_report: "Generating final report", risk_safe: "Safe", risk_reasons: "Risk drivers", risk_reason_green: "Green cover has decreased", risk_reason_water: "Water stress is elevated", risk_reason_urban: "Urban development pressure is elevated", risk_reason_stable: "No major risk drivers detected", risk_recommendation_high: "Pause new development proposals and prioritize an environmental review", ai_pollution_risk: "Pollution Risk", ai_illegal_probability: "Illegal Activity Probability", report_encroachment: "Land Encroachment", report_unauthorized: "Unauthorized Development", report_other: "Other"
     });
-    Object.assign(i18nDictionary.hi, {
+    Object.assign(translations.hi, {
+      map_load_error: "मानचित्र लाइब्रेरी लोड नहीं हो सकी। कृपया रीफ्रेश करके फिर प्रयास करें।", map_fullscreen: "पूर्ण स्क्रीन मानचित्र बदलें", map_stats: "{count} सर्वे भूखंड दिखाए जा रहे हैं · फ़िल्टर सक्रिय", case_id: "मामला ID", survey_no: "सर्वे नंबर", delay_probability: "देरी की संभावना", probability: "संभावना", predicted_delay: "अनुमानित वैधानिक देरी", if_unaddressed: "यदि कार्रवाई नहीं की गई", impact: "प्रभाव", assigned: "नियुक्त", date_label: "दिनांक", no_documents: "अभी कोई दस्तावेज़ दर्ज नहीं हैं।", verified: "सत्यापित", missing: "लापता", pending_review: "समीक्षा लंबित", preview: "पूर्वावलोकन", no_results: "कोई मिलान भूमि रिकॉर्ड नहीं मिला", search_try: "142/3A, पेरुंगलाथुर या LW-4521 से खोजें", report_marker: "नागरिक रिपोर्ट", map_filter_active: "फ़िल्टर सक्रिय", map_search_result: "खोज परिणाम", location_label: "स्थान", live_result: "लाइव जियोकोडिंग परिणाम", approximate_location: "आपका अनुमानित स्थान", browser_location: "ब्राउज़र जियोलोकेशन", accuracy: "सटीकता", last_updated: "अंतिम अपडेट",
+      taluk_performance_title: "तालुक प्रदर्शन", delay_bottlenecks_title: "देरी की बाधाएँ", brand_footer: "LandWatch · नागरिक इंटेलिजेंस", chat_keyword_delay: "देरी", chat_keyword_why: "क्यों", chat_keyword_compensation: "मुआवज़ा", chat_keyword_money: "पैसा", chat_keyword_objection: "आपत्ति",
+      gis_badge: "GIS स्थानिक कैडस्ट्रे", gis_engine: "PostGIS और Leaflet इंजन", filter_taluk_label: "तालुक", filter_village_label: "गाँव", filter_risk_label: "जोखिम स्थिति", filter_tambaram: "ताम्बरम", filter_sriperumbudur: "श्रीपेरुम्बुदूर", filter_chengalpattu: "चेंगलपट्टू", filter_perungalathur: "पेरुंगलाथुर", filter_vandalur: "वंडलूर", filter_guduvanchery: "गुडुवांचेरी", filter_oragadam: "ओरगडम", filter_high_risk: "🔴 उच्च जोखिम", filter_warning: "🟡 चेतावनी", filter_on_schedule: "🟢 समय पर", district_chengalpattu: "चेंगलपट्टू",
+      hero_card_title: "मामला चेतावनी पूर्वावलोकन — पार्सल #4521", hero_card_subtitle: "NH-45 ताम्बरम बाईपास विस्तार गलियारा", hero_risk_heading: "87% वैधानिक समयसीमा जोखिम", hero_delay_warning: "अनुमानित देरी: 28 दिन", hero_reason_label: "मुख्य कारण:", hero_reason_text: "क्षेत्र सीमा आपत्ति का समाधान लंबित (18 दिन)", hero_impact_label: "प्रभाव:", hero_impact_value: "उच्च (+0.42)", hero_expected_delay_label: "अपेक्षित देरी:", days: "दिन", hero_assignee: "कार्रवाई प्रभारी: तहसीलदार / DLAO", hero_recommendation_label: "सिफारिश:", hero_recommendation_text: "7 दिनों के भीतर NHAI इंजीनियरों के साथ तत्काल संयुक्त सीमा सत्यापन करें।",
       smart_alerts_label: "पर्यावरणीय चेतावनियाँ", smart_active_alerts: "सक्रिय चेतावनियाँ", smart_resolved_label: "समाधान किए गए मामले", smart_completed: "पूर्ण", smart_reports_chart_title: "नागरिक रिपोर्ट विश्लेषण",
       ai_area_type: "क्षेत्र प्रकार", ai_classification: "भूमि वर्गीकरण", ai_confidence: "विश्वसनीयता", ai_flood_risk: "बाढ़ जोखिम", ai_development_risk: "विकास जोखिम",
       risk_density: "🏙 शहरी घनत्व", risk_recommendation: "सिफारिश", risk_recommendation_text: "हरित गलियारों की रक्षा करें और नए विकास प्रस्तावों की समीक्षा करें।",
@@ -2946,7 +2962,7 @@
       ,layer_heat: "जोखिम हीटमैप", dashboard_range: "दिनांक सीमा", dashboard_30: "पिछले 30 दिन", dashboard_90: "पिछले 90 दिन", dashboard_365: "पिछला वर्ष", dashboard_area: "क्षेत्र", dashboard_all_areas: "सभी निगरानी क्षेत्र", dashboard_export: "रिपोर्ट निर्यात करें", ai_stage_gis: "GIS डेटा से जुड़ रहा है", ai_stage_satellite: "उपग्रह चित्रों का विश्लेषण हो रहा है", ai_stage_vegetation: "वनस्पति परिवर्तन खोजे जा रहे हैं", ai_stage_urban: "शहरी विस्तार की जाँच हो रही है", ai_stage_risk: "पर्यावरणीय जोखिम की गणना हो रही है", ai_stage_report: "अंतिम रिपोर्ट बनाई जा रही है", risk_safe: "सुरक्षित", risk_reasons: "जोखिम कारक", risk_reason_green: "हरित आवरण कम हुआ है", risk_reason_water: "जल तनाव अधिक है", risk_reason_urban: "शहरी विकास दबाव अधिक है", risk_reason_stable: "कोई प्रमुख जोखिम कारक नहीं मिला", risk_recommendation_high: "नए विकास प्रस्ताव रोककर पर्यावरणीय समीक्षा को प्राथमिकता दें", ai_pollution_risk: "प्रदूषण जोखिम", ai_illegal_probability: "अवैध गतिविधि की संभावना", report_encroachment: "भूमि अतिक्रमण", report_unauthorized: "अनधिकृत विकास", report_other: "अन्य"
     });
 
-    Object.assign(i18nDictionary.en, {
+    Object.assign(translations.en, {
       active_session: "Active Session:", assistant_name: "LandWatch AI", assistant_subtitle: "Civic Assistance Bot",
       assistant_welcome: "Hello! I am the LandWatch AI Assistant. Ask me about your land acquisition case, compensation status, or delay reasons.",
       assistant_placeholder: "Type your question...", chat_delay: "Why is my case delayed?", chat_compensation: "When will compensation arrive?", chat_objection: "How do I submit a Section 15 objection?",
@@ -2957,7 +2973,7 @@
       chat_objection_answer: "A Section 15 objection should be submitted in writing to the District Land Acquisition Officer or Tahsildar within 60 days of the Gazette notification.",
       chat_default_answer: "Your question \"{question}\" was received. Current selection: {name} ({village}, {taluk}). Legal status: {status}. Contact the Tahsildar office for more information."
     });
-    Object.assign(i18nDictionary.hi, {
+    Object.assign(translations.hi, {
       active_session: "सक्रिय सत्र:", assistant_name: "LandWatch AI", assistant_subtitle: "नागरिक सहायता बॉट",
       assistant_welcome: "नमस्ते! मैं LandWatch AI सहायक हूँ। अपने भूमि अधिग्रहण मामले, मुआवज़े की स्थिति या देरी के कारणों के बारे में पूछें।",
       assistant_placeholder: "अपना प्रश्न लिखें...", chat_delay: "मेरे मामले में देरी क्यों है?", chat_compensation: "मुआवज़ा कब मिलेगा?", chat_objection: "धारा 15 की आपत्ति कैसे जमा करें?",
@@ -2968,7 +2984,7 @@
       chat_objection_answer: "राजपत्र अधिसूचना के 60 दिनों के भीतर जिला भूमि अधिग्रहण अधिकारी या तहसीलदार को धारा 15 की आपत्ति लिखित रूप में जमा करें।",
       chat_default_answer: "आपका प्रश्न \"{question}\" प्राप्त हुआ। वर्तमान चयन: {name} ({village}, {taluk})। कानूनी स्थिति: {status}। अधिक जानकारी के लिए तहसीलदार कार्यालय से संपर्क करें।"
     });
-    Object.assign(i18nDictionary.ta, {
+    Object.assign(translations.ta, {
       active_session: "செயலில் உள்ள அமர்வு:", assistant_name: "LandWatch AI", assistant_subtitle: "குடிமக்கள் உதவி போட்",
       assistant_welcome: "வணக்கம்! நான் LandWatch AI உதவியாளர். உங்கள் நில எடுப்பு வழக்கு, இழப்பீட்டு நிலை அல்லது தாமத காரணங்கள் குறித்து கேளுங்கள்.",
       assistant_placeholder: "உங்கள் கேள்வியைத் தட்டச்சு செய்யவும்...", chat_delay: "என் வழக்கில் ஏன் தாமதம்?", chat_compensation: "இழப்பீடு எப்போது கிடைக்கும்?", chat_objection: "பிரிவு 15 ஆட்சேபனையை எவ்வாறு சமர்ப்பிப்பது?",
@@ -2983,30 +2999,93 @@
     let activeLanguage = 'en';
     const speechLanguageMap = { en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN' };
 
-    function translate(key, fallback = '') {
-      const dict = i18nDictionary[activeLanguage] || i18nDictionary.en;
+    function t(key, fallback = '') {
+      const dict = translations[activeLanguage] || translations.en;
       return dict[key] || fallback || key;
     }
+    const translate = t;
 
     function formatTranslation(key, values = {}) {
       return translate(key).replace(/\{(\w+)\}/g, (_, name) => String(values[name] ?? ''));
     }
 
     function checkMissingTranslations() {
-      const languages = Object.keys(i18nDictionary);
-      const keys = [...new Set(languages.flatMap(language => Object.keys(i18nDictionary[language])))];
+      const languages = Object.keys(translations);
+      const keys = [...new Set(languages.flatMap(language => Object.keys(translations[language])))];
       languages.forEach(language => {
-        const missing = keys.filter(key => !i18nDictionary[language][key]);
+        const missing = keys.filter(key => !translations[language][key]);
         if (missing.length) console.warn(`LandWatch: missing ${language} translations: ${missing.join(', ')}`);
       });
-      return languages.every(language => keys.every(key => Boolean(i18nDictionary[language][key])));
+      return languages.every(language => keys.every(key => Boolean(translations[language][key])));
     }
 
     window.checkMissingTranslations = checkMissingTranslations;
 
+    function validateTranslations() {
+      const languages = ['en', 'hi', 'ta'];
+      const allKeys = [...new Set(languages.flatMap(language => Object.keys(translations[language] || {})))];
+      const missing = Object.fromEntries(languages.map(language => [
+        language,
+        allKeys.filter(key => !translations[language]?.[key])
+      ]));
+      const scriptRanges = {
+        en: /[\u0900-\u097F\u0B80-\u0BFF]/u,
+        hi: /[\u0B80-\u0BFF]/u,
+        ta: /[\u0900-\u097F]/u
+      };
+      const visibleText = document.body?.innerText || '';
+      const leakage = Object.fromEntries(languages.map(language => [
+        language,
+        language === activeLanguage && scriptRanges[language]?.test(visibleText)
+      ]));
+      const complete = languages.every(language => missing[language].length === 0);
+      const result = { complete, missing, leakage, activeLanguage };
+      console.info('Translation Check:', {
+        English: missing.en.length ? 'incomplete' : '100%',
+        Hindi: missing.hi.length ? 'incomplete' : '100%',
+        Tamil: missing.ta.length ? 'incomplete' : '100%',
+        Missing: Object.values(missing).flat().length ? missing : 'none',
+        Leakage: leakage
+      });
+      return result;
+    }
+
+    window.t = t;
+    window.validateTranslations = validateTranslations;
+
+    function validateVisibleLanguage() {
+      const wrongScripts = {
+        en: /[\u0900-\u097F\u0B80-\u0BFF]/u,
+        hi: /[\u0B80-\u0BFF]/u,
+        ta: /[\u0900-\u097F]/u
+      };
+      const visibleParts = [
+        document.body?.innerText || '',
+        ...[...document.querySelectorAll('input, textarea')].map(element => element.getAttribute('placeholder') || ''),
+        ...[...document.querySelectorAll('select option')].map(element => element.textContent || '')
+      ];
+      const chartParts = Object.values(window.smartLandCharts || {}).concat(Object.values(window.analyticsCharts || {})).flatMap(chart => [
+        ...(chart.data?.labels || []),
+        ...(chart.data?.datasets || []).map(dataset => dataset.label || '')
+      ]);
+      const text = [...visibleParts, ...chartParts].join(' ');
+      const result = {
+        language: activeLanguage,
+        tamilLeakage: activeLanguage !== 'ta' && /[\u0B80-\u0BFF]/u.test(text),
+        hindiLeakage: activeLanguage !== 'hi' && /[\u0900-\u097F]/u.test(text),
+        wrongScriptLeakage: wrongScripts[activeLanguage]?.test(text) || false,
+        untranslatedFallbacks: activeLanguage === 'en' ? [] : ['High Risk', 'Medium', 'Under Review', 'Field Inspection', 'Action Taken', 'Resolved', 'Loading...', 'Scanning...', 'Confidence Score'].filter(value => text.includes(value))
+      };
+      result.passed = !result.tamilLeakage && !result.hindiLeakage && !result.wrongScriptLeakage && result.untranslatedFallbacks.length === 0;
+      console.info('Visible Language Check:', result);
+      return result;
+    }
+
+    window.validateVisibleLanguage = validateVisibleLanguage;
+
     function applyLanguage(langCode) {
-      const normalizedLang = i18nDictionary[langCode] ? langCode : 'en';
-      const dict = i18nDictionary[normalizedLang];
+      const normalizedLang = translations[langCode] ? langCode : 'en';
+      const dict = translations[normalizedLang];
       activeLanguage = normalizedLang;
       document.getElementById('current-lang-label').textContent = dict.langLabel;
       document.documentElement.lang = normalizedLang;
@@ -3033,7 +3112,13 @@
       window.refreshAnalyticsCharts?.();
       window.renderCitizenReports?.();
       window.refreshMapFilterLabels?.();
+      window.refreshChatMessages?.();
       if (leafletMap) renderMapPolygons();
+      if (typeof currentSelectedParcel !== 'undefined' && typeof selectParcel === 'function') {
+        selectParcel(currentSelectedParcel);
+      }
+      validateTranslations();
+      validateVisibleLanguage();
 
       document.querySelectorAll('.lang-option').forEach(opt => {
         const isSelected = opt.getAttribute('data-lang') === normalizedLang;
@@ -3235,12 +3320,12 @@
         searchLocationMarker.bindPopup(`
           <div class="gis-popup">
             <strong>${escapeMapHtml(result.display_name.split(',')[0])}</strong>
-            <span class="gis-popup-category">Search result</span>
+            <span class="gis-popup-category">${t('map_search_result')}</span>
             <dl>
-              <div><dt>Latitude</dt><dd>${lat.toFixed(5)}°</dd></div>
-              <div><dt>Longitude</dt><dd>${lon.toFixed(5)}°</dd></div>
-              <div><dt>Location</dt><dd>${escapeMapHtml(result.display_name)}</dd></div>
-              <div><dt>Last updated</dt><dd>Live geocoding result</dd></div>
+              <div><dt>${t('map_latitude')}</dt><dd>${lat.toFixed(5)}°</dd></div>
+              <div><dt>${t('map_longitude')}</dt><dd>${lon.toFixed(5)}°</dd></div>
+              <div><dt>${t('location_label')}</dt><dd>${escapeMapHtml(result.display_name)}</dd></div>
+              <div><dt>${t('last_updated')}</dt><dd>${t('live_result')}</dd></div>
             </dl>
           </div>
         `).openPopup();
@@ -3298,13 +3383,13 @@
         ]).addTo(leafletMap);
         locationMarker.bindPopup(`
           <div class="gis-popup">
-            <strong>Your approximate location</strong>
-            <span class="gis-popup-category">Browser geolocation</span>
+            <strong>${t('approximate_location')}</strong>
+            <span class="gis-popup-category">${t('browser_location')}</span>
             <dl>
-              <div><dt>Latitude</dt><dd>${latitude.toFixed(5)}°</dd></div>
-              <div><dt>Longitude</dt><dd>${longitude.toFixed(5)}°</dd></div>
-              <div><dt>Accuracy</dt><dd>±${Math.round(accuracy)} m</dd></div>
-              <div><dt>Last updated</dt><dd>${new Date().toLocaleString()}</dd></div>
+              <div><dt>${t('map_latitude')}</dt><dd>${latitude.toFixed(5)}°</dd></div>
+              <div><dt>${t('map_longitude')}</dt><dd>${longitude.toFixed(5)}°</dd></div>
+              <div><dt>${t('accuracy')}</dt><dd>±${Math.round(accuracy)} m</dd></div>
+              <div><dt>${t('last_updated')}</dt><dd>${new Date().toLocaleString(activeLanguage)}</dd></div>
             </dl>
           </div>
         `);

@@ -236,6 +236,10 @@
               </button>
             </div>
           </div>
+          <button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md font-semibold rounded-lg border border-outline-variant/60 shadow-sm focus:outline-none transition-all cursor-pointer" id="tts-read-page" type="button" aria-label="Read aloud">
+            <span class="material-symbols-outlined text-[17px]" aria-hidden="true">volume_up</span>
+            <span data-i18n="tts_read">Read aloud</span>
+          </button>
 
           <!-- Mobile Hamburger Toggle Button (Screen < 1280px) -->
           <button class="xl:hidden inline-flex items-center justify-center p-2 rounded-lg bg-surface-container text-primary hover:bg-surface-container-high transition-colors focus:outline-none cursor-pointer" id="mobile-drawer-toggle" aria-expanded="false" aria-controls="mobile-nav-drawer" aria-label="Open mobile navigation menu" type="button">
@@ -583,20 +587,20 @@
             <div class="gis-toolbar">
               <form class="gis-search" id="gis-search-form" role="search">
                 <span class="material-symbols-outlined text-[18px] text-secondary" aria-hidden="true">search</span>
-                <input id="gis-location-search" type="search" placeholder="Search country, district, city, village..." aria-label="Search map locations" autocomplete="off"/>
-                <button class="gis-search-submit" type="submit">Search</button>
+                <input id="gis-location-search" type="search" data-i18n-placeholder="map_search_placeholder" data-i18n-aria-label="map_search_label" placeholder="Search country, district, city, village..." aria-label="Search map locations" autocomplete="off"/>
+                <button class="gis-search-submit" type="submit" data-i18n="map_search">Search</button>
               </form>
               <div class="flex flex-wrap items-center gap-2">
                 <button class="gis-tool-button" id="gis-locate-me" type="button">
                   <span class="material-symbols-outlined text-[17px]" aria-hidden="true">my_location</span>
-                  Locate Me
+                  <span data-i18n="locate_me">Locate Me</span>
                 </button>
                 <label class="gis-style-select">
                   <span class="sr-only">Map style</span>
                   <select id="gis-map-style" aria-label="Map style">
-                    <option value="street">Street</option>
-                    <option value="satellite">Satellite</option>
-                    <option value="terrain">Terrain</option>
+                    <option value="street" data-i18n="map_style_street">Street</option>
+                    <option value="satellite" data-i18n="map_style_satellite">Satellite</option>
+                    <option value="terrain" data-i18n="map_style_terrain">Terrain</option>
                   </select>
                 </label>
               </div>
@@ -607,13 +611,13 @@
             <div id="gis-map" class="shadow-inner border border-surface-container"></div>
 
             <div class="gis-category-legend" aria-label="Land monitoring map legend">
-              <span class="gis-legend-title">Land layers</span>
-              <label><input type="checkbox" data-gis-layer="agricultural" checked/> <i class="gis-legend-swatch gis-swatch-agricultural"></i> Agricultural</label>
-              <label><input type="checkbox" data-gis-layer="forest" checked/> <i class="gis-legend-swatch gis-swatch-forest"></i> Forest</label>
-              <label><input type="checkbox" data-gis-layer="urban" checked/> <i class="gis-legend-swatch gis-swatch-urban"></i> Urban</label>
-              <label><input type="checkbox" data-gis-layer="industrial" checked/> <i class="gis-legend-swatch gis-swatch-industrial"></i> Industrial</label>
-              <label><input type="checkbox" data-gis-layer="water" checked/> <i class="gis-legend-swatch gis-swatch-water"></i> Water</label>
-              <label><input type="checkbox" data-gis-layer="risk" checked/> <i class="gis-legend-swatch gis-swatch-risk"></i> High risk</label>
+              <span class="gis-legend-title" data-i18n="map_layers">Land layers</span>
+              <label><input type="checkbox" data-gis-layer="agricultural" checked/> <i class="gis-legend-swatch gis-swatch-agricultural"></i> <span data-i18n="layer_agricultural">Agricultural</span></label>
+              <label><input type="checkbox" data-gis-layer="forest" checked/> <i class="gis-legend-swatch gis-swatch-forest"></i> <span data-i18n="layer_forest">Forest</span></label>
+              <label><input type="checkbox" data-gis-layer="urban" checked/> <i class="gis-legend-swatch gis-swatch-urban"></i> <span data-i18n="layer_urban">Urban</span></label>
+              <label><input type="checkbox" data-gis-layer="industrial" checked/> <i class="gis-legend-swatch gis-swatch-industrial"></i> <span data-i18n="layer_industrial">Industrial</span></label>
+              <label><input type="checkbox" data-gis-layer="water" checked/> <i class="gis-legend-swatch gis-swatch-water"></i> <span data-i18n="layer_water">Water</span></label>
+              <label><input type="checkbox" data-gis-layer="risk" checked/> <i class="gis-legend-swatch gis-swatch-risk"></i> <span data-i18n="layer_risk">High risk</span></label>
             </div>
 
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-[11px] text-on-surface-variant pt-1 gap-1">
@@ -1358,6 +1362,7 @@
     let userLocationLayer = null;
     let searchLocationMarker = null;
     const mapCenter = [12.8750, 80.0550];
+    let leafletFallbackLoading = false;
     const mapCategoryColors = {
       agricultural: '#059669',
       forest: '#166534',
@@ -1402,9 +1407,34 @@
     }
 
     // --- 2. Initialize Leaflet GIS Map with Clickable Cadastral Polygons ---
+    function loadLeafletFallback() {
+      if (leafletFallbackLoading) return;
+      leafletFallbackLoading = true;
+      const stylesheet = document.createElement('link');
+      stylesheet.rel = 'stylesheet';
+      stylesheet.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+      stylesheet.crossOrigin = 'anonymous';
+      document.head.appendChild(stylesheet);
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+      script.crossOrigin = 'anonymous';
+      script.onload = () => initLeafletMap();
+      script.onerror = () => {
+        leafletFallbackLoading = false;
+        const mapContainer = document.getElementById('gis-map');
+        if (mapContainer) mapContainer.textContent = 'The map library could not be loaded. Please refresh and try again.';
+        console.error('LandWatch: Leaflet could not be loaded from the primary or fallback CDN.');
+      };
+      document.head.appendChild(script);
+    }
+
     function initLeafletMap() {
       const mapContainer = document.getElementById('gis-map');
       if (!mapContainer || leafletMap) return;
+      if (typeof L === 'undefined') {
+        loadLeafletFallback();
+        return;
+      }
 
       // Center around Tambaram / Chengalpattu Corridor
       leafletMap = L.map('gis-map', {
@@ -2048,7 +2078,31 @@
         analytics_tag: "நிர்வாக கண்காணிப்பு மையம்",
         analytics_title: "அரசு நில எடுப்பு பகுப்பாய்வு மையம் (GovTech Analytics)",
         queue_title: "முன்னுரிமை வழக்கு வரிசை (Priority High Risk Queue)",
-        queue_subtitle: "சட்டப்பூர்வ காலக்கெடு அடிப்படையில் வரிசைப்படுத்தப்பட்ட வழக்குகள். வரைபடத்தில் பார்க்க கிளிக் செய்யவும்."
+        queue_subtitle: "சட்டப்பூர்வ காலக்கெடு அடிப்படையில் வரிசைப்படுத்தப்பட்ட வழக்குகள். வரைபடத்தில் பார்க்க கிளிக் செய்யவும்.",
+        tts_read: "சத்தமாக வாசிக்க",
+        map_search_placeholder: "நாடு, மாவட்டம், நகரம் அல்லது கிராமத்தை தேடுக...",
+        map_search_label: "வரைபட இடங்களை தேடுக",
+        map_search: "தேடுக",
+        locate_me: "என் இருப்பிடத்தை காண்க",
+        map_style_street: "தெரு",
+        map_style_satellite: "செயற்கைக்கோள்",
+        map_style_terrain: "நிலப்பரப்பு",
+        map_layers: "நில அடுக்குகள்",
+        layer_agricultural: "விவசாயம்",
+        layer_forest: "காடு",
+        layer_urban: "நகர்ப்புறம்",
+        layer_industrial: "தொழிற்பகுதி",
+        layer_water: "நீர்நிலை",
+        layer_risk: "அதிக ஆபத்து",
+        map_searching: "வரைபட இடங்கள் தேடப்படுகின்றன...",
+        map_search_empty: "இடம் கிடைக்கவில்லை. நாடு, மாவட்டம், நகரம் அல்லது கிராமத்தை முயற்சிக்கவும்.",
+        map_search_showing: "காட்டப்படுகிறது:",
+        map_search_error: "இட தேடல் தற்காலிகமாக கிடைக்கவில்லை. மீண்டும் முயற்சிக்கவும்.",
+        location_unsupported: "இந்த உலாவி இருப்பிட சேவையை ஆதரிக்கவில்லை.",
+        location_requesting: "உங்கள் இருப்பிடம் கோரப்படுகிறது...",
+        location_found: "உங்கள் தோராயமான இருப்பிடத்திற்கு வரைபடம் மையப்படுத்தப்பட்டது.",
+        location_denied: "இருப்பிட அனுமதி மறுக்கப்பட்டது.",
+        location_error: "உங்கள் இருப்பிடத்தை கண்டறிய முடியவில்லை."
       },
       en: {
         langLabel: "English",
@@ -2082,7 +2136,31 @@
         analytics_tag: "Executive Supervision Metrics",
         analytics_title: "GovTech Analytics Command",
         queue_title: "Priority Case Queue",
-        queue_subtitle: "Top priority cases filtered by impending statutory deadlines. Click any row to focus on GIS map."
+        queue_subtitle: "Top priority cases filtered by impending statutory deadlines. Click any row to focus on GIS map.",
+        tts_read: "Read aloud",
+        map_search_placeholder: "Search country, district, city, or village...",
+        map_search_label: "Search map locations",
+        map_search: "Search",
+        locate_me: "Locate Me",
+        map_style_street: "Street",
+        map_style_satellite: "Satellite",
+        map_style_terrain: "Terrain",
+        map_layers: "Land layers",
+        layer_agricultural: "Agricultural",
+        layer_forest: "Forest",
+        layer_urban: "Urban",
+        layer_industrial: "Industrial",
+        layer_water: "Water",
+        layer_risk: "High risk",
+        map_searching: "Searching map locations...",
+        map_search_empty: "No location found. Try a country, district, city, or village.",
+        map_search_showing: "Showing:",
+        map_search_error: "Location search is temporarily unavailable. Please try again.",
+        location_unsupported: "Geolocation is not supported by this browser.",
+        location_requesting: "Requesting your location...",
+        location_found: "Map centered on your approximate location.",
+        location_denied: "Location permission was denied.",
+        location_error: "Unable to determine your location."
       },
       hi: {
         langLabel: "हिंदी (Hindi)",
@@ -2116,15 +2194,50 @@
         analytics_tag: "कार्यकारी निगरानी मेट्रिक्स",
         analytics_title: "सरकारी भूमि अधिग्रहण विश्लेषण",
         queue_title: "प्राथमिकता मामला कतार",
-        queue_subtitle: "वैधानिक समय सीमा के अनुसार छांटे गए मामले। मानचित्र पर देखने के लिए क्लिक करें।"
+        queue_subtitle: "वैधानिक समय सीमा के अनुसार छांटे गए मामले। मानचित्र पर देखने के लिए क्लिक करें।",
+        tts_read: "उच्चारित करें",
+        map_search_placeholder: "देश, जिला, शहर या गाँव खोजें...",
+        map_search_label: "मानचित्र स्थान खोजें",
+        map_search: "खोजें",
+        locate_me: "मेरा स्थान",
+        map_style_street: "सड़क",
+        map_style_satellite: "उपग्रह",
+        map_style_terrain: "भू-भाग",
+        map_layers: "भूमि परतें",
+        layer_agricultural: "कृषि",
+        layer_forest: "वन",
+        layer_urban: "शहरी",
+        layer_industrial: "औद्योगिक",
+        layer_water: "जल निकाय",
+        layer_risk: "उच्च जोखिम",
+        map_searching: "मानचित्र स्थान खोजे जा रहे हैं...",
+        map_search_empty: "स्थान नहीं मिला। देश, जिला, शहर या गाँव आज़माएँ।",
+        map_search_showing: "दिखाया जा रहा है:",
+        map_search_error: "स्थान खोज अस्थायी रूप से उपलब्ध नहीं है। फिर कोशिश करें।",
+        location_unsupported: "यह ब्राउज़र स्थान सेवा का समर्थन नहीं करता।",
+        location_requesting: "आपका स्थान प्राप्त किया जा रहा है...",
+        location_found: "मानचित्र आपके अनुमानित स्थान पर केंद्रित है।",
+        location_denied: "स्थान की अनुमति अस्वीकार कर दी गई।",
+        location_error: "आपका स्थान निर्धारित नहीं किया जा सका।"
       }
     };
 
+    let activeLanguage = 'ta';
+    const speechLanguageMap = { en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN' };
+
+    function translate(key, fallback = '') {
+      const dict = i18nDictionary[activeLanguage] || i18nDictionary.ta;
+      return dict[key] || fallback || key;
+    }
+
     function applyLanguage(langCode) {
-      const dict = i18nDictionary[langCode] || i18nDictionary.ta;
+      const normalizedLang = i18nDictionary[langCode] ? langCode : 'ta';
+      const dict = i18nDictionary[normalizedLang];
+      activeLanguage = normalizedLang;
       document.getElementById('current-lang-label').textContent = dict.langLabel;
-      document.documentElement.lang = langCode;
-      localStorage.setItem('landwatch_lang', langCode);
+      document.documentElement.lang = normalizedLang;
+      document.documentElement.dir = 'ltr';
+      localStorage.setItem('landwatch_lang', normalizedLang);
 
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
@@ -2132,9 +2245,19 @@
           el.textContent = dict[key];
         }
       });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const value = dict[el.getAttribute('data-i18n-placeholder')];
+        if (value) el.setAttribute('placeholder', value);
+      });
+      document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        const value = dict[el.getAttribute('data-i18n-aria-label')];
+        if (value) el.setAttribute('aria-label', value);
+      });
+      const ttsButton = document.getElementById('tts-read-page');
+      if (ttsButton) ttsButton.setAttribute('aria-label', dict.tts_read);
 
       document.querySelectorAll('.lang-option').forEach(opt => {
-        const isSelected = opt.getAttribute('data-lang') === langCode;
+        const isSelected = opt.getAttribute('data-lang') === normalizedLang;
         const check = opt.querySelector('.lang-check');
         opt.setAttribute('aria-selected', isSelected ? 'true' : 'false');
         if (isSelected) {
@@ -2148,6 +2271,40 @@
         }
       });
     }
+
+    function selectSpeechVoice(language) {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      const languagePrefix = language.split('-')[0].toLowerCase();
+      return voices.find(voice => voice.lang.toLowerCase() === language.toLowerCase())
+        || voices.find(voice => voice.lang.toLowerCase().startsWith(`${languagePrefix}-`))
+        || voices.find(voice => voice.lang.toLowerCase().startsWith(languagePrefix))
+        || null;
+    }
+
+    function speakSelectedLanguage() {
+      if (!('speechSynthesis' in window)) {
+        console.warn('LandWatch: speech synthesis is not supported by this browser.');
+        return;
+      }
+      const language = speechLanguageMap[activeLanguage] || speechLanguageMap.ta;
+      const voice = selectSpeechVoice(language);
+      const text = [
+        document.querySelector('[data-i18n="hero_title"]')?.textContent,
+        document.querySelector('[data-i18n="hero_subtitle"]')?.textContent,
+        document.querySelector('[data-i18n="gis_title"]')?.textContent
+      ].filter(Boolean).join('. ');
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = language;
+      if (voice) utterance.voice = voice;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    window.speechSynthesis?.addEventListener('voiceschanged', () => {
+      selectSpeechVoice(speechLanguageMap[activeLanguage]);
+    });
+    document.getElementById('tts-read-page')?.addEventListener('click', speakSelectedLanguage);
 
     // Language Dropdown Setup
     const langBtn = document.getElementById('lang-btn');
@@ -2241,7 +2398,7 @@
     async function searchMapLocation(query) {
       const cleanQuery = query.trim();
       if (!cleanQuery || !leafletMap) return;
-      setMapSearchStatus('Searching map locations...');
+      setMapSearchStatus(translate('map_searching'));
       try {
         const response = await fetch(`https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&addressdetails=1&q=${encodeURIComponent(cleanQuery)}`, {
           headers: { Accept: 'application/json' }
@@ -2249,7 +2406,7 @@
         if (!response.ok) throw new Error(`Location search failed (${response.status})`);
         const results = await response.json();
         if (!results.length) {
-          setMapSearchStatus('No location found. Try a country, district, city, village, or landmark.', true);
+          setMapSearchStatus(translate('map_search_empty'), true);
           return;
         }
         const result = results[0];
@@ -2272,10 +2429,10 @@
           </div>
         `).openPopup();
         leafletMap.setView([lat, lon], Math.max(13, leafletMap.getZoom()), { animate: true });
-        setMapSearchStatus(`Showing ${result.display_name}`);
+        setMapSearchStatus(`${translate('map_search_showing')} ${result.display_name}`);
       } catch (error) {
         console.error('LandWatch map search error:', error);
-        setMapSearchStatus('Location search is temporarily unavailable. Please try again.', true);
+        setMapSearchStatus(translate('map_search_error'), true);
       }
     }
 
@@ -2301,10 +2458,10 @@
 
     document.getElementById('gis-locate-me')?.addEventListener('click', () => {
       if (!navigator.geolocation) {
-        setMapSearchStatus('Geolocation is not supported by this browser.', true);
+        setMapSearchStatus(translate('location_unsupported'), true);
         return;
       }
-      setMapSearchStatus('Requesting your location...');
+      setMapSearchStatus(translate('location_requesting'));
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude, accuracy } = position.coords;
         if (userLocationLayer) leafletMap.removeLayer(userLocationLayer);
@@ -2330,9 +2487,9 @@
           </div>
         `);
         leafletMap.setView([latitude, longitude], 15, { animate: true });
-        setMapSearchStatus('Map centered on your approximate location.');
+        setMapSearchStatus(translate('location_found'));
       }, error => {
-        const message = error.code === 1 ? 'Location permission was denied.' : 'Unable to determine your location.';
+        const message = error.code === 1 ? translate('location_denied') : translate('location_error');
         setMapSearchStatus(message, true);
       }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
     });

@@ -137,8 +137,14 @@
           <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#dashboard-preview">
             <span aria-hidden="true">📊</span> <span data-i18n="nav_dashboard">AI Dashboard</span>
           </a>
+          <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#smart-land-dashboard">
+            <span aria-hidden="true">🧠</span> <span data-i18n="nav_smart">Smart Intelligence</span>
+          </a>
           <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#public-tracking">
             <span aria-hidden="true">📦</span> <span data-i18n="nav_track">Citizen Tracker</span>
+          </a>
+          <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#citizen-reports">
+            <span aria-hidden="true">🚨</span> <span data-i18n="nav_reports">Reports</span>
           </a>
           <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#analytics-section">
             <span aria-hidden="true">📈</span> <span data-i18n="nav_analytics">Analytics</span>
@@ -371,8 +377,14 @@
           <a class="mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-medium text-label-md" href="#dashboard-preview">
             <span aria-hidden="true">📊</span> <span data-i18n="nav_dashboard">AI Delay Dashboard</span>
           </a>
+          <a class="mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-medium text-label-md" href="#smart-land-dashboard">
+            <span aria-hidden="true">🧠</span> <span data-i18n="nav_smart">Smart Intelligence</span>
+          </a>
           <a class="mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-medium text-label-md" href="#public-tracking">
             <span aria-hidden="true">📦</span> <span data-i18n="nav_track">Citizen Tracker</span>
+          </a>
+          <a class="mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-medium text-label-md" href="#citizen-reports">
+            <span aria-hidden="true">🚨</span> <span data-i18n="nav_reports">Reports</span>
           </a>
           <a class="mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-medium text-label-md" href="#analytics-section">
             <span aria-hidden="true">📈</span> <span data-i18n="nav_analytics">GovTech Analytics</span>
@@ -726,7 +738,138 @@
     </section>
 
     <!-- ==================================================== -->
-    <!-- 8. PUBLIC LAND TRACKING PORTAL ("Courier-Style Tracker") -->
+    <!-- 8. SMART LAND INTELLIGENCE PLATFORM -->
+    <!-- ==================================================== -->
+    <section class="w-full py-space-2xl bg-surface-container-low border-y border-surface-container-high scroll-mt-header" id="smart-land-dashboard">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+        <div class="max-w-3xl space-y-space-xs">
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold" data-i18n="smart_tag">Smart Land Intelligence</span>
+          <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="smart_title">Government Land Intelligence Dashboard</h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant" data-i18n="smart_subtitle">Monitor land change, sustainability, and citizen signals from one clear operational view.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop smart-reveal">
+          <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <span class="material-symbols-outlined smart-stat-icon text-primary" aria-hidden="true">map</span>
+            <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_total_label">Total Areas Monitored</span>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums">12,540</strong>
+            <span class="text-body-sm text-on-surface-variant" data-i18n="smart_locations">Locations</span>
+          </div>
+          <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <span class="material-symbols-outlined smart-stat-icon text-emerald-700" aria-hidden="true">park</span>
+            <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_protected_label">Protected Land</span>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums">3,240</strong>
+            <span class="text-body-sm text-on-surface-variant" data-i18n="smart_sqkm">km²</span>
+          </div>
+          <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <span class="material-symbols-outlined smart-stat-icon text-amber-700" aria-hidden="true">change_history</span>
+            <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_changes_label">Detected Changes</span>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums">856</strong>
+            <span class="text-body-sm text-on-surface-variant" data-i18n="smart_last_30">in the last 30 days</span>
+          </div>
+          <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <span class="material-symbols-outlined smart-stat-icon text-error" aria-hidden="true">report</span>
+            <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_reports_label">Active Citizen Reports</span>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums" id="smart-report-count">124</strong>
+            <span class="text-body-sm text-on-surface-variant" data-i18n="smart_under_review">under review</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-desktop">
+          <div class="smart-chart-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="smart_usage_title">Land Usage Distribution</h3>
+            <div class="smart-chart-wrap"><canvas id="landUsageChart" aria-label="Land usage distribution chart"></canvas></div>
+          </div>
+          <div class="smart-chart-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="smart_change_title">Environmental Change</h3>
+            <div class="smart-chart-wrap"><canvas id="environmentalChangeChart" aria-label="Environmental change chart"></canvas></div>
+          </div>
+          <div class="smart-chart-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="smart_risk_title">Risk Level Overview</h3>
+            <div class="smart-chart-wrap"><canvas id="landRiskChart" aria-label="Land risk level chart"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full py-space-2xl bg-surface scroll-mt-header" id="ai-land-analysis">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="smart-feature-grid">
+          <div class="space-y-space-xs">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold" data-i18n="ai_tag">AI Land Analysis</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="ai_title">Understand Land Conditions Faster</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant" data-i18n="ai_subtitle">Use the selected map area or enter a location to generate an illustrative intelligence report.</p>
+          </div>
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-md border border-primary/20">
+            <label for="land-analysis-location" class="block text-label-md font-bold text-primary mb-2" data-i18n="ai_location_label">Location or map area</label>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <input id="land-analysis-location" class="flex-1 bg-surface border border-outline-variant/60 rounded-lg px-3 py-2.5 text-body-md text-primary focus:outline-none focus:ring-2 focus:ring-primary" data-i18n-placeholder="ai_placeholder" placeholder="Enter location or select area from map"/>
+              <button class="px-5 py-2.5 bg-primary text-white rounded-lg font-bold text-label-md hover:bg-primary-container transition-colors cursor-pointer" id="run-land-analysis" type="button" data-i18n="ai_analyze">Analyze</button>
+            </div>
+            <div class="smart-analysis-loading hidden" id="land-analysis-loading" role="status">
+              <span class="smart-spinner"></span><span data-i18n="ai_loading">Analyzing land signals...</span>
+            </div>
+            <div class="smart-analysis-report mt-space-base" id="land-analysis-report" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full py-space-2xl bg-surface-container-low border-y border-surface-container-high scroll-mt-header" id="land-risk-score">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="smart-feature-grid">
+          <div>
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold" data-i18n="risk_tag">Sustainability Intelligence</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold mt-1" data-i18n="risk_title">Land Sustainability Score</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant mt-2" data-i18n="risk_subtitle">A transparent demo score that updates when the selected map area changes.</p>
+          </div>
+          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-md border border-surface-container">
+            <div class="flex items-center justify-between border-b border-surface-container pb-space-sm">
+              <div>
+                <span class="text-label-sm uppercase font-bold text-secondary" data-i18n="risk_current">Current area</span>
+                <h3 class="font-headline-sm text-headline-sm text-primary font-bold" id="risk-area-name">Chennai Region</h3>
+              </div>
+              <div class="text-right"><strong class="font-display-lg text-display-lg text-primary" id="risk-score-value">82</strong><span class="text-body-sm text-on-surface-variant">/100</span><span class="block risk-label risk-low" id="risk-score-label">Low Risk</span></div>
+            </div>
+            <div class="space-y-space-md pt-space-base" id="risk-breakdown">
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_green">🌳 Green Cover</span><span data-risk-value="green">90%</span></div><div class="risk-track"><span data-risk-bar="green" style="width:90%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_water">💧 Water Safety</span><span data-risk-value="water">75%</span></div><div class="risk-track"><span data-risk-bar="water" style="width:75%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_development">🏗 Development Pressure</span><span data-risk-value="development">80%</span></div><div class="risk-track"><span data-risk-bar="development" style="width:80%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_stability">🌍 Environmental Stability</span><span data-risk-value="stability">85%</span></div><div class="risk-track"><span data-risk-bar="stability" style="width:85%"></span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full py-space-2xl bg-surface scroll-mt-header" id="citizen-reports">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+        <div class="max-w-3xl space-y-space-xs">
+          <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold" data-i18n="reports_tag">Citizen Land Reporting</span>
+          <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="reports_title">Report a Land or Environmental Issue</h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant" data-i18n="reports_subtitle">Submit a privacy-friendly demo report for review by the responsible authority.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-gutter-desktop">
+          <form class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-md" id="citizen-report-form">
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-name" data-i18n="report_name">Name (optional)</label><input id="report-name" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary" type="text" autocomplete="name"/></div>
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-category" data-i18n="report_category">Issue category</label><select id="report-category" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary"><option data-i18n="report_illegal">Illegal Construction</option><option data-i18n="report_deforestation">Deforestation</option><option data-i18n="report_waste">Waste Dumping</option><option data-i18n="report_water">Water Pollution</option><option data-i18n="report_misuse">Land Misuse</option></select></div>
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-location" data-i18n="report_location">Location</label><input id="report-location" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary" type="text" required/></div>
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-description" data-i18n="report_description">Description</label><textarea id="report-description" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary" rows="4" required></textarea></div>
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-image" data-i18n="report_image">Upload image (optional)</label><input id="report-image" class="w-full text-body-sm text-on-surface-variant" type="file" accept="image/*"/></div>
+            <p class="text-error text-body-sm hidden" id="report-form-error" role="alert"></p>
+            <button class="w-full py-2.5 bg-primary text-white rounded-lg font-bold text-label-md hover:bg-primary-container transition-colors cursor-pointer" type="submit" data-i18n="report_submit">Submit report</button>
+            <p class="text-emerald-800 text-body-sm hidden" id="report-success" role="status"></p>
+          </form>
+          <div class="lg:col-span-3 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <div class="flex items-center justify-between border-b border-surface-container pb-space-sm"><h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="report_history">Report history</h3><span class="text-body-sm text-on-surface-variant" data-i18n="report_local_note">Stored locally for this demo</span></div>
+            <div class="space-y-space-sm pt-space-base" id="report-history-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================== -->
+    <!-- 9. PUBLIC LAND TRACKING PORTAL ("Courier-Style Tracker") -->
     <!-- ==================================================== -->
     <section class="w-full py-space-2xl bg-surface scroll-mt-header" id="public-tracking">
       <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
@@ -1609,6 +1752,7 @@
       if (leafletMap && data.coords) {
         leafletMap.panTo(data.coords[0], { animate: true, duration: 0.5 });
       }
+      window.updateSmartLandModules?.(data);
     }
 
     // --- 4. Document Management Renderer ---
@@ -1960,6 +2104,151 @@
         });
       }
 
+      function initSmartLandCharts() {
+            if (typeof Chart === 'undefined') {
+              console.error('LandWatch: Chart.js is unavailable; smart dashboard charts were not initialized.');
+              return;
+            }
+            const chartDefaults = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Hanken Grotesk' } } } } };
+            const usageCtx = document.getElementById('landUsageChart')?.getContext('2d');
+            if (usageCtx) new Chart(usageCtx, {
+              type: 'doughnut',
+              data: { labels: ['Agricultural', 'Forest', 'Urban', 'Water', 'Industrial'], datasets: [{ data: [42, 28, 16, 9, 5], backgroundColor: ['#059669', '#166534', '#2563eb', '#0891b2', '#7c3aed'], borderWidth: 2 }] },
+              options: chartDefaults
+            });
+            const changeCtx = document.getElementById('environmentalChangeChart')?.getContext('2d');
+            if (changeCtx) new Chart(changeCtx, {
+              type: 'line',
+              data: { labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'], datasets: [
+                { label: 'Vegetation', data: [92, 89, 91, 86, 84, 88], borderColor: '#059669', backgroundColor: 'rgba(5,150,105,.12)', fill: true, tension: .35 },
+                { label: 'Water safety', data: [84, 82, 79, 77, 75, 78], borderColor: '#0891b2', backgroundColor: 'rgba(8,145,178,.08)', fill: true, tension: .35 }
+              ] },
+              options: { ...chartDefaults, scales: { y: { min: 60, max: 100, ticks: { callback: value => `${value}%` } } } }
+            });
+            const riskCtx = document.getElementById('landRiskChart')?.getContext('2d');
+            if (riskCtx) new Chart(riskCtx, {
+              type: 'bar',
+              data: { labels: ['Low', 'Medium', 'High'], datasets: [{ label: 'Locations', data: [68, 23, 9], backgroundColor: ['#059669', '#d97706', '#ba1a1a'], borderRadius: 6 }] },
+              options: { ...chartDefaults, scales: { y: { beginAtZero: true } } }
+            });
+          }
+
+          const smartAreaProfiles = {
+            Tambaram: { name: 'Tambaram Taluk', score: 76, green: 82, water: 68, development: 72, stability: 78 },
+            Chengalpattu: { name: 'Chengalpattu Taluk', score: 84, green: 91, water: 79, development: 82, stability: 86 },
+            Sriperumbudur: { name: 'Sriperumbudur Taluk', score: 69, green: 71, water: 64, development: 58, stability: 73 }
+          };
+
+          function getSmartProfile(data) {
+            return smartAreaProfiles[data.taluk] || { name: 'Chennai Region', score: 82, green: 90, water: 75, development: 80, stability: 85 };
+          }
+
+          function updateSmartLandModules(data) {
+            const profile = getSmartProfile(data);
+            const riskArea = document.getElementById('risk-area-name');
+            if (!riskArea) return;
+            riskArea.textContent = profile.name;
+            document.getElementById('risk-score-value').textContent = profile.score;
+            const label = document.getElementById('risk-score-label');
+            const riskClass = profile.score >= 80 ? 'risk-low' : profile.score >= 60 ? 'risk-medium' : 'risk-high';
+            label.textContent = profile.score >= 80 ? translate('risk_low') : profile.score >= 60 ? translate('risk_medium') : translate('risk_high');
+            label.className = `block risk-label ${riskClass}`;
+            Object.entries(profile).forEach(([key, value]) => {
+              const valueElement = document.querySelector(`[data-risk-value="${key}"]`);
+              const barElement = document.querySelector(`[data-risk-bar="${key}"]`);
+              if (valueElement) valueElement.textContent = `${value}%`;
+              if (barElement) barElement.style.width = `${value}%`;
+            });
+            const analysisLocation = document.getElementById('land-analysis-location');
+            if (analysisLocation && !analysisLocation.value) analysisLocation.value = profile.name;
+          }
+
+          function runLandAnalysis() {
+            const input = document.getElementById('land-analysis-location');
+            const loading = document.getElementById('land-analysis-loading');
+            const report = document.getElementById('land-analysis-report');
+            const location = input.value.trim() || getSmartProfile(parcelDatabase[currentSelectedParcel]).name;
+            loading.classList.remove('hidden');
+            report.innerHTML = '';
+            setTimeout(() => {
+              const data = parcelDatabase[currentSelectedParcel] || parcelDatabase['4521'];
+              const profile = getSmartProfile(data);
+              const vegetation = Math.max(4, 100 - profile.green);
+              const development = Math.max(12, 100 - profile.development);
+              loading.classList.add('hidden');
+              report.innerHTML = `<h3 class="font-headline-sm text-headline-sm text-primary font-bold">${translate('ai_report_title')}</h3>
+                <div class="smart-report-grid">
+                  <div class="smart-report-item"><span>${translate('ai_location')}</span><strong>📍 ${escapeMapHtml(location)}</strong></div>
+                  <div class="smart-report-item"><span>${translate('ai_vegetation')}</span><strong>${translate('ai_decreased')} ${vegetation}%</strong></div>
+                  <div class="smart-report-item"><span>${translate('ai_development')}</span><strong>${translate('ai_increased')} ${development}%</strong></div>
+                  <div class="smart-report-item"><span>${translate('ai_water_risk')}</span><strong>${profile.water < 70 ? translate('risk_medium') : translate('risk_low')}</strong></div>
+                </div>
+                <p class="p-3 rounded-lg bg-amber-50 text-amber-900 text-body-sm"><strong>⚠ ${translate('ai_recommendation')}:</strong> ${translate('ai_recommendation_text')}</p>`;
+            }, 700);
+          }
+
+          function getStoredReports() {
+            const stored = localStorage.getItem('landwatch_citizen_reports');
+            if (!stored) return [];
+            try {
+              const reports = JSON.parse(stored);
+              if (!Array.isArray(reports)) throw new Error('Stored reports are not an array');
+              return reports;
+            } catch (error) {
+              console.error('LandWatch: stored citizen reports could not be read.', error);
+              return [];
+            }
+          }
+
+          function renderCitizenReports() {
+            const list = document.getElementById('report-history-list');
+            const reports = getStoredReports();
+            if (!reports.length) {
+              list.innerHTML = `<p class="report-history-empty">${translate('report_empty')}</p>`;
+              return;
+            }
+            list.innerHTML = reports.map(report => `<article class="report-history-item">
+              <div><strong>${escapeMapHtml(report.id)}</strong><small>${escapeMapHtml(report.category)} · ${escapeMapHtml(report.location)}</small><small>${escapeMapHtml(report.description)}</small></div>
+              <span class="report-status">${translate('report_review')}</span>
+            </article>`).join('');
+          }
+
+          function submitCitizenReport(event) {
+            event.preventDefault();
+            const location = document.getElementById('report-location').value.trim();
+            const description = document.getElementById('report-description').value.trim();
+            const error = document.getElementById('report-form-error');
+            const success = document.getElementById('report-success');
+            if (!location || !description) {
+              error.textContent = translate('report_validation');
+              error.classList.remove('hidden');
+              success.classList.add('hidden');
+              return;
+            }
+            const reports = getStoredReports();
+            const report = {
+              id: `LW-${1024 + reports.length}`,
+              category: document.getElementById('report-category').value,
+              location,
+              description,
+              createdAt: new Date().toISOString()
+            };
+            reports.unshift(report);
+            localStorage.setItem('landwatch_citizen_reports', JSON.stringify(reports.slice(0, 20)));
+            event.target.reset();
+            error.classList.add('hidden');
+            success.textContent = translate('report_success');
+            success.classList.remove('hidden');
+            renderCitizenReports();
+            const count = document.getElementById('smart-report-count');
+            if (count) count.textContent = 124 + reports.length;
+          }
+          window.initSmartLandCharts = initSmartLandCharts;
+          window.updateSmartLandModules = updateSmartLandModules;
+          window.runLandAnalysis = runLandAnalysis;
+          window.renderCitizenReports = renderCitizenReports;
+          window.submitCitizenReport = submitCitizenReport;
+
       // 2. Bottlenecks Funnel Chart
       const bottleneckCtx = document.getElementById('bottleneckChart')?.getContext('2d');
       if (bottleneckCtx) {
@@ -2102,7 +2391,70 @@
         location_requesting: "உங்கள் இருப்பிடம் கோரப்படுகிறது...",
         location_found: "உங்கள் தோராயமான இருப்பிடத்திற்கு வரைபடம் மையப்படுத்தப்பட்டது.",
         location_denied: "இருப்பிட அனுமதி மறுக்கப்பட்டது.",
-        location_error: "உங்கள் இருப்பிடத்தை கண்டறிய முடியவில்லை."
+        location_error: "உங்கள் இருப்பிடத்தை கண்டறிய முடியவில்லை.",
+        nav_smart: "நுண்ணறிவு மையம்",
+        nav_reports: "புகார்கள்",
+        smart_tag: "நுண்ணறிவு நில தளம்",
+        smart_title: "அரசு நில நுண்ணறிவு டாஷ்போர்டு",
+        smart_subtitle: "நில மாற்றம், நிலைத்தன்மை மற்றும் குடிமக்கள் தகவல்களை ஒரே பார்வையில் கண்காணிக்கவும்.",
+        smart_total_label: "கண்காணிக்கப்படும் பகுதிகள்",
+        smart_protected_label: "பாதுகாக்கப்பட்ட நிலம்",
+        smart_changes_label: "கண்டறியப்பட்ட மாற்றங்கள்",
+        smart_reports_label: "செயலில் உள்ள குடிமக்கள் புகார்கள்",
+        smart_locations: "இடங்கள்",
+        smart_sqkm: "ச.கி.மீ.",
+        smart_last_30: "கடந்த 30 நாட்களில்",
+        smart_under_review: "மதிப்பாய்வில்",
+        smart_usage_title: "நில பயன்பாட்டு விநியோகம்",
+        smart_change_title: "சுற்றுச்சூழல் மாற்றம்",
+        smart_risk_title: "ஆபத்து நிலை",
+        ai_tag: "AI நில பகுப்பாய்வு",
+        ai_title: "நில நிலைமைகளை விரைவாகப் புரிந்துகொள்ளுங்கள்",
+        ai_subtitle: "வரைபடப் பகுதியைத் தேர்ந்தெடுக்கவும் அல்லது இடத்தை உள்ளிட்டு விளக்க அறிக்கையை உருவாக்கவும்.",
+        ai_location_label: "இடம் அல்லது வரைபடப் பகுதி",
+        ai_placeholder: "இடத்தை உள்ளிடவும் அல்லது வரைபடப் பகுதியைத் தேர்ந்தெடுக்கவும்",
+        ai_analyze: "பகுப்பாய்வு",
+        ai_loading: "நிலத் தகவல்கள் பகுப்பாய்வு செய்யப்படுகின்றன...",
+        ai_report_title: "நில பகுப்பாய்வு அறிக்கை",
+        ai_location: "இடம்",
+        ai_vegetation: "தாவர மூடுபரப்பு",
+        ai_development: "நகர்ப்புற வளர்ச்சி",
+        ai_water_risk: "நீர் ஆபத்து",
+        ai_decreased: "குறைந்தது",
+        ai_increased: "அதிகரித்தது",
+        ai_recommendation: "பரிந்துரை",
+        ai_recommendation_text: "கட்டுப்படுத்தப்பட்ட வளர்ச்சி பரிந்துரைக்கப்படுகிறது.",
+        risk_tag: "நிலைத்தன்மை நுண்ணறிவு",
+        risk_title: "நில நிலைத்தன்மை மதிப்பெண்",
+        risk_subtitle: "தேர்ந்தெடுக்கப்பட்ட வரைபடப் பகுதி மாறும்போது இந்த விளக்க மதிப்பெண் புதுப்பிக்கப்படும்.",
+        risk_current: "தற்போதைய பகுதி",
+        risk_green: "🌳 பசுமை மூடுபரப்பு",
+        risk_water: "💧 நீர் பாதுகாப்பு",
+        risk_development: "🏗 வளர்ச்சி அழுத்தம்",
+        risk_stability: "🌍 சுற்றுச்சூழல் நிலைத்தன்மை",
+        risk_low: "குறைந்த ஆபத்து",
+        risk_medium: "நடுத்தர ஆபத்து",
+        risk_high: "அதிக ஆபத்து",
+        reports_tag: "குடிமக்கள் நில புகார்",
+        reports_title: "நில அல்லது சுற்றுச்சூழல் பிரச்சினையைப் புகாரளிக்கவும்",
+        reports_subtitle: "பொறுப்பான அதிகாரியின் மதிப்பாய்வுக்காக தனியுரிமை பாதுகாக்கப்பட்ட மாதிரி புகாரைச் சமர்ப்பிக்கவும்.",
+        report_name: "பெயர் (விருப்பம்)",
+        report_category: "பிரச்சினை வகை",
+        report_location: "இடம்",
+        report_description: "விளக்கம்",
+        report_image: "படம் பதிவேற்றவும் (விருப்பம்)",
+        report_submit: "புகாரைச் சமர்ப்பிக்கவும்",
+        report_history: "புகார் வரலாறு",
+        report_local_note: "இந்த மாதிரிக்காக உள்ளூரில் சேமிக்கப்படுகிறது",
+        report_empty: "இதுவரை புகார்கள் இல்லை.",
+        report_review: "மதிப்பாய்வில்",
+        report_validation: "இடம் மற்றும் விளக்கம் தேவை.",
+        report_success: "புகார் வெற்றிகரமாக சமர்ப்பிக்கப்பட்டது.",
+        report_illegal: "சட்டவிரோத கட்டுமானம்",
+        report_deforestation: "காடழிப்பு",
+        report_waste: "குப்பை கொட்டுதல்",
+        report_water: "நீர் மாசுபாடு",
+        report_misuse: "நிலத் தவறான பயன்பாடு"
       },
       en: {
         langLabel: "English",
@@ -2160,7 +2512,70 @@
         location_requesting: "Requesting your location...",
         location_found: "Map centered on your approximate location.",
         location_denied: "Location permission was denied.",
-        location_error: "Unable to determine your location."
+        location_error: "Unable to determine your location.",
+        nav_smart: "Smart Intelligence",
+        nav_reports: "Reports",
+        smart_tag: "Smart Land Intelligence",
+        smart_title: "Government Land Intelligence Dashboard",
+        smart_subtitle: "Monitor land change, sustainability, and citizen signals from one clear operational view.",
+        smart_total_label: "Total Areas Monitored",
+        smart_protected_label: "Protected Land",
+        smart_changes_label: "Detected Changes",
+        smart_reports_label: "Active Citizen Reports",
+        smart_locations: "Locations",
+        smart_sqkm: "km²",
+        smart_last_30: "in the last 30 days",
+        smart_under_review: "under review",
+        smart_usage_title: "Land Usage Distribution",
+        smart_change_title: "Environmental Change",
+        smart_risk_title: "Risk Level Overview",
+        ai_tag: "AI Land Analysis",
+        ai_title: "Understand Land Conditions Faster",
+        ai_subtitle: "Use the selected map area or enter a location to generate an illustrative intelligence report.",
+        ai_location_label: "Location or map area",
+        ai_placeholder: "Enter location or select area from map",
+        ai_analyze: "Analyze",
+        ai_loading: "Analyzing land signals...",
+        ai_report_title: "Land Analysis Report",
+        ai_location: "Location",
+        ai_vegetation: "Vegetation",
+        ai_development: "Urban Development",
+        ai_water_risk: "Water Risk",
+        ai_decreased: "Decreased by",
+        ai_increased: "Increased by",
+        ai_recommendation: "Recommendation",
+        ai_recommendation_text: "Controlled development recommended.",
+        risk_tag: "Sustainability Intelligence",
+        risk_title: "Land Sustainability Score",
+        risk_subtitle: "This illustrative score updates when the selected map area changes.",
+        risk_current: "Current area",
+        risk_green: "🌳 Green Cover",
+        risk_water: "💧 Water Safety",
+        risk_development: "🏗 Development Pressure",
+        risk_stability: "🌍 Environmental Stability",
+        risk_low: "Low Risk",
+        risk_medium: "Medium Risk",
+        risk_high: "High Risk",
+        reports_tag: "Citizen Land Reporting",
+        reports_title: "Report a Land or Environmental Issue",
+        reports_subtitle: "Submit a privacy-friendly demo report for review by the responsible authority.",
+        report_name: "Name (optional)",
+        report_category: "Issue category",
+        report_location: "Location",
+        report_description: "Description",
+        report_image: "Upload image (optional)",
+        report_submit: "Submit report",
+        report_history: "Report history",
+        report_local_note: "Stored locally for this demo",
+        report_empty: "No reports submitted yet.",
+        report_review: "Under Review",
+        report_validation: "Location and description are required.",
+        report_success: "Report submitted successfully.",
+        report_illegal: "Illegal Construction",
+        report_deforestation: "Deforestation",
+        report_waste: "Waste Dumping",
+        report_water: "Water Pollution",
+        report_misuse: "Land Misuse"
       },
       hi: {
         langLabel: "हिंदी (Hindi)",
@@ -2218,7 +2633,70 @@
         location_requesting: "आपका स्थान प्राप्त किया जा रहा है...",
         location_found: "मानचित्र आपके अनुमानित स्थान पर केंद्रित है।",
         location_denied: "स्थान की अनुमति अस्वीकार कर दी गई।",
-        location_error: "आपका स्थान निर्धारित नहीं किया जा सका।"
+        location_error: "आपका स्थान निर्धारित नहीं किया जा सका।",
+        nav_smart: "स्मार्ट इंटेलिजेंस",
+        nav_reports: "रिपोर्ट",
+        smart_tag: "स्मार्ट भूमि इंटेलिजेंस",
+        smart_title: "सरकारी भूमि इंटेलिजेंस डैशबोर्ड",
+        smart_subtitle: "एक स्पष्ट परिचालन दृश्य से भूमि परिवर्तन, स्थिरता और नागरिक संकेतों की निगरानी करें।",
+        smart_total_label: "निगरानी वाले क्षेत्र",
+        smart_protected_label: "संरक्षित भूमि",
+        smart_changes_label: "पता चले परिवर्तन",
+        smart_reports_label: "सक्रिय नागरिक रिपोर्ट",
+        smart_locations: "स्थान",
+        smart_sqkm: "वर्ग किमी",
+        smart_last_30: "पिछले 30 दिनों में",
+        smart_under_review: "समीक्षा में",
+        smart_usage_title: "भूमि उपयोग वितरण",
+        smart_change_title: "पर्यावरणीय परिवर्तन",
+        smart_risk_title: "जोखिम स्तर अवलोकन",
+        ai_tag: "AI भूमि विश्लेषण",
+        ai_title: "भूमि की स्थिति को तेज़ी से समझें",
+        ai_subtitle: "चयनित मानचित्र क्षेत्र का उपयोग करें या एक स्थान दर्ज करके उदाहरणात्मक रिपोर्ट बनाएं।",
+        ai_location_label: "स्थान या मानचित्र क्षेत्र",
+        ai_placeholder: "स्थान दर्ज करें या मानचित्र क्षेत्र चुनें",
+        ai_analyze: "विश्लेषण करें",
+        ai_loading: "भूमि संकेतों का विश्लेषण हो रहा है...",
+        ai_report_title: "भूमि विश्लेषण रिपोर्ट",
+        ai_location: "स्थान",
+        ai_vegetation: "वनस्पति",
+        ai_development: "शहरी विकास",
+        ai_water_risk: "जल जोखिम",
+        ai_decreased: "कमी",
+        ai_increased: "वृद्धि",
+        ai_recommendation: "सिफारिश",
+        ai_recommendation_text: "नियंत्रित विकास की सिफारिश की जाती है।",
+        risk_tag: "स्थिरता इंटेलिजेंस",
+        risk_title: "भूमि स्थिरता स्कोर",
+        risk_subtitle: "चयनित मानचित्र क्षेत्र बदलने पर यह उदाहरणात्मक स्कोर अपडेट होता है।",
+        risk_current: "वर्तमान क्षेत्र",
+        risk_green: "🌳 हरित आवरण",
+        risk_water: "💧 जल सुरक्षा",
+        risk_development: "🏗 विकास दबाव",
+        risk_stability: "🌍 पर्यावरणीय स्थिरता",
+        risk_low: "कम जोखिम",
+        risk_medium: "मध्यम जोखिम",
+        risk_high: "उच्च जोखिम",
+        reports_tag: "नागरिक भूमि रिपोर्टिंग",
+        reports_title: "भूमि या पर्यावरणीय समस्या की रिपोर्ट करें",
+        reports_subtitle: "जिम्मेदार प्राधिकरण की समीक्षा के लिए गोपनीयता-अनुकूल डेमो रिपोर्ट भेजें।",
+        report_name: "नाम (वैकल्पिक)",
+        report_category: "समस्या श्रेणी",
+        report_location: "स्थान",
+        report_description: "विवरण",
+        report_image: "छवि अपलोड करें (वैकल्पिक)",
+        report_submit: "रिपोर्ट भेजें",
+        report_history: "रिपोर्ट इतिहास",
+        report_local_note: "इस डेमो के लिए स्थानीय रूप से संग्रहीत",
+        report_empty: "अभी तक कोई रिपोर्ट नहीं भेजी गई।",
+        report_review: "समीक्षा में",
+        report_validation: "स्थान और विवरण आवश्यक हैं।",
+        report_success: "रिपोर्ट सफलतापूर्वक भेजी गई।",
+        report_illegal: "अवैध निर्माण",
+        report_deforestation: "वनों की कटाई",
+        report_waste: "कचरा डंपिंग",
+        report_water: "जल प्रदूषण",
+        report_misuse: "भूमि का दुरुपयोग"
       }
     };
 
@@ -2504,12 +2982,20 @@
       }
     });
 
+    document.getElementById('run-land-analysis')?.addEventListener('click', () => window.runLandAnalysis?.());
+    document.getElementById('land-analysis-location')?.addEventListener('keydown', event => {
+      if (event.key === 'Enter') window.runLandAnalysis?.();
+    });
+    document.getElementById('citizen-report-form')?.addEventListener('submit', event => window.submitCitizenReport?.(event));
+
     // --- 13. DOM Initialization ---
     document.addEventListener('DOMContentLoaded', () => {
       initLeafletMap();
       renderQueueTable();
       selectParcel("4521");
       initAnalyticsCharts();
+      window.initSmartLandCharts?.();
+      window.renderCitizenReports?.();
 
       // Default language: Tamil-first or saved
       const savedLang = localStorage.getItem('landwatch_lang') || 'ta';

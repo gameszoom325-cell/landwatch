@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="ta">
+<html class="scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -96,7 +96,7 @@
       </div>
       <!-- Role Indicator Pill in Banner -->
       <div class="hidden sm:flex items-center gap-2">
-        <span class="text-[11px] text-[#e9d5ff]">Active Session:</span>
+        <span class="text-[11px] text-[#e9d5ff]" data-i18n="active_session">Active Session:</span>
         <button class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-white/20 hover:bg-white/30 text-white text-[11px] font-bold cursor-pointer transition-colors" id="role-switcher-btn" type="button" aria-haspopup="dialog" aria-expanded="false">
           <span id="banner-role-icon">👤</span>
           <span id="banner-role-label">Officer: Tahsildar</span>
@@ -541,7 +541,7 @@
             <div class="flex flex-col">
               <label for="gis-filter-taluk" class="text-[10px] font-bold uppercase text-on-surface-variant">வட்டம் (Taluk)</label>
               <select id="gis-filter-taluk" class="bg-surface text-primary border border-outline-variant/60 rounded-lg px-2.5 py-1.5 text-label-md font-semibold focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
-                <option value="all">All Taluks (அனைத்து வட்டங்கள்)</option>
+                <option value="all" data-i18n="filter_all_taluks">All Taluks</option>
                 <option value="Tambaram" selected>Tambaram (தாம்பரம்)</option>
                 <option value="Sriperumbudur">Sriperumbudur (ஸ்ரீபெரும்புதூர்)</option>
                 <option value="Chengalpattu">Chengalpattu (செங்கல்பட்டு)</option>
@@ -552,7 +552,7 @@
             <div class="flex flex-col">
               <label for="gis-filter-village" class="text-[10px] font-bold uppercase text-on-surface-variant">கிராமம் (Village)</label>
               <select id="gis-filter-village" class="bg-surface text-primary border border-outline-variant/60 rounded-lg px-2.5 py-1.5 text-label-md font-semibold focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
-                <option value="all">All Villages (அனைத்து கிராமங்கள்)</option>
+                <option value="all" data-i18n="filter_all_villages">All Villages</option>
                 <option value="Perungalathur">Perungalathur (பெருங்களத்தூர்)</option>
                 <option value="Vandalur">Vandalur (வண்டலூர்)</option>
                 <option value="Guduvanchery">Guduvanchery (கூடுவாஞ்சேரி)</option>
@@ -564,7 +564,7 @@
             <div class="flex flex-col">
               <label for="gis-filter-risk" class="text-[10px] font-bold uppercase text-on-surface-variant">அபாய நிலை (Status)</label>
               <select id="gis-filter-risk" class="bg-surface text-primary border border-outline-variant/60 rounded-lg px-2.5 py-1.5 text-label-md font-semibold focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer">
-                <option value="all">All Risks (அனைத்து நிலைகள்)</option>
+                <option value="all" data-i18n="filter_all_risks">All Risks</option>
                 <option value="Critical">🔴 High Risk (அதிக அபாயம்)</option>
                 <option value="Attention">🟡 Warning (கவனம்)</option>
                 <option value="Safe">🟢 On Schedule (சரியான நேரம்)</option>
@@ -573,7 +573,7 @@
 
             <!-- Reset GIS View Button -->
             <button class="mt-3.5 px-3 py-1.5 bg-surface-container hover:bg-surface-container-high text-primary rounded-lg text-label-sm font-semibold transition-colors cursor-pointer" id="gis-reset-view" type="button">
-              Reset View
+              <span data-i18n="map_reset_view">Reset View</span>
             </button>
           </div>
         </div>
@@ -1217,7 +1217,7 @@
     <!-- Floating AI Chatbot Toggle Button -->
     <button class="flex items-center gap-2 px-4 py-3 bg-primary text-white rounded-full font-bold text-label-md hover:bg-primary-container transition-all cursor-pointer border-2 border-[#cae6ff]" id="ai-assistant-toggle" aria-label="Open LandWatch AI Assistant" type="button">
       <span class="text-lg leading-none" aria-hidden="true">🤖</span>
-      <span class="hidden sm:inline">நிலவழிகாட்டி (LandWatch AI)</span>
+      <span class="hidden sm:inline" data-i18n="assistant_name">LandWatch AI</span>
     </button>
   </div>
 
@@ -1228,8 +1228,8 @@
       <div class="flex items-center gap-2">
         <span class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-[18px]">🤖</span>
         <div>
-          <p class="font-bold text-body-md leading-tight">நிலவழிகாட்டி · LandWatch AI</p>
-          <p class="text-[10px] text-[#cae6ff]">Tamil-first Civic Assistance Bot</p>
+          <p class="font-bold text-body-md leading-tight" data-i18n="assistant_name">LandWatch AI</p>
+          <p class="text-[10px] text-[#cae6ff]" data-i18n="assistant_subtitle">Civic Assistance Bot</p>
         </div>
       </div>
       <button class="p-1 rounded text-white/80 hover:text-white cursor-pointer" id="ai-assistant-close" type="button">
@@ -1241,20 +1241,20 @@
     <div class="flex-grow p-3 space-y-3 overflow-y-auto flex flex-col text-body-sm" id="chat-messages-container">
       <!-- Default welcome message -->
       <div class="chat-msg-bot p-3 text-[13px] leading-relaxed">
-        வணக்கம்! நான் நிலவழிகாட்டி (LandWatch AI Assistant). உங்கள் நில எடுப்பு வழக்கு, இழப்பீடு நிலை, அல்லது தாமத காரணங்கள் குறித்து ஏதேனும் கேள்விகள் இருந்தால் கேளுங்கள்.
+        <span data-i18n="assistant_welcome">Hello! I am the LandWatch AI Assistant. Ask me about your land acquisition case, compensation status, or delay reasons.</span>
       </div>
     </div>
 
     <!-- Quick Question Chips -->
     <div class="p-2 bg-surface-container-low border-t border-surface-container flex items-center gap-1.5 overflow-x-auto text-[11px]">
-      <button class="chat-quick-chip px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-medium flex-shrink-0 cursor-pointer" data-q="Why is my case delayed?">Why is my case delayed?</button>
-      <button class="chat-quick-chip px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-medium flex-shrink-0 cursor-pointer" data-q="இழப்பீடு எப்போது கிடைக்கும்?">இழப்பீடு எப்போது?</button>
-      <button class="chat-quick-chip px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-medium flex-shrink-0 cursor-pointer" data-q="How to submit Section 15 objection?">Section 15 Objection?</button>
+      <button class="chat-quick-chip px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-medium flex-shrink-0 cursor-pointer" data-q-key="chat_delay">Why is my case delayed?</button>
+      <button class="chat-quick-chip px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-medium flex-shrink-0 cursor-pointer" data-q-key="chat_compensation">When will compensation arrive?</button>
+      <button class="chat-quick-chip px-2.5 py-1 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-medium flex-shrink-0 cursor-pointer" data-q-key="chat_objection">How do I submit a Section 15 objection?</button>
     </div>
 
     <!-- Chat Input Box -->
     <div class="p-2.5 bg-surface border-t border-surface-container flex items-center gap-2">
-      <input type="text" id="chat-user-input" class="w-full bg-surface-container-lowest border border-outline-variant/60 rounded-lg px-3 py-2 text-body-sm text-primary focus:outline-none focus:ring-2 focus:ring-primary" placeholder="கேள்வியை தட்டச்சு செய்யவும்..."/>
+      <input type="text" id="chat-user-input" class="w-full bg-surface-container-lowest border border-outline-variant/60 rounded-lg px-3 py-2 text-body-sm text-primary focus:outline-none focus:ring-2 focus:ring-primary" data-i18n-placeholder="assistant_placeholder" placeholder="Type your question..."/>
       <button class="p-2 bg-primary text-white rounded-lg hover:bg-primary-container cursor-pointer flex items-center justify-center flex-shrink-0" id="chat-send-btn" type="button">
         <span class="material-symbols-outlined text-[18px]">send</span>
       </button>
@@ -2126,14 +2126,14 @@
         const curData = parcelDatabase[currentSelectedParcel] || parcelDatabase["4521"];
         let answer = "";
 
-        if (q.includes("delay") || q.includes("தாமத") || q.includes("why")) {
-          answer = `வழக்கு ${curData.id} நிலவரம்: ${curData.q1}. கணிக்கப்பட்ட தாமதம்: ${curData.delayDays} நாட்கள். பரிந்துரைக்கப்பட்ட நடவடிக்கை: ${curData.q5}.`;
-        } else if (q.includes("இழப்பீடு") || q.includes("compensation") || q.includes("money") || q.includes("பணம்")) {
-          answer = `பார்சல் #${curData.id} நில மதிப்பு மற்றும் இழப்பீடு: RFCTLARR சட்டம் 2013-ன் படி 100% சோலேடியம் (Solatium) மற்றும் சந்தை மதிப்பு சேர்க்கப்பட்டு, கள எல்லை சரிபார்ப்பு முடிந்தவுடன் கணக்கில் செலுத்தப்படும்.`;
-        } else if (q.includes("section 15") || q.includes("objection") || q.includes("ஆட்சேபனை")) {
-          answer = `பிரிவு 15 ஆட்சேபனை: அரசிதழ் அறிவிப்பு வெளியான 60 நாட்களுக்குள் மாவட்ட நில எடுப்பு அலுவலர் (DLAO) அல்லது வட்டாட்சியரிடம் எழுத்துப்பூர்வமாக சமர்ப்பிக்க வேண்டும்.`;
+        if (q.includes("delay") || q.includes("தாமத") || q.includes("देरी") || q.includes("why") || q.includes("क्यों")) {
+          answer = formatTranslation('chat_delay_answer', { id: curData.id, q1: curData.q1, days: curData.delayDays, action: curData.q5 });
+        } else if (q.includes("இழப்பீடு") || q.includes("compensation") || q.includes("मुआवज़") || q.includes("money") || q.includes("பணம்")) {
+          answer = formatTranslation('chat_compensation_answer', { id: curData.id });
+        } else if (q.includes("section 15") || q.includes("objection") || q.includes("ஆட்சேபனை") || q.includes("आपत्ति")) {
+          answer = translate('chat_objection_answer');
         } else {
-          answer = `உங்கள் கேள்வி "${question}" பெறப்பட்டது. தற்போதைய தேர்வு: ${curData.name} (${curData.village}, ${curData.taluk}). இதன் சட்டப்பூர்வ நிலை: ${curData.status}. மேலும் தகவலுக்கு வட்டாட்சியர் அலுவலகத்தை தொடர்பு கொள்ளவும்.`;
+          answer = formatTranslation('chat_default_answer', { question, name: curData.name, village: curData.village, taluk: curData.taluk, status: curData.status });
         }
 
         appendChatMessage(answer, false);
@@ -2160,28 +2160,30 @@
 
     document.querySelectorAll('.chat-quick-chip').forEach(chip => {
       chip.addEventListener('click', () => {
-        handleChatQuery(chip.getAttribute('data-q'));
+        handleChatQuery(translate(chip.getAttribute('data-q-key')));
       });
     });
 
     // --- 10. GovTech Analytics Charts (Chart.js) ---
     function initAnalyticsCharts() {
+      window.analyticsCharts?.forEach(chart => chart.destroy());
+      window.analyticsCharts = [];
       // 1. Taluk Performance Chart
       const talukCtx = document.getElementById('talukPerformanceChart')?.getContext('2d');
       if (talukCtx) {
-        new Chart(talukCtx, {
+        window.analyticsCharts.push(new Chart(talukCtx, {
           type: 'bar',
           data: {
-            labels: ['Tambaram (தாம்பரம்)', 'Sriperumbudur (ஸ்ரீபெரும்புதூர்)', 'Chengalpattu (செங்கல்பட்டு)'],
+            labels: [translate('chart_tambaram'), translate('chart_sriperumbudur'), translate('chart_chengalpattu')],
             datasets: [
               {
-                label: 'Completed on Schedule (%)',
+                label: translate('chart_completed'),
                 data: [89.4, 88.2, 91.5],
                 backgroundColor: '#059669',
                 borderRadius: 6
               },
               {
-                label: 'High Delay Risk (%)',
+                label: translate('chart_delay_risk'),
                 data: [10.6, 11.8, 8.5],
                 backgroundColor: '#ba1a1a',
                 borderRadius: 6
@@ -2198,7 +2200,7 @@
               y: { max: 100, ticks: { callback: v => v + '%' } }
             }
           }
-        });
+        }));
       }
 
       function initSmartLandCharts() {
@@ -2459,7 +2461,7 @@
       // 2. Bottlenecks Funnel Chart
       const bottleneckCtx = document.getElementById('bottleneckChart')?.getContext('2d');
       if (bottleneckCtx) {
-        new Chart(bottleneckCtx, {
+        window.analyticsCharts.push(new Chart(bottleneckCtx, {
           type: 'doughnut',
           data: {
             labels: [
@@ -2481,8 +2483,9 @@
               legend: { position: 'right', labels: { boxWidth: 12, font: { family: 'Hanken Grotesk', size: 11 } } }
             }
           }
-        });
+        }));
       }
+      window.refreshAnalyticsCharts = initAnalyticsCharts;
     }
 
     // --- 11. Queue Table Renderer with Synchronized Clicking ---
@@ -2943,16 +2946,66 @@
       ,layer_heat: "जोखिम हीटमैप", dashboard_range: "दिनांक सीमा", dashboard_30: "पिछले 30 दिन", dashboard_90: "पिछले 90 दिन", dashboard_365: "पिछला वर्ष", dashboard_area: "क्षेत्र", dashboard_all_areas: "सभी निगरानी क्षेत्र", dashboard_export: "रिपोर्ट निर्यात करें", ai_stage_gis: "GIS डेटा से जुड़ रहा है", ai_stage_satellite: "उपग्रह चित्रों का विश्लेषण हो रहा है", ai_stage_vegetation: "वनस्पति परिवर्तन खोजे जा रहे हैं", ai_stage_urban: "शहरी विस्तार की जाँच हो रही है", ai_stage_risk: "पर्यावरणीय जोखिम की गणना हो रही है", ai_stage_report: "अंतिम रिपोर्ट बनाई जा रही है", risk_safe: "सुरक्षित", risk_reasons: "जोखिम कारक", risk_reason_green: "हरित आवरण कम हुआ है", risk_reason_water: "जल तनाव अधिक है", risk_reason_urban: "शहरी विकास दबाव अधिक है", risk_reason_stable: "कोई प्रमुख जोखिम कारक नहीं मिला", risk_recommendation_high: "नए विकास प्रस्ताव रोककर पर्यावरणीय समीक्षा को प्राथमिकता दें", ai_pollution_risk: "प्रदूषण जोखिम", ai_illegal_probability: "अवैध गतिविधि की संभावना", report_encroachment: "भूमि अतिक्रमण", report_unauthorized: "अनधिकृत विकास", report_other: "अन्य"
     });
 
-    let activeLanguage = 'ta';
+    Object.assign(i18nDictionary.en, {
+      active_session: "Active Session:", assistant_name: "LandWatch AI", assistant_subtitle: "Civic Assistance Bot",
+      assistant_welcome: "Hello! I am the LandWatch AI Assistant. Ask me about your land acquisition case, compensation status, or delay reasons.",
+      assistant_placeholder: "Type your question...", chat_delay: "Why is my case delayed?", chat_compensation: "When will compensation arrive?", chat_objection: "How do I submit a Section 15 objection?",
+      filter_all_taluks: "All Taluks", filter_tambaram: "Tambaram", filter_sriperumbudur: "Sriperumbudur", filter_chengalpattu: "Chengalpattu", filter_all_villages: "All Villages", filter_perungalathur: "Perungalathur", filter_vandalur: "Vandalur", filter_guduvanchery: "Guduvanchery", filter_oragadam: "Oragadam", filter_all_risks: "All Risks", filter_high_risk: "High Risk", filter_warning: "Warning", filter_on_schedule: "On Schedule", map_reset_view: "Reset View",
+      chat_delay_answer: "Case {id} status: {q1}. Estimated delay: {days} days. Recommended action: {action}.",
+      chart_tambaram: "Tambaram", chart_sriperumbudur: "Sriperumbudur", chart_chengalpattu: "Chengalpattu", chart_completed: "Completed on Schedule (%)", chart_delay_risk: "High Delay Risk (%)",
+      chat_compensation_answer: "Parcel #{id} land value and compensation will be calculated under the RFCTLARR Act 2013, including applicable solatium, after field boundary verification.",
+      chat_objection_answer: "A Section 15 objection should be submitted in writing to the District Land Acquisition Officer or Tahsildar within 60 days of the Gazette notification.",
+      chat_default_answer: "Your question \"{question}\" was received. Current selection: {name} ({village}, {taluk}). Legal status: {status}. Contact the Tahsildar office for more information."
+    });
+    Object.assign(i18nDictionary.hi, {
+      active_session: "सक्रिय सत्र:", assistant_name: "LandWatch AI", assistant_subtitle: "नागरिक सहायता बॉट",
+      assistant_welcome: "नमस्ते! मैं LandWatch AI सहायक हूँ। अपने भूमि अधिग्रहण मामले, मुआवज़े की स्थिति या देरी के कारणों के बारे में पूछें।",
+      assistant_placeholder: "अपना प्रश्न लिखें...", chat_delay: "मेरे मामले में देरी क्यों है?", chat_compensation: "मुआवज़ा कब मिलेगा?", chat_objection: "धारा 15 की आपत्ति कैसे जमा करें?",
+      filter_all_taluks: "सभी तालुक", filter_tambaram: "ताम्बरम", filter_sriperumbudur: "श्रीपेरुम्बुदूर", filter_chengalpattu: "चेंगलपट्टू", filter_all_villages: "सभी गाँव", filter_perungalathur: "पेरुंगलाथुर", filter_vandalur: "वंडलूर", filter_guduvanchery: "गुडुवांचेरी", filter_oragadam: "ओरगडम", filter_all_risks: "सभी जोखिम", filter_high_risk: "उच्च जोखिम", filter_warning: "चेतावनी", filter_on_schedule: "समय पर", map_reset_view: "दृश्य रीसेट करें",
+      chat_delay_answer: "मामला {id} स्थिति: {q1}। अनुमानित देरी: {days} दिन। अनुशंसित कार्रवाई: {action}।",
+      chart_tambaram: "ताम्बरम", chart_sriperumbudur: "श्रीपेरुम्बुदूर", chart_chengalpattu: "चेंगलपट्टू", chart_completed: "समय पर पूर्ण (%)", chart_delay_risk: "उच्च देरी जोखिम (%)",
+      chat_compensation_answer: "क्षेत्र सीमा सत्यापन के बाद RFCTLARR अधिनियम 2013 के अनुसार लागू सोलैटियम सहित प्लॉट का भूमि मूल्य और मुआवज़ा निर्धारित किया जाएगा।",
+      chat_objection_answer: "राजपत्र अधिसूचना के 60 दिनों के भीतर जिला भूमि अधिग्रहण अधिकारी या तहसीलदार को धारा 15 की आपत्ति लिखित रूप में जमा करें।",
+      chat_default_answer: "आपका प्रश्न \"{question}\" प्राप्त हुआ। वर्तमान चयन: {name} ({village}, {taluk})। कानूनी स्थिति: {status}। अधिक जानकारी के लिए तहसीलदार कार्यालय से संपर्क करें।"
+    });
+    Object.assign(i18nDictionary.ta, {
+      active_session: "செயலில் உள்ள அமர்வு:", assistant_name: "LandWatch AI", assistant_subtitle: "குடிமக்கள் உதவி போட்",
+      assistant_welcome: "வணக்கம்! நான் LandWatch AI உதவியாளர். உங்கள் நில எடுப்பு வழக்கு, இழப்பீட்டு நிலை அல்லது தாமத காரணங்கள் குறித்து கேளுங்கள்.",
+      assistant_placeholder: "உங்கள் கேள்வியைத் தட்டச்சு செய்யவும்...", chat_delay: "என் வழக்கில் ஏன் தாமதம்?", chat_compensation: "இழப்பீடு எப்போது கிடைக்கும்?", chat_objection: "பிரிவு 15 ஆட்சேபனையை எவ்வாறு சமர்ப்பிப்பது?",
+      filter_all_taluks: "அனைத்து வட்டங்களும்", filter_tambaram: "தாம்பரம்", filter_sriperumbudur: "ஸ்ரீபெரும்புதூர்", filter_chengalpattu: "செங்கல்பட்டு", filter_all_villages: "அனைத்து கிராமங்களும்", filter_perungalathur: "பெருங்களத்தூர்", filter_vandalur: "வண்டலூர்", filter_guduvanchery: "கூடுவாஞ்சேரி", filter_oragadam: "ஒரகடம்", filter_all_risks: "அனைத்து அபாய நிலைகளும்", filter_high_risk: "அதிக அபாயம்", filter_warning: "எச்சரிக்கை", filter_on_schedule: "சரியான நேரம்", map_reset_view: "காட்சியை மீட்டமை",
+      chat_delay_answer: "வழக்கு {id} நிலவரம்: {q1}. கணிக்கப்பட்ட தாமதம்: {days} நாட்கள். பரிந்துரைக்கப்பட்ட நடவடிக்கை: {action}.",
+      chart_tambaram: "தாம்பரம்", chart_sriperumbudur: "ஸ்ரீபெரும்புதூர்", chart_chengalpattu: "செங்கல்பட்டு", chart_completed: "காலக்கெடுவில் முடிந்தது (%)", chart_delay_risk: "அதிக தாமத அபாயம் (%)",
+      chat_compensation_answer: "கள எல்லை சரிபார்ப்புக்குப் பிறகு RFCTLARR சட்டம் 2013-ன் படி பொருந்தும் சோலேடியம் உட்பட நில மதிப்பும் இழப்பீடும் கணக்கிடப்படும்.",
+      chat_objection_answer: "அரசிதழ் அறிவிப்பு வெளியான 60 நாட்களுக்குள் மாவட்ட நில எடுப்பு அலுவலர் அல்லது வட்டாட்சியரிடம் பிரிவு 15 ஆட்சேபனையை எழுத்துப்பூர்வமாக சமர்ப்பிக்கவும்.",
+      chat_default_answer: "உங்கள் கேள்வி \"{question}\" பெறப்பட்டது. தற்போதைய தேர்வு: {name} ({village}, {taluk}). சட்டப்பூர்வ நிலை: {status}. மேலும் தகவலுக்கு வட்டாட்சியர் அலுவலகத்தைத் தொடர்பு கொள்ளவும்."
+    });
+
+    let activeLanguage = 'en';
     const speechLanguageMap = { en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN' };
 
     function translate(key, fallback = '') {
-      const dict = i18nDictionary[activeLanguage] || i18nDictionary.ta;
+      const dict = i18nDictionary[activeLanguage] || i18nDictionary.en;
       return dict[key] || fallback || key;
     }
 
+    function formatTranslation(key, values = {}) {
+      return translate(key).replace(/\{(\w+)\}/g, (_, name) => String(values[name] ?? ''));
+    }
+
+    function checkMissingTranslations() {
+      const languages = Object.keys(i18nDictionary);
+      const keys = [...new Set(languages.flatMap(language => Object.keys(i18nDictionary[language])))];
+      languages.forEach(language => {
+        const missing = keys.filter(key => !i18nDictionary[language][key]);
+        if (missing.length) console.warn(`LandWatch: missing ${language} translations: ${missing.join(', ')}`);
+      });
+      return languages.every(language => keys.every(key => Boolean(i18nDictionary[language][key])));
+    }
+
+    window.checkMissingTranslations = checkMissingTranslations;
+
     function applyLanguage(langCode) {
-      const normalizedLang = i18nDictionary[langCode] ? langCode : 'ta';
+      const normalizedLang = i18nDictionary[langCode] ? langCode : 'en';
       const dict = i18nDictionary[normalizedLang];
       activeLanguage = normalizedLang;
       document.getElementById('current-lang-label').textContent = dict.langLabel;
@@ -2977,7 +3030,10 @@
       const ttsButton = document.getElementById('tts-read-page');
       if (ttsButton) ttsButton.setAttribute('aria-label', dict.tts_read);
       window.refreshSmartLandCharts?.();
+      window.refreshAnalyticsCharts?.();
       window.renderCitizenReports?.();
+      window.refreshMapFilterLabels?.();
+      if (leafletMap) renderMapPolygons();
 
       document.querySelectorAll('.lang-option').forEach(opt => {
         const isSelected = opt.getAttribute('data-lang') === normalizedLang;
@@ -2994,6 +3050,43 @@
         }
       });
     }
+
+    function refreshMapFilterLabels() {
+      const filters = {
+        'gis-filter-taluk': {
+          all: 'filter_all_taluks',
+          Tambaram: 'filter_tambaram',
+          Sriperumbudur: 'filter_sriperumbudur',
+          Chengalpattu: 'filter_chengalpattu'
+        },
+        'gis-filter-village': {
+          all: 'filter_all_villages',
+          Perungalathur: 'filter_perungalathur',
+          Vandalur: 'filter_vandalur',
+          Guduvanchery: 'filter_guduvanchery',
+          Oragadam: 'filter_oragadam'
+        },
+        'gis-filter-risk': {
+          all: 'filter_all_risks',
+          Critical: 'filter_high_risk',
+          Attention: 'filter_warning',
+          Safe: 'filter_on_schedule'
+        }
+      };
+      Object.entries(filters).forEach(([id, keys]) => {
+        const select = document.getElementById(id);
+        if (!select) return;
+        [...select.options].forEach(option => {
+          const key = keys[option.value];
+          if (key) option.textContent = translate(key);
+        });
+      });
+      document.querySelectorAll('.chat-quick-chip[data-q-key]').forEach(chip => {
+        const key = chip.getAttribute('data-q-key');
+        chip.textContent = translate(key);
+      });
+    }
+    window.refreshMapFilterLabels = refreshMapFilterLabels;
 
     function selectSpeechVoice(language) {
       if (!('speechSynthesis' in window)) return null;
@@ -3266,8 +3359,9 @@
       window.initSmartLandCharts?.();
       window.renderCitizenReports?.();
 
-      // Default language: Tamil-first or saved
-      const savedLang = localStorage.getItem('landwatch_lang') || 'ta';
+      checkMissingTranslations();
+      // English is the first-run language; an explicitly saved preference remains respected.
+      const savedLang = localStorage.getItem('landwatch_lang') || 'en';
       applyLanguage(savedLang);
     });
   </script>

@@ -643,6 +643,178 @@ details[open] .group-open\:rotate-180 { transform: rotate(180deg); }
 .risk-explanation { padding: 0.75rem; border-left: 3px solid var(--secondary); background: var(--surface-container-low); color: var(--on-surface-variant); font-size: 0.78rem; }
 .risk-explanation strong { display: block; color: var(--primary); margin-bottom: 0.25rem; }
 .report-status { align-self: start; padding: 0.25rem 0.45rem; border-radius: 0.3rem; background: #fef3c7; color: #92400e; font-size: 0.65rem; font-weight: 700; white-space: nowrap; }
+
+/* Translation-safe sizing and wrapping */
+body,
+button,
+input,
+select,
+textarea,
+option,
+label,
+th,
+td,
+small,
+strong,
+em,
+span,
+p,
+h1,
+h2,
+h3,
+h4 {
+  overflow-wrap: anywhere;
+}
+
+button,
+select,
+input,
+textarea {
+  max-width: 100%;
+}
+
+button {
+  min-height: 2.25rem;
+  white-space: normal;
+  line-height: 1.3;
+}
+
+main,
+section,
+article,
+aside,
+form,
+[class*="grid"],
+[class*="flex"] {
+  min-width: 0;
+}
+
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.smart-stat-card,
+.smart-chart-card,
+.smart-analysis-report,
+.smart-report-item,
+.smart-report-meta span,
+.smart-report-risk-grid span,
+.report-history-item,
+.risk-explanation,
+.gis-popup {
+  min-height: 0;
+  height: auto;
+}
+
+.smart-stat-card strong,
+.smart-stat-card span,
+.smart-report-item strong,
+.smart-report-meta em,
+.smart-report-risk-grid b,
+.report-history-item small,
+.gis-popup dt,
+.gis-popup dd {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.smart-chart-wrap {
+  min-height: 210px;
+  height: clamp(210px, 28vw, 280px);
+}
+
+.gis-toolbar > *,
+.gis-category-legend label,
+.smart-dashboard-toolbar > *,
+.report-history-tools > * {
+  min-width: 0;
+}
+
+.gis-search-submit,
+.gis-tool-button,
+.gis-style-select select,
+.smart-dashboard-toolbar select,
+.report-history-tools select {
+  max-width: 100%;
+  white-space: normal;
+}
+
+.gis-popup {
+  max-width: min(360px, calc(100vw - 3rem));
+}
+
+.gis-popup dl div {
+  align-items: flex-start;
+}
+
+.gis-popup dt,
+.gis-popup dd {
+  min-width: 0;
+}
+
+.gis-popup dd {
+  max-width: 62%;
+}
+
+@media (max-width: 1024px) {
+  .smart-feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .smart-report-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .smart-report-grid,
+  .smart-report-meta,
+  .smart-report-risk-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .smart-chart-wrap {
+    height: 220px;
+    min-height: 190px;
+  }
+
+  .gis-toolbar {
+    align-items: stretch;
+  }
+
+  .gis-search,
+  .gis-style-select,
+  .gis-style-select select,
+  .gis-tool-button,
+  .gis-search-submit {
+    width: 100%;
+  }
+
+  .gis-popup dl div {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+
+  .gis-popup dd {
+    max-width: none;
+    text-align: left;
+  }
+
+  .report-history-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .report-status {
+    justify-self: start;
+    white-space: normal;
+  }
+
+  #ai-assistant-toggle {
+    max-width: calc(100vw - 2rem);
+  }
+}
+
 @keyframes smartReveal { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes smartSpin { to { transform: rotate(360deg); } }
 @keyframes smartScan { 0% { transform: translateX(-120%); } 100% { transform: translateX(320%); } }

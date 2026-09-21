@@ -633,4 +633,19 @@ details[open] .group-open\:rotate-180 { transform: rotate(180deg); }
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+
+  /* Leaflet Map Fix */
+#gis-map {
+  width: 100%;
+  height: 500px;
+  min-height: 400px;
+  position: relative;
+  z-index: 1;
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+}
 }

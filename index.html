@@ -39,6 +39,7 @@
   <!-- Leaflet GIS Map Library -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 
   <!-- Chart.js for Government Analytics -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -620,7 +621,7 @@
             </div>
 
             <!-- Leaflet Container -->
-            <div id="gis-map" class="shadow-inner border border-surface-container"></div>
+            <div class="gis-map-shell"><div id="gis-map" class="shadow-inner border border-surface-container"></div><div class="gis-map-loading" id="gis-map-loading" role="status"><span class="smart-spinner"></span><span data-i18n="map_loading">Loading intelligence layers...</span></div></div>
 
             <div class="gis-category-legend" aria-label="Land monitoring map legend">
               <span class="gis-legend-title" data-i18n="map_layers">Land layers</span>
@@ -630,6 +631,10 @@
               <label><input type="checkbox" data-gis-layer="industrial" checked/> <i class="gis-legend-swatch gis-swatch-industrial"></i> <span data-i18n="layer_industrial">Industrial</span></label>
               <label><input type="checkbox" data-gis-layer="water" checked/> <i class="gis-legend-swatch gis-swatch-water"></i> <span data-i18n="layer_water">Water</span></label>
               <label><input type="checkbox" data-gis-layer="risk" checked/> <i class="gis-legend-swatch gis-swatch-risk"></i> <span data-i18n="layer_risk">High risk</span></label>
+              <label><input type="checkbox" data-gis-layer="environmental" checked/> <i class="gis-legend-swatch gis-swatch-water"></i> <span data-i18n="layer_environmental">Environmental</span></label>
+              <label><input type="checkbox" data-gis-layer="development" checked/> <i class="gis-legend-swatch gis-swatch-urban"></i> <span data-i18n="layer_development">Development</span></label>
+              <label><input type="checkbox" data-gis-layer="citizen" checked/> <i class="gis-legend-swatch gis-swatch-risk"></i> <span data-i18n="layer_citizen">Citizen reports</span></label>
+              <label><input type="checkbox" data-gis-layer="heat" checked/> <i class="gis-legend-swatch gis-swatch-risk"></i> <span data-i18n="layer_heat">Risk heatmap</span></label>
             </div>
 
             <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-[11px] text-on-surface-variant pt-1 gap-1">
@@ -747,35 +752,52 @@
           <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="smart_title">Government Land Intelligence Dashboard</h2>
           <p class="font-body-lg text-body-lg text-on-surface-variant" data-i18n="smart_subtitle">Monitor land change, sustainability, and citizen signals from one clear operational view.</p>
         </div>
+        <div class="smart-dashboard-toolbar">
+          <label><span data-i18n="dashboard_range">Date range</span><select id="dashboard-range"><option value="30" data-i18n="dashboard_30">Last 30 days</option><option value="90" data-i18n="dashboard_90">Last 90 days</option><option value="365" data-i18n="dashboard_365">Last year</option></select></label>
+          <label><span data-i18n="dashboard_area">Area</span><select id="dashboard-area"><option value="all" data-i18n="dashboard_all_areas">All monitored areas</option><option value="Tambaram">Tambaram</option><option value="Chengalpattu">Chengalpattu</option><option value="Sriperumbudur">Sriperumbudur</option></select></label>
+          <button class="gis-tool-button" id="dashboard-export" type="button"><span class="material-symbols-outlined text-[17px]" aria-hidden="true">download</span><span data-i18n="dashboard_export">Export report</span></button>
+        </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-desktop smart-reveal">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-gutter-desktop smart-reveal" id="smart-overview-cards">
           <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
             <span class="material-symbols-outlined smart-stat-icon text-primary" aria-hidden="true">map</span>
             <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_total_label">Total Areas Monitored</span>
-            <strong class="font-headline-md text-headline-md text-primary tabular-nums">12,540</strong>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums" data-counter-value="12540">12,540</strong>
             <span class="text-body-sm text-on-surface-variant" data-i18n="smart_locations">Locations</span>
           </div>
           <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
             <span class="material-symbols-outlined smart-stat-icon text-emerald-700" aria-hidden="true">park</span>
             <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_protected_label">Protected Land</span>
-            <strong class="font-headline-md text-headline-md text-primary tabular-nums">3,240</strong>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums" data-counter-value="3240">3,240</strong>
             <span class="text-body-sm text-on-surface-variant" data-i18n="smart_sqkm">km²</span>
           </div>
           <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
             <span class="material-symbols-outlined smart-stat-icon text-amber-700" aria-hidden="true">change_history</span>
             <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_changes_label">Detected Changes</span>
-            <strong class="font-headline-md text-headline-md text-primary tabular-nums">856</strong>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums" data-counter-value="856">856</strong>
             <span class="text-body-sm text-on-surface-variant" data-i18n="smart_last_30">in the last 30 days</span>
           </div>
           <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
             <span class="material-symbols-outlined smart-stat-icon text-error" aria-hidden="true">report</span>
             <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_reports_label">Active Citizen Reports</span>
-            <strong class="font-headline-md text-headline-md text-primary tabular-nums" id="smart-report-count">124</strong>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums" id="smart-report-count" data-counter-value="124">124</strong>
             <span class="text-body-sm text-on-surface-variant" data-i18n="smart_under_review">under review</span>
+          </div>
+          <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <span class="material-symbols-outlined smart-stat-icon text-cyan-700" aria-hidden="true">warning</span>
+            <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_alerts_label">Environmental Alerts</span>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums" data-counter-value="124">124</strong>
+            <span class="text-body-sm text-on-surface-variant" data-i18n="smart_active_alerts">active alerts</span>
+          </div>
+          <div class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <span class="material-symbols-outlined smart-stat-icon text-indigo-700" aria-hidden="true">task_alt</span>
+            <span class="text-label-sm text-on-surface-variant uppercase font-bold" data-i18n="smart_resolved_label">Resolved Cases</span>
+            <strong class="font-headline-md text-headline-md text-primary tabular-nums" data-counter-value="410">410</strong>
+            <span class="text-body-sm text-on-surface-variant" data-i18n="smart_completed">completed</span>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-desktop">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter-desktop">
           <div class="smart-chart-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
             <h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="smart_usage_title">Land Usage Distribution</h3>
             <div class="smart-chart-wrap"><canvas id="landUsageChart" aria-label="Land usage distribution chart"></canvas></div>
@@ -785,8 +807,16 @@
             <div class="smart-chart-wrap"><canvas id="environmentalChangeChart" aria-label="Environmental change chart"></canvas></div>
           </div>
           <div class="smart-chart-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="smart_timeline_title">Land Change Timeline</h3>
+            <div class="smart-chart-wrap"><canvas id="landTimelineChart" aria-label="Land change timeline chart"></canvas></div>
+          </div>
+          <div class="smart-chart-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
             <h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="smart_risk_title">Risk Level Overview</h3>
             <div class="smart-chart-wrap"><canvas id="landRiskChart" aria-label="Land risk level chart"></canvas></div>
+          </div>
+          <div class="smart-chart-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
+            <h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="smart_reports_chart_title">Citizen Report Analytics</h3>
+            <div class="smart-chart-wrap"><canvas id="citizenReportChart" aria-label="Citizen report analytics chart"></canvas></div>
           </div>
         </div>
       </div>
@@ -806,8 +836,9 @@
               <input id="land-analysis-location" class="flex-1 bg-surface border border-outline-variant/60 rounded-lg px-3 py-2.5 text-body-md text-primary focus:outline-none focus:ring-2 focus:ring-primary" data-i18n-placeholder="ai_placeholder" placeholder="Enter location or select area from map"/>
               <button class="px-5 py-2.5 bg-primary text-white rounded-lg font-bold text-label-md hover:bg-primary-container transition-colors cursor-pointer" id="run-land-analysis" type="button" data-i18n="ai_analyze">Analyze</button>
             </div>
+            <div class="smart-scan-visual hidden" id="land-analysis-scan" aria-hidden="true"><span class="smart-scan-grid"></span><span class="smart-scan-beam"></span><span class="smart-scan-target">⌖</span></div>
             <div class="smart-analysis-loading hidden" id="land-analysis-loading" role="status">
-              <span class="smart-spinner"></span><span data-i18n="ai_loading">Analyzing land signals...</span>
+              <span class="smart-spinner"></span><span id="ai-loading-stage" data-i18n="ai_loading">Analyzing land signals...</span><strong id="ai-loading-progress">0%</strong><span class="smart-scan-line" aria-hidden="true"></span>
             </div>
             <div class="smart-analysis-report mt-space-base" id="land-analysis-report" aria-live="polite"></div>
           </div>
@@ -836,7 +867,9 @@
               <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_water">💧 Water Safety</span><span data-risk-value="water">75%</span></div><div class="risk-track"><span data-risk-bar="water" style="width:75%"></span></div></div>
               <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_development">🏗 Development Pressure</span><span data-risk-value="development">80%</span></div><div class="risk-track"><span data-risk-bar="development" style="width:80%"></span></div></div>
               <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_stability">🌍 Environmental Stability</span><span data-risk-value="stability">85%</span></div><div class="risk-track"><span data-risk-bar="stability" style="width:85%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_density">🏙 Urban Density</span><span data-risk-value="density">70%</span></div><div class="risk-track"><span data-risk-bar="density" style="width:70%"></span></div></div>
             </div>
+            <div class="risk-explanation mt-space-base"><strong data-i18n="risk_reasons">Risk drivers</strong><ul id="risk-reasons-list"></ul><strong class="mt-2 block" data-i18n="risk_recommendation">Recommendation</strong><p id="risk-recommendation-text" data-i18n="risk_recommendation_text">Protect green corridors and review new development proposals.</p></div>
           </div>
         </div>
       </div>
@@ -852,9 +885,11 @@
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-gutter-desktop">
           <form class="lg:col-span-2 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-md" id="citizen-report-form">
             <div><label class="block text-label-md font-bold text-primary mb-1" for="report-name" data-i18n="report_name">Name (optional)</label><input id="report-name" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary" type="text" autocomplete="name"/></div>
-            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-category" data-i18n="report_category">Issue category</label><select id="report-category" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary"><option data-i18n="report_illegal">Illegal Construction</option><option data-i18n="report_deforestation">Deforestation</option><option data-i18n="report_waste">Waste Dumping</option><option data-i18n="report_water">Water Pollution</option><option data-i18n="report_misuse">Land Misuse</option></select></div>
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-category" data-i18n="report_category">Issue category</label><select id="report-category" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary"><option data-i18n="report_illegal">Illegal Construction</option><option data-i18n="report_deforestation">Deforestation</option><option data-i18n="report_waste">Waste Dumping</option><option data-i18n="report_water">Water Pollution</option><option data-i18n="report_misuse">Land Misuse</option><option data-i18n="report_encroachment">Land Encroachment</option><option data-i18n="report_unauthorized">Unauthorized Development</option><option data-i18n="report_other">Other</option></select></div>
             <div><label class="block text-label-md font-bold text-primary mb-1" for="report-location" data-i18n="report_location">Location</label><input id="report-location" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary" type="text" required/></div>
             <div><label class="block text-label-md font-bold text-primary mb-1" for="report-description" data-i18n="report_description">Description</label><textarea id="report-description" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary" rows="4" required></textarea></div>
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-date" data-i18n="report_date">Date</label><input id="report-date" class="w-full bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-primary" type="date" required/></div>
+            <div><label class="block text-label-md font-bold text-primary mb-1" for="report-map-location" data-i18n="report_map_location">Map location</label><button class="w-full text-left bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-md text-on-surface-variant hover:border-primary transition-colors cursor-pointer" id="report-map-location" type="button" data-i18n="report_pick_map">Pick location from map</button><input id="report-latitude" type="hidden"/><input id="report-longitude" type="hidden"/></div>
             <div><label class="block text-label-md font-bold text-primary mb-1" for="report-image" data-i18n="report_image">Upload image (optional)</label><input id="report-image" class="w-full text-body-sm text-on-surface-variant" type="file" accept="image/*"/></div>
             <p class="text-error text-body-sm hidden" id="report-form-error" role="alert"></p>
             <button class="w-full py-2.5 bg-primary text-white rounded-lg font-bold text-label-md hover:bg-primary-container transition-colors cursor-pointer" type="submit" data-i18n="report_submit">Submit report</button>
@@ -862,6 +897,11 @@
           </form>
           <div class="lg:col-span-3 bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container">
             <div class="flex items-center justify-between border-b border-surface-container pb-space-sm"><h3 class="font-headline-sm text-headline-sm text-primary font-bold" data-i18n="report_history">Report history</h3><span class="text-body-sm text-on-surface-variant" data-i18n="report_local_note">Stored locally for this demo</span></div>
+            <div class="report-history-tools">
+              <input id="report-history-search" class="flex-1 bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-sm text-primary" data-i18n-placeholder="report_search_placeholder" placeholder="Search reports"/>
+              <select id="report-history-filter" class="bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-sm text-primary"><option value="all" data-i18n="report_filter_all">All statuses</option><option value="Submitted" data-i18n="report_submitted">Submitted</option><option value="Under Review" data-i18n="report_review">Under Review</option><option value="Resolved" data-i18n="report_resolved">Resolved</option></select>
+              <select id="report-history-sort" class="bg-surface border border-outline-variant/60 rounded-lg px-3 py-2 text-body-sm text-primary"><option value="newest" data-i18n="report_sort_newest">Newest</option><option value="oldest" data-i18n="report_sort_oldest">Oldest</option></select>
+            </div>
             <div class="space-y-space-sm pt-space-base" id="report-history-list"></div>
           </div>
         </div>
@@ -1500,6 +1540,7 @@
     let leafletMap = null;
     let polygonLayers = {};
     let markerLayerGroups = {};
+    let heatLayer = null;
     let baseMapLayers = {};
     let activeBaseLayer = null;
     let userLocationLayer = null;
@@ -1521,6 +1562,17 @@
       }[char]));
     }
 
+    function readCitizenReportsSafe() {
+      try {
+        const stored = localStorage.getItem('landwatch_citizen_reports');
+        const reports = stored ? JSON.parse(stored) : [];
+        return Array.isArray(reports) ? reports : [];
+      } catch (error) {
+        console.warn('LandWatch: citizen reports are unavailable in this browser context.', error);
+        return [];
+      }
+    }
+
     function getParcelCategory(data) {
       const classification = `${data.classification} ${data.corridor}`.toLowerCase();
       if (data.status === 'Critical') return 'risk';
@@ -1533,17 +1585,25 @@
 
     function buildLocationPopup(data, latlng) {
       const category = getParcelCategory(data);
+      const nearbyReports = readCitizenReportsSafe().filter(report => report.latitude && report.longitude && leafletMap && leafletMap.distance(latlng, [Number(report.latitude), Number(report.longitude)]) < 5000).length;
+      const profile = { density: data.status === 'Critical' ? 85 : data.classification.toLowerCase().includes('commercial') ? 72 : 58 };
       return `
         <div class="gis-popup">
           <strong>${escapeMapHtml(data.name)}</strong>
-          <span class="gis-popup-category">${escapeMapHtml(category)} land monitoring record</span>
+          <span class="gis-popup-category">${escapeMapHtml(category)} ${translate('map_monitoring_record')}</span>
           <dl>
-            <div><dt>Latitude</dt><dd>${latlng.lat.toFixed(5)}°</dd></div>
-            <div><dt>Longitude</dt><dd>${latlng.lng.toFixed(5)}°</dd></div>
-            <div><dt>Land type</dt><dd>${escapeMapHtml(data.classification)}</dd></div>
-            <div><dt>Risk level</dt><dd>${escapeMapHtml(data.status)} (${escapeMapHtml(data.riskPercent)}%)</dd></div>
-            <div><dt>Status</dt><dd>${escapeMapHtml(data.badge)}</dd></div>
-            <div><dt>Last updated</dt><dd>21 Sep 2026 · Simulated</dd></div>
+            <div><dt>${translate('map_land_id')}</dt><dd>${escapeMapHtml(data.id)}</dd></div>
+            <div><dt>${translate('map_owner')}</dt><dd>${escapeMapHtml(data.owner)}</dd></div>
+            <div><dt>${translate('map_area')}</dt><dd>${escapeMapHtml(data.extent)}</dd></div>
+            <div><dt>${translate('map_current_usage')}</dt><dd>${escapeMapHtml(data.classification)}</dd></div>
+            <div><dt>${translate('map_latitude')}</dt><dd>${latlng.lat.toFixed(5)}°</dd></div>
+            <div><dt>${translate('map_longitude')}</dt><dd>${latlng.lng.toFixed(5)}°</dd></div>
+            <div><dt>${translate('map_risk_level')}</dt><dd>${escapeMapHtml(data.status)} (${escapeMapHtml(data.riskPercent)}%)</dd></div>
+            <div><dt>${translate('map_status')}</dt><dd>${escapeMapHtml(data.badge)}</dd></div>
+            <div><dt>${translate('map_historical_change')}</dt><dd>${profile.density > 78 ? translate('map_urban_expansion') : translate('map_stable_transition')}</dd></div>
+            <div><dt>${translate('map_ai_recommendation')}</dt><dd>${escapeMapHtml(data.q5)}</dd></div>
+            <div><dt>${translate('map_reports_nearby')}</dt><dd>${nearbyReports}</dd></div>
+            <div><dt>${translate('map_last_updated')}</dt><dd>21 Sep 2026 · ${translate('map_simulated')}</dd></div>
           </dl>
         </div>
       `;
@@ -1609,12 +1669,33 @@
       initializeMapLayerGroups();
 
       renderMapPolygons();
+      document.getElementById('gis-map-loading')?.classList.add('hidden');
     }
 
     function initializeMapLayerGroups() {
-      Object.keys(mapCategoryColors).forEach(category => {
+      ['agricultural', 'forest', 'urban', 'industrial', 'water', 'risk', 'environmental', 'development', 'citizen'].forEach(category => {
         markerLayerGroups[category] = L.layerGroup().addTo(leafletMap);
       });
+    }
+
+    function renderRiskHeatLayer() {
+      if (heatLayer) {
+        leafletMap.removeLayer(heatLayer);
+        heatLayer = null;
+      }
+      const points = Object.values(parcelDatabase).map(data => {
+        const center = data.coords.reduce((acc, point) => [acc[0] + point[0] / data.coords.length, acc[1] + point[1] / data.coords.length], [0, 0]);
+        return [center[0], center[1], Math.max(0.25, data.riskPercent / 100)];
+      });
+      try {
+        if (typeof L.heatLayer === 'function') {
+          heatLayer = L.heatLayer(points, { radius: 28, blur: 22, maxZoom: 15, gradient: { 0.25: '#059669', 0.55: '#d97706', 0.8: '#ba1a1a' } }).addTo(leafletMap);
+        } else {
+          heatLayer = L.layerGroup(points.map(point => L.circle([point[0], point[1]], { radius: 180 + point[2] * 240, color: '#ba1a1a', weight: 0, fillColor: '#ba1a1a', fillOpacity: point[2] * 0.12 }))).addTo(leafletMap);
+        }
+      } catch (error) {
+        console.warn('LandWatch: risk heatmap could not be rendered.', error);
+      }
     }
 
     function addMapFullscreenControl() {
@@ -1698,7 +1779,23 @@
         categoryMarker.bindPopup(buildLocationPopup(data, center));
         categoryMarker.on('click', () => selectParcel(pid));
         categoryMarker.addTo(markerLayerGroups[category]);
+        if (['forest', 'water'].includes(category)) categoryMarker.addTo(markerLayerGroups.environmental);
+        if (['urban', 'industrial'].includes(category)) categoryMarker.addTo(markerLayerGroups.development);
       });
+
+      try {
+        const reports = JSON.parse(localStorage.getItem('landwatch_citizen_reports') || '[]');
+        reports.filter(report => report.latitude && report.longitude).forEach(report => {
+        const marker = L.circleMarker([Number(report.latitude), Number(report.longitude)], {
+          radius: 7, color: '#ffffff', weight: 2, fillColor: '#ba1a1a', fillOpacity: 0.95
+        });
+        marker.bindPopup(`<div class="gis-popup"><strong>${escapeMapHtml(report.id)}</strong><span class="gis-popup-category">${escapeMapHtml(report.category)}</span><p>${escapeMapHtml(report.location)}</p></div>`);
+        marker.addTo(markerLayerGroups.citizen);
+        });
+      } catch (error) {
+        console.warn('LandWatch: citizen report map markers could not be restored.', error);
+      }
+      renderRiskHeatLayer();
 
       const statsElem = document.getElementById('map-active-stats');
       if (statsElem) {
@@ -2109,38 +2206,68 @@
               console.error('LandWatch: Chart.js is unavailable; smart dashboard charts were not initialized.');
               return;
             }
-            const chartDefaults = { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Hanken Grotesk' } } } } };
+            window.smartLandCharts?.forEach(chart => chart.destroy());
+            window.smartLandCharts = [];
+            const chartDefaults = { responsive: true, maintainAspectRatio: false, animation: { duration: 850, easing: 'easeOutQuart' }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { family: 'Hanken Grotesk' } } } } };
             const usageCtx = document.getElementById('landUsageChart')?.getContext('2d');
-            if (usageCtx) new Chart(usageCtx, {
+            if (usageCtx) window.smartLandCharts.push(new Chart(usageCtx, {
               type: 'doughnut',
-              data: { labels: ['Agricultural', 'Forest', 'Urban', 'Water', 'Industrial'], datasets: [{ data: [42, 28, 16, 9, 5], backgroundColor: ['#059669', '#166534', '#2563eb', '#0891b2', '#7c3aed'], borderWidth: 2 }] },
+              data: { labels: [translate('chart_agriculture'), translate('chart_forest'), translate('chart_urban'), translate('chart_water'), translate('chart_industrial')], datasets: [{ data: [42, 28, 16, 9, 5], backgroundColor: ['#059669', '#166534', '#2563eb', '#0891b2', '#7c3aed'], borderWidth: 2 }] },
               options: chartDefaults
-            });
+            }));
             const changeCtx = document.getElementById('environmentalChangeChart')?.getContext('2d');
-            if (changeCtx) new Chart(changeCtx, {
+            if (changeCtx) window.smartLandCharts.push(new Chart(changeCtx, {
               type: 'line',
               data: { labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'], datasets: [
-                { label: 'Vegetation', data: [92, 89, 91, 86, 84, 88], borderColor: '#059669', backgroundColor: 'rgba(5,150,105,.12)', fill: true, tension: .35 },
-                { label: 'Water safety', data: [84, 82, 79, 77, 75, 78], borderColor: '#0891b2', backgroundColor: 'rgba(8,145,178,.08)', fill: true, tension: .35 }
+                { label: translate('chart_vegetation'), data: [92, 89, 91, 86, 84, 88], borderColor: '#059669', backgroundColor: 'rgba(5,150,105,.12)', fill: true, tension: .35 },
+                { label: translate('chart_water_safety'), data: [84, 82, 79, 77, 75, 78], borderColor: '#0891b2', backgroundColor: 'rgba(8,145,178,.08)', fill: true, tension: .35 }
               ] },
               options: { ...chartDefaults, scales: { y: { min: 60, max: 100, ticks: { callback: value => `${value}%` } } } }
-            });
+            }));
             const riskCtx = document.getElementById('landRiskChart')?.getContext('2d');
-            if (riskCtx) new Chart(riskCtx, {
+            if (riskCtx) window.smartLandCharts.push(new Chart(riskCtx, {
               type: 'bar',
-              data: { labels: ['Low', 'Medium', 'High'], datasets: [{ label: 'Locations', data: [68, 23, 9], backgroundColor: ['#059669', '#d97706', '#ba1a1a'], borderRadius: 6 }] },
+              data: { labels: [translate('risk_low'), translate('risk_medium'), translate('risk_high')], datasets: [{ label: translate('chart_locations'), data: [68, 23, 9], backgroundColor: ['#059669', '#d97706', '#ba1a1a'], borderRadius: 6 }] },
               options: { ...chartDefaults, scales: { y: { beginAtZero: true } } }
+            }));
+            const timelineCtx = document.getElementById('landTimelineChart')?.getContext('2d');
+            if (timelineCtx) window.smartLandCharts.push(new Chart(timelineCtx, {
+              type: 'line',
+              data: { labels: ['2018', '2020', '2022', '2024', '2026'], datasets: [
+                { label: translate('chart_urban_growth'), data: [18, 24, 31, 39, 47], borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,.1)', fill: true, tension: .35 },
+                { label: translate('chart_green_cover'), data: [82, 79, 75, 71, 68], borderColor: '#059669', backgroundColor: 'rgba(5,150,105,.08)', fill: true, tension: .35 },
+                { label: translate('chart_development'), data: [22, 28, 35, 44, 53], borderColor: '#d97706', backgroundColor: 'rgba(217,119,6,.08)', fill: true, tension: .35 }
+              ] },
+              options: { ...chartDefaults, scales: { y: { beginAtZero: true, max: 100, ticks: { callback: value => `${value}%` } } } }
+            }));
+            const reportCtx = document.getElementById('citizenReportChart')?.getContext('2d');
+            if (reportCtx) window.smartLandCharts.push(new Chart(reportCtx, {
+              type: 'bar',
+              data: { labels: [translate('report_submitted'), translate('report_review'), translate('report_resolved')], datasets: [{ label: translate('chart_reports'), data: [532, 124, 410], backgroundColor: ['#2563eb', '#d97706', '#059669'], borderRadius: 6 }] },
+              options: { ...chartDefaults, scales: { y: { beginAtZero: true } } }
+            }));
+            window.refreshSmartLandCharts = initSmartLandCharts;
+            document.querySelectorAll('[data-counter-value]').forEach(element => {
+              const target = Number(element.dataset.counterValue);
+              const start = performance.now();
+              const duration = 900;
+              const tick = now => {
+                const progress = Math.min((now - start) / duration, 1);
+                element.textContent = Math.round(target * (1 - Math.pow(1 - progress, 3))).toLocaleString();
+                if (progress < 1) requestAnimationFrame(tick);
+              };
+              requestAnimationFrame(tick);
             });
           }
 
           const smartAreaProfiles = {
-            Tambaram: { name: 'Tambaram Taluk', score: 76, green: 82, water: 68, development: 72, stability: 78 },
-            Chengalpattu: { name: 'Chengalpattu Taluk', score: 84, green: 91, water: 79, development: 82, stability: 86 },
-            Sriperumbudur: { name: 'Sriperumbudur Taluk', score: 69, green: 71, water: 64, development: 58, stability: 73 }
+            Tambaram: { name: 'Tambaram Taluk', score: 76, green: 82, water: 68, development: 72, stability: 78, density: 70 },
+            Chengalpattu: { name: 'Chengalpattu Taluk', score: 84, green: 91, water: 79, development: 82, stability: 86, density: 58 },
+            Sriperumbudur: { name: 'Sriperumbudur Taluk', score: 69, green: 71, water: 64, development: 58, stability: 73, density: 84 }
           };
 
           function getSmartProfile(data) {
-            return smartAreaProfiles[data.taluk] || { name: 'Chennai Region', score: 82, green: 90, water: 75, development: 80, stability: 85 };
+            return smartAreaProfiles[data.taluk] || { name: 'Chennai Region', score: 82, green: 90, water: 75, development: 80, stability: 85, density: 70 };
           }
 
           function updateSmartLandModules(data) {
@@ -2150,8 +2277,8 @@
             riskArea.textContent = profile.name;
             document.getElementById('risk-score-value').textContent = profile.score;
             const label = document.getElementById('risk-score-label');
-            const riskClass = profile.score >= 80 ? 'risk-low' : profile.score >= 60 ? 'risk-medium' : 'risk-high';
-            label.textContent = profile.score >= 80 ? translate('risk_low') : profile.score >= 60 ? translate('risk_medium') : translate('risk_high');
+            const riskClass = profile.score <= 30 ? 'risk-low' : profile.score <= 60 ? 'risk-medium' : 'risk-high';
+            label.textContent = profile.score <= 30 ? translate('risk_safe') : profile.score <= 60 ? translate('risk_medium') : translate('risk_high');
             label.className = `block risk-label ${riskClass}`;
             Object.entries(profile).forEach(([key, value]) => {
               const valueElement = document.querySelector(`[data-risk-value="${key}"]`);
@@ -2161,21 +2288,40 @@
             });
             const analysisLocation = document.getElementById('land-analysis-location');
             if (analysisLocation && !analysisLocation.value) analysisLocation.value = profile.name;
+            const reasons = [];
+            if (profile.green < 80) reasons.push(translate('risk_reason_green'));
+            if (profile.water < 70) reasons.push(translate('risk_reason_water'));
+            if (profile.density > 78) reasons.push(translate('risk_reason_urban'));
+            if (!reasons.length) reasons.push(translate('risk_reason_stable'));
+            document.getElementById('risk-reasons-list').innerHTML = reasons.map(reason => `<li>${escapeMapHtml(reason)}</li>`).join('');
+            document.getElementById('risk-recommendation-text').textContent = profile.score > 60 ? translate('risk_recommendation_high') : translate('risk_recommendation_text');
           }
 
           function runLandAnalysis() {
             const input = document.getElementById('land-analysis-location');
             const loading = document.getElementById('land-analysis-loading');
             const report = document.getElementById('land-analysis-report');
+            const scan = document.getElementById('land-analysis-scan');
+            const stage = document.getElementById('ai-loading-stage');
+            const progress = document.getElementById('ai-loading-progress');
             const location = input.value.trim() || getSmartProfile(parcelDatabase[currentSelectedParcel]).name;
             loading.classList.remove('hidden');
+            scan.classList.remove('hidden');
             report.innerHTML = '';
-            setTimeout(() => {
+            const stages = ['ai_stage_gis', 'ai_stage_satellite', 'ai_stage_vegetation', 'ai_stage_urban', 'ai_stage_risk', 'ai_stage_report'];
+            let stageIndex = 0;
+            const stageTimer = setInterval(() => {
+              stage.textContent = translate(stages[stageIndex]);
+              progress.textContent = `${Math.round(((stageIndex + 1) / stages.length) * 100)}%`;
+              stageIndex += 1;
+              if (stageIndex >= stages.length) {
+                clearInterval(stageTimer);
               const data = parcelDatabase[currentSelectedParcel] || parcelDatabase['4521'];
               const profile = getSmartProfile(data);
               const vegetation = Math.max(4, 100 - profile.green);
               const development = Math.max(12, 100 - profile.development);
               loading.classList.add('hidden');
+              scan.classList.add('hidden');
               report.innerHTML = `<h3 class="font-headline-sm text-headline-sm text-primary font-bold">${translate('ai_report_title')}</h3>
                 <div class="smart-report-grid">
                   <div class="smart-report-item"><span>${translate('ai_location')}</span><strong>📍 ${escapeMapHtml(location)}</strong></div>
@@ -2183,8 +2329,27 @@
                   <div class="smart-report-item"><span>${translate('ai_development')}</span><strong>${translate('ai_increased')} ${development}%</strong></div>
                   <div class="smart-report-item"><span>${translate('ai_water_risk')}</span><strong>${profile.water < 70 ? translate('risk_medium') : translate('risk_low')}</strong></div>
                 </div>
+                <div class="smart-report-meta">
+                  <span><strong>${translate('ai_area_type')}</strong><em id="ai-area-type">Mixed-use corridor</em></span>
+                  <span><strong>${translate('ai_classification')}</strong><em id="ai-classification">Managed transition zone</em></span>
+                  <span><strong>${translate('ai_confidence')}</strong><em id="ai-confidence">87%</em></span>
+                </div>
+                <div class="smart-report-risk-grid">
+                  <span><strong>${translate('ai_flood_risk')}</strong><b id="ai-flood-risk">Medium</b></span>
+                  <span><strong>${translate('ai_development_risk')}</strong><b id="ai-development-risk">High</b></span>
+                </div>
+                <div class="smart-report-metrics">
+                  <span><strong>${translate('ai_pollution_risk')}</strong><b>${profile.density > 78 ? translate('risk_high') : translate('risk_medium')}</b></span>
+                  <span><strong>${translate('ai_illegal_probability')}</strong><b>${Math.min(94, Math.round(profile.density * 0.22))}%</b></span>
+                </div>
                 <p class="p-3 rounded-lg bg-amber-50 text-amber-900 text-body-sm"><strong>⚠ ${translate('ai_recommendation')}:</strong> ${translate('ai_recommendation_text')}</p>`;
-            }, 700);
+              document.getElementById('ai-area-type').textContent = translate(profile.density > 78 ? 'ai_area_urban' : 'ai_area_mixed');
+              document.getElementById('ai-classification').textContent = translate(profile.green > 85 ? 'ai_class_protected' : 'ai_class_managed');
+              document.getElementById('ai-confidence').textContent = `${Math.max(72, 100 - profile.density / 4)}%`;
+              document.getElementById('ai-flood-risk').textContent = profile.water < 70 ? translate('risk_medium') : translate('risk_low');
+              document.getElementById('ai-development-risk').textContent = profile.density > 78 ? translate('risk_high') : translate('risk_medium');
+              }
+            }, 350);
           }
 
           function getStoredReports() {
@@ -2202,14 +2367,21 @@
 
           function renderCitizenReports() {
             const list = document.getElementById('report-history-list');
-            const reports = getStoredReports();
+          const query = (document.getElementById('report-history-search')?.value || '').trim().toLowerCase();
+          const filter = document.getElementById('report-history-filter')?.value || 'all';
+          const sort = document.getElementById('report-history-sort')?.value || 'newest';
+          const reports = getStoredReports().filter(report => {
+            const matchesQuery = !query || `${report.id} ${report.category} ${report.location} ${report.description}`.toLowerCase().includes(query);
+            const matchesFilter = filter === 'all' || (report.status || 'Under Review') === filter;
+            return matchesQuery && matchesFilter;
+          }).sort((a, b) => sort === 'oldest' ? String(a.createdAt).localeCompare(String(b.createdAt)) : String(b.createdAt).localeCompare(String(a.createdAt)));
             if (!reports.length) {
               list.innerHTML = `<p class="report-history-empty">${translate('report_empty')}</p>`;
               return;
             }
             list.innerHTML = reports.map(report => `<article class="report-history-item">
-              <div><strong>${escapeMapHtml(report.id)}</strong><small>${escapeMapHtml(report.category)} · ${escapeMapHtml(report.location)}</small><small>${escapeMapHtml(report.description)}</small></div>
-              <span class="report-status">${translate('report_review')}</span>
+              <div><strong>${escapeMapHtml(report.id)}</strong><small>${escapeMapHtml(report.category)} · ${escapeMapHtml(report.location)}</small><small>${escapeMapHtml(report.description)}</small><small>${escapeMapHtml(report.date || '')}${report.latitude ? ` · ${Number(report.latitude).toFixed(4)}, ${Number(report.longitude).toFixed(4)}` : ''}</small><div class="report-timeline">${['report_submitted', 'report_review', 'report_field', 'report_action', 'report_resolved'].map((key, index) => `<span class="${index === 0 || (report.status === 'Under Review' && index < 2) || (report.status === 'Resolved' && index < 5) ? 'is-complete' : ''}">${translate(key)}</span>`).join('')}</div></div>
+              <span class="report-status">${translate(report.status === 'Resolved' ? 'report_resolved' : report.status === 'Submitted' ? 'report_submitted' : 'report_review')}</span>
             </article>`).join('');
           }
 
@@ -2219,7 +2391,8 @@
             const description = document.getElementById('report-description').value.trim();
             const error = document.getElementById('report-form-error');
             const success = document.getElementById('report-success');
-            if (!location || !description) {
+            const date = document.getElementById('report-date').value;
+            if (!location || !description || !date) {
               error.textContent = translate('report_validation');
               error.classList.remove('hidden');
               success.classList.add('hidden');
@@ -2227,11 +2400,16 @@
             }
             const reports = getStoredReports();
             const report = {
-              id: `LW-${1024 + reports.length}`,
+              id: `LW-${new Date().getFullYear()}-${String(124 + reports.length).padStart(5, '0')}`,
               category: document.getElementById('report-category').value,
               location,
               description,
-              createdAt: new Date().toISOString()
+              createdAt: new Date().toISOString(),
+              date,
+              name: document.getElementById('report-name').value.trim(),
+              latitude: document.getElementById('report-latitude').value,
+              longitude: document.getElementById('report-longitude').value,
+              status: 'Submitted'
             };
             reports.unshift(report);
             localStorage.setItem('landwatch_citizen_reports', JSON.stringify(reports.slice(0, 20)));
@@ -2240,14 +2418,43 @@
             success.textContent = translate('report_success');
             success.classList.remove('hidden');
             renderCitizenReports();
+            if (leafletMap) renderMapPolygons();
             const count = document.getElementById('smart-report-count');
             if (count) count.textContent = 124 + reports.length;
+          }
+
+          function updateDashboardFilters() {
+            const area = document.getElementById('dashboard-area')?.value || 'all';
+            const range = document.getElementById('dashboard-range')?.value || '30';
+            const factor = area === 'all' ? 1 : area === 'Sriperumbudur' ? 0.72 : area === 'Tambaram' ? 0.86 : 0.93;
+            const rangeFactor = range === '365' ? 1.35 : range === '90' ? 1.12 : 1;
+            const values = [Math.round(12540 * factor), Math.round(3240 * factor), Math.round(856 * factor * rangeFactor), Math.round(124 * factor)];
+            document.querySelectorAll('#smart-overview-cards [data-counter-value]').forEach((element, index) => {
+              if (index < values.length) element.textContent = values[index].toLocaleString();
+            });
+            window.smartLandCharts?.find(chart => chart.canvas?.id === 'citizenReportChart')?.data.datasets[0].data.splice(0, 3, Math.round(532 * factor * rangeFactor), Math.round(124 * factor), Math.round(410 * factor));
+            window.smartLandCharts?.find(chart => chart.canvas?.id === 'citizenReportChart')?.update();
+          }
+
+          function exportDashboardReport() {
+            const reports = getStoredReports();
+            const rows = [['Report ID', 'Category', 'Location', 'Date', 'Status', 'Latitude', 'Longitude'], ...reports.map(report => [report.id, report.category, report.location, report.date || '', report.status || 'Under Review', report.latitude || '', report.longitude || ''])];
+            const csv = rows.map(row => row.map(value => `"${String(value).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `landwatch-report-${new Date().toISOString().slice(0, 10)}.csv`;
+            link.click();
+            URL.revokeObjectURL(url);
           }
           window.initSmartLandCharts = initSmartLandCharts;
           window.updateSmartLandModules = updateSmartLandModules;
           window.runLandAnalysis = runLandAnalysis;
           window.renderCitizenReports = renderCitizenReports;
           window.submitCitizenReport = submitCitizenReport;
+          window.updateDashboardFilters = updateDashboardFilters;
+          window.exportDashboardReport = exportDashboardReport;
 
       // 2. Bottlenecks Funnel Chart
       const bottleneckCtx = document.getElementById('bottleneckChart')?.getContext('2d');
@@ -2575,7 +2782,9 @@
         report_deforestation: "Deforestation",
         report_waste: "Waste Dumping",
         report_water: "Water Pollution",
-        report_misuse: "Land Misuse"
+        report_misuse: "Land Misuse",
+        layer_environmental: "Environmental", layer_development: "Development", layer_citizen: "Citizen reports",
+        smart_timeline_title: "Land Change Timeline", ai_area_urban: "Urban pressure zone", ai_area_mixed: "Mixed-use corridor", ai_class_protected: "Protected transition zone", ai_class_managed: "Managed transition zone"
       },
       hi: {
         langLabel: "हिंदी (Hindi)",
@@ -2696,9 +2905,43 @@
         report_deforestation: "वनों की कटाई",
         report_waste: "कचरा डंपिंग",
         report_water: "जल प्रदूषण",
-        report_misuse: "भूमि का दुरुपयोग"
+        report_misuse: "भूमि का दुरुपयोग",
+        layer_environmental: "पर्यावरण", layer_development: "विकास", layer_citizen: "नागरिक रिपोर्ट",
+        smart_timeline_title: "भूमि परिवर्तन समयरेखा", ai_area_urban: "शहरी दबाव क्षेत्र", ai_area_mixed: "मिश्रित उपयोग गलियारा", ai_class_protected: "संरक्षित संक्रमण क्षेत्र", ai_class_managed: "प्रबंधित संक्रमण क्षेत्र"
       }
     };
+
+    Object.assign(i18nDictionary.ta, {
+      smart_alerts_label: "சுற்றுச்சூழல் எச்சரிக்கைகள்", smart_active_alerts: "செயலில் உள்ள எச்சரிக்கைகள்", smart_resolved_label: "தீர்க்கப்பட்ட வழக்குகள்", smart_completed: "நிறைவடைந்தது", smart_reports_chart_title: "குடிமக்கள் புகார் பகுப்பாய்வு",
+      ai_area_type: "பகுதி வகை", ai_classification: "நில வகைப்பாடு", ai_confidence: "நம்பகத்தன்மை", ai_flood_risk: "வெள்ள அபாயம்", ai_development_risk: "வளர்ச்சி அபாயம்",
+      risk_density: "🏙 நகர அடர்த்தி", risk_recommendation: "பரிந்துரை", risk_recommendation_text: "பசுமை வழித்தடங்களைப் பாதுகாத்து புதிய வளர்ச்சி முன்மொழிவுகளை ஆய்வு செய்யவும்.",
+      map_loading: "நுண்ணறிவு அடுக்குகள் ஏற்றப்படுகின்றன.",
+      map_monitoring_record: "நில கண்காணிப்பு பதிவு", map_land_id: "நில ID", map_owner: "உரிமையாளர்", map_area: "பரப்பளவு", map_current_usage: "தற்போதைய பயன்பாடு", map_latitude: "அட்சரேகை", map_longitude: "தீர்க்கரேகை", map_risk_level: "அபாய நிலை", map_status: "நிலை", map_historical_change: "வரலாற்று மாற்றம்", map_urban_expansion: "நகர விரிவாக்கம் கண்டறியப்பட்டது", map_stable_transition: "நிலையான மாற்றம்", map_ai_recommendation: "AI பரிந்துரை", map_reports_nearby: "அருகிலுள்ள புகார்கள்", map_last_updated: "கடைசியாக புதுப்பிக்கப்பட்டது", map_simulated: "மாதிரி",
+      report_date: "தேதி", report_map_location: "வரைபட இடம்", report_pick_map: "வரைபடத்திலிருந்து இடத்தைத் தேர்ந்தெடுக்கவும்", report_search_placeholder: "புகார்களைத் தேடுங்கள்", report_filter_all: "அனைத்து நிலைகளும்", report_submitted: "சமர்ப்பிக்கப்பட்டது", report_resolved: "தீர்க்கப்பட்டது", report_sort_newest: "புதியது", report_sort_oldest: "பழையது", report_field: "கள ஆய்வு", report_action: "நடவடிக்கை எடுக்கப்பட்டது",
+      layer_environmental: "சுற்றுச்சூழல்", layer_development: "வளர்ச்சி", layer_citizen: "குடிமக்கள் புகார்கள்", smart_timeline_title: "நில மாற்ற காலவரிசை", ai_area_urban: "நகர அழுத்த மண்டலம்", ai_area_mixed: "கலப்பு பயன்பாட்டு வழித்தடம்", ai_class_protected: "பாதுகாக்கப்பட்ட மாற்ற மண்டலம்", ai_class_managed: "நிர்வகிக்கப்பட்ட மாற்ற மண்டலம்",
+      chart_agriculture: "வேளாண்மை", chart_forest: "காடு", chart_urban: "நகர்ப்புறம்", chart_water: "நீர்நிலைகள்", chart_industrial: "தொழில்", chart_vegetation: "தாவரங்கள்", chart_water_safety: "நீர் பாதுகாப்பு", chart_locations: "இடங்கள்", chart_urban_growth: "நகர வளர்ச்சி", chart_green_cover: "பசுமை மூடல்", chart_development: "வளர்ச்சி செயல்பாடு", chart_reports: "புகார்கள்"
+      ,layer_heat: "அபாய வெப்ப வரைபடம்", dashboard_range: "தேதி வரம்பு", dashboard_30: "கடந்த 30 நாட்கள்", dashboard_90: "கடந்த 90 நாட்கள்", dashboard_365: "கடந்த ஆண்டு", dashboard_area: "பகுதி", dashboard_all_areas: "அனைத்து பகுதிகளும்", dashboard_export: "அறிக்கையை ஏற்றுமதி செய்க", ai_stage_gis: "GIS தரவுடன் இணைக்கிறது", ai_stage_satellite: "செயற்கைக்கோள் படங்களை ஆய்வு செய்கிறது", ai_stage_vegetation: "தாவர மாற்றங்களைக் கண்டறிகிறது", ai_stage_urban: "நகர விரிவாக்கத்தைச் சரிபார்க்கிறது", ai_stage_risk: "சுற்றுச்சூழல் அபாயத்தைக் கணக்கிடுகிறது", ai_stage_report: "இறுதி அறிக்கையை உருவாக்குகிறது", risk_safe: "பாதுகாப்பானது", risk_reasons: "அபாய காரணிகள்", risk_reason_green: "பசுமை மூடல் குறைந்துள்ளது", risk_reason_water: "நீர் அழுத்தம் அதிகமாக உள்ளது", risk_reason_urban: "நகர வளர்ச்சி அழுத்தம் அதிகமாக உள்ளது", risk_reason_stable: "முக்கிய அபாய காரணிகள் கண்டறியப்படவில்லை", risk_recommendation_high: "வளர்ச்சி முன்மொழிவுகளைத் தடுத்து, சுற்றுச்சூழல் ஆய்வை முன்னுரிமைப்படுத்தவும்", ai_pollution_risk: "மாசு அபாயம்", ai_illegal_probability: "சட்டவிரோத செயல்பாட்டு வாய்ப்பு", report_encroachment: "நில ஆக்கிரமிப்பு", report_unauthorized: "அங்கீகரிக்கப்படாத வளர்ச்சி", report_other: "மற்றவை"
+    });
+    Object.assign(i18nDictionary.en, {
+      smart_alerts_label: "Environmental Alerts", smart_active_alerts: "active alerts", smart_resolved_label: "Resolved Cases", smart_completed: "completed", smart_reports_chart_title: "Citizen Report Analytics",
+      ai_area_type: "Area Type", ai_classification: "Land Classification", ai_confidence: "Confidence", ai_flood_risk: "Flood Risk", ai_development_risk: "Development Risk",
+      risk_density: "🏙 Urban Density", risk_recommendation: "Recommendation", risk_recommendation_text: "Protect green corridors and review new development proposals.",
+      map_loading: "Loading intelligence layers.",
+      map_monitoring_record: "land monitoring record", map_land_id: "Land ID", map_owner: "Owner", map_area: "Area", map_current_usage: "Current usage", map_latitude: "Latitude", map_longitude: "Longitude", map_risk_level: "Risk level", map_status: "Status", map_historical_change: "Historical change", map_urban_expansion: "Urban expansion detected", map_stable_transition: "Stable transition", map_ai_recommendation: "AI recommendation", map_reports_nearby: "Reports nearby", map_last_updated: "Last updated", map_simulated: "Simulated",
+      report_date: "Date", report_map_location: "Map location", report_pick_map: "Pick location from map", report_search_placeholder: "Search reports", report_filter_all: "All statuses", report_submitted: "Submitted", report_resolved: "Resolved", report_sort_newest: "Newest", report_sort_oldest: "Oldest", report_field: "Field Inspection", report_action: "Action Taken",
+      chart_agriculture: "Agriculture", chart_forest: "Forest", chart_urban: "Urban", chart_water: "Water bodies", chart_industrial: "Industrial", chart_vegetation: "Vegetation", chart_water_safety: "Water safety", chart_locations: "Locations", chart_urban_growth: "Urban growth", chart_green_cover: "Green cover", chart_development: "Development activity", chart_reports: "Reports"
+      ,layer_heat: "Risk heatmap", dashboard_range: "Date range", dashboard_30: "Last 30 days", dashboard_90: "Last 90 days", dashboard_365: "Last year", dashboard_area: "Area", dashboard_all_areas: "All monitored areas", dashboard_export: "Export report", ai_stage_gis: "Connecting to GIS data", ai_stage_satellite: "Analysing satellite imagery", ai_stage_vegetation: "Detecting vegetation changes", ai_stage_urban: "Checking urban expansion", ai_stage_risk: "Calculating environmental risk", ai_stage_report: "Generating final report", risk_safe: "Safe", risk_reasons: "Risk drivers", risk_reason_green: "Green cover has decreased", risk_reason_water: "Water stress is elevated", risk_reason_urban: "Urban development pressure is elevated", risk_reason_stable: "No major risk drivers detected", risk_recommendation_high: "Pause new development proposals and prioritize an environmental review", ai_pollution_risk: "Pollution Risk", ai_illegal_probability: "Illegal Activity Probability", report_encroachment: "Land Encroachment", report_unauthorized: "Unauthorized Development", report_other: "Other"
+    });
+    Object.assign(i18nDictionary.hi, {
+      smart_alerts_label: "पर्यावरणीय चेतावनियाँ", smart_active_alerts: "सक्रिय चेतावनियाँ", smart_resolved_label: "समाधान किए गए मामले", smart_completed: "पूर्ण", smart_reports_chart_title: "नागरिक रिपोर्ट विश्लेषण",
+      ai_area_type: "क्षेत्र प्रकार", ai_classification: "भूमि वर्गीकरण", ai_confidence: "विश्वसनीयता", ai_flood_risk: "बाढ़ जोखिम", ai_development_risk: "विकास जोखिम",
+      risk_density: "🏙 शहरी घनत्व", risk_recommendation: "सिफारिश", risk_recommendation_text: "हरित गलियारों की रक्षा करें और नए विकास प्रस्तावों की समीक्षा करें।",
+      map_loading: "इंटेलिजेंस लेयर लोड हो रही हैं।",
+      map_monitoring_record: "भूमि निगरानी रिकॉर्ड", map_land_id: "भूमि ID", map_owner: "मालिक", map_area: "क्षेत्रफल", map_current_usage: "वर्तमान उपयोग", map_latitude: "अक्षांश", map_longitude: "देशांतर", map_risk_level: "जोखिम स्तर", map_status: "स्थिति", map_historical_change: "ऐतिहासिक परिवर्तन", map_urban_expansion: "शहरी विस्तार पाया गया", map_stable_transition: "स्थिर परिवर्तन", map_ai_recommendation: "AI सिफारिश", map_reports_nearby: "पास की रिपोर्ट", map_last_updated: "अंतिम अपडेट", map_simulated: "सिम्युलेटेड",
+      report_date: "दिनांक", report_map_location: "मानचित्र स्थान", report_pick_map: "मानचित्र से स्थान चुनें", report_search_placeholder: "रिपोर्ट खोजें", report_filter_all: "सभी स्थिति", report_submitted: "जमा किया गया", report_resolved: "समाधान किया गया", report_sort_newest: "नवीनतम", report_sort_oldest: "पुराना", report_field: "क्षेत्र निरीक्षण", report_action: "कार्रवाई की गई",
+      chart_agriculture: "कृषि", chart_forest: "वन", chart_urban: "शहरी", chart_water: "जल निकाय", chart_industrial: "औद्योगिक", chart_vegetation: "वनस्पति", chart_water_safety: "जल सुरक्षा", chart_locations: "स्थान", chart_urban_growth: "शहरी विकास", chart_green_cover: "हरित आवरण", chart_development: "विकास गतिविधि", chart_reports: "रिपोर्ट"
+      ,layer_heat: "जोखिम हीटमैप", dashboard_range: "दिनांक सीमा", dashboard_30: "पिछले 30 दिन", dashboard_90: "पिछले 90 दिन", dashboard_365: "पिछला वर्ष", dashboard_area: "क्षेत्र", dashboard_all_areas: "सभी निगरानी क्षेत्र", dashboard_export: "रिपोर्ट निर्यात करें", ai_stage_gis: "GIS डेटा से जुड़ रहा है", ai_stage_satellite: "उपग्रह चित्रों का विश्लेषण हो रहा है", ai_stage_vegetation: "वनस्पति परिवर्तन खोजे जा रहे हैं", ai_stage_urban: "शहरी विस्तार की जाँच हो रही है", ai_stage_risk: "पर्यावरणीय जोखिम की गणना हो रही है", ai_stage_report: "अंतिम रिपोर्ट बनाई जा रही है", risk_safe: "सुरक्षित", risk_reasons: "जोखिम कारक", risk_reason_green: "हरित आवरण कम हुआ है", risk_reason_water: "जल तनाव अधिक है", risk_reason_urban: "शहरी विकास दबाव अधिक है", risk_reason_stable: "कोई प्रमुख जोखिम कारक नहीं मिला", risk_recommendation_high: "नए विकास प्रस्ताव रोककर पर्यावरणीय समीक्षा को प्राथमिकता दें", ai_pollution_risk: "प्रदूषण जोखिम", ai_illegal_probability: "अवैध गतिविधि की संभावना", report_encroachment: "भूमि अतिक्रमण", report_unauthorized: "अनधिकृत विकास", report_other: "अन्य"
+    });
 
     let activeLanguage = 'ta';
     const speechLanguageMap = { en: 'en-IN', hi: 'hi-IN', ta: 'ta-IN' };
@@ -2733,6 +2976,8 @@
       });
       const ttsButton = document.getElementById('tts-read-page');
       if (ttsButton) ttsButton.setAttribute('aria-label', dict.tts_read);
+      window.refreshSmartLandCharts?.();
+      window.renderCitizenReports?.();
 
       document.querySelectorAll('.lang-option').forEach(opt => {
         const isSelected = opt.getAttribute('data-lang') === normalizedLang;
@@ -2927,6 +3172,12 @@
 
     document.querySelectorAll('[data-gis-layer]').forEach(input => {
       input.addEventListener('change', event => {
+        if (event.target.dataset.gisLayer === 'heat') {
+          if (!leafletMap || !heatLayer) return;
+          if (event.target.checked) heatLayer.addTo(leafletMap);
+          else leafletMap.removeLayer(heatLayer);
+          return;
+        }
         const layer = markerLayerGroups[event.target.dataset.gisLayer];
         if (!leafletMap || !layer) return;
         if (event.target.checked) layer.addTo(leafletMap);
@@ -2987,6 +3238,24 @@
       if (event.key === 'Enter') window.runLandAnalysis?.();
     });
     document.getElementById('citizen-report-form')?.addEventListener('submit', event => window.submitCitizenReport?.(event));
+    document.getElementById('report-date')?.setAttribute('value', new Date().toISOString().slice(0, 10));
+    document.getElementById('report-history-search')?.addEventListener('input', () => window.renderCitizenReports?.());
+    document.getElementById('report-history-filter')?.addEventListener('change', () => window.renderCitizenReports?.());
+    document.getElementById('report-history-sort')?.addEventListener('change', () => window.renderCitizenReports?.());
+    document.getElementById('dashboard-range')?.addEventListener('change', () => window.updateDashboardFilters?.());
+    document.getElementById('dashboard-area')?.addEventListener('change', () => window.updateDashboardFilters?.());
+    document.getElementById('dashboard-export')?.addEventListener('click', () => window.exportDashboardReport?.());
+    document.getElementById('report-map-location')?.addEventListener('click', () => {
+      if (!leafletMap) return;
+      setMapSearchStatus(translate('report_pick_map'));
+      const handler = event => {
+        document.getElementById('report-latitude').value = event.latlng.lat.toFixed(6);
+        document.getElementById('report-longitude').value = event.latlng.lng.toFixed(6);
+        document.getElementById('report-map-location').textContent = `${event.latlng.lat.toFixed(4)}, ${event.latlng.lng.toFixed(4)}`;
+        leafletMap.off('click', handler);
+      };
+      leafletMap.on('click', handler);
+    });
 
     // --- 13. DOM Initialization ---
     document.addEventListener('DOMContentLoaded', () => {

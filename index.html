@@ -43,6 +43,8 @@
 
   <!-- Chart.js for Government Analytics -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- jsPDF is used only for the local, client-side demonstration report export. -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
 
   <!-- Compiled Production Stylesheet -->
   <link rel="stylesheet" href="css/styles.css"/>
@@ -90,8 +92,8 @@
     <aside aria-label="Demonstration Notice" class="w-full bg-[#6b21a8] text-white py-1.5 px-margin-mobile md:px-margin-desktop text-center text-label-sm font-label-sm tracking-wider flex items-center justify-between gap-space-sm shadow-sm">
       <div class="flex items-center gap-2 mx-auto sm:mx-0">
         <span class="inline-block w-2 h-2 rounded-full bg-[#e9d5ff] animate-pulse" aria-hidden="true"></span>
-        <span class="uppercase font-semibold text-[11px]" data-i18n="demo_banner">
-          SIMULATED DEMO · Chengalpattu District · Smart India Hackathon 2026
+        <span class="uppercase font-semibold text-[11px]">
+          <span id="demo-location-label">SIMULATED DEMO · AI-Powered Land Acquisition Monitoring · SIH 2026</span>
         </span>
       </div>
       <!-- Role Indicator Pill in Banner -->
@@ -419,7 +421,7 @@
         <div class="lg:col-span-7 flex flex-col items-start space-y-space-md">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-label-sm font-semibold uppercase tracking-wider">
             <span class="w-2 h-2 rounded-full bg-[#9333ea]" aria-hidden="true"></span>
-            <span data-i18n="hero_badge">Chengalpattu District · Land Acquisition Monitoring · SIH 2026</span>
+            <span id="hero-location-label">AI-Powered Land Acquisition Monitoring · SIH 2026</span>
           </div>
           <h1 class="font-display-lg text-display-lg text-primary tracking-tight max-w-2xl font-bold" data-i18n="hero_title">
             Catch land acquisition problems before they cause delays
@@ -466,7 +468,7 @@
                 <p class="text-[12px] text-on-surface-variant" id="hero-card-subtitle" data-i18n="hero_card_subtitle">NH-45 Tambaram bypass expansion corridor</p>
               </div>
               <span class="inline-flex items-center px-2.5 py-1 rounded bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] text-[10px] font-bold uppercase tracking-wide">
-                <span data-i18n="district_chengalpattu">Chengalpattu</span>
+                <span id="hero-card-location">Selected location</span>
               </span>
             </div>
             
@@ -598,7 +600,8 @@
             <div class="gis-toolbar">
               <form class="gis-search" id="gis-search-form" role="search">
                 <span class="material-symbols-outlined text-[18px] text-secondary" aria-hidden="true">search</span>
-                <input id="gis-location-search" type="search" data-i18n-placeholder="map_search_placeholder" data-i18n-aria-label="map_search_label" placeholder="Search country, district, city, village..." aria-label="Search map locations" autocomplete="off"/>
+                <input id="gis-location-search" type="search" list="landwatch-location-options" data-i18n-placeholder="map_search_placeholder" data-i18n-aria-label="map_search_label" placeholder="Search country, district, city, village..." aria-label="Search map locations" autocomplete="off"/>
+                <datalist id="landwatch-location-options"></datalist>
                 <button class="gis-search-submit" type="submit" data-i18n="map_search">Search</button>
               </form>
               <div class="flex flex-wrap items-center gap-2">
@@ -752,7 +755,8 @@
         </div>
         <div class="smart-dashboard-toolbar">
           <label><span data-i18n="dashboard_range">Date range</span><select id="dashboard-range"><option value="30" data-i18n="dashboard_30">Last 30 days</option><option value="90" data-i18n="dashboard_90">Last 90 days</option><option value="365" data-i18n="dashboard_365">Last year</option></select></label>
-          <label><span data-i18n="dashboard_area">Area</span><select id="dashboard-area"><option value="all" data-i18n="dashboard_all_areas">All monitored areas</option><option value="Tambaram">Tambaram</option><option value="Chengalpattu">Chengalpattu</option><option value="Sriperumbudur">Sriperumbudur</option></select></label>
+          <label><span data-i18n="dashboard_area">Area</span><select id="dashboard-area"><option value="all" data-i18n="dashboard_all_areas">All monitored areas</option><option value="Delhi">Delhi</option><option value="Mumbai">Mumbai</option><option value="Chennai" selected>Chennai</option><option value="Bangalore">Bangalore</option><option value="Hyderabad">Hyderabad</option><option value="Kolkata">Kolkata</option><option value="Pune">Pune</option><option value="Ahmedabad">Ahmedabad</option><option value="Jaipur">Jaipur</option><option value="Lucknow">Lucknow</option><option value="Bhopal">Bhopal</option><option value="Kochi">Kochi</option><option value="Coimbatore">Coimbatore</option><option value="Visakhapatnam">Visakhapatnam</option><option value="Patna">Patna</option><option value="Guwahati">Guwahati</option><option value="Chandigarh">Chandigarh</option><option value="Indore">Indore</option><option value="Tambaram">Tambaram</option><option value="Chengalpattu">Chengalpattu</option><option value="Sriperumbudur">Sriperumbudur</option></select></label>
+          <label class="lw-csv-upload"><span>Dataset</span><input id="landwatch-csv-input" type="file" accept=".csv,text/csv" /><small id="landwatch-csv-status">Use location CSV to update the same dashboard and PDF dataset.</small></label>
           <button class="gis-tool-button" id="dashboard-export" type="button"><span class="material-symbols-outlined text-[17px]" aria-hidden="true">download</span><span data-i18n="dashboard_export">Export report</span></button>
         </div>
 
@@ -1275,7 +1279,7 @@
             </div>
           </article>
           <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Officer workspace</span><h3>Today at a glance</h3></div><span class="lw-chip">Tahsildar · Tambaram</span></div>
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Officer workspace</span><h3>Today at a glance</h3></div><span class="lw-chip" id="lw-officer-scope">District officer · selected portfolio</span></div>
             <div class="lw-workspace-grid"><div><strong>18</strong><span>Assigned cases</span></div><div><strong>11</strong><span>Completed today</span></div><div><strong>7</strong><span>Pending reviews</span></div><div><strong>4</strong><span>Urgent cases</span></div><div><strong>3</strong><span>Court hearings</span></div><div><strong>92%</strong><span>Survey completion</span></div></div>
             <div class="lw-activity"><span class="lw-avatar">AR</span><p><strong>A. Ramesh</strong> uploaded a verified FMB sketch<small>8 minutes ago · Case LW-4521</small></p></div>
             <div class="lw-activity"><span class="lw-avatar lw-avatar-purple">PS</span><p><strong>Priya S.</strong> acknowledged Collector escalation<small>26 minutes ago · Oragadam</small></p></div>
@@ -1305,9 +1309,73 @@
           <article class="lw-panel">
             <div class="lw-panel-heading"><div><span class="lw-kicker">Illustrative district analytics</span><h3>Performance pulse</h3></div><span class="lw-chip">Last 30 days</span></div>
             <div class="lw-bars"><div><span>Completion rate</span><strong>82%</strong><b><i style="width:82%"></i></b></div><div><span>Document verification</span><strong>94.6%</strong><b><i style="width:94.6%"></i></b></div><div><span>Officer SLA adherence</span><strong>88%</strong><b><i style="width:88%"></i></b></div><div><span>Citizen report closure</span><strong>76%</strong><b><i style="width:76%"></i></b></div></div>
-            <div class="lw-ranking"><span>#1 Chengalpattu <b>91%</b></span><span>#2 Tambaram <b>86%</b></span><span>#3 Sriperumbudur <b>79%</b></span></div>
+            <div class="lw-ranking"><span>#1 Selected district <b>91%</b></span><span>#2 Regional portfolio <b>86%</b></span><span>#3 State benchmark <b>79%</b></span></div>
           </article>
         </div>
+      </div>
+    </section>
+    <!-- 11. AI GOVERNMENT DECISION SUPPORT -->
+    <section class="lw-decision-support w-full py-space-2xl bg-surface scroll-mt-header" id="decision-support" aria-labelledby="decision-support-title">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+        <div class="max-w-3xl space-y-space-xs">
+          <span class="lw-kicker">Preventive governance layer</span>
+          <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="decision-support-title">AI Government Decision Support</h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant">Translate live land signals into explainable forecasts, accountable notifications, and preventive actions.</p>
+        </div>
+
+        <div class="lw-grid-2">
+          <article class="lw-panel lw-prediction-engine">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">AI prediction engine</span><h3>Delay prediction for <span data-lw-location>selected location</span></h3></div><span class="lw-model-status">LW-RiskNet v2.4.1</span></div>
+            <div class="lw-prediction-summary"><div><span>Risk score</span><strong id="lw-risk-score">--<small>/100</small></strong></div><div><span>Delay probability</span><strong id="lw-delay-probability">--%</strong></div><div><span>Risk category</span><strong id="lw-risk-category">Awaiting data</strong></div></div>
+            <div class="lw-input-grid" aria-label="Prediction input parameters">
+              <label>Project type<select id="lw-project-type"><option>Highway expansion</option><option>Industrial corridor</option><option>Urban transit</option><option>Renewable energy</option></select></label>
+              <label>Land area<input id="lw-land-area" type="number" value="42" min="1" aria-label="Land area in hectares"/> <small>hectares</small></label>
+              <label>Affected families<input id="lw-affected-families" type="number" value="118" min="0" aria-label="Affected families"/></label>
+              <label>Possession status<select id="lw-possession-status"><option>Partial possession</option><option>Not started</option><option>Possession secured</option></select></label>
+            </div>
+            <div class="lw-prediction-note"><span class="material-symbols-outlined">model_training</span><span>Forecast uses location, legal, compensation, survey, approval, rehabilitation and historical performance signals.</span></div>
+          </article>
+          <article class="lw-panel lw-shap-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Explainable AI</span><h3>Explainable AI (SHAP Analysis)</h3></div><span class="lw-chip lw-chip-ai">SHAP enabled</span></div>
+            <div class="lw-shap-summary"><span>Feature impact on predicted delay risk</span><small><b class="lw-positive-key"></b>Increases risk <b class="lw-negative-key"></b>Reduces risk</small></div>
+            <div class="lw-factor-list" id="lw-dynamic-factors"><div><span>Loading location factors</span><strong>--%</strong><b><i style="width:0%"></i></b></div></div>
+            <div class="lw-recommendation-box lw-recommendation-engine"><span class="material-symbols-outlined">assistant</span><div><strong>AI Recommended Actions</strong><p id="lw-dynamic-recommendation">Select a location to generate an action plan.</p><ol id="lw-dynamic-actions"></ol></div></div>
+          </article>
+        </div>
+
+        <div class="lw-grid-2">
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Automated intervention queue</span><h3>Notification Center</h3></div><span class="lw-count-badge" id="lw-notification-count">3 active</span></div>
+            <div class="lw-notification-list" id="lw-notification-list">
+              <article class="lw-notification" data-severity="high"><span class="lw-alert-icon red">!</span><div><strong>High risk alert</strong><small>Compensation verification is the leading delay factor for <span data-lw-location>selected location</span>.</small><em>Recommend action within 7 days</em></div><button type="button" data-lw-notify-action="High risk alert acknowledged">Acknowledge</button></article>
+              <article class="lw-notification" data-severity="medium"><span class="lw-alert-icon amber">◷</span><div><strong>Approval delay alert</strong><small>Government approvals are below the model's readiness threshold.</small><em>Route to nodal officer</em></div><button type="button" data-lw-notify-action="Approval alert routed">Route</button></article>
+              <article class="lw-notification" data-severity="low"><span class="lw-alert-icon blue">↗</span><div><strong>Survey delay alert</strong><small>Field completion should be monitored in the next review cycle.</small><em>SMS / email / push ready</em></div><button type="button" data-lw-notify-action="Survey notification queued">Queue</button></article>
+            </div>
+            <div class="lw-service-row"><span>Notification Service</span><b>SMS API</b><b>Email API</b><b>Push API</b><small>Keys supplied through deployment environment only</small></div>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Continuous improvement</span><h3>LandWatch AI Model Status</h3></div><span class="lw-chip lw-chip-green">Healthy</span></div>
+            <div class="lw-learning-grid"><div><span>Model</span><strong>LandWatch Predictive Engine</strong></div><div><span>Algorithm</span><strong>XGBoost / Random Forest</strong></div><div><span>Explainability</span><strong>SHAP enabled</strong></div><div><span>Training data</span><strong>Historical + real-time land cases</strong></div><div><span>Cases analysed</span><strong>25,000+</strong></div><div><span>Accuracy</span><strong class="lw-green-text">94.8%</strong></div><div><span>Last updated</span><strong>Today · 08:40 IST</strong></div><div><span>Drift monitor</span><strong class="lw-green-text">Within threshold</strong></div></div>
+            <div class="lw-learning-progress"><span>Model validation cycle</span><strong>82%</strong><b><i style="width:82%"></i></b></div>
+          </article>
+        </div>
+
+        <div class="lw-grid-2">
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Interoperability layer</span><h3>API Integration Hub</h3></div><span class="lw-chip lw-chip-green">6 services mapped</span></div>
+            <div class="lw-api-flow"><span>Government databases</span><i>↓</i><span>REST API / GraphQL</span><i>↓</i><span>LandWatch processing layer</span><i>↓</i><span>AI prediction engine</span><i>↓</i><span>Decision dashboard</span></div>
+            <div class="lw-api-grid"><div><span class="lw-api-dot"></span><strong>Land Records API</strong><small>GET /api/projects</small></div><div><span class="lw-api-dot"></span><strong>GIS API</strong><small>GET /api/location-data</small></div><div><span class="lw-api-dot"></span><strong>Compensation API</strong><small>GET /api/compensation</small></div><div><span class="lw-api-dot"></span><strong>Court Records API</strong><small>GET /api/legal-events</small></div><div><span class="lw-api-dot"></span><strong>Notification API</strong><small>POST /api/notifications</small></div><div><span class="lw-api-dot"></span><strong>Recommendations API</strong><small>GET /api/recommendations</small></div></div>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Multi-stakeholder access</span><h3>Stakeholder Dashboard</h3></div><span class="lw-chip">RBAC enabled</span></div>
+            <div class="lw-stakeholder-grid"><button type="button" class="is-active" data-lw-stakeholder="District Officer"><span class="material-symbols-outlined">account_balance</span><strong>District Officer</strong><small>Case action queue</small></button><button type="button" data-lw-stakeholder="State Government"><span class="material-symbols-outlined">corporate_fare</span><strong>State Government</strong><small>Portfolio oversight</small></button><button type="button" data-lw-stakeholder="Central Ministry"><span class="material-symbols-outlined">public</span><strong>Central Ministry</strong><small>Programme signals</small></button><button type="button" data-lw-stakeholder="Project Agency"><span class="material-symbols-outlined">engineering</span><strong>Project Agency</strong><small>Delivery milestones</small></button><button type="button" data-lw-stakeholder="Policy Maker"><span class="material-symbols-outlined">policy</span><strong>Policy Maker</strong><small>Systemic patterns</small></button></div>
+          </article>
+        </div>
+
+        <article class="lw-panel">
+          <div class="lw-panel-heading"><div><span class="lw-kicker">Governance traceability</span><h3>Audit Trail</h3></div><span class="lw-chip">Append-only demo log</span></div>
+          <div class="lw-audit-table" role="table" aria-label="LandWatch audit trail"><div role="row" class="lw-audit-row lw-audit-head"><span>User</span><span>Action</span><span>Time</span><span>Location</span><span>Status</span></div><div id="lw-audit-rows"><div role="row" class="lw-audit-row"><span>District Officer</span><span>Officer uploaded survey data</span><span>10:30 IST</span><span data-lw-location>selected location</span><b class="lw-green-text">Recorded</b></div><div role="row" class="lw-audit-row"><span>LandWatch AI</span><span>AI recalculated risk</span><span>10:45 IST</span><span data-lw-location>selected location</span><b class="lw-green-text">Completed</b></div><div role="row" class="lw-audit-row"><span>Notification Service</span><span>Alert generated</span><span>11:00 IST</span><span data-lw-location>selected location</span><b class="lw-amber-text">Queued</b></div></div></div>
+        </article>
       </div>
     </section>
   </main>
@@ -2777,7 +2845,7 @@
       },
       en: {
         langLabel: "English",
-        demo_banner: "SIMULATED DEMO · Chengalpattu District · Smart India Hackathon 2026",
+        demo_banner: "SIMULATED DEMO · AI-Powered Land Acquisition Monitoring · Smart India Hackathon 2026",
         nav_home: "Home",
         nav_map: "GIS Map",
         nav_dashboard: "AI Dashboard",
@@ -2789,7 +2857,7 @@
         cta_demo: "Open GIS Map",
         cta_explore: "Explore GIS Map",
         cta_track: "Citizen Tracker",
-        hero_badge: "Chengalpattu District · Land Acquisition Monitoring · SIH 2026",
+        hero_badge: "AI-Powered Land Acquisition Monitoring · SIH 2026",
         hero_title: "Catch land acquisition problems before they cause delays",
         hero_subtitle: "LandWatch helps government officers spot risky land cases early, understand root causes, and take prompt statutory action.",
         hero_why_risky: "Why is this case risky?",
@@ -3650,6 +3718,386 @@
           }));
         }
       });
+    })();
+  </script>
+  <script>
+    // Shared location intelligence state. Every dynamic surface reads this same object.
+    (() => {
+      const locationProfiles = {
+        Delhi: { state: 'Delhi', district: 'New Delhi', coords: [28.6139, 77.2090], land: { agricultural: 18, urban: 54, industrial: 20, forest: 5, water: 3 }, factors: { ownershipConflicts: 6, pendingDocuments: 8, legalDisputes: 10, compensationPending: 12, surveyCompletion: 86, governmentApprovals: 82, rehabilitationStatus: 78 }, sampleCases: 382 },
+        Mumbai: { state: 'Maharashtra', district: 'Mumbai Suburban', coords: [19.0760, 72.8777], land: { agricultural: 8, urban: 62, industrial: 22, forest: 3, water: 5 }, factors: { ownershipConflicts: 18, pendingDocuments: 14, legalDisputes: 17, compensationPending: 20, surveyCompletion: 72, governmentApprovals: 68, rehabilitationStatus: 61 }, sampleCases: 418 },
+        Chennai: { state: 'Tamil Nadu', district: 'Chennai', coords: [13.0827, 80.2707], land: { agricultural: 29, urban: 42, industrial: 17, forest: 5, water: 7 }, factors: { ownershipConflicts: 12, pendingDocuments: 10, legalDisputes: 13, compensationPending: 16, surveyCompletion: 79, governmentApprovals: 76, rehabilitationStatus: 72 }, sampleCases: 346 },
+        Bangalore: { state: 'Karnataka', district: 'Bengaluru Urban', coords: [12.9716, 77.5946], land: { agricultural: 16, urban: 48, industrial: 29, forest: 4, water: 3 }, factors: { ownershipConflicts: 14, pendingDocuments: 12, legalDisputes: 12, compensationPending: 15, surveyCompletion: 81, governmentApprovals: 74, rehabilitationStatus: 69 }, sampleCases: 365 },
+        Hyderabad: { state: 'Telangana', district: 'Hyderabad', coords: [17.3850, 78.4867], land: { agricultural: 24, urban: 44, industrial: 24, forest: 4, water: 4 }, factors: { ownershipConflicts: 11, pendingDocuments: 13, legalDisputes: 11, compensationPending: 14, surveyCompletion: 83, governmentApprovals: 79, rehabilitationStatus: 75 }, sampleCases: 328 },
+        Kolkata: { state: 'West Bengal', district: 'Kolkata', coords: [22.5726, 88.3639], land: { agricultural: 20, urban: 51, industrial: 16, forest: 2, water: 11 }, factors: { ownershipConflicts: 15, pendingDocuments: 16, legalDisputes: 15, compensationPending: 18, surveyCompletion: 74, governmentApprovals: 70, rehabilitationStatus: 66 }, sampleCases: 294 },
+        Pune: { state: 'Maharashtra', district: 'Pune', coords: [18.5204, 73.8567], land: { agricultural: 34, urban: 34, industrial: 23, forest: 6, water: 3 }, factors: { ownershipConflicts: 10, pendingDocuments: 9, legalDisputes: 11, compensationPending: 13, surveyCompletion: 85, governmentApprovals: 80, rehabilitationStatus: 77 }, sampleCases: 278 },
+        Ahmedabad: { state: 'Gujarat', district: 'Ahmedabad', coords: [23.0225, 72.5714], land: { agricultural: 37, urban: 31, industrial: 25, forest: 4, water: 3 }, factors: { ownershipConflicts: 9, pendingDocuments: 8, legalDisputes: 9, compensationPending: 11, surveyCompletion: 88, governmentApprovals: 84, rehabilitationStatus: 81 }, sampleCases: 264 },
+        Jaipur: { state: 'Rajasthan', district: 'Jaipur', coords: [26.9124, 75.7873], land: { agricultural: 48, urban: 30, industrial: 15, forest: 4, water: 3 }, factors: { ownershipConflicts: 12, pendingDocuments: 11, legalDisputes: 12, compensationPending: 15, surveyCompletion: 80, governmentApprovals: 75, rehabilitationStatus: 71 }, sampleCases: 241 },
+        Lucknow: { state: 'Uttar Pradesh', district: 'Lucknow', coords: [26.8467, 80.9462], land: { agricultural: 52, urban: 29, industrial: 12, forest: 4, water: 3 }, factors: { ownershipConflicts: 16, pendingDocuments: 15, legalDisputes: 16, compensationPending: 19, surveyCompletion: 73, governmentApprovals: 69, rehabilitationStatus: 64 }, sampleCases: 311 },
+        Bhopal: { state: 'Madhya Pradesh', district: 'Bhopal', coords: [23.2599, 77.4126], land: { agricultural: 42, urban: 28, industrial: 16, forest: 10, water: 4 }, factors: { ownershipConflicts: 8, pendingDocuments: 10, legalDisputes: 9, compensationPending: 12, surveyCompletion: 87, governmentApprovals: 83, rehabilitationStatus: 80 }, sampleCases: 206 },
+        Kochi: { state: 'Kerala', district: 'Ernakulam', coords: [9.9312, 76.2673], land: { agricultural: 30, urban: 38, industrial: 18, forest: 7, water: 7 }, factors: { ownershipConflicts: 10, pendingDocuments: 12, legalDisputes: 14, compensationPending: 17, surveyCompletion: 77, governmentApprovals: 73, rehabilitationStatus: 70 }, sampleCases: 219 },
+        Coimbatore: { state: 'Tamil Nadu', district: 'Coimbatore', coords: [11.0168, 76.9558], land: { agricultural: 45, urban: 27, industrial: 22, forest: 4, water: 2 }, factors: { ownershipConflicts: 9, pendingDocuments: 9, legalDisputes: 10, compensationPending: 12, surveyCompletion: 86, governmentApprovals: 81, rehabilitationStatus: 78 }, sampleCases: 233 },
+        Visakhapatnam: { state: 'Andhra Pradesh', district: 'Visakhapatnam', coords: [17.6868, 83.2185], land: { agricultural: 28, urban: 36, industrial: 27, forest: 6, water: 3 }, factors: { ownershipConflicts: 13, pendingDocuments: 12, legalDisputes: 14, compensationPending: 17, surveyCompletion: 76, governmentApprovals: 71, rehabilitationStatus: 67 }, sampleCases: 257 },
+        Patna: { state: 'Bihar', district: 'Patna', coords: [25.5941, 85.1376], land: { agricultural: 58, urban: 25, industrial: 10, forest: 3, water: 4 }, factors: { ownershipConflicts: 19, pendingDocuments: 18, legalDisputes: 18, compensationPending: 22, surveyCompletion: 68, governmentApprovals: 64, rehabilitationStatus: 58 }, sampleCases: 337 },
+        Guwahati: { state: 'Assam', district: 'Kamrup Metropolitan', coords: [26.1445, 91.7362], land: { agricultural: 35, urban: 32, industrial: 12, forest: 16, water: 7 }, factors: { ownershipConflicts: 14, pendingDocuments: 13, legalDisputes: 15, compensationPending: 16, surveyCompletion: 75, governmentApprovals: 70, rehabilitationStatus: 65 }, sampleCases: 188 },
+        Chandigarh: { state: 'Chandigarh', district: 'Chandigarh', coords: [30.7333, 76.7794], land: { agricultural: 32, urban: 49, industrial: 12, forest: 5, water: 2 }, factors: { ownershipConflicts: 7, pendingDocuments: 7, legalDisputes: 8, compensationPending: 10, surveyCompletion: 91, governmentApprovals: 88, rehabilitationStatus: 84 }, sampleCases: 174 },
+        Indore: { state: 'Madhya Pradesh', district: 'Indore', coords: [22.7196, 75.8577], land: { agricultural: 43, urban: 29, industrial: 22, forest: 4, water: 2 }, factors: { ownershipConflicts: 10, pendingDocuments: 9, legalDisputes: 10, compensationPending: 13, surveyCompletion: 84, governmentApprovals: 79, rehabilitationStatus: 76 }, sampleCases: 226 },
+        Tambaram: { state: 'Tamil Nadu', district: 'Chengalpattu', coords: [12.9249, 80.1000], land: { agricultural: 38, urban: 31, industrial: 20, forest: 5, water: 6 }, factors: { ownershipConflicts: 17, pendingDocuments: 15, legalDisputes: 18, compensationPending: 21, surveyCompletion: 71, governmentApprovals: 67, rehabilitationStatus: 62 }, sampleCases: 346 },
+        Chengalpattu: { state: 'Tamil Nadu', district: 'Chengalpattu', coords: [12.6819, 79.9888], land: { agricultural: 46, urban: 24, industrial: 19, forest: 6, water: 5 }, factors: { ownershipConflicts: 13, pendingDocuments: 12, legalDisputes: 15, compensationPending: 18, surveyCompletion: 78, governmentApprovals: 74, rehabilitationStatus: 70 }, sampleCases: 289 },
+        Sriperumbudur: { state: 'Tamil Nadu', district: 'Kanchipuram', coords: [12.9675, 79.9415], land: { agricultural: 31, urban: 22, industrial: 40, forest: 4, water: 3 }, factors: { ownershipConflicts: 16, pendingDocuments: 14, legalDisputes: 16, compensationPending: 19, surveyCompletion: 74, governmentApprovals: 69, rehabilitationStatus: 63 }, sampleCases: 312 }
+      };
+
+      const landWatchState = {
+        selectedLocation: '',
+        selectedProfile: null,
+        dataset: [],
+        analysis: null,
+        updatedAt: null,
+        locationHeatLayer: null
+      };
+
+      const number = value => {
+        const parsed = Number(String(value ?? '').replace(/[₹,%\sCr]/g, ''));
+        return Number.isFinite(parsed) ? parsed : 0;
+      };
+      const clamp = value => Math.max(0, Math.min(100, Math.round(value)));
+      const riskBand = score => score < 40 ? 'Low Risk' : score < 70 ? 'Medium Risk' : 'High Risk';
+      const titleCase = value => String(value || '').trim().replace(/\b\w/g, char => char.toUpperCase());
+
+      function parseCsv(text) {
+        const rows = [];
+        let row = [], cell = '', quoted = false;
+        for (let index = 0; index < text.length; index += 1) {
+          const char = text[index], next = text[index + 1];
+          if (char === '"' && quoted && next === '"') { cell += '"'; index += 1; continue; }
+          if (char === '"') { quoted = !quoted; continue; }
+          if (char === ',' && !quoted) { row.push(cell.trim()); cell = ''; continue; }
+          if ((char === '\n' || char === '\r') && !quoted) {
+            if (char === '\r' && next === '\n') index += 1;
+            row.push(cell.trim()); if (row.some(Boolean)) rows.push(row);
+            row = []; cell = ''; continue;
+          }
+          cell += char;
+        }
+        if (cell || row.length) { row.push(cell.trim()); if (row.some(Boolean)) rows.push(row); }
+        if (rows.length < 2) return [];
+        const headers = rows.shift().map(header => header.toLowerCase().replace(/[^a-z0-9]+/g, '_'));
+        return rows.map(values => headers.reduce((record, header, index) => {
+          record[header] = values[index] ?? '';
+          return record;
+        }, {}));
+      }
+
+      function profileFor(location) {
+        const key = Object.keys(locationProfiles).find(item => item.toLowerCase() === String(location || '').trim().toLowerCase());
+        return key ? { ...locationProfiles[key], name: key, land: { ...locationProfiles[key].land }, factors: { ...locationProfiles[key].factors } } : null;
+      }
+
+      function analyseLocation(profile, record = {}) {
+        const source = { ...profile.factors, ...record };
+        const ownership = clamp(number(source.ownership_conflicts ?? source.ownershipConflicts));
+        const documents = clamp(number(source.pending_documents ?? source.pendingDocuments));
+        const legal = clamp(number(source.legal_disputes ?? source.legalDisputes));
+        const compensation = clamp(number(source.compensation_pending ?? source.compensationPending));
+        const survey = clamp(number(source.survey_completion ?? source.surveyCompletion) || profile.factors.surveyCompletion);
+        const approvals = clamp(number(source.government_approvals ?? source.governmentApprovals) || profile.factors.governmentApprovals);
+        const rehab = clamp(number(source.rehabilitation_status ?? source.rehabilitationStatus) || profile.factors.rehabilitationStatus);
+        const surveyDelay = 100 - survey, approvalDelay = 100 - approvals, rehabDelay = 100 - rehab;
+        const score = clamp(ownership * .14 + documents * .10 + legal * .20 + compensation * .25 + surveyDelay * .14 + approvalDelay * .10 + rehabDelay * .07);
+        const delayProbability = clamp(score + 4);
+        const reasons = [
+          { name: 'Compensation Pending', pct: clamp(compensation * .25) },
+          { name: 'Legal Dispute', pct: clamp(legal * .2) },
+          { name: 'Survey Delay', pct: clamp(surveyDelay * .14) },
+          { name: 'Missing Documents', pct: clamp(documents * .1) },
+          { name: 'Approval Delay', pct: clamp(approvalDelay * .1) }
+        ];
+        const total = reasons.reduce((sum, item) => sum + item.pct, 0) || 1;
+        reasons.forEach(item => { item.pct = clamp((item.pct / total) * 100); });
+        const analysis = { riskScore: score, delayProbability, riskBand: riskBand(delayProbability), delayDays: Math.max(8, Math.round(delayProbability * .65)), reasons, survey, approvals, rehab, landType: record.land_type || Object.entries(profile.land).sort((a, b) => b[1] - a[1])[0][0], landCondition: profile.land };
+        analysis.shap = calculateSHAPExplanation(profile, analysis, record);
+        analysis.recommendations = buildRecommendations(analysis.shap, analysis);
+        return analysis;
+      }
+
+      function calculateSHAPExplanation(profile, analysis, record = {}) {
+        const source = { ...profile.factors, ...record };
+        const value = (snake, camel, fallback = 0) => clamp(number(source[snake] ?? source[camel]) || fallback);
+        const compensation = value('compensation_pending', 'compensationPending', profile.factors.compensationPending);
+        const legal = value('legal_disputes', 'legalDisputes', profile.factors.legalDisputes);
+        const documents = value('pending_documents', 'pendingDocuments', profile.factors.pendingDocuments);
+        const approvals = value('government_approvals', 'governmentApprovals', profile.factors.governmentApprovals);
+        const survey = value('survey_completion', 'surveyCompletion', profile.factors.surveyCompletion);
+        const ownership = value('ownership_conflicts', 'ownershipConflicts', profile.factors.ownershipConflicts);
+        return [
+          { feature: 'Compensation Pending', impact: Math.round(compensation * .35), direction: 'increase', value: compensation },
+          { feature: 'Legal Dispute', impact: Math.round(legal * .30), direction: 'increase', value: legal },
+          { feature: 'Approval Delay', impact: Math.round((100 - approvals) * .25), direction: 'increase', value: 100 - approvals },
+          { feature: 'Missing Documents', impact: Math.round(documents * .20), direction: 'increase', value: documents },
+          { feature: 'Ownership Conflicts', impact: Math.round(ownership * .16), direction: 'increase', value: ownership },
+          { feature: 'Survey Completion', impact: -Math.round(survey * .12), direction: 'decrease', value: survey }
+        ].sort((a, b) => Math.abs(b.impact) - Math.abs(a.impact));
+      }
+
+      function buildRecommendations(shap, analysis) {
+        const top = shap.find(item => item.direction === 'increase') || shap[0];
+        const actions = {
+          'Compensation Pending': ['Verify pending compensation cases', 'Schedule district officer review', 'Update affected family records'],
+          'Legal Dispute': ['Initiate legal verification', 'Escalate contested parcels to the Collector', 'Attach latest court status'],
+          'Approval Delay': ['Route approvals to the nodal department', 'Set a seven-day review checkpoint', 'Record statutory dependencies'],
+          'Missing Documents': ['Run an OCR and registry completeness check', 'Request missing title documents', 'Assign a document verification officer'],
+          'Ownership Conflicts': ['Conduct a joint survey', 'Reconcile title and cadastral records', 'Issue stakeholder notices'],
+          'Survey Completion': ['Monitor field survey milestones', 'Confirm survey team availability', 'Refresh parcel evidence']
+        };
+        return { topFactor: top.feature, priority: analysis.riskBand === 'High Risk' ? 'HIGH' : analysis.riskBand === 'Medium Risk' ? 'MEDIUM' : 'LOW', actions: actions[top.feature] || actions['Survey Completion'] };
+      }
+
+      function currentAnalysis() {
+        return landWatchState.analysis || analyseLocation(landWatchState.selectedProfile || profileFor('Chennai'));
+      }
+
+      function updateLocationHeatmap(profile, analysis) {
+        if (typeof leafletMap === 'undefined' || !leafletMap || typeof L === 'undefined') return;
+        if (landWatchState.locationHeatLayer) leafletMap.removeLayer(landWatchState.locationHeatLayer);
+        const [lat, lng] = profile.coords;
+        const points = Array.from({ length: 9 }, (_, index) => {
+          const angle = (Math.PI * 2 * index) / 9;
+          const radius = .08 + (index % 3) * .025;
+          return [lat + Math.sin(angle) * radius, lng + Math.cos(angle) * radius, Math.max(.2, analysis.delayProbability / 100 - index * .035)];
+        });
+        const gradient = { 0.2: '#059669', 0.5: '#d97706', 0.75: '#f97316', 0.9: '#ba1a1a' };
+        landWatchState.locationHeatLayer = typeof L.heatLayer === 'function'
+          ? L.heatLayer(points, { radius: 34, blur: 26, maxZoom: 7, gradient }).addTo(leafletMap)
+          : L.layerGroup(points.map(point => L.circle([point[0], point[1]], { radius: 8000, color: '#ba1a1a', weight: 0, fillColor: '#ba1a1a', fillOpacity: point[2] * .18 }))).addTo(leafletMap);
+        leafletMap.setView(profile.coords, 6, { animate: true });
+      }
+
+      function updateDynamicCharts(profile, analysis) {
+        const usage = [profile.land.agricultural, profile.land.forest, profile.land.urban, profile.land.water, profile.land.industrial];
+        const smartCharts = window.smartLandCharts || [];
+        const usageChart = smartCharts.find(chart => chart.canvas?.id === 'landUsageChart');
+        if (usageChart) { usageChart.data.datasets[0].data = usage; usageChart.update(); }
+        const riskChart = smartCharts.find(chart => chart.canvas?.id === 'landRiskChart');
+        if (riskChart) { riskChart.data.datasets[0].data = [analysis.riskBand === 'Low Risk' ? 1 : 0, analysis.riskBand === 'Medium Risk' ? 1 : 0, analysis.riskBand === 'High Risk' ? 1 : 0]; riskChart.update(); }
+        const bottleneckChart = (window.analyticsCharts || []).find(chart => chart.canvas?.id === 'bottleneckChart');
+        if (bottleneckChart) { bottleneckChart.data.datasets[0].data = analysis.reasons.map(item => item.pct); bottleneckChart.data.labels = analysis.reasons.map(item => `${item.name} (${item.pct}%)`); bottleneckChart.update(); }
+      }
+
+      function updateDynamicUi(location, profile, analysis, options = {}) {
+        const locationLabel = location ? `${location} · Land Acquisition Monitoring · SIH 2026` : 'AI-Powered Land Acquisition Monitoring · SIH 2026';
+        document.getElementById('demo-location-label')?.replaceChildren(document.createTextNode(`SIMULATED DEMO · ${location ? `${location} · Land Acquisition Monitoring` : 'AI-Powered Land Acquisition Monitoring'} · SIH 2026`));
+        document.getElementById('hero-location-label')?.replaceChildren(document.createTextNode(locationLabel));
+        document.getElementById('hero-card-location')?.replaceChildren(document.createTextNode(location || 'Selected location'));
+        document.getElementById('hero-card-title')?.replaceChildren(document.createTextNode(`Case intelligence preview · ${location || 'Selected location'}`));
+        document.getElementById('hero-card-subtitle')?.replaceChildren(document.createTextNode(`${profile?.district || 'District'} · ${profile?.state || 'India'} acquisition monitoring`));
+        const heroRisk = document.getElementById('hero-risk-badge');
+        if (heroRisk) heroRisk.textContent = `${analysis.delayProbability}%`;
+        const heroHeading = document.getElementById('hero-risk-heading');
+        if (heroHeading) heroHeading.textContent = `${analysis.delayProbability}% statutory deadline risk`;
+        const heroDelay = document.getElementById('hero-delay-warning');
+        if (heroDelay) heroDelay.innerHTML = `<span aria-hidden="true">⚠️</span> Predicted delay: ${analysis.delayDays} days`;
+        const heroReason = document.getElementById('hero-main-reason');
+        if (heroReason) heroReason.innerHTML = `<strong>Primary reason:</strong> ${escapeMapHtml(analysis.reasons[0].name)} (${analysis.reasons[0].pct}% impact)`;
+        const mapStats = document.getElementById('map-active-stats');
+        if (mapStats) mapStats.textContent = `${profile?.district || location || 'India'} · ${analysis.delayProbability}% delay risk · ${profile?.sampleCases || 0} monitored cases`;
+        document.getElementById('risk-area-name')?.replaceChildren(document.createTextNode(profile ? `${location} · ${profile.district}` : 'Select a location'));
+        const score = document.getElementById('risk-score-value');
+        if (score) score.textContent = String(analysis.riskScore);
+        const scoreLabel = document.getElementById('risk-score-label');
+        if (scoreLabel) { scoreLabel.textContent = analysis.riskBand; scoreLabel.className = `block risk-label ${analysis.riskBand === 'Low Risk' ? 'risk-low' : analysis.riskBand === 'Medium Risk' ? 'risk-medium' : 'risk-high'}`; }
+        const riskValues = { green: profile.land.forest + profile.land.agricultural, water: profile.land.water + profile.factors.rehabilitationStatus / 4, development: profile.land.urban + profile.land.industrial, stability: 100 - analysis.riskScore };
+        Object.entries(riskValues).forEach(([key, value]) => { document.querySelector(`[data-risk-value="${key}"]`)?.replaceChildren(document.createTextNode(`${clamp(value)}%`)); const bar = document.querySelector(`[data-risk-bar="${key}"]`); if (bar) bar.style.width = `${clamp(value)}%`; });
+        const analysisLocation = document.getElementById('land-analysis-location');
+        if (analysisLocation) analysisLocation.value = location || '';
+        const smartCards = document.querySelectorAll('#smart-overview-cards [data-counter-value]');
+        const values = [profile.sampleCases * 32, Math.round(profile.sampleCases * (profile.land.forest + profile.land.water) / 100), Math.round(profile.sampleCases * analysis.delayProbability / 100), Math.round(profile.sampleCases * .36), Math.round(8 + analysis.delayProbability / 4), Math.round(profile.sampleCases * .7)];
+        smartCards.forEach((element, index) => { if (values[index] !== undefined) { element.dataset.counterValue = values[index]; element.textContent = values[index].toLocaleString('en-IN'); } });
+        const csvStatus = document.getElementById('landwatch-csv-status');
+        if (csvStatus && landWatchState.dataset.length) csvStatus.textContent = `${landWatchState.dataset.length} records loaded · ${location} analysis active`;
+        document.querySelectorAll('[data-lw-location]').forEach(element => { element.textContent = location || 'selected location'; });
+        const officerScope = document.getElementById('lw-officer-scope');
+        if (officerScope) officerScope.textContent = `District officer · ${location || 'selected portfolio'}`;
+        const scoreCard = document.getElementById('lw-risk-score');
+        if (scoreCard) scoreCard.innerHTML = `${analysis.riskScore}<small>/100</small>`;
+        const delayCard = document.getElementById('lw-delay-probability');
+        if (delayCard) delayCard.textContent = `${analysis.delayProbability}%`;
+        const categoryCard = document.getElementById('lw-risk-category');
+        if (categoryCard) { categoryCard.textContent = analysis.riskBand.toUpperCase(); categoryCard.className = analysis.riskBand === 'High Risk' ? 'lw-red-text' : analysis.riskBand === 'Medium Risk' ? 'lw-amber-text' : 'lw-green-text'; }
+        const factors = document.getElementById('lw-dynamic-factors');
+        if (factors) factors.innerHTML = (analysis.shap || []).map(item => `<div class="${item.direction === 'decrease' ? 'is-negative' : 'is-positive'}"><span>${escapeMapHtml(item.feature)}</span><strong>${item.impact > 0 ? '+' : ''}${item.impact}%</strong><b><i style="width:${Math.min(100, Math.max(8, Math.abs(item.impact) * 2.2))}%"></i></b></div>`).join('');
+        const recommendation = document.getElementById('lw-dynamic-recommendation');
+        if (recommendation) recommendation.textContent = `${analysis.riskBand} detected · ${analysis.recommendations?.topFactor || 'Monitor statutory milestones'} is the leading model signal. Priority: ${analysis.recommendations?.priority || 'MEDIUM'}.`;
+        const actions = document.getElementById('lw-dynamic-actions');
+        if (actions) actions.innerHTML = (analysis.recommendations?.actions || []).map((action, index) => `<li><strong>${index + 1}.</strong> ${escapeMapHtml(action)} <small>${index === 0 ? `Priority: ${analysis.recommendations.priority}` : index === 1 ? 'Deadline: 7 days' : 'Owner: District review cell'}</small></li>`).join('');
+        updateDynamicCharts(profile, analysis);
+        if (!options.skipMap) updateLocationHeatmap(profile, analysis);
+        landWatchState.updatedAt = new Date();
+        window.landWatchState = landWatchState;
+      }
+
+      const auditLog = [];
+      function addAudit(action, user = 'LandWatch AI', status = 'Recorded') {
+        auditLog.unshift({ user, action, time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }), location: landWatchState.selectedLocation || 'All monitored areas', status });
+        const target = document.getElementById('lw-audit-rows');
+        if (target) target.innerHTML = auditLog.slice(0, 6).map(item => `<div role="row" class="lw-audit-row"><span>${escapeMapHtml(item.user)}</span><span>${escapeMapHtml(item.action)}</span><span>${item.time} IST</span><span>${escapeMapHtml(item.location)}</span><b class="${item.status === 'Queued' ? 'lw-amber-text' : 'lw-green-text'}">${escapeMapHtml(item.status)}</b></div>`).join('');
+      }
+
+      window.landWatchApi = {
+        get: async endpoint => ({ endpoint, data: dashboardDataset(), generatedAt: new Date().toISOString() }),
+        post: async (endpoint, payload = {}) => ({ endpoint, accepted: true, payload, generatedAt: new Date().toISOString() }),
+        endpoints: ['/api/projects', '/api/risk-analysis', '/api/location-data', '/api/notifications', '/api/recommendations']
+      };
+      window.landWatchAI = {
+        predict: locationData => {
+          const profile = locationData?.name ? profileFor(locationData.name) : (landWatchState.selectedProfile || profileFor('Chennai'));
+          const analysis = analyseLocation(profile, locationData?.record || {});
+          return { riskScore: analysis.riskScore, delayProbability: analysis.delayProbability, category: analysis.riskBand };
+        },
+        explain: locationData => {
+          const profile = locationData?.name ? profileFor(locationData.name) : (landWatchState.selectedProfile || profileFor('Chennai'));
+          const analysis = analyseLocation(profile, locationData?.record || {});
+          return analysis.shap;
+        },
+        recommend: locationData => {
+          const profile = locationData?.name ? profileFor(locationData.name) : (landWatchState.selectedProfile || profileFor('Chennai'));
+          const analysis = analyseLocation(profile, locationData?.record || {});
+          return analysis.recommendations;
+        },
+        getAlerts: () => Array.from(document.querySelectorAll('#lw-notification-list .lw-notification')).map(item => ({ severity: item.dataset.severity, title: item.querySelector('strong')?.textContent || '', location: landWatchState.selectedLocation }))
+      };
+
+      function selectLocation(location, record) {
+        const profile = profileFor(location);
+        if (!profile) return false;
+        landWatchState.selectedLocation = profile.name;
+        landWatchState.selectedProfile = profile;
+        landWatchState.analysis = analyseLocation(profile, record || landWatchState.dataset.find(item => String(item.location || item.city || '').toLowerCase() === profile.name.toLowerCase()) || {});
+        updateDynamicUi(profile.name, profile, landWatchState.analysis);
+        if (document.getElementById('lw-audit-rows')) addAudit('AI recalculated risk', 'LandWatch AI', 'Completed');
+        return true;
+      }
+
+      function dashboardDataset() {
+        const profile = landWatchState.selectedProfile || profileFor('Chennai');
+        const analysis = currentAnalysis();
+        return { location: landWatchState.selectedLocation || 'All monitored areas', state: profile.state, district: profile.district, profile, analysis, dataset: landWatchState.dataset, timestamp: landWatchState.updatedAt || new Date() };
+      }
+
+      function exportDashboardPdf() {
+        const report = dashboardDataset();
+        window.landWatchLastExport = report;
+        const jsPdf = window.jspdf?.jsPDF;
+        if (!jsPdf) {
+          const popup = window.open('', '_blank');
+          if (!popup) { alert('The report window was blocked. Please allow pop-ups to export the dashboard.'); return; }
+          popup.document.write(`<html><body><h1>LandWatch Intelligence Report</h1><pre>${escapeMapHtml(JSON.stringify(report, null, 2))}</pre><script>window.print();<\/script></body></html>`);
+          popup.document.close();
+          return;
+        }
+        const pdf = new jsPdf({ unit: 'mm', format: 'a4' });
+        let y = 18;
+        const line = (text, size = 10, color = [11, 28, 48]) => { pdf.setFontSize(size); pdf.setTextColor(...color); pdf.text(String(text), 16, y); y += size * .55 + 3; };
+        pdf.setFillColor(0, 36, 68); pdf.rect(0, 0, 210, 15, 'F'); pdf.setTextColor(255, 255, 255); pdf.setFontSize(13); pdf.text('LandWatch · Government Land Intelligence Report', 16, 10); y = 24;
+        line(`Location: ${report.location} · ${report.district}, ${report.state}`, 11);
+        line(`Generated: ${report.timestamp.toLocaleString('en-IN')}`, 9, [67, 71, 78]);
+        line(`Risk score: ${report.analysis.riskScore}% · ${report.analysis.riskBand}`, 12, [186, 26, 26]);
+        line(`Delay probability: ${report.analysis.delayProbability}% · Predicted delay: ${report.analysis.delayDays} days`, 10);
+        line(`Primary land type: ${titleCase(report.analysis.landType)} · Survey completion: ${report.analysis.survey}%`, 10);
+        y += 3; line('AI delay factors', 12);
+        report.analysis.reasons.forEach(item => line(`• ${item.name}: ${item.pct}%`, 10));
+        y += 3; line('SHAP explanation factors', 12);
+        (report.analysis.shap || []).forEach(item => line(`• ${item.feature}: ${item.impact > 0 ? '+' : ''}${item.impact}% (${item.direction})`, 10));
+        y += 3; line('Land condition analysis', 12);
+        Object.entries(report.profile.land).forEach(([key, value]) => line(`• ${titleCase(key)}: ${value}%`, 10));
+        y += 3; line('Recommendations', 12);
+        const recommendation = report.analysis.riskBand === 'High Risk' ? 'Escalate case, validate compensation ledger, and conduct an expedited joint survey.' : report.analysis.riskBand === 'Medium Risk' ? 'Close documentation gaps and schedule a revenue inspection within 14 days.' : 'Proceed with standard verification and monitor statutory milestones.';
+        pdf.splitTextToSize(recommendation, 178).forEach(text => line(text, 10));
+        line(`Recommended priority: ${report.analysis.recommendations?.priority || 'MEDIUM'} · Lead factor: ${report.analysis.recommendations?.topFactor || 'Model monitoring'}`, 10);
+        line('Model: LandWatch Predictive Engine · XGBoost / Random Forest · SHAP enabled · Accuracy: 94.8%', 9, [67, 71, 78]);
+        y += 3; line('Analytics', 12);
+        line(`Government approvals: ${report.analysis.approvals}% · Rehabilitation readiness: ${report.analysis.rehab}%`, 10);
+        line(`Dataset records: ${report.dataset.length || 'Illustrative location profile'}`, 10);
+        const charts = [...(window.smartLandCharts || []), ...(window.analyticsCharts || [])].filter(chart => chart?.canvas);
+        charts.slice(0, 2).forEach(chart => { if (y > 245) { pdf.addPage(); y = 18; } pdf.addImage(chart.canvas.toDataURL('image/png'), 'PNG', 16, y, 82, 48); y += 54; });
+        window.landWatchLastPdfBytes = pdf.output('arraybuffer').byteLength;
+        addAudit('Government intelligence report generated', 'District Officer', 'Completed');
+        pdf.save(`landwatch-${report.location.toLowerCase().replace(/\s+/g, '-')}-intelligence-report.pdf`);
+      }
+
+      function loadCsv(file) {
+        const reader = new FileReader();
+        reader.onload = event => {
+          const rows = parseCsv(String(event.target.result || ''));
+          if (!rows.length) { alert('The CSV does not contain a header row and at least one data row.'); return; }
+          landWatchState.dataset = rows;
+          const location = rows[0].location || rows[0].city || rows[0].district;
+          const selected = profileFor(location) ? location : 'Chennai';
+          selectLocation(selected, rows.find(row => String(row.location || row.city || '').toLowerCase() === String(selected).toLowerCase()) || rows[0]);
+          document.getElementById('landwatch-csv-status').textContent = `${rows.length} records loaded · dashboard and PDF now use this dataset`;
+          addAudit('Officer uploaded survey data', 'District Officer', 'Recorded');
+        };
+        reader.onerror = () => alert('The CSV could not be read. Please try a UTF-8 CSV file.');
+        reader.readAsText(file);
+      }
+
+      const originalUpdateFilters = window.updateDashboardFilters;
+      window.updateDashboardFilters = () => {
+        const location = document.getElementById('dashboard-area')?.value;
+        if (location && location !== 'all') selectLocation(location);
+        else if (!landWatchState.selectedLocation) selectLocation('Chennai');
+        originalUpdateFilters?.();
+      };
+      window.exportDashboardReport = exportDashboardPdf;
+      window.landWatchLocationProfiles = locationProfiles;
+      window.landWatchState = landWatchState;
+      window.refreshLandWatchLocation = () => {
+        if (landWatchState.selectedProfile && landWatchState.analysis) updateDynamicUi(landWatchState.selectedLocation, landWatchState.selectedProfile, landWatchState.analysis);
+      };
+
+      const initialise = () => {
+        // The legacy controller publishes its handlers during DOMContentLoaded;
+        // publish the shared-state versions after that controller has finished.
+        window.updateDashboardFilters = () => {
+          const selected = document.getElementById('dashboard-area')?.value;
+          if (selected && selected !== 'all') selectLocation(selected);
+          else if (!landWatchState.selectedLocation) selectLocation('Chennai');
+          originalUpdateFilters?.();
+        };
+        window.exportDashboardReport = exportDashboardPdf;
+        const legacySmartModuleUpdater = window.updateSmartLandModules;
+        window.updateSmartLandModules = data => {
+          legacySmartModuleUpdater?.(data);
+          if (landWatchState.selectedProfile && landWatchState.analysis) updateDynamicUi(landWatchState.selectedLocation, landWatchState.selectedProfile, landWatchState.analysis, { skipMap: true });
+        };
+        const area = document.getElementById('dashboard-area');
+        const initial = area?.value && area.value !== 'all' ? area.value : 'Chennai';
+        selectLocation(initial);
+        area?.addEventListener('change', () => selectLocation(area.value === 'all' ? 'Chennai' : area.value));
+        document.getElementById('landwatch-csv-input')?.addEventListener('change', event => { const file = event.target.files?.[0]; if (file) loadCsv(file); });
+        document.querySelectorAll('[data-lw-notify-action]').forEach(button => button.addEventListener('click', () => {
+          button.textContent = 'Done';
+          button.disabled = true;
+          addAudit(button.dataset.lwNotifyAction, 'Notification Service', 'Queued');
+        }));
+        document.querySelectorAll('[data-lw-stakeholder]').forEach(button => button.addEventListener('click', () => {
+          document.querySelectorAll('[data-lw-stakeholder]').forEach(item => item.classList.remove('is-active'));
+          button.classList.add('is-active');
+          addAudit(`Opened ${button.dataset.lwStakeholder} workspace`, button.dataset.lwStakeholder, 'Recorded');
+        }));
+        const locationOptions = document.getElementById('landwatch-location-options');
+        if (locationOptions) Object.keys(locationProfiles).forEach(name => { const option = document.createElement('option'); option.value = name; locationOptions.appendChild(option); });
+        document.getElementById('gis-search-form')?.addEventListener('submit', event => {
+          const query = document.getElementById('gis-location-search')?.value.trim();
+          const profile = profileFor(query);
+          if (!profile) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          selectLocation(profile.name);
+          document.getElementById('dashboard-area').value = profile.name;
+          document.getElementById('cadastral-map')?.scrollIntoView({ behavior: 'smooth' });
+        }, true);
+      };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialise, { once: true }); else initialise();
     })();
   </script>
 </body>

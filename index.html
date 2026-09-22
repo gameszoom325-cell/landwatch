@@ -123,8 +123,8 @@
               </svg>
             </div>
             <div class="flex flex-col">
-              <span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight leading-tight">LandWatch</span>
-              <span class="text-[11px] text-secondary font-medium tracking-wide">Civic Intelligence · SIH 2026</span>
+              <span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight leading-tight">LANDWATCH AI</span>
+              <span class="text-[11px] text-secondary font-medium tracking-wide">Predictive Land Acquisition Intelligence Platform</span>
             </div>
           </a>
         </div>
@@ -151,6 +151,9 @@
           </a>
           <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#analytics-section">
             <span aria-hidden="true">📈</span> <span data-i18n="nav_analytics">Analytics</span>
+          </a>
+          <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#stakeholder-workspace">
+            <span aria-hidden="true">👥</span> <span>Stakeholders</span>
           </a>
           <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#case-queue">
             <span aria-hidden="true">⚠️</span> <span data-i18n="nav_risk">Case Queue</span>
@@ -248,6 +251,9 @@
           <button class="inline-flex items-center gap-1.5 px-3 py-2 bg-surface-container-low hover:bg-surface-container text-primary font-label-md text-label-md font-semibold rounded-lg border border-outline-variant/60 shadow-sm focus:outline-none transition-all cursor-pointer" id="tts-read-page" type="button" aria-label="Read aloud">
             <span class="material-symbols-outlined text-[17px]" aria-hidden="true">volume_up</span>
             <span data-i18n="tts_read">Read aloud</span>
+          </button>
+          <button class="hidden md:inline-flex items-center gap-1.5 px-3 py-2 bg-primary text-white font-label-md text-label-md font-semibold rounded-lg shadow-sm focus:outline-none" id="profile-summary" type="button" aria-label="Current profile">
+            <span class="material-symbols-outlined text-[17px]" aria-hidden="true">account_circle</span><span>Land Officer</span>
           </button>
 
           <!-- Mobile Hamburger Toggle Button (Screen < 1280px) -->
@@ -1222,7 +1228,7 @@
             <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="command-centre-title">Land Intelligence Command Centre</h2>
             <p class="font-body-lg text-body-lg text-on-surface-variant">A single operational view for Collectors, DLAOs, Revenue Officers, NHAI and environmental liaison teams.</p>
           </div>
-          <div class="lw-live-pill"><span class="lw-live-dot" aria-hidden="true"></span><span>Model services operational</span><time datetime="2026-09-22T09:35:04+05:30">Updated 09:35 IST</time></div>
+          <div class="lw-live-pill"><span class="lw-live-dot" aria-hidden="true"></span><span>Prototype model simulation</span><time datetime="2026-09-22T09:35:04+05:30">Updated 09:35 IST</time></div>
         </div>
 
         <div class="lw-status-grid" aria-label="Live government status">
@@ -1236,7 +1242,7 @@
 
         <div class="lw-grid-2">
           <article class="lw-panel lw-ai-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Enterprise model assurance</span><h3>AI Confidence &amp; Explainability</h3></div><span class="lw-chip lw-chip-green">Production simulation</span></div>
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Enterprise model assurance</span><h3>AI Confidence &amp; Explainability</h3></div><span class="lw-chip lw-chip-green">Illustrative simulation</span></div>
             <div class="lw-confidence-layout">
               <div class="lw-confidence-ring" aria-label="AI confidence 96 percent"><strong>96<small>%</small></strong><span>confidence</span></div>
               <div class="lw-confidence-facts">
@@ -1363,7 +1369,7 @@
 
         <div class="lw-grid-2">
           <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Interoperability layer</span><h3>API Integration Hub</h3></div><span class="lw-chip lw-chip-green">6 services mapped</span></div>
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Interoperability layer</span><h3>API Integration Hub</h3></div><span class="lw-chip lw-chip-amber">6 mock adapters</span></div>
             <div class="lw-api-flow"><span>Government databases</span><i>↓</i><span>REST API / GraphQL</span><i>↓</i><span>LandWatch processing layer</span><i>↓</i><span>AI prediction engine</span><i>↓</i><span>Decision dashboard</span></div>
             <div class="lw-api-grid"><div><span class="lw-api-dot"></span><strong>Land Records API</strong><small>GET /api/projects</small></div><div><span class="lw-api-dot"></span><strong>GIS API</strong><small>GET /api/location-data</small></div><div><span class="lw-api-dot"></span><strong>Compensation API</strong><small>GET /api/compensation</small></div><div><span class="lw-api-dot"></span><strong>Court Records API</strong><small>GET /api/legal-events</small></div><div><span class="lw-api-dot"></span><strong>Notification API</strong><small>POST /api/notifications</small></div><div><span class="lw-api-dot"></span><strong>Recommendations API</strong><small>GET /api/recommendations</small></div></div>
           </article>
@@ -1376,6 +1382,91 @@
         <article class="lw-panel">
           <div class="lw-panel-heading"><div><span class="lw-kicker">Governance traceability</span><h3>Audit Trail</h3></div><span class="lw-chip">Append-only demo log</span></div>
           <div class="lw-audit-table" role="table" aria-label="LandWatch audit trail"><div role="row" class="lw-audit-row lw-audit-head"><span>User</span><span>Action</span><span>Time</span><span>Location</span><span>Status</span></div><div id="lw-audit-rows"><div role="row" class="lw-audit-row"><span>District Officer</span><span>Officer uploaded survey data</span><span>10:30 IST</span><span data-lw-location>selected location</span><b class="lw-green-text">Recorded</b></div><div role="row" class="lw-audit-row"><span>LandWatch AI</span><span>AI recalculated risk</span><span>10:45 IST</span><span data-lw-location>selected location</span><b class="lw-green-text">Completed</b></div><div role="row" class="lw-audit-row"><span>Notification Service</span><span>Alert generated</span><span>11:00 IST</span><span data-lw-location>selected location</span><b class="lw-amber-text">Queued</b></div></div></div>
+        </article>
+      </div>
+    </section>
+    <!-- 12. STAKEHOLDER DECISION WORKSPACES AND TRANSPARENCY -->
+    <section class="lw-stakeholder-suite w-full py-space-2xl bg-surface-container-low border-y border-surface-container-high scroll-mt-header" id="stakeholder-workspace" aria-labelledby="stakeholder-suite-title">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-base">
+          <div class="space-y-space-xs"><span class="lw-kicker">Role-based decision support</span><h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="stakeholder-suite-title">Stakeholder Workspaces</h2><p class="font-body-lg text-body-lg text-on-surface-variant">Each government role sees the same trusted location intelligence through a different operational lens.</p></div>
+          <label class="lw-suite-role">Role selector<select id="lw-suite-role-select" aria-label="Select stakeholder workspace"><option>Citizen</option><option selected>Field Officer</option><option>Tahsildar</option><option>District Collector</option><option>State Government</option><option>Central Ministry</option></select></label>
+        </div>
+        <div class="lw-role-summary" id="lw-role-summary" aria-live="polite"></div>
+        <div class="lw-grid-2">
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">AI Recommended Actions</span><h3>Preventive action queue</h3></div><span class="lw-chip lw-chip-ai">Decision ready</span></div>
+            <div class="lw-action-card"><span class="material-symbols-outlined">payments</span><div><strong id="lw-suite-action-title">Compensation review</strong><p id="lw-suite-action-copy">Prioritise the leading risk factor for the selected location.</p><small>Priority <b id="lw-suite-priority">HIGH</b> · Deadline <b>3 days</b> · Estimated delay reduction <b>45 days</b></small></div></div>
+            <div class="lw-action-card"><span class="material-symbols-outlined">fact_check</span><div><strong>Collector approval checkpoint</strong><p>Route unresolved legal and approval signals to the responsible authority.</p><small>Owner <b>District review cell</b> · Evidence linked to SHAP explanation</small></div></div>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Model transparency</span><h3>LandWatch Risk Predictor</h3></div><span class="lw-chip lw-chip-green">SHAP based</span></div>
+            <div class="lw-learning-grid"><div><span>Version</span><strong>v1.2</strong></div><div><span>Last updated</span><strong id="lw-model-date">22 Sep 2026</strong></div><div><span>Records analysed</span><strong>12,450</strong></div><div><span>Prediction factors</span><strong>18</strong></div><div><span>Accuracy</span><strong class="lw-green-text">94.8%</strong></div><div><span>Explainability</span><strong>SHAP based</strong></div><div><span>Data mode</span><strong>Synthetic prototype</strong></div></div>
+          </article>
+        </div>
+        <article class="lw-panel">
+          <div class="lw-panel-heading"><div><span class="lw-kicker">Operational trace</span><h3>Activity Timeline</h3></div><span class="lw-chip">Audit ready</span></div>
+          <div class="lw-suite-timeline"><div><time>10:30 AM</time><span class="lw-timeline-dot"></span><p><strong>Officer uploaded survey data</strong><small>Evidence entered into the selected location workspace</small></p></div><div><time>11:00 AM</time><span class="lw-timeline-dot"></span><p><strong>AI recalculated risk</strong><small>Prediction and SHAP factors refreshed</small></p></div><div><time>11:15 AM</time><span class="lw-timeline-dot"></span><p><strong>Collector notified</strong><small>Preventive action queue generated</small></p></div><div><time>12:00 PM</time><span class="lw-timeline-dot"></span><p><strong>Action approved</strong><small>Statutory review checkpoint recorded</small></p></div></div>
+        </article>
+        <div class="lw-grid-2">
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Public accountability</span><h3>Data Sources &amp; AI Transparency</h3></div><span class="lw-chip">Open methodology</span></div>
+            <div class="lw-source-grid"><div><strong>Project Data</strong><small>Illustrative acquisition cases and milestones</small></div><div><strong>GIS Information</strong><small>Coordinates, land-use profiles and risk layers</small></div><div><strong>Legal Records</strong><small>Demo dispute and hearing indicators</small></div><div><strong>Compensation Data</strong><small>Illustrative award and payment status</small></div><div><strong>Administrative Workflow</strong><small>Survey, approval and rehabilitation signals</small></div></div>
+            <p class="lw-transparency-note">This prototype uses synthetic datasets based on real-world land acquisition workflows due to limited publicly labelled delay datasets. No production government system is represented as connected.</p>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Integration registry</span><h3>System Integrations</h3></div><span class="lw-chip lw-chip-amber">Mock adapters</span></div>
+            <div class="lw-integration-list"><span>✓ SMS Notification Gateway <small>Mock</small></span><span>✓ Email Service Layer <small>Mock</small></span><span>✓ GIS Data API <small>Mock</small></span><span>✓ Land Record API <small>Mock</small></span><span>✓ Court Data API <small>Mock</small></span></div>
+            <p class="lw-transparency-note">Integration cards describe future API contracts only. They are not production-connected and contain no live credentials.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- 13. NATIONAL INTELLIGENCE STUDIO -->
+    <section class="lw-intelligence-studio w-full py-space-2xl bg-surface scroll-mt-header" id="intelligence-studio" aria-labelledby="intelligence-studio-title">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+        <div class="max-w-3xl space-y-space-xs">
+          <span class="lw-kicker">National intelligence explorer</span>
+          <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="intelligence-studio-title">AI Intelligence Preview</h2>
+          <p class="font-body-lg text-body-lg text-on-surface-variant">Search India’s synthetic land-acquisition coverage and move from a place or project to an explainable decision in one step.</p>
+        </div>
+        <div class="lw-explorer-bar">
+          <span class="material-symbols-outlined" aria-hidden="true">travel_explore</span>
+          <input id="lw-intelligence-search" type="search" autocomplete="off" placeholder="Search India, state, district, taluk, village, project or survey number" aria-label="Search intelligence locations"/>
+          <button type="button" id="lw-intelligence-clear" aria-label="Clear intelligence search">Clear</button>
+          <button type="button" id="lw-intelligence-search-submit"><span class="material-symbols-outlined" aria-hidden="true">search</span> Search</button>
+          <div id="lw-intelligence-results" class="lw-search-results" role="listbox" aria-label="Intelligence search results" hidden></div>
+        </div>
+        <div class="lw-recent-searches" id="lw-recent-searches" aria-label="Recent searches"></div>
+        <nav class="lw-hierarchy" aria-label="National location hierarchy"><button type="button" data-hierarchy="India">India</button><span>›</span><button type="button" data-hierarchy="state">State</button><span>›</span><button type="button" data-hierarchy="district">District</button><span>›</span><button type="button" data-hierarchy="taluk">Taluk</button><span>›</span><button type="button" data-hierarchy="village">Village</button><span>›</span><button type="button" data-hierarchy="project">Project</button></nav>
+        <div class="lw-intelligence-report lw-panel" id="lw-intelligence-report" aria-live="polite">
+          <div class="lw-panel-heading"><div><span class="lw-kicker">AI Intelligence Report</span><h3 id="lw-intelligence-location">Select a location to begin</h3></div><span class="lw-chip lw-chip-ai">Shared state</span></div>
+          <div class="lw-intelligence-metrics" id="lw-intelligence-metrics"><div><span>Projects monitored</span><strong>--</strong></div><div><span>High risk</span><strong>--</strong></div><div><span>Average delay probability</span><strong>--</strong></div><div><span>AI confidence</span><strong>--</strong></div></div>
+          <div class="lw-intelligence-detail"><div><span>Top delay reasons</span><ul id="lw-intelligence-reasons"><li>Waiting for selected intelligence</li></ul></div><div><span>Expected delay</span><strong id="lw-intelligence-delay">-- days</strong></div><div><span>Officer recommendation</span><p id="lw-intelligence-recommendation">Select India, a state, district, taluk, village, project or survey record.</p></div></div>
+        </div>
+        <div class="lw-grid-2">
+          <article class="lw-panel lw-sustainability-explorer">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Searchable sustainability intelligence</span><h3>Land Sustainability Index</h3></div><span class="lw-chip">Location aware</span></div>
+            <div class="lw-inline-search"><input id="lw-sustainability-search" type="search" placeholder="Search district, village, survey or project" aria-label="Search sustainability data"/><button type="button" id="lw-sustainability-submit">Analyse</button></div>
+            <div class="lw-sustainability-heading"><strong id="lw-sustainability-location">Selected location</strong><b><span id="lw-sustainability-score">--</span><small>/100</small></b></div>
+            <div class="lw-sustainability-bars" id="lw-sustainability-bars"></div>
+            <p class="lw-sustainability-explanation" id="lw-sustainability-explanation">The index combines environmental stability, water availability, agricultural impact, infrastructure readiness and future risk.</p>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Forecast horizon</span><h3>AI Delay Timeline</h3></div><span class="lw-chip lw-chip-amber">Synthetic projection</span></div>
+            <div class="lw-timeline-forecast" id="lw-timeline-forecast"></div>
+            <div class="lw-forecast-note"><span class="material-symbols-outlined">query_stats</span><span>Projection rises when compensation, legal, approval or survey signals remain unresolved.</span></div>
+          </article>
+        </div>
+        <article class="lw-panel">
+          <div class="lw-panel-heading"><div><span class="lw-kicker">Explainable model workflow</span><h3>From project registration to continuous learning</h3></div><span class="lw-chip lw-chip-green">No empty stages</span></div>
+          <div class="lw-ai-workflow" aria-label="AI prediction workflow">
+            <div><span>1</span><strong>Project registered</strong><small>Case intake</small></div><i>→</i><div><span>2</span><strong>Data validation</strong><small>Evidence checks</small></div><i>→</i><div><span>3</span><strong>Feature engineering</strong><small>Risk signals</small></div><i>→</i><div><span>4</span><strong>AI prediction</strong><small>Delay probability</small></div><i>→</i><div><span>5</span><strong>SHAP explainability</strong><small>Why it matters</small></div><i>→</i><div><span>6</span><strong>Recommendation</strong><small>Officer action</small></div><i>→</i><div><span>7</span><strong>Notification</strong><small>Accountability</small></div><i>→</i><div><span>8</span><strong>Monitoring</strong><small>Learning loop</small></div>
+          </div>
+        </article>
+        <article class="lw-panel">
+          <div class="lw-panel-heading"><div><span class="lw-kicker">Operational notifications</span><h3>Notification Center</h3></div><span class="lw-count-badge">AI alerts</span></div>
+          <div class="lw-notification-board"><div class="lw-notification-board-item critical"><strong>Critical · Compensation delay</strong><span>12 min ago · <b data-lw-location>selected location</b></span><small>Verify pending awards and schedule review within 3 days.</small></div><div class="lw-notification-board-item warning"><strong>Warning · Court case updated</strong><span>45 min ago · <b data-lw-location>selected location</b></span><small>Refresh legal verification before the next hearing checkpoint.</small></div><div class="lw-notification-board-item ai"><strong>AI Alert · Risk trajectory changed</strong><span>2 hours ago · <b data-lw-location>selected location</b></span><small>Review the 7-day and 15-day forecast before approving the next stage.</small></div></div>
         </article>
       </div>
     </section>
@@ -2201,6 +2292,29 @@
         bannerLabel.textContent = "Officer: Tahsildar";
         bannerIcon.textContent = "👤";
       }
+      updateStakeholderWorkspace(role === 'admin' ? 'District Collector' : role === 'public' ? 'Citizen' : role);
+    }
+
+    function updateStakeholderWorkspace(role) {
+      const normalized = role || 'Field Officer';
+      const profile = window.landWatchState?.selectedProfile;
+      const analysis = window.landWatchState?.analysis;
+      const location = window.landWatchState?.selectedLocation || 'selected location';
+      const configs = {
+        Citizen: { title: 'Citizen dashboard', metrics: [['Application status', 'Under review'], ['Compensation status', 'Verification pending'], ['Expected timeline', `${analysis?.delayDays || 28} days`], ['Document status', '3 of 4 verified']], action: 'Track your application and upload any missing document.' },
+        'Field Officer': { title: 'Field officer dashboard', metrics: [['Assigned surveys', '18'], ['Pending verification', '7'], ['Priority tasks', '4'], ['Upload status', '92% complete']], action: 'Conduct the joint survey and attach verified field evidence.' },
+        Tahsildar: { title: 'Tahsildar dashboard', metrics: [['Village projects', profile?.sampleCases || 0], ['Pending approvals', '12'], ['Land records', '94% indexed'], ['Dispute cases', analysis?.reasons?.[1]?.pct || 18]], action: 'Resolve the leading legal and compensation bottlenecks.' },
+        'District Collector': { title: 'District Collector dashboard', metrics: [['Total projects', profile?.sampleCases || 0], ['Critical projects', analysis?.riskBand === 'High Risk' ? 'High attention' : 'Monitored'], ['AI recommendations', analysis?.recommendations?.actions?.length || 3], ['Expected delay reduction', '45 days']], action: 'Review the AI action queue and approve the next statutory checkpoint.' },
+        'State Government': { title: 'State government dashboard', metrics: [['District comparison', '18 districts'], ['Risk heatmap', 'Live'], ['Project ranking', 'Updated today'], ['Trend analysis', `${analysis?.delayProbability || 0}% avg delay`]], action: 'Compare district risk and direct resources to the highest-impact corridor.' },
+        'Central Ministry': { title: 'Central ministry dashboard', metrics: [['States covered', '18'], ['Projects monitored', '12,450'], ['Critical regions', '6'], ['Policy insights', '8 signals']], action: 'Review national patterns and issue policy guidance for systemic delay causes.' }
+      };
+      const config = configs[normalized] || configs['Field Officer'];
+      const summary = document.getElementById('lw-role-summary');
+      if (!summary) return;
+      document.getElementById('lw-suite-role')?.replaceChildren(document.createTextNode(normalized));
+      summary.innerHTML = `<div class="lw-role-heading"><span class="material-symbols-outlined">dashboard</span><div><strong>${escapeMapHtml(config.title)}</strong><small>${escapeMapHtml(location)} · shared LandWatch intelligence</small></div></div><div class="lw-role-metrics">${config.metrics.map(item => `<div><span>${escapeMapHtml(item[0])}</span><strong>${escapeMapHtml(item[1])}</strong></div>`).join('')}</div><p class="lw-role-action"><span class="material-symbols-outlined">tips_and_updates</span>${escapeMapHtml(config.action)}</p>`;
+      const action = document.getElementById('lw-suite-action-copy');
+      if (action) action.textContent = config.action;
     }
 
     function triggerActionRemark() {
@@ -3979,6 +4093,8 @@
         const recommendationText = document.getElementById('risk-recommendation-text');
         if (recommendationText) recommendationText.textContent = condition.pressure > 80 ? 'Protect green corridors, review high-density proposals, and prioritize environmental clearance.' : condition.water < 55 ? 'Prioritize water resilience, drainage review, and environmental safeguards.' : 'Maintain monitoring of green cover and statutory development milestones.';
         renderDynamicLandReport(location, profile, analysis, condition);
+        updateIntelligenceStudio(location, profile, analysis);
+        updateStakeholderWorkspace(document.getElementById('lw-suite-role-select')?.value || 'Field Officer');
         updateDynamicCharts(profile, analysis);
         if (!options.skipMap) updateLocationHeatmap(profile, analysis);
         landWatchState.updatedAt = new Date();
@@ -3998,6 +4114,104 @@
           <div class="smart-report-meta"><span><strong>Area Type</strong><em>${escapeMapHtml(condition.areaType)}</em></span><span><strong>Flood Risk</strong><em>${condition.floodRisk}</em></span><span><strong>Pollution Risk</strong><em>${condition.pollutionRisk}</em></span></div>
           <div class="smart-report-risk-grid"><span><strong>AI Delay Probability</strong><b>${analysis.delayProbability}%</b></span><span><strong>Land Sustainability</strong><b>${clamp(condition.stability)} / 100</b></span></div>
           <p class="p-3 rounded-lg bg-amber-50 text-amber-900 text-body-sm"><strong>⚠ Recommendation:</strong> ${escapeMapHtml(condition.pressure > 80 ? 'Review development pressure and prioritize environmental clearance.' : 'Continue evidence-led monitoring of land and statutory milestones.')}</p>`;
+      }
+
+      function updateIntelligenceStudio(location, profile, analysis) {
+        const condition = getLandCondition(profile);
+        const reasons = analysis.reasons.map(item => item.name).slice(0, 4);
+        const reportTitle = document.getElementById('lw-intelligence-location');
+        if (reportTitle) reportTitle.textContent = `${location} · ${profile.district}, ${profile.state}`;
+        const metrics = document.getElementById('lw-intelligence-metrics');
+        if (metrics) metrics.innerHTML = [
+          ['Projects monitored', profile.sampleCases.toLocaleString('en-IN')],
+          ['High risk', Math.max(1, Math.round(profile.sampleCases * analysis.delayProbability / 100 * .22)).toLocaleString('en-IN')],
+          ['Average delay probability', `${analysis.delayProbability}%`],
+          ['AI confidence', `${Math.max(91, 99 - Math.round(analysis.delayProbability / 20))}%`]
+        ].map(item => `<div><span>${item[0]}</span><strong>${item[1]}</strong></div>`).join('');
+        const reasonsList = document.getElementById('lw-intelligence-reasons');
+        if (reasonsList) reasonsList.innerHTML = reasons.map(reason => `<li>${escapeMapHtml(reason)}</li>`).join('');
+        document.getElementById('lw-intelligence-delay')?.replaceChildren(document.createTextNode(`${analysis.delayDays} days`));
+        const recommendation = analysis.recommendations?.actions?.[0] || 'Monitor statutory milestones and verify missing evidence.';
+        document.getElementById('lw-intelligence-recommendation')?.replaceChildren(document.createTextNode(`${recommendation} Priority: ${analysis.recommendations?.priority || 'MEDIUM'}.`));
+        document.getElementById('lw-sustainability-location')?.replaceChildren(document.createTextNode(`${location} · ${profile.district}`));
+        document.getElementById('lw-sustainability-score')?.replaceChildren(document.createTextNode(String(condition.stability)));
+        const sustainability = [
+          ['Environmental stability', condition.stability],
+          ['Water availability', condition.water],
+          ['Agricultural resilience', clamp(profile.land.agricultural + profile.factors.rehabilitationStatus / 3)],
+          ['Infrastructure readiness', profile.factors.governmentApprovals],
+          ['Future risk', clamp(100 - analysis.delayProbability)]
+        ];
+        const bars = document.getElementById('lw-sustainability-bars');
+        if (bars) bars.innerHTML = sustainability.map(item => `<div><span>${item[0]}</span><strong>${item[1]}%</strong><b><i style="width:${item[1]}%"></i></b></div>`).join('');
+        document.getElementById('lw-sustainability-explanation')?.replaceChildren(document.createTextNode(`${condition.areaType} shows ${condition.pressure}% development pressure and ${condition.waterRisk.toLowerCase()} water exposure. The index is synthetic decision-support data.`));
+        const forecast = [0, 7, 15, 30].map(days => clamp(analysis.delayProbability + days * (analysis.delayProbability > 60 ? 1.05 : .72)));
+        const forecastTarget = document.getElementById('lw-timeline-forecast');
+        if (forecastTarget) forecastTarget.innerHTML = [['Today', forecast[0]], ['7 days', forecast[1]], ['15 days', forecast[2]], ['30 days', forecast[3]]].map(item => `<div><span>${item[0]}</span><strong>${item[1]}%</strong><b><i style="width:${item[1]}%"></i></b></div>`).join('');
+      }
+
+      function intelligenceSearchItems(query) {
+        const needle = String(query || '').trim().toLowerCase();
+        const profiles = Object.keys(locationProfiles).map(name => {
+          const profile = locationProfiles[name];
+          return { label: name, locationName: name, type: 'Location', profile, searchText: `${name} ${profile.state} ${profile.district}`.toLowerCase() };
+        });
+        const parcels = Object.entries(typeof parcelDatabase === 'object' ? parcelDatabase : {}).map(([id, data]) => { const profile = profileFor(data.taluk) || profileFor(data.district) || profileFor(data.village); const locationName = profile ? Object.keys(locationProfiles).find(name => locationProfiles[name] === profile) : ''; return { label: `${data.name} · Survey ${data.surveyNo}`, locationName, type: 'Project / Survey', profile, parcelId: id, searchText: `${id} ${data.name} ${data.surveyNo} ${data.village} ${data.taluk} ${data.owner}`.toLowerCase() }; });
+        return [...profiles, ...parcels].filter(item => !needle || item.searchText.includes(needle)).slice(0, 8);
+      }
+
+      function selectIntelligenceResult(item) {
+        if (!item?.profile) return;
+        document.getElementById('lw-intelligence-report')?.classList.add('is-loading');
+        selectLocation(item.locationName);
+        if (item.parcelId && typeof selectParcel === 'function') selectParcel(item.parcelId);
+        document.getElementById('lw-intelligence-search').value = item.label;
+        const recent = JSON.parse(localStorage.getItem('landwatch_recent_searches') || '[]').filter(value => value !== item.label);
+        recent.unshift(item.label);
+        localStorage.setItem('landwatch_recent_searches', JSON.stringify(recent.slice(0, 5)));
+        renderRecentIntelligenceSearches();
+        window.setTimeout(() => document.getElementById('lw-intelligence-report')?.classList.remove('is-loading'), 240);
+      }
+
+      function renderRecentIntelligenceSearches() {
+        const target = document.getElementById('lw-recent-searches');
+        if (!target) return;
+        const recent = JSON.parse(localStorage.getItem('landwatch_recent_searches') || '[]');
+        target.innerHTML = recent.length ? `<span>Recent:</span>${recent.map(value => `<button type="button" data-recent-search="${escapeMapHtml(value)}">${escapeMapHtml(value)}</button>`).join('')}` : '<span>Try a city, district, survey number or project name</span>';
+        target.querySelectorAll('[data-recent-search]').forEach(button => button.addEventListener('click', () => selectIntelligenceResult(intelligenceSearchItems(button.dataset.recentSearch)[0])));
+      }
+
+      function initialiseIntelligenceStudio() {
+        const input = document.getElementById('lw-intelligence-search');
+        const results = document.getElementById('lw-intelligence-results');
+        let activeIndex = -1;
+        const renderResults = () => {
+          const items = intelligenceSearchItems(input.value);
+          if (!input.value.trim()) { results.hidden = true; return; }
+          results.hidden = false;
+          results.innerHTML = items.length ? items.map((item, index) => `<button type="button" role="option" data-result-index="${index}"><strong>${escapeMapHtml(item.label)}</strong><small>${escapeMapHtml(item.type)} · ${escapeMapHtml(item.profile?.state || 'India')}</small></button>`).join('') : '<div class="lw-search-empty">No matching intelligence record. Try a district, project or survey number.</div>';
+          results.querySelectorAll('[data-result-index]').forEach(button => button.addEventListener('click', () => selectIntelligenceResult(items[Number(button.dataset.resultIndex)])));
+          activeIndex = -1;
+        };
+        input?.addEventListener('input', renderResults);
+        input?.addEventListener('keydown', event => {
+          const items = intelligenceSearchItems(input.value);
+          if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); activeIndex = Math.max(0, Math.min(items.length - 1, activeIndex + (event.key === 'ArrowDown' ? 1 : -1))); results.querySelectorAll('[data-result-index]').forEach((button, index) => button.classList.toggle('is-active', index === activeIndex)); }
+          if (event.key === 'Enter' && items[activeIndex >= 0 ? activeIndex : 0]) { event.preventDefault(); selectIntelligenceResult(items[activeIndex >= 0 ? activeIndex : 0]); results.hidden = true; }
+          if (event.key === 'Escape') results.hidden = true;
+        });
+        document.getElementById('lw-intelligence-search-submit')?.addEventListener('click', () => { const item = intelligenceSearchItems(input.value)[0]; if (item) selectIntelligenceResult(item); else renderResults(); });
+        document.getElementById('lw-intelligence-clear')?.addEventListener('click', () => { input.value = ''; results.hidden = true; input.focus(); });
+        document.getElementById('lw-sustainability-submit')?.addEventListener('click', () => { const item = intelligenceSearchItems(document.getElementById('lw-sustainability-search').value)[0]; if (item) selectIntelligenceResult(item); });
+        document.querySelectorAll('[data-hierarchy]').forEach(button => button.addEventListener('click', () => {
+          const level = button.dataset.hierarchy;
+          if (level === 'India') { document.getElementById('lw-intelligence-search').value = 'India'; return; }
+          const profile = landWatchState.selectedProfile || profileFor('Chennai');
+          const value = level === 'state' ? profile.state : level === 'district' ? profile.district : level === 'taluk' ? profile.taluk : level === 'village' ? profile.village : profile.projectName;
+          const item = intelligenceSearchItems(value)[0];
+          if (item) selectIntelligenceResult(item);
+        }));
+        renderRecentIntelligenceSearches();
       }
 
       const auditLog = [];
@@ -4118,6 +4332,7 @@
       window.exportDashboardReport = exportDashboardPdf;
       window.landWatchLocationProfiles = locationProfiles;
       window.landWatchState = landWatchState;
+      window.landWatchSelectLocation = selectLocation;
       window.refreshLandWatchLocation = () => {
         if (landWatchState.selectedProfile && landWatchState.analysis) updateDynamicUi(landWatchState.selectedLocation, landWatchState.selectedProfile, landWatchState.analysis);
       };
@@ -4140,6 +4355,15 @@
         const area = document.getElementById('dashboard-area');
         const initial = area?.value && area.value !== 'all' ? area.value : 'Chennai';
         selectLocation(initial);
+        const roleSelect = document.getElementById('lw-suite-role-select');
+        roleSelect?.addEventListener('change', () => {
+          updateStakeholderWorkspace(roleSelect.value);
+          activeUserRole = roleSelect.value;
+          document.getElementById('banner-role-label').textContent = roleSelect.value;
+          document.getElementById('banner-role-icon').textContent = roleSelect.value === 'Citizen' ? '🌐' : roleSelect.value === 'Central Ministry' ? '🏛️' : '👤';
+        });
+        updateStakeholderWorkspace(roleSelect?.value || 'Field Officer');
+        initialiseIntelligenceStudio();
         renderNationalLocations();
         document.getElementById('gis-india-overview')?.addEventListener('click', () => {
           renderNationalLocations();
@@ -4185,4 +4409,4 @@
     })();
   </script>
 </body>
-</html>
+</html>9

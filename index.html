@@ -605,6 +605,7 @@
                 <button class="gis-search-submit" type="submit" data-i18n="map_search">Search</button>
               </form>
               <div class="flex flex-wrap items-center gap-2">
+                <button class="gis-tool-button" id="gis-india-overview" type="button"><span class="material-symbols-outlined text-[17px]" aria-hidden="true">public</span><span>View India Overview</span></button>
                 <button class="gis-tool-button" id="gis-locate-me" type="button">
                   <span class="material-symbols-outlined text-[17px]" aria-hidden="true">my_location</span>
                   <span data-i18n="locate_me">Locate Me</span>
@@ -716,7 +717,7 @@
                   “Send statutory joint boundary notice within 7 days.”
                 </p>
                 <div class="pt-1 flex items-center justify-between text-[11px] text-white/80">
-                  <span id="insp-assigned-officer">Assigned: Tahsildar (Tambaram)</span>
+                  <span id="insp-assigned-officer">Assigned: District officer · selected location</span>
                   <button class="px-2 py-0.5 rounded bg-white/20 hover:bg-white/30 text-white font-bold cursor-pointer" onclick="triggerActionRemark()">Take Action</button>
                 </div>
               </div>
@@ -860,16 +861,16 @@
             <div class="flex items-center justify-between border-b border-surface-container pb-space-sm">
               <div>
                 <span class="text-label-sm uppercase font-bold text-secondary" data-i18n="risk_current">Current area</span>
-                <h3 class="font-headline-sm text-headline-sm text-primary font-bold" id="risk-area-name">Chennai Region</h3>
+                <h3 class="font-headline-sm text-headline-sm text-primary font-bold" id="risk-area-name">India Land Intelligence Dashboard</h3>
               </div>
-              <div class="text-right"><strong class="font-display-lg text-display-lg text-primary" id="risk-score-value">82</strong><span class="text-body-sm text-on-surface-variant">/100</span><span class="block risk-label risk-low" id="risk-score-label">Low Risk</span></div>
+              <div class="text-right"><strong class="font-display-lg text-display-lg text-primary" id="risk-score-value">--</strong><span class="text-body-sm text-on-surface-variant">/100</span><span class="block risk-label risk-low" id="risk-score-label">Awaiting location</span></div>
             </div>
             <div class="space-y-space-md pt-space-base" id="risk-breakdown">
-              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_green">🌳 Green Cover</span><span data-risk-value="green">90%</span></div><div class="risk-track"><span data-risk-bar="green" style="width:90%"></span></div></div>
-              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_water">💧 Water Safety</span><span data-risk-value="water">75%</span></div><div class="risk-track"><span data-risk-bar="water" style="width:75%"></span></div></div>
-              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_development">🏗 Development Pressure</span><span data-risk-value="development">80%</span></div><div class="risk-track"><span data-risk-bar="development" style="width:80%"></span></div></div>
-              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_stability">🌍 Environmental Stability</span><span data-risk-value="stability">85%</span></div><div class="risk-track"><span data-risk-bar="stability" style="width:85%"></span></div></div>
-              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_density">🏙 Urban Density</span><span data-risk-value="density">70%</span></div><div class="risk-track"><span data-risk-bar="density" style="width:70%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_green">🌳 Green Cover</span><span data-risk-value="green">--</span></div><div class="risk-track"><span data-risk-bar="green" style="width:0%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_water">💧 Water Safety</span><span data-risk-value="water">--</span></div><div class="risk-track"><span data-risk-bar="water" style="width:0%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_development">🏗 Development Pressure</span><span data-risk-value="development">--</span></div><div class="risk-track"><span data-risk-bar="development" style="width:0%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_stability">🌍 Environmental Stability</span><span data-risk-value="stability">--</span></div><div class="risk-track"><span data-risk-bar="stability" style="width:0%"></span></div></div>
+              <div class="risk-meter"><div class="flex justify-between text-label-md font-semibold"><span data-i18n="risk_density">🏙 Urban Density</span><span data-risk-value="density">--</span></div><div class="risk-track"><span data-risk-bar="density" style="width:0%"></span></div></div>
             </div>
             <div class="risk-explanation mt-space-base"><strong data-i18n="risk_reasons">Risk drivers</strong><ul id="risk-reasons-list"></ul><strong class="mt-2 block" data-i18n="risk_recommendation">Recommendation</strong><p id="risk-recommendation-text" data-i18n="risk_recommendation_text">Protect green corridors and review new development proposals.</p></div>
           </div>
@@ -1715,6 +1716,7 @@
     let baseMapLayers = {};
     let activeBaseLayer = null;
     let userLocationLayer = null;
+    let nationalLocationLayer = null;
     let searchLocationMarker = null;
     const mapCenter = [12.8750, 80.0550];
     let leafletFallbackLoading = false;
@@ -2446,7 +2448,7 @@
           };
 
           function getSmartProfile(data) {
-            return smartAreaProfiles[data.taluk] || { name: 'Chennai Region', score: 82, green: 90, water: 75, development: 80, stability: 85, density: 70 };
+            return smartAreaProfiles[data.taluk] || { name: 'India Land Intelligence Dashboard', score: 0, green: 0, water: 0, development: 0, stability: 0, density: 0 };
           }
 
           function updateSmartLandModules(data) {
@@ -2509,12 +2511,12 @@
                   <div class="smart-report-item"><span>${translate('ai_water_risk')}</span><strong>${profile.water < 70 ? translate('risk_medium') : translate('risk_low')}</strong></div>
                 </div>
                 <div class="smart-report-meta">
-                  <span><strong>${translate('ai_area_type')}</strong><em id="ai-area-type">Mixed-use corridor</em></span>
+                  <span><strong>${translate('ai_area_type')}</strong><em id="ai-area-type">Selected area</em></span>
                   <span><strong>${translate('ai_classification')}</strong><em id="ai-classification">Managed transition zone</em></span>
                   <span><strong>${translate('ai_confidence')}</strong><em id="ai-confidence">87%</em></span>
                 </div>
                 <div class="smart-report-risk-grid">
-                  <span><strong>${translate('ai_flood_risk')}</strong><b id="ai-flood-risk">Medium</b></span>
+                  <span><strong>${translate('ai_flood_risk')}</strong><b id="ai-flood-risk">Awaiting location</b></span>
                   <span><strong>${translate('ai_development_risk')}</strong><b id="ai-development-risk">High</b></span>
                 </div>
                 <div class="smart-report-metrics">
@@ -3756,6 +3758,23 @@
         locationHeatLayer: null
       };
 
+      const landConditionProfiles = {
+        Mumbai: { vegetation: 22, development: 35, waterRisk: 'High Risk', floodRisk: 'High Risk', pollutionRisk: 'High Risk', areaType: 'Coastal Urban Corridor', green: 32, water: 45, pressure: 85, stability: 58, density: 90 },
+        Chennai: { vegetation: 15, development: 30, waterRisk: 'Medium Risk', floodRisk: 'High Risk', pollutionRisk: 'Medium Risk', areaType: 'Mixed Urban + Agricultural Belt', green: 46, water: 61, pressure: 72, stability: 69, density: 68 },
+        Delhi: { vegetation: 28, development: 40, waterRisk: 'High Risk', floodRisk: 'Medium Risk', pollutionRisk: 'Very High Risk', areaType: 'National Capital Urban Region', green: 25, water: 39, pressure: 88, stability: 42, density: 94 },
+        Bangalore: { vegetation: 17, development: 34, waterRisk: 'Medium Risk', floodRisk: 'Medium Risk', pollutionRisk: 'Medium Risk', areaType: 'Technology + Industrial Growth Corridor', green: 48, water: 65, pressure: 75, stability: 76, density: 82 },
+        Hyderabad: { vegetation: 21, development: 31, waterRisk: 'Medium Risk', floodRisk: 'Low Risk', pollutionRisk: 'Medium Risk', areaType: 'Deccan Metropolitan Expansion Zone', green: 39, water: 58, pressure: 69, stability: 68, density: 74 },
+        Kolkata: { vegetation: 19, development: 29, waterRisk: 'High Risk', floodRisk: 'High Risk', pollutionRisk: 'High Risk', areaType: 'Riverine Industrial Urban Corridor', green: 35, water: 48, pressure: 70, stability: 55, density: 86 }
+      };
+
+      function getLandCondition(profile) {
+        if (landConditionProfiles[profile.name]) return { ...landConditionProfiles[profile.name] };
+        const green = clamp(profile.land.forest + profile.land.agricultural * .45);
+        const density = clamp(profile.land.urban + profile.land.industrial * .8);
+        const water = clamp(100 - profile.factors.compensationPending * 1.5 - profile.land.water * 2);
+        return { vegetation: clamp(100 - green), development: density, waterRisk: water < 45 ? 'High Risk' : water < 70 ? 'Medium Risk' : 'Low Risk', floodRisk: profile.land.water > 7 ? 'High Risk' : profile.land.water > 4 ? 'Medium Risk' : 'Low Risk', pollutionRisk: density > 75 ? 'High Risk' : density > 50 ? 'Medium Risk' : 'Low Risk', areaType: `${titleCase(profile.landType || 'Mixed')} Acquisition Corridor`, green, water, pressure: density, stability: clamp(100 - profile.factors.legalDisputes * 1.5), density };
+      }
+
       const number = value => {
         const parsed = Number(String(value ?? '').replace(/[₹,%\sCr]/g, ''));
         return Number.isFinite(parsed) ? parsed : 0;
@@ -3789,8 +3808,27 @@
       }
 
       function profileFor(location) {
-        const key = Object.keys(locationProfiles).find(item => item.toLowerCase() === String(location || '').trim().toLowerCase());
+        const query = String(location || '').trim().toLowerCase();
+        const key = Object.keys(locationProfiles).find(item => item.toLowerCase() === query || locationProfiles[item].district.toLowerCase() === query || locationProfiles[item].state.toLowerCase() === query);
         return key ? { ...locationProfiles[key], name: key, land: { ...locationProfiles[key].land }, factors: { ...locationProfiles[key].factors } } : null;
+      }
+
+      function renderNationalLocations() {
+        if (!leafletMap || typeof L === 'undefined') return;
+        if (nationalLocationLayer) leafletMap.removeLayer(nationalLocationLayer);
+        nationalLocationLayer = L.layerGroup();
+        Object.keys(locationProfiles).filter(name => !['Tambaram', 'Chengalpattu', 'Sriperumbudur'].includes(name)).forEach(name => {
+          const profile = profileFor(name);
+          const analysis = analyseLocation(profile);
+          const condition = getLandCondition(profile);
+          const color = analysis.delayProbability >= 70 ? '#ba1a1a' : analysis.delayProbability >= 40 ? '#d97706' : '#059669';
+          const marker = L.circleMarker(profile.coords, { radius: 7 + Math.round(analysis.delayProbability / 35), color: '#ffffff', weight: 2, fillColor: color, fillOpacity: .9 });
+          marker.bindPopup(`<div class="gis-popup"><strong>${escapeMapHtml(name)}</strong><span class="gis-popup-category">${escapeMapHtml(profile.state)} · ${escapeMapHtml(profile.district)}</span><p>${profile.sampleCases} projects · ${analysis.delayProbability}% AI delay probability</p><p>${escapeMapHtml(condition.areaType)} · Sustainability ${condition.stability}/100</p></div>`);
+          marker.on('click', () => { selectLocation(name); leafletMap.setView(profile.coords, 8, { animate: true }); });
+          marker.addTo(nationalLocationLayer);
+        });
+        nationalLocationLayer.addTo(leafletMap);
+        window.landWatchNationalLocationLayer = nationalLocationLayer;
       }
 
       function analyseLocation(profile, record = {}) {
@@ -3884,6 +3922,7 @@
       }
 
       function updateDynamicUi(location, profile, analysis, options = {}) {
+        const condition = getLandCondition(profile);
         const locationLabel = location ? `${location} · Land Acquisition Monitoring · SIH 2026` : 'AI-Powered Land Acquisition Monitoring · SIH 2026';
         document.getElementById('demo-location-label')?.replaceChildren(document.createTextNode(`SIMULATED DEMO · ${location ? `${location} · Land Acquisition Monitoring` : 'AI-Powered Land Acquisition Monitoring'} · SIH 2026`));
         document.getElementById('hero-location-label')?.replaceChildren(document.createTextNode(locationLabel));
@@ -3905,7 +3944,7 @@
         if (score) score.textContent = String(analysis.riskScore);
         const scoreLabel = document.getElementById('risk-score-label');
         if (scoreLabel) { scoreLabel.textContent = analysis.riskBand; scoreLabel.className = `block risk-label ${analysis.riskBand === 'Low Risk' ? 'risk-low' : analysis.riskBand === 'Medium Risk' ? 'risk-medium' : 'risk-high'}`; }
-        const riskValues = { green: profile.land.forest + profile.land.agricultural, water: profile.land.water + profile.factors.rehabilitationStatus / 4, development: profile.land.urban + profile.land.industrial, stability: 100 - analysis.riskScore };
+        const riskValues = { green: condition.green, water: condition.water, development: condition.pressure, stability: condition.stability, density: condition.density };
         Object.entries(riskValues).forEach(([key, value]) => { document.querySelector(`[data-risk-value="${key}"]`)?.replaceChildren(document.createTextNode(`${clamp(value)}%`)); const bar = document.querySelector(`[data-risk-bar="${key}"]`); if (bar) bar.style.width = `${clamp(value)}%`; });
         const analysisLocation = document.getElementById('land-analysis-location');
         if (analysisLocation) analysisLocation.value = location || '';
@@ -3917,6 +3956,8 @@
         document.querySelectorAll('[data-lw-location]').forEach(element => { element.textContent = location || 'selected location'; });
         const officerScope = document.getElementById('lw-officer-scope');
         if (officerScope) officerScope.textContent = `District officer · ${location || 'selected portfolio'}`;
+        const assignedOfficer = document.getElementById('insp-assigned-officer');
+        if (assignedOfficer) assignedOfficer.textContent = `Assigned: District officer · ${location || 'selected location'}`;
         const scoreCard = document.getElementById('lw-risk-score');
         if (scoreCard) scoreCard.innerHTML = `${analysis.riskScore}<small>/100</small>`;
         const delayCard = document.getElementById('lw-delay-probability');
@@ -3929,10 +3970,34 @@
         if (recommendation) recommendation.textContent = `${analysis.riskBand} detected · ${analysis.recommendations?.topFactor || 'Monitor statutory milestones'} is the leading model signal. Priority: ${analysis.recommendations?.priority || 'MEDIUM'}.`;
         const actions = document.getElementById('lw-dynamic-actions');
         if (actions) actions.innerHTML = (analysis.recommendations?.actions || []).map((action, index) => `<li><strong>${index + 1}.</strong> ${escapeMapHtml(action)} <small>${index === 0 ? `Priority: ${analysis.recommendations.priority}` : index === 1 ? 'Deadline: 7 days' : 'Owner: District review cell'}</small></li>`).join('');
+        const reasons = document.getElementById('risk-reasons-list');
+        if (reasons) reasons.innerHTML = [
+          condition.green < 35 ? `Green cover pressure: ${condition.vegetation}% vegetation decline` : `Green cover remains at ${condition.green}%`,
+          `${condition.waterRisk} water safety and ${condition.floodRisk.toLowerCase()} flood exposure`,
+          `Development pressure is ${condition.pressure}%`
+        ].map(reason => `<li>${escapeMapHtml(reason)}</li>`).join('');
+        const recommendationText = document.getElementById('risk-recommendation-text');
+        if (recommendationText) recommendationText.textContent = condition.pressure > 80 ? 'Protect green corridors, review high-density proposals, and prioritize environmental clearance.' : condition.water < 55 ? 'Prioritize water resilience, drainage review, and environmental safeguards.' : 'Maintain monitoring of green cover and statutory development milestones.';
+        renderDynamicLandReport(location, profile, analysis, condition);
         updateDynamicCharts(profile, analysis);
         if (!options.skipMap) updateLocationHeatmap(profile, analysis);
         landWatchState.updatedAt = new Date();
         window.landWatchState = landWatchState;
+      }
+
+      function renderDynamicLandReport(location, profile, analysis, condition) {
+        const report = document.getElementById('land-analysis-report');
+        if (!report) return;
+        report.innerHTML = `<h3 class="font-headline-sm text-headline-sm text-primary font-bold">Dynamic Land Condition Intelligence</h3>
+          <div class="smart-report-grid">
+            <div class="smart-report-item"><span>Location</span><strong>📍 ${escapeMapHtml(location || 'India')}</strong></div>
+            <div class="smart-report-item"><span>Vegetation</span><strong>Decreased by ${condition.vegetation}%</strong></div>
+            <div class="smart-report-item"><span>Urban Development</span><strong>Increased by ${condition.development}%</strong></div>
+            <div class="smart-report-item"><span>Water Risk</span><strong>${condition.waterRisk}</strong></div>
+          </div>
+          <div class="smart-report-meta"><span><strong>Area Type</strong><em>${escapeMapHtml(condition.areaType)}</em></span><span><strong>Flood Risk</strong><em>${condition.floodRisk}</em></span><span><strong>Pollution Risk</strong><em>${condition.pollutionRisk}</em></span></div>
+          <div class="smart-report-risk-grid"><span><strong>AI Delay Probability</strong><b>${analysis.delayProbability}%</b></span><span><strong>Land Sustainability</strong><b>${clamp(condition.stability)} / 100</b></span></div>
+          <p class="p-3 rounded-lg bg-amber-50 text-amber-900 text-body-sm"><strong>⚠ Recommendation:</strong> ${escapeMapHtml(condition.pressure > 80 ? 'Review development pressure and prioritize environmental clearance.' : 'Continue evidence-led monitoring of land and statutory milestones.')}</p>`;
       }
 
       const auditLog = [];
@@ -3980,7 +4045,7 @@
       function dashboardDataset() {
         const profile = landWatchState.selectedProfile || profileFor('Chennai');
         const analysis = currentAnalysis();
-        return { location: landWatchState.selectedLocation || 'All monitored areas', state: profile.state, district: profile.district, profile, analysis, dataset: landWatchState.dataset, timestamp: landWatchState.updatedAt || new Date() };
+        return { location: landWatchState.selectedLocation || 'India', state: profile.state, district: profile.district, profile, condition: getLandCondition(profile), analysis, dataset: landWatchState.dataset, timestamp: landWatchState.updatedAt || new Date() };
       }
 
       function exportDashboardPdf() {
@@ -4009,6 +4074,9 @@
         (report.analysis.shap || []).forEach(item => line(`• ${item.feature}: ${item.impact > 0 ? '+' : ''}${item.impact}% (${item.direction})`, 10));
         y += 3; line('Land condition analysis', 12);
         Object.entries(report.profile.land).forEach(([key, value]) => line(`• ${titleCase(key)}: ${value}%`, 10));
+        line(`• Area type: ${report.condition.areaType}`, 10);
+        line(`• Vegetation decline: ${report.condition.vegetation}% · Urban development: ${report.condition.development}%`, 10);
+        line(`• Water: ${report.condition.waterRisk} · Flood: ${report.condition.floodRisk} · Pollution: ${report.condition.pollutionRisk}`, 10);
         y += 3; line('Recommendations', 12);
         const recommendation = report.analysis.riskBand === 'High Risk' ? 'Escalate case, validate compensation ledger, and conduct an expedited joint survey.' : report.analysis.riskBand === 'Medium Risk' ? 'Close documentation gaps and schedule a revenue inspection within 14 days.' : 'Proceed with standard verification and monitor statutory milestones.';
         pdf.splitTextToSize(recommendation, 178).forEach(text => line(text, 10));
@@ -4072,6 +4140,12 @@
         const area = document.getElementById('dashboard-area');
         const initial = area?.value && area.value !== 'all' ? area.value : 'Chennai';
         selectLocation(initial);
+        renderNationalLocations();
+        document.getElementById('gis-india-overview')?.addEventListener('click', () => {
+          renderNationalLocations();
+          leafletMap?.fitBounds(Object.values(locationProfiles).map(profile => profile.coords), { padding: [24, 24], animate: true });
+          document.getElementById('map-active-stats')?.replaceChildren(document.createTextNode(`${Object.keys(locationProfiles).length - 3} national locations · India overview · AI risk clusters active`));
+        });
         area?.addEventListener('change', () => selectLocation(area.value === 'all' ? 'Chennai' : area.value));
         document.getElementById('landwatch-csv-input')?.addEventListener('change', event => { const file = event.target.files?.[0]; if (file) loadCsv(file); });
         document.querySelectorAll('[data-lw-notify-action]').forEach(button => button.addEventListener('click', () => {
@@ -4094,7 +4168,17 @@
           event.stopImmediatePropagation();
           selectLocation(profile.name);
           document.getElementById('dashboard-area').value = profile.name;
+          leafletMap?.setView(profile.coords, 8, { animate: true });
           document.getElementById('cadastral-map')?.scrollIntoView({ behavior: 'smooth' });
+        }, true);
+        document.getElementById('run-land-analysis')?.addEventListener('click', event => {
+          const query = document.getElementById('land-analysis-location')?.value.trim();
+          const profile = profileFor(query) || landWatchState.selectedProfile;
+          if (!profile) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          selectLocation(profile.name);
+          renderDynamicLandReport(profile.name, profile, landWatchState.analysis, getLandCondition(profile));
         }, true);
       };
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initialise, { once: true }); else initialise();

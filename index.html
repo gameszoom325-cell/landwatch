@@ -1206,6 +1206,110 @@
         </div>
       </div>
     </section>
+    <!-- ==================================================== -->
+    <!-- 10. DISTRICT OPERATIONS COMMAND CENTRE -->
+    <!-- ==================================================== -->
+    <section class="lw-command-centre w-full py-space-2xl bg-surface-container-low border-y border-surface-container-high scroll-mt-header" id="command-centre" aria-labelledby="command-centre-title">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-base">
+          <div class="space-y-space-xs">
+            <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">District operations · live demo telemetry</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="command-centre-title">Land Intelligence Command Centre</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">A single operational view for Collectors, DLAOs, Revenue Officers, NHAI and environmental liaison teams.</p>
+          </div>
+          <div class="lw-live-pill"><span class="lw-live-dot" aria-hidden="true"></span><span>Model services operational</span><time datetime="2026-09-22T09:35:04+05:30">Updated 09:35 IST</time></div>
+        </div>
+
+        <div class="lw-status-grid" aria-label="Live government status">
+          <article class="lw-status-card"><span class="material-symbols-outlined">folder_open</span><div><strong data-lw-count="346">346</strong><span>Active cases</span></div><em class="lw-trend-up">+8 this week</em></article>
+          <article class="lw-status-card lw-status-danger"><span class="material-symbols-outlined">priority_high</span><div><strong data-lw-count="42">42</strong><span>High risk cases</span></div><em>12 need action today</em></article>
+          <article class="lw-status-card lw-status-warning"><span class="material-symbols-outlined">event</span><div><strong data-lw-count="31">31</strong><span>Near deadline</span></div><em>Next 14 days</em></article>
+          <article class="lw-status-card"><span class="material-symbols-outlined">payments</span><div><strong data-lw-count="78">78</strong><span>Compensation pending</span></div><em>₹68.4 Cr pipeline</em></article>
+          <article class="lw-status-card lw-status-online"><span class="material-symbols-outlined">group</span><div><strong data-lw-count="24">24</strong><span>Officers online</span></div><em>Across 3 taluks</em></article>
+          <article class="lw-status-card"><span class="material-symbols-outlined">task_alt</span><div><strong data-lw-count="118">118</strong><span>Processed today</span></div><em class="lw-trend-up">+14% vs. average</em></article>
+        </div>
+
+        <div class="lw-grid-2">
+          <article class="lw-panel lw-ai-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Enterprise model assurance</span><h3>AI Confidence &amp; Explainability</h3></div><span class="lw-chip lw-chip-green">Production simulation</span></div>
+            <div class="lw-confidence-layout">
+              <div class="lw-confidence-ring" aria-label="AI confidence 96 percent"><strong>96<small>%</small></strong><span>confidence</span></div>
+              <div class="lw-confidence-facts">
+                <div><span>Prediction accuracy</span><strong>97.2%</strong><b><i style="width:97.2%"></i></b></div>
+                <div><span>Model version</span><strong>LW-RiskNet v2.4.1</strong></div>
+                <div><span>Last model update</span><strong>18 Sep 2026 · 18:40 IST</strong></div>
+                <div><span>Explainability status</span><strong class="lw-green-text">SHAP factors available</strong></div>
+                <div><span>Inference time</span><strong>184 ms · p95</strong></div>
+              </div>
+            </div>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Selected parcel · LW-4521</span><h3>Why this prediction?</h3></div><span class="lw-risk-badge">Critical · 87%</span></div>
+            <div class="lw-factor-list">
+              <div><span><i class="lw-factor-dot red"></i>Compensation delay</span><strong>42%</strong><b><i style="width:42%"></i></b></div>
+              <div><span><i class="lw-factor-dot orange"></i>Boundary dispute</span><strong>25%</strong><b><i style="width:25%"></i></b></div>
+              <div><span><i class="lw-factor-dot amber"></i>Court / hearing risk</span><strong>18%</strong><b><i style="width:18%"></i></b></div>
+              <div><span><i class="lw-factor-dot blue"></i>Missing documents</span><strong>9%</strong><b><i style="width:9%"></i></b></div>
+              <div><span><i class="lw-factor-dot slate"></i>Officer availability</span><strong>6%</strong><b><i style="width:6%"></i></b></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="lw-grid-3">
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Officer decision support</span><h3>Recommended actions</h3></div><span class="lw-priority-critical">Critical</span></div>
+            <ol class="lw-action-list">
+              <li><span>01</span><div><strong>Conduct joint survey</strong><small>Assign NHAI field team · due in 3 days</small></div><button type="button" class="lw-action-btn" data-lw-action="Joint survey queued">Queue</button></li>
+              <li><span>02</span><div><strong>Release compensation</strong><small>Validate valuation ledger · ₹1.84 Cr</small></div><button type="button" class="lw-action-btn" data-lw-action="Compensation review opened">Review</button></li>
+              <li><span>03</span><div><strong>Escalate to Collector</strong><small>Boundary objection unresolved for 18 days</small></div><button type="button" class="lw-action-btn" data-lw-action="Collector escalation drafted">Draft</button></li>
+              <li><span>04</span><div><strong>Legal verification</strong><small>Check joint patta and FMB alignment</small></div><button type="button" class="lw-action-btn" data-lw-action="Legal verification assigned">Assign</button></li>
+            </ol>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">District attention queue</span><h3>Government Alert Center</h3></div><span class="lw-count-badge">18 open</span></div>
+            <div class="lw-alert-filters" role="group" aria-label="Alert severity filters"><button class="is-active" type="button" data-lw-alert-filter="all">All</button><button type="button" data-lw-alert-filter="critical">Critical</button><button type="button" data-lw-alert-filter="high">High</button><button type="button" data-lw-alert-filter="medium">Medium</button></div>
+            <div class="lw-alert-list">
+              <div class="lw-alert" data-lw-alert="critical"><span class="lw-alert-icon red">!</span><div><strong>Section 25 notice risk · LW-2894</strong><small>Forest valuation overdue by 14 days · 09:12</small></div></div>
+              <div class="lw-alert" data-lw-alert="high"><span class="lw-alert-icon orange">↗</span><div><strong>Hearing in 5 days · LW-3110</strong><small>Co-sharer verification pending · 08:46</small></div></div>
+              <div class="lw-alert" data-lw-alert="medium"><span class="lw-alert-icon amber">◷</span><div><strong>Compensation batch ready</strong><small>12 awards awaiting treasury release · 08:20</small></div></div>
+            </div>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Officer workspace</span><h3>Today at a glance</h3></div><span class="lw-chip">Tahsildar · Tambaram</span></div>
+            <div class="lw-workspace-grid"><div><strong>18</strong><span>Assigned cases</span></div><div><strong>11</strong><span>Completed today</span></div><div><strong>7</strong><span>Pending reviews</span></div><div><strong>4</strong><span>Urgent cases</span></div><div><strong>3</strong><span>Court hearings</span></div><div><strong>92%</strong><span>Survey completion</span></div></div>
+            <div class="lw-activity"><span class="lw-avatar">AR</span><p><strong>A. Ramesh</strong> uploaded a verified FMB sketch<small>8 minutes ago · Case LW-4521</small></p></div>
+            <div class="lw-activity"><span class="lw-avatar lw-avatar-purple">PS</span><p><strong>Priya S.</strong> acknowledged Collector escalation<small>26 minutes ago · Oragadam</small></p></div>
+          </article>
+        </div>
+
+        <div class="lw-grid-2">
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Evidence readiness</span><h3>Document Management</h3></div><span class="lw-chip lw-chip-green">OCR ready</span></div>
+            <div class="lw-document-summary"><div><strong>94.6%</strong><span>verification rate</span></div><div><strong>1,284</strong><span>indexed records</span></div><div><strong>17</strong><span>missing documents</span></div></div>
+            <div class="lw-upload-zone" tabindex="0" role="button" aria-label="Upload a document"><span class="material-symbols-outlined">cloud_upload</span><div><strong>Drop official scans here</strong><small>PDF, JPG, PNG · max 25 MB · OCR + duplicate detection enabled</small></div><button type="button" class="lw-action-btn" id="lw-demo-upload">Browse files</button></div>
+            <div class="lw-verification-line"><span class="is-done">✓ Intake</span><span class="is-done">✓ OCR</span><span class="is-done">✓ Hash check</span><span>○ Officer review</span><span>○ Registry sync</span></div>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Evidence-based land health</span><h3>AI Land Intelligence</h3></div><span class="lw-chip">LW-4521 · 22 Sep 2026</span></div>
+            <div class="lw-health-grid"><div class="lw-health-score"><strong>78</strong><span>overall health / 100</span><b><i style="width:78%"></i></b></div><div><span>Environmental score</span><strong>86 / 100</strong><b><i style="width:86%"></i></b></div><div><span>Development pressure</span><strong>72%</strong><b><i style="width:72%"></i></b></div><div><span>Flood risk</span><strong class="lw-amber-text">Moderate</strong><b><i style="width:54%"></i></b></div><div><span>Water stress</span><strong>31%</strong><b><i style="width:31%"></i></b></div><div><span>Acquisition complexity</span><strong class="lw-red-text">High · 81%</strong><b><i style="width:81%"></i></b></div></div>
+            <div class="lw-trend-strip"><span>Land value trend</span><strong>₹1.84 Cr / ha</strong><em>+6.8% YoY</em></div>
+          </article>
+        </div>
+
+        <div class="lw-grid-2">
+          <article class="lw-panel lw-public-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Citizen-first service layer</span><h3>Reporting &amp; Public Tracking</h3></div><span class="lw-chip">No login required</span></div>
+            <div class="lw-public-tools"><button type="button" class="lw-public-tool" id="lw-report-demo"><span class="material-symbols-outlined">add_a_photo</span><strong>Report an issue</strong><small>GPS · images · video · anonymous option</small></button><button type="button" class="lw-public-tool" id="lw-track-demo"><span class="material-symbols-outlined">track_changes</span><strong>Track a case</strong><small>Progress · officer · compensation · notices</small></button></div>
+            <div class="lw-tracking-preview"><div><span class="lw-kicker">LW-4521 · current stage</span><strong>Field survey &amp; boundary demarcation</strong><b><i style="width:68%"></i></b><small>68% complete · estimated completion 04 Oct 2026</small></div><span class="lw-chip lw-chip-amber">₹1.84 Cr pending</span></div>
+          </article>
+          <article class="lw-panel">
+            <div class="lw-panel-heading"><div><span class="lw-kicker">Illustrative district analytics</span><h3>Performance pulse</h3></div><span class="lw-chip">Last 30 days</span></div>
+            <div class="lw-bars"><div><span>Completion rate</span><strong>82%</strong><b><i style="width:82%"></i></b></div><div><span>Document verification</span><strong>94.6%</strong><b><i style="width:94.6%"></i></b></div><div><span>Officer SLA adherence</span><strong>88%</strong><b><i style="width:88%"></i></b></div><div><span>Citizen report closure</span><strong>76%</strong><b><i style="width:76%"></i></b></div></div>
+            <div class="lw-ranking"><span>#1 Chengalpattu <b>91%</b></span><span>#2 Tambaram <b>86%</b></span><span>#3 Sriperumbudur <b>79%</b></span></div>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ==================================================== -->
@@ -1326,6 +1430,7 @@
           <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
             Built strictly for hackathon evaluation under SIH 2026 problem SIH26017. All parcel identifiers, boundary objections, and timelines shown are synthetic illustrative data.
           </p>
+          <p class="lw-demo-disclaimer">All statistics, parcel information, AI outputs, and analytics displayed are synthetic demonstration data created solely for Smart India Hackathon 2026 evaluation.</p>
           <div class="pt-space-xs">
             <span class="inline-block bg-[#f3e8ff] border border-[#d8b4fe] text-[#6b21a8] px-2.5 py-1 rounded text-label-sm font-bold">
               SIMULATED DEMO — Chengalpattu District
@@ -3449,6 +3554,103 @@
       const savedLang = localStorage.getItem('landwatch_lang') || 'en';
       applyLanguage(savedLang);
     });
+  </script>
+  <script>
+    // Command Centre enhancements are intentionally additive to the existing prototype controller.
+    (() => {
+      const ready = callback => document.readyState === 'loading'
+        ? document.addEventListener('DOMContentLoaded', callback, { once: true })
+        : callback();
+
+      ready(() => {
+        document.querySelectorAll('[data-lw-count]').forEach(element => {
+          const target = Number(element.dataset.lwCount);
+          const start = performance.now();
+          const tick = now => {
+            const progress = Math.min((now - start) / 1100, 1);
+            element.textContent = Math.round(target * (1 - Math.pow(1 - progress, 3))).toLocaleString('en-IN');
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+
+        document.querySelectorAll('[data-lw-alert-filter]').forEach(button => {
+          button.addEventListener('click', () => {
+            document.querySelectorAll('[data-lw-alert-filter]').forEach(item => item.classList.toggle('is-active', item === button));
+            const filter = button.dataset.lwAlertFilter;
+            document.querySelectorAll('[data-lw-alert]').forEach(alert => {
+              alert.hidden = filter !== 'all' && alert.dataset.lwAlert !== filter;
+            });
+          });
+        });
+
+        const announce = message => {
+          let toast = document.getElementById('lw-action-toast');
+          if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'lw-action-toast';
+            toast.className = 'lw-action-toast';
+            toast.setAttribute('role', 'status');
+            document.body.appendChild(toast);
+          }
+          toast.textContent = `✓ ${message}`;
+          toast.classList.add('is-visible');
+          window.clearTimeout(toast._timer);
+          toast._timer = window.setTimeout(() => toast.classList.remove('is-visible'), 2800);
+        };
+        document.querySelectorAll('[data-lw-action]').forEach(button => button.addEventListener('click', () => {
+          announce(button.dataset.lwAction);
+          button.textContent = 'Done';
+          button.disabled = true;
+        }));
+
+        document.getElementById('lw-demo-upload')?.addEventListener('click', () => {
+          announce('Secure upload queue opened · OCR and duplicate detection ready');
+        });
+        document.querySelector('.lw-upload-zone')?.addEventListener('keydown', event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            announce('Secure upload queue opened · accepted formats: PDF, JPG, PNG');
+          }
+        });
+        document.getElementById('lw-report-demo')?.addEventListener('click', () => {
+          document.getElementById('citizen-reports')?.scrollIntoView({ behavior: 'smooth' });
+          announce('Citizen reporting form ready · GPS capture is optional');
+        });
+        document.getElementById('lw-track-demo')?.addEventListener('click', () => {
+          document.getElementById('public-tracking')?.scrollIntoView({ behavior: 'smooth' });
+          announce('Public tracking portal opened for LW-4521');
+        });
+
+        // Additive map utilities: the existing Leaflet map, filters, and parcel renderer remain untouched.
+        const mapToolbar = document.querySelector('#cadastral-map .gis-toolbar');
+        if (mapToolbar && !document.getElementById('lw-map-tools')) {
+          const toolRow = document.createElement('div');
+          toolRow.id = 'lw-map-tools';
+          toolRow.className = 'lw-map-tool-row';
+          toolRow.setAttribute('aria-label', 'Additional map tools');
+          toolRow.innerHTML = '<button type="button" data-map-tool="compass">◎ Compass</button><button type="button" data-map-tool="measure-distance">↔ Measure distance</button><button type="button" data-map-tool="measure-area">⌗ Measure area</button><button type="button" data-map-tool="coordinates">⌖ Coordinates</button><button type="button" data-map-tool="print">⎙ Print</button><button type="button" data-map-tool="export">⇩ Export screenshot</button>';
+          mapToolbar.appendChild(toolRow);
+          toolRow.querySelectorAll('[data-map-tool]').forEach(button => button.addEventListener('click', () => {
+            const tool = button.dataset.mapTool;
+            if (tool === 'print') {
+              window.print();
+              return;
+            }
+            if (tool === 'export') {
+              announce('Map export prepared · use browser print to save as PDF or image');
+              return;
+            }
+            if (tool === 'compass' && window.leafletMap) {
+              window.leafletMap.setBearing?.(0);
+              announce('Map orientation reset to north');
+              return;
+            }
+            announce(`${button.textContent.trim()} enabled · click a parcel to continue`);
+          }));
+        }
+      });
+    })();
   </script>
 </body>
 </html>

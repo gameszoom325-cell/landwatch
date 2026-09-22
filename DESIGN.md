@@ -226,3 +226,58 @@ The shape architecture is restrained and disciplined (`roundedness: 1`), embodyi
 - Background: `#FFFFFF`, border: `1px solid #CBD5E1`, radius: `4px`, height: `38px`, padding: `0 12px`.
 - Active/Focus: Border `#1B3A5B`, ring: `1px solid #1B3A5B`.
 - Helper and error text: strictly aligned below inputs in `12px` font.
+
+## Government Decision Support Architecture
+
+LandWatch is an AI-assisted government intelligence platform for early detection of land-acquisition delays. The browser prototype uses synthetic demonstration data for Smart India Hackathon 2026 evaluation.
+
+### Data flow
+```text
+Government systems -> REST API / GraphQL -> LandWatch processing layer
+  -> location and project records -> prediction engine
+  -> GIS risk layers -> dashboard, alerts, reports and audit trail
+```
+`landWatchState` is the single in-browser source for the selected location, CSV dataset, analysis result, heatmap and report payload.
+
+### AI architecture and machine-learning workflow
+Inputs include project type, land area, affected families, ownership conflicts, pending documents, legal disputes, compensation, approvals, possession, rehabilitation, stakeholder response, historical performance and GIS location. The prototype uses a deterministic explainable weighted engine; a production model can preserve this contract while adding validated feature engineering, model versioning, confidence, factor contributions, drift monitoring and human overrides.
+
+### API and notification architecture
+Mock service contracts are exposed for `/api/projects`, `/api/risk-analysis`, `/api/location-data`, `/api/notifications` and `/api/recommendations`. Notification types include high-risk, approval-delay, legal-issue, compensation and survey-delay alerts. SMS, email and push adapters are API-ready boundaries. Secrets must be injected at deployment time through `SMS_API_KEY`, `EMAIL_API_KEY` and `PUSH_NOTIFICATION_KEY`, never committed to the client bundle.
+
+### GIS architecture
+Leaflet remains the presentation layer for India, state, district and project views. Heat intensity is derived from the active AI delay probability using green, amber/orange and red bands. Production deployments can use GeoServer/PostGIS tiles or OpenLayers when enterprise layer management and large datasets require them.
+
+### Database structure
+Recommended production persistence is PostgreSQL + PostGIS with `projects`, `parcels`, `acquisition_cases`, `risk_predictions`, `documents`, `notifications` and immutable `audit_events` tables.
+
+### Security and role-based access
+Use department identity federation, least privilege, encryption in transit and at rest, field-level protection for personal data, retention policies, and tamper-evident audit logs. Supported roles are District Officer, State Government, Central Ministry, Project Agency and Policy Maker, each with a scoped portfolio and action permissions.
+
+### Government integration and analytics
+Potential deployment targets include NIC MeghRaj, AWS or Azure subject to government procurement and data-residency requirements. Integrations may include land records, court records, compensation, project management and notification systems. Grafana can provide operational observability; Plotly or Apache Superset can support analytical exploration.
+
+## SIH 2026 Product Experience
+
+### Stakeholder workflows
+The shared workspace supports Citizen, Field Officer, Tahsildar, District Collector, State Government and Central Ministry perspectives. All roles consume the same selected location, prediction, SHAP factors, sustainability profile, GIS state and report payload; only the operational summary and recommended next action change.
+
+### AI transparency
+LandWatch presents a risk score, delay probability, model version, accuracy, factor count and signed SHAP-style contributions. Positive contributions increase predicted delay risk; negative contributions reduce it. When a backend model is unavailable, the browser uses deterministic synthetic profiles so the demo never renders an empty explanation.
+
+### Intelligence Studio
+The National Intelligence Studio is a shared-state search surface for India, state, district, taluk, village, project and survey records. It provides autocomplete, keyboard navigation, recent searches, an explicit empty state and a clear action. A selected result calls the existing location selection pipeline; it does not create a second location store or reload the page.
+
+The same studio exposes a dedicated sustainability search, a Today/7-day/15-day/30-day delay forecast, an AI workflow from registration through continuous learning, and operational notification cards. Sustainability values are derived from the active land-condition profile and delay forecast values are derived from the active prediction, so these surfaces remain synchronized with GIS, SHAP, role workspaces and PDF export.
+
+### Explainability and no-data behavior
+SHAP-style factors are signed contributions grouped into risk-increasing and risk-reducing signals. Tooltips and factor labels are designed for officer review rather than black-box scoring. The deterministic browser adapter always supplies a synthetic explanation for the selected profile when a service is unavailable; empty charts and “No Data” states are intentionally not used in the demonstration flow.
+
+### AI Copilot limitations
+The floating assistant is a deterministic, location-aware interface over the local synthetic dataset. It can explain the selected prediction, surface compensation or delay signals, compare supported locations and recommend officer actions. It is not an LLM and does not claim access to confidential government systems.
+
+### Data sources disclosure
+The prototype uses synthetic datasets based on real-world land acquisition workflows because publicly labelled delay datasets are limited. Demonstration data covers project records, GIS information, legal indicators, compensation status and administrative workflow signals. Integration cards are mock adapters only; no production government API or live credential is claimed.
+
+### Future scope
+Future releases can replace the browser analysis adapter with a FastAPI service, connect authenticated PostgreSQL/PostGIS data, add calibrated model confidence and fairness evaluation, support state-specific statutory workflows, and provide signed PDF notices with department-approved digital identity.

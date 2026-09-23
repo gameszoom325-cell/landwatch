@@ -1,453 +1,210 @@
+/* LandWatch live public-data integration. Keeps cached values when a source is unavailable. */
 (() => {
   'use strict';
 
-  const projectCatalog = {
-    Chennai: [
-      { name: 'Chennai Metro Phase 2', authority: 'Tamil Nadu Metro Rail Corporation', category: 'Urban Transit', requiredLand: 14.8, acquiredPercent: 68, completionPercent: 62, stage: 'Award & Utility Shift', risk: 68 },
-      { name: 'Chennai Peripheral Ring Road', authority: 'National Highways Authority of India', category: 'Highway Corridor', requiredLand: 26.4, acquiredPercent: 72, completionPercent: 58, stage: 'Notification & Award', risk: 74 },
-      { name: 'Chennai Port Industrial Land Acquisition', authority: 'Chennai Port Authority', category: 'Industrial Logistics', requiredLand: 18.1, acquiredPercent: 57, completionPercent: 48, stage: 'Survey & Valuation', risk: 81 }
-    ],
-    Delhi: [
-      { name: 'Delhi-Meerut Regional Rapid Transit', authority: 'NCRTC', category: 'Transit Infrastructure', requiredLand: 33.6, acquiredPercent: 76, completionPercent: 71, stage: 'Compensation & Possession', risk: 65 },
-      { name: 'Delhi Alwar Greenfield Expressway', authority: 'NHAI', category: 'Expressway', requiredLand: 28.2, acquiredPercent: 63, completionPercent: 53, stage: 'Award & Objection', risk: 77 }
-    ],
-    Mumbai: [
-      { name: 'Mumbai Coastal Road Phase II', authority: 'Maharashtra State Road Development Corporation', category: 'Coastal Infrastructure', requiredLand: 21.7, acquiredPercent: 71, completionPercent: 67, stage: 'Notification & R&R', risk: 62 },
-      { name: 'Panvel-Kalyan Metro Expansion', authority: 'Maha Metro', category: 'Metro', requiredLand: 17.5, acquiredPercent: 69, completionPercent: 61, stage: 'Award & Utility Relocation', risk: 66 }
-    ],
-    Bangalore: [
-      { name: 'Bengaluru Suburban Rail Project', authority: 'Karnataka Rail Infrastructure Development Company', category: 'Rail Infrastructure', requiredLand: 19.8, acquiredPercent: 61, completionPercent: 56, stage: 'Survey & Compensation', risk: 73 },
-      { name: 'Peripheral Ring Road Phase I', authority: 'BDA', category: 'Urban Corridor', requiredLand: 24.2, acquiredPercent: 58, completionPercent: 49, stage: 'Award & Land Pooling', risk: 79 }
-    ],
-    Hyderabad: [
-      { name: 'Regional Ring Road', authority: 'Government of Telangana', category: 'Urban Corridor', requiredLand: 42.8, acquiredPercent: 54, completionPercent: 41, stage: 'Notification & R&R', risk: 82 },
-      { name: 'Hyderabad Metro Line VI', authority: 'Hyderabad Metro Rail', category: 'Metro', requiredLand: 15.4, acquiredPercent: 67, completionPercent: 59, stage: 'Possession & Utility Relief', risk: 64 }
-    ],
-    Kolkata: [
-      { name: 'Eastern Metropolitan Bypass Upgradation', authority: 'West Bengal Highway Authority', category: 'Highway Upgrade', requiredLand: 28.2, acquiredPercent: 60, completionPercent: 50, stage: 'Award & Compensation', risk: 72 },
-      { name: 'Kolkata East-West Metro Extension', authority: 'Kolkata Metro Rail Corporation', category: 'Metro', requiredLand: 13.9, acquiredPercent: 66, completionPercent: 63, stage: 'Utility Relocation & Possession', risk: 61 }
-    ],
-    default: [
-      { name: 'State Infrastructure Corridor', authority: 'State Infrastructure Authority', category: 'Public Infrastructure', requiredLand: 18.4, acquiredPercent: 61, completionPercent: 58, stage: 'Award & Survey', risk: 70 }
-    ]
-  };
+  const CACHE_TTL = 15 * 60 * 1000;
+  const cachePrefix = 'landwatch_live_';
+  const state = { location: null, data: {}, loading: false };
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
 
-  const state = {
-    panel: null,
-    layer: null,
-    project: null,
-    location: null,
-    lastUpdated: null
-  };
-
-  const clamp = (value, min = 0, max = 100) => Math.max(min, Math.min(max, Number(value) || 0));
-  const number = value => {
-    const parsed = Number(String(value ?? '').replace(/[^0-9.-]/g, ''));
-    return Number.isFinite(parsed) ? parsed : 0;
-  };
-
-  function escapeHtml(value) {
-    return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+  function readCache(key) {
+    try {
+      const value = JSON.parse(localStorage.getItem(cachePrefix + key) || 'null');
+      return value && value.data ? value : null;
+    } catch (_) { return null; }
   }
 
-  function getDefaultProject(profile) {
-    const key = profile?.name || profile?.district || 'default';
-    const list = projectCatalog[key] || projectCatalog[profile?.state] || projectCatalog[profile?.district] || projectCatalog.default;
-    const source = list[0] || projectCatalog.default[0];
-    const requiredLand = Number(source.requiredLand) || 18;
-    const acquiredPercent = clamp(source.acquiredPercent || 63);
-    const pendingLand = Math.max(5, 100 - acquiredPercent);
-    const legalRiskScore = clamp(source.risk + 4);
-    const paymentDelayDays = Math.max(8, Math.round((100 - acquiredPercent) * 0.8 + source.risk * 0.2));
-    const approvalDelayDays = Math.max(10, Math.round((100 - acquiredPercent) * 0.4 + 12));
-    const rrProgress = clamp(100 - (pendingLand * 0.75), 10, 95);
-    const stakeholderIssues = Math.max(2, Math.round((100 - acquiredPercent) * 0.18));
+  function writeCache(key, data) {
+    try { localStorage.setItem(cachePrefix + key, JSON.stringify({ savedAt: Date.now(), data })); } catch (_) { /* storage may be disabled */ }
+  }
 
-    const project = {
-      name: source.name,
-      authority: source.authority,
-      state: profile?.state || 'India',
-      district: profile?.district || 'Project District',
-      category: source.category,
-      requiredLand: `${requiredLand.toFixed(1)} ha`,
-      requiredLandValue: requiredLand,
-      acquiredPercent,
-      pendingLand,
-      acquisitionStage: source.stage,
-      completionPercent: clamp(source.completionPercent || (acquiredPercent * 0.92)),
-      totalCompensation: `${(requiredLand * 6.4).toFixed(0)} Lakhs`,
-      releasedAmount: `${(requiredLand * 4.7).toFixed(0)} Lakhs`,
-      pendingAmount: `${(requiredLand * 1.7).toFixed(0)} Lakhs`,
-      affectedFamilies: Math.max(120, Math.round(requiredLand * 22)),
-      paymentDelayDays,
-      approvalDelayDays,
-      rrProgress,
-      stakeholderIssues,
-      activeDisputes: Math.max(1, Math.round((100 - acquiredPercent) * 0.25)),
-      courtCases: Math.max(1, Math.round((100 - acquiredPercent) * 0.18)),
-      ownershipConflicts: Math.max(1, Math.round((100 - acquiredPercent) * 0.22)),
-      legalRiskScore,
-      notificationDate: '2024-09-12',
-      surveyDate: '2025-02-08',
-      awardDate: '2025-05-17',
-      compensationDate: '2025-08-03',
-      possessionDate: '2025-12-12',
-      rrCompletionDate: '2026-03-08',
-      timeline: {
-        notification: 'Completed',
-        survey: 'In progress',
-        award: 'Under review',
-        compensation: 'Partially released',
-        possession: 'Pending',
-        rr: 'Scheduled'
-      },
-      estimated: {
-        compensation: true,
-        legal: true,
-        projectProgress: false,
-        timeline: true,
-        families: true
-      }
-    };
+  async function request(key, url, transform, options = {}) {
+    const cached = readCache(key);
+    if (cached && Date.now() - cached.savedAt < CACHE_TTL) return { data: cached.data, cached: false };
+    try {
+      const response = await fetch(url, { headers: { Accept: options.accept || 'application/json' } });
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      const data = await transform(await response.json());
+      writeCache(key, data);
+      return { data, cached: false };
+    } catch (error) {
+      if (cached) return { data: cached.data, cached: true };
+      console.warn(`LandWatch live data unavailable for ${key}`, error);
+      return { data: null, cached: false };
+    }
+  }
 
-    const legalSignal = clamp(legalRiskScore);
-    const compensationSignal = clamp(paymentDelayDays * 1.2, 0, 100);
-    const pendingSignal = clamp(pendingLand, 0, 100);
-    const approvalSignal = clamp(approvalDelayDays * 1.7, 0, 100);
-    const rrSignal = clamp(100 - rrProgress, 0, 100);
-    const stakeholderSignal = clamp(stakeholderIssues * 5, 0, 100);
-    const riskScore = clamp(
-      legalSignal * 0.25 +
-      compensationSignal * 0.25 +
-      pendingSignal * 0.2 +
-      approvalSignal * 0.15 +
-      rrSignal * 0.1 +
-      stakeholderSignal * 0.05
-    );
+  function conditionLabel(code) {
+    const labels = { 0: 'Clear sky', 1: 'Mainly clear', 2: 'Partly cloudy', 3: 'Overcast', 45: 'Fog', 48: 'Depositing rime fog', 51: 'Light drizzle', 53: 'Drizzle', 55: 'Heavy drizzle', 61: 'Light rain', 63: 'Rain', 65: 'Heavy rain', 71: 'Light snow', 73: 'Snow', 75: 'Heavy snow', 80: 'Rain showers', 81: 'Rain showers', 82: 'Heavy rain showers', 95: 'Thunderstorm', 96: 'Thunderstorm with hail', 99: 'Thunderstorm with hail' };
+    return labels[code] || 'Unknown';
+  }
 
-    return {
-      project,
-      compensation: {
-        total: project.totalCompensation,
-        released: project.releasedAmount,
-        pending: project.pendingAmount,
-        affectedFamilies: project.affectedFamilies,
-        delayDays: project.paymentDelayDays,
-        estimated: true
-      },
-      legal: {
-        activeDisputes: project.activeDisputes,
-        courtCases: project.courtCases,
-        ownershipConflicts: project.ownershipConflicts,
-        legalRiskScore: project.legalRiskScore,
-        estimated: true
-      },
-      timeline: {
-        notification: project.notificationDate,
-        survey: project.surveyDate,
-        award: project.awardDate,
-        compensation: project.compensationDate,
-        possession: project.possessionDate,
-        rrCompletion: project.rrCompletionDate,
-        status: project.timeline,
-        estimated: true
-      },
-      ai: {
-        riskScore: Math.round(riskScore),
-        delayProbability: clamp(Math.round(riskScore * 0.9 + pendingSignal * 0.18 + compensationSignal * 0.12)),
-        expectedDelayDays: Math.max(10, Math.round(project.paymentDelayDays * 0.7 + project.approvalDelayDays * 0.45 + project.pendingLand * 0.28)),
-        mainCauses: ['Compensation release lag', 'Pending land acquisition', 'Legal verification backlog'],
-        recommendations: ['Accelerate compensation committee review', 'Resolve title disputes through joint survey', 'Prioritize R&R compliance checkpoint'],
-        estimated: true
-      }
-    };
+  function statusForAqi(aqi) {
+    if (!Number.isFinite(aqi)) return 'Unavailable';
+    return aqi <= 50 ? 'Good' : aqi <= 100 ? 'Moderate' : aqi <= 200 ? 'Poor' : 'Severe';
+  }
+
+  function htmlValue(value, suffix = '') {
+    return value === null || value === undefined || value === '' ? 'Live data temporarily unavailable' : `${esc(value)}${suffix}`;
   }
 
   function ensurePanel() {
-    if (state.panel) return state.panel;
+    if (document.getElementById('lw-live-intelligence')) return document.getElementById('lw-live-intelligence');
     const toolbar = document.querySelector('#smart-land-dashboard .smart-dashboard-toolbar');
     if (!toolbar) return null;
     const panel = document.createElement('div');
-    panel.id = 'lw-land-acquisition-panel';
-    panel.className = 'lw-land-acquisition-panel';
+    panel.id = 'lw-live-intelligence';
+    panel.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter-desktop';
     panel.innerHTML = `
-      <div class="lw-land-stack">
-        <div class="lw-land-card">
-          <div class="lw-land-header">
-            <span class="lw-land-badge lw-land-live">LIVE DATA</span>
-            <span class="lw-land-badge lw-land-estimated">ESTIMATED AI DATA</span>
-          </div>
-          <div class="lw-land-overview">
-            <div>
-              <small>Project</small>
-              <strong data-land-field="project-name">—</strong>
-            </div>
-            <div>
-              <small>Authority</small>
-              <strong data-land-field="project-authority">—</strong>
-            </div>
-            <div>
-              <small>District</small>
-              <strong data-land-field="project-district">—</strong>
-            </div>
-            <div>
-              <small>State</small>
-              <strong data-land-field="project-state">—</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="lw-land-card">
-          <h4>Land Acquisition</h4>
-          <div class="lw-land-grid">
-            <div><small>Category</small><strong data-land-field="project-category">—</strong></div>
-            <div><small>Stage</small><strong data-land-field="project-stage">—</strong></div>
-            <div><small>Required land</small><strong data-land-field="project-land-required">—</strong></div>
-            <div><small>Acquired</small><strong data-land-field="project-land-acquired">—</strong></div>
-            <div><small>Pending</small><strong data-land-field="project-land-pending">—</strong></div>
-            <div><small>Completion</small><strong data-land-field="project-completion">—</strong></div>
-          </div>
-        </div>
-
-        <div class="lw-land-card">
-          <h4>Compensation</h4>
-          <div class="lw-land-grid">
-            <div><small>Total</small><strong data-land-field="comp-total">—</strong></div>
-            <div><small>Released</small><strong data-land-field="comp-released">—</strong></div>
-            <div><small>Pending</small><strong data-land-field="comp-pending">—</strong></div>
-            <div><small>Affected families</small><strong data-land-field="comp-families">—</strong></div>
-            <div><small>Delay days</small><strong data-land-field="comp-delay">—</strong></div>
-            <div><small>Label</small><strong data-land-field="comp-label">—</strong></div>
-          </div>
-        </div>
-
-        <div class="lw-land-card">
-          <h4>Legal Risk</h4>
-          <div class="lw-land-grid">
-            <div><small>Disputes</small><strong data-land-field="legal-disputes">—</strong></div>
-            <div><small>Court cases</small><strong data-land-field="legal-cases">—</strong></div>
-            <div><small>Ownership conflicts</small><strong data-land-field="legal-conflicts">—</strong></div>
-            <div><small>Risk score</small><strong data-land-field="legal-score">—</strong></div>
-            <div><small>Label</small><strong data-land-field="legal-label">—</strong></div>
-            <div><small>Status</small><strong data-land-field="legal-status">—</strong></div>
-          </div>
-        </div>
-
-        <div class="lw-land-card">
-          <h4>Project Timeline</h4>
-          <div class="lw-land-list">
-            <div><span>Notification</span><strong data-land-field="timeline-notification">—</strong></div>
-            <div><span>Survey</span><strong data-land-field="timeline-survey">—</strong></div>
-            <div><span>Award</span><strong data-land-field="timeline-award">—</strong></div>
-            <div><span>Compensation</span><strong data-land-field="timeline-compensation">—</strong></div>
-            <div><span>Possession</span><strong data-land-field="timeline-possession">—</strong></div>
-            <div><span>R&R completion</span><strong data-land-field="timeline-rr">—</strong></div>
-          </div>
-        </div>
-
-        <div class="lw-land-card">
-          <h4>AI Risk Engine</h4>
-          <div class="lw-land-grid">
-            <div><small>Risk score</small><strong data-land-field="ai-risk">—</strong></div>
-            <div><small>Delay probability</small><strong data-land-field="ai-delay">—</strong></div>
-            <div><small>Expected delay</small><strong data-land-field="ai-delay-days">—</strong></div>
-            <div><small>Main causes</small><strong data-land-field="ai-causes">—</strong></div>
-            <div><small>Recommendation</small><strong data-land-field="ai-recommendation">—</strong></div>
-            <div><small>Confidence</small><strong data-land-field="ai-confidence">—</strong></div>
-          </div>
-        </div>
-      </div>
-    `;
+      <article class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container" data-live-card="weather">
+        <div class="flex items-center justify-between"><span class="text-label-sm text-on-surface-variant uppercase font-bold">Live Weather</span><span class="material-symbols-outlined text-primary">cloud</span></div>
+        <strong class="font-headline-md text-headline-md text-primary" data-live="temperature">—</strong>
+        <div class="text-body-sm text-on-surface-variant space-y-1"><div>Humidity: <b data-live="humidity">—</b> · Wind: <b data-live="wind">—</b></div><div>Rain probability: <b data-live="rain">—</b></div><div data-live="condition">Loading…</div></div>
+        <small class="text-body-sm text-on-surface-variant" data-live="weather-updated">—</small>
+      </article>
+      <article class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container" data-live-card="air">
+        <div class="flex items-center justify-between"><span class="text-label-sm text-on-surface-variant uppercase font-bold">Live Air Quality</span><span class="material-symbols-outlined text-primary">air</span></div>
+        <strong class="font-headline-md text-headline-md text-primary"><span data-live="aqi">—</span> AQI</strong>
+        <div class="text-body-sm text-on-surface-variant">PM2.5 <b data-live="pm25">—</b> · PM10 <b data-live="pm10">—</b></div>
+        <div class="text-body-sm text-on-surface-variant">NO₂ <b data-live="no2">—</b> · SO₂ <b data-live="so2">—</b> · CO <b data-live="co">—</b></div>
+        <small class="text-body-sm text-on-surface-variant" data-live="aqi-status">Loading…</small>
+      </article>
+      <article class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container" data-live-card="location">
+        <div class="flex items-center justify-between"><span class="text-label-sm text-on-surface-variant uppercase font-bold">Live District Intelligence</span><span class="material-symbols-outlined text-primary">public</span></div>
+        <strong class="font-headline-md text-headline-md text-primary" data-live="district">—</strong>
+        <div class="text-body-sm text-on-surface-variant">State: <b data-live="state">—</b> · Elevation: <b data-live="elevation">—</b></div>
+        <div class="text-body-sm text-on-surface-variant">Coordinates: <b data-live="coordinates">—</b></div>
+        <div class="text-body-sm text-on-surface-variant">Flood/rainfall: <b data-live="flood">—</b></div>
+        <div class="text-body-sm text-on-surface-variant">Earthquakes (100 km): <b data-live="earthquakes">—</b></div>
+        <div class="text-body-sm text-on-surface-variant">Villages: <b data-live="villages">—</b> · Roads: <b data-live="roads">—</b></div>
+        <div class="text-body-sm text-on-surface-variant">Population: <b data-live="population">Public dataset unavailable</b></div>
+        <small class="text-body-sm text-on-surface-variant" data-live="location-updated">—</small>
+      </article>
+      <article class="smart-stat-card bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container sm:col-span-2 lg:col-span-3" data-live-card="news">
+        <div class="flex items-center justify-between"><span class="text-label-sm text-on-surface-variant uppercase font-bold">Land & Infrastructure News</span><span class="text-body-sm text-on-surface-variant" data-live="news-status">Loading…</span></div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm mt-space-sm" data-live="news-list"></div>
+      </article>`;
     toolbar.insertAdjacentElement('afterend', panel);
-    state.panel = panel;
     return panel;
   }
 
-  function setField(field, value) {
-    const target = state.panel?.querySelector(`[data-land-field="${field}"]`);
-    if (!target) return;
-    target.textContent = value == null || value === '' ? 'N/A' : value;
+  function setValue(name, value, suffix = '') {
+    document.querySelectorAll(`[data-live="${name}"]`).forEach(node => { node.textContent = value === null || value === undefined || value === '' ? 'Live data temporarily unavailable' : `${value}${suffix}`; });
   }
 
-  function renderProject(projectData) {
-    if (!projectData) return;
-    const project = projectData.project || {};
-    const compensation = projectData.compensation || {};
-    const legal = projectData.legal || {};
-    const timeline = projectData.timeline || {};
-    const ai = projectData.ai || {};
-
-    setField('project-name', project.name);
-    setField('project-authority', project.authority);
-    setField('project-district', project.district);
-    setField('project-state', project.state);
-    setField('project-category', project.category);
-    setField('project-stage', project.acquisitionStage);
-    setField('project-land-required', project.requiredLand);
-    setField('project-land-acquired', `${project.acquiredPercent}%`);
-    setField('project-land-pending', `${project.pendingLand}%`);
-    setField('project-completion', `${project.completionPercent}%`);
-
-    setField('comp-total', compensation.total || '—');
-    setField('comp-released', compensation.released || '—');
-    setField('comp-pending', compensation.pending || '—');
-    setField('comp-families', compensation.affectedFamilies || '—');
-    setField('comp-delay', `${compensation.delayDays || 0} days`);
-    setField('comp-label', compensation.estimated ? 'Estimated AI data' : 'Live public data');
-
-    setField('legal-disputes', legal.activeDisputes || '—');
-    setField('legal-cases', legal.courtCases || '—');
-    setField('legal-conflicts', legal.ownershipConflicts || '—');
-    setField('legal-score', `${legal.legalRiskScore || 0}/100`);
-    setField('legal-label', legal.estimated ? 'Estimated AI data' : 'Live public data');
-    setField('legal-status', legal.legalRiskScore > 70 ? 'High risk' : legal.legalRiskScore > 45 ? 'Moderate' : 'Low');
-
-    setField('timeline-notification', timeline.notification || '—');
-    setField('timeline-survey', timeline.survey || '—');
-    setField('timeline-award', timeline.award || '—');
-    setField('timeline-compensation', timeline.compensation || '—');
-    setField('timeline-possession', timeline.possession || '—');
-    setField('timeline-rr', timeline.rrCompletion || '—');
-
-    setField('ai-risk', `${ai.riskScore || 0}/100`);
-    setField('ai-delay', `${ai.delayProbability || 0}%`);
-    setField('ai-delay-days', `${ai.expectedDelayDays || 0} days`);
-    setField('ai-causes', (ai.mainCauses || []).join(' · ') || 'N/A');
-    setField('ai-recommendation', (ai.recommendations || []).join(' · ') || 'N/A');
-    setField('ai-confidence', `82%`);
-    state.lastUpdated = new Date();
+  function setLoading(loading) {
+    ensurePanel()?.querySelectorAll('[data-live-card]').forEach(card => card.classList.toggle('lw-live-loading', loading));
   }
 
-  function getProjectDataForLocation(profile) {
-    if (!profile) return null;
-    const fallback = getDefaultProject(profile);
-    const cityName = profile.name || profile.district || 'Chennai';
-    const source = projectCatalog[cityName] || projectCatalog[profile.state] || projectCatalog[profile.district] || projectCatalog.default;
-    const base = source[0] || projectCatalog.default[0];
-    const data = { project: { ...fallback.project, ...base, state: profile.state, district: profile.district, name: base.name, authority: base.authority, category: base.category, acquisitionStage: base.stage }, compensation: { ...fallback.compensation }, legal: { ...fallback.legal }, timeline: { ...fallback.timeline }, ai: { ...fallback.ai } };
-    data.project.requiredLand = `${(base.requiredLand || 18).toFixed(1)} ha`;
-    data.project.requiredLandValue = Number(base.requiredLand) || 18;
-    data.project.acquiredPercent = clamp(base.acquiredPercent || 62, 0, 100);
-    data.project.pendingLand = Math.max(5, 100 - data.project.acquiredPercent);
-    data.project.completionPercent = clamp(base.completionPercent || data.project.acquiredPercent, 0, 100);
-    data.project.totalCompensation = `${((data.project.requiredLandValue * 6.8) || 140).toFixed(0)} Lakhs`;
-    data.project.releasedAmount = `${((data.project.requiredLandValue * 4.9) || 102).toFixed(0)} Lakhs`;
-    data.project.pendingAmount = `${((data.project.requiredLandValue * 1.9) || 38).toFixed(0)} Lakhs`;
-    data.project.affectedFamilies = Math.max(120, Math.round(data.project.requiredLandValue * 22));
-    data.project.paymentDelayDays = Math.max(8, Math.round((100 - data.project.acquiredPercent) * 0.85 + (base.risk || 65) * 0.18));
-    data.project.approvalDelayDays = Math.max(10, Math.round((100 - data.project.acquiredPercent) * 0.45 + 12));
-    data.project.rrProgress = clamp(100 - data.project.pendingLand * 0.7, 10, 95);
-    data.project.stakeholderIssues = Math.max(2, Math.round((100 - data.project.acquiredPercent) * 0.18));
-    data.project.activeDisputes = Math.max(1, Math.round((100 - data.project.acquiredPercent) * 0.25));
-    data.project.courtCases = Math.max(1, Math.round((100 - data.project.acquiredPercent) * 0.16));
-    data.project.ownershipConflicts = Math.max(1, Math.round((100 - data.project.acquiredPercent) * 0.24));
-    data.project.legalRiskScore = clamp((base.risk || 65) + 5);
-
-    const legalSignal = clamp(data.project.legalRiskScore);
-    const compensationSignal = clamp(data.project.paymentDelayDays * 1.2, 0, 100);
-    const pendingSignal = clamp(data.project.pendingLand, 0, 100);
-    const approvalSignal = clamp(data.project.approvalDelayDays * 1.7, 0, 100);
-    const rrSignal = clamp(100 - data.project.rrProgress, 0, 100);
-    const stakeholderSignal = clamp(data.project.stakeholderIssues * 5, 0, 100);
-    const riskScore = clamp(
-      legalSignal * 0.25 +
-      compensationSignal * 0.25 +
-      pendingSignal * 0.2 +
-      approvalSignal * 0.15 +
-      rrSignal * 0.1 +
-      stakeholderSignal * 0.05
-    );
-
-    data.compensation.total = data.project.totalCompensation;
-    data.compensation.released = data.project.releasedAmount;
-    data.compensation.pending = data.project.pendingAmount;
-    data.compensation.affectedFamilies = data.project.affectedFamilies;
-    data.compensation.delayDays = data.project.paymentDelayDays;
-    data.compensation.estimated = true;
-
-    data.legal.activeDisputes = data.project.activeDisputes;
-    data.legal.courtCases = data.project.courtCases;
-    data.legal.ownershipConflicts = data.project.ownershipConflicts;
-    data.legal.legalRiskScore = data.project.legalRiskScore;
-    data.legal.estimated = true;
-
-    data.ai.riskScore = Math.round(riskScore);
-    data.ai.delayProbability = clamp(Math.round(riskScore * 0.9 + pendingSignal * 0.18 + compensationSignal * 0.12));
-    data.ai.expectedDelayDays = Math.max(10, Math.round(data.project.paymentDelayDays * 0.7 + data.project.approvalDelayDays * 0.45 + data.project.pendingLand * 0.28));
-    data.ai.mainCauses = ['Compensation release lag', 'Pending land acquisition', 'Legal verification backlog'];
-    data.ai.recommendations = ['Accelerate compensation committee review', 'Resolve title disputes through joint survey', 'Prioritize R&R compliance checkpoint'];
-    data.ai.estimated = true;
-    return data;
-  }
-
-  function updateMapMarkers(profile) {
-    if (!window.leafletMap || typeof L === 'undefined') return;
-    if (state.layer) {
-      window.leafletMap.removeLayer(state.layer);
-      state.layer = null;
+  function updateCharts() {
+    const weather = state.data.weather;
+    const air = state.data.air;
+    if (window.smartLandCharts?.length) {
+      const usage = window.smartLandCharts.find(chart => chart.canvas?.id === 'landUsageChart');
+      if (usage) { usage.data.datasets[0].data = state.data.landCover?.values || [null, null, null, null, null]; usage.update(); }
+      const change = window.smartLandCharts.find(chart => chart.canvas?.id === 'environmentalChangeChart');
+      if (change && weather?.daily) { change.data.labels = weather.daily.labels; change.data.datasets[0].data = weather.daily.rain; change.data.datasets[1].data = weather.daily.probability; change.update(); }
+      const risk = window.smartLandCharts.find(chart => chart.canvas?.id === 'landRiskChart');
+      if (risk) { risk.data.datasets[0].data = [air?.aqi ? Math.max(0, 100 - air.aqi) : null, state.data.flood?.risk === 'High' ? 1 : 0, state.data.earthquakes?.length || 0]; risk.update(); }
+      const timeline = window.smartLandCharts.find(chart => chart.canvas?.id === 'landTimelineChart');
+      if (timeline && !state.data.landCover) { timeline.data.datasets.forEach(dataset => { dataset.data = dataset.data.map(() => null); }); timeline.update(); }
     }
-    const project = getProjectDataForLocation(profile);
-    state.project = project;
-    window.landWatchState = window.landWatchState || {};
-    window.landWatchState.liveProjectData = project;
-
-    const layer = L.layerGroup();
-    const marker = L.circleMarker(profile.coords, {
-      radius: 10,
-      color: '#ffffff',
-      weight: 3,
-      fillColor: project.ai.riskScore > 70 ? '#ba1a1a' : project.ai.riskScore > 45 ? '#d97706' : '#059669',
-      fillOpacity: 0.9
-    });
-
-    marker.bindPopup(`
-      <div class="gis-popup">
-        <strong>${escapeHtml(project.project.name)}</strong>
-        <span class="gis-popup-category">${escapeHtml(project.project.district)} · ${escapeHtml(project.project.category)}</span>
-        <p>Land required: ${escapeHtml(project.project.requiredLand)} · Land acquired: ${project.project.acquiredPercent}%</p>
-        <p>Pending: ${project.project.pendingLand}% · Risk: ${project.ai.riskScore}/100</p>
-      </div>
-    `);
-    marker.addTo(layer);
-    layer.addTo(window.leafletMap);
-    state.layer = layer;
   }
 
-  function syncLocation(profile) {
-    if (!profile) return;
+  function render(data, cached) {
     ensurePanel();
-    const project = getProjectDataForLocation(profile);
-    renderProject(project);
-    updateMapMarkers(profile);
-    window.landWatchState = window.landWatchState || {};
-    window.landWatchState.liveProjectData = project;
-    window.landWatchState.landAcquisitionData = project;
-    window.dispatchEvent(new CustomEvent('landwatch:land-acquisition-update', { detail: project }));
+    const updated = `Updated ${new Date().toLocaleString('en-IN', { dateStyle: 'medium', timeStyle: 'short' })}${cached ? ' · cached' : ''}`;
+    const weather = data.weather;
+    setValue('temperature', weather?.temperature, ' °C');
+    setValue('humidity', weather?.humidity, '%');
+    setValue('wind', weather?.wind, ' km/h');
+    setValue('rain', weather?.rainProbability, '%');
+    setValue('condition', weather?.condition);
+    setValue('weather-updated', weather ? updated : null);
+    const air = data.air;
+    setValue('aqi', air?.aqi);
+    setValue('pm25', air?.pm25, ' µg/m³'); setValue('pm10', air?.pm10, ' µg/m³');
+    setValue('no2', air?.no2, ' µg/m³'); setValue('so2', air?.so2, ' µg/m³'); setValue('co', air?.co, ' µg/m³');
+    setValue('aqi-status', air ? `${air.status} · ${updated}` : null);
+    setValue('district', data.location?.district); setValue('state', data.location?.state);
+    setValue('elevation', data.location?.elevation, ' m'); setValue('coordinates', data.location?.lat != null && data.location?.lon != null ? `${Number(data.location.lat).toFixed(4)}, ${Number(data.location.lon).toFixed(4)}` : null);
+    setValue('flood', data.flood ? `${data.flood.rainfall} mm · ${data.flood.risk} risk` : null); setValue('location-updated', data.location ? updated : null);
+    setValue('earthquakes', data.earthquakes ? data.earthquakes.length : null);
+    setValue('villages', data.context?.villages);
+    setValue('roads', data.context?.roads);
+    setValue('population', data.context?.population);
+    const news = document.querySelector('[data-live="news-list"]');
+    if (news) news.innerHTML = data.news?.length ? data.news.slice(0, 3).map(item => `<a class="p-2 border border-surface-container rounded-lg hover:border-primary" href="${esc(item.url)}" target="_blank" rel="noopener"><strong class="block text-body-sm text-primary">${esc(item.title)}</strong><small class="text-body-sm text-on-surface-variant">${esc(item.source)} · ${esc(item.time)}</small></a>`).join('') : '<span class="text-body-sm text-on-surface-variant">Live data temporarily unavailable</span>';
+    setValue('news-status', data.news ? `${data.news.length} public results` : null);
+    if (window.landWatchState) {
+      window.landWatchState.liveData = data;
+      window.landWatchState.liveRecord = {
+        rainfall: data.flood?.rainfall,
+        flood_risk: data.flood?.risk,
+        aqi: data.air?.aqi,
+        population: data.context?.population,
+        road_connectivity: data.context?.roads,
+        weather_temperature: data.weather?.temperature
+      };
+    }
+    updateCharts();
+  }
+
+  async function loadForProfile(profile) {
+    if (!profile?.coords || state.loading) return;
+    state.loading = true; state.location = profile; ensurePanel(); setLoading(true);
+    const [lat, lon] = profile.coords;
+    const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&hourly=precipitation_probability,rain&daily=precipitation_sum,precipitation_probability_max&forecast_days=7&timezone=auto`;
+    const airUrl = `https://api.openaq.org/v3/locations?coordinates=${lat},${lon}&radius=25000&limit=1`;
+    const fallbackAirUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&current=pm10,pm2_5,nitrogen_dioxide,sulphur_dioxide,carbon_monoxide,european_aqi&timezone=auto`;
+    const quakeUrl = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=${lat}&longitude=${lon}&maxradiuskm=100&orderby=time&limit=20`;
+    const geoUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}&zoom=10&addressdetails=1`;
+    const newsUrl = `https://api.gdeltproject.org/api/v2/doc/doc?query=%28land%20acquisition%20OR%20infrastructure%29%20${encodeURIComponent(profile.state)}&mode=artlist&maxrecords=10&format=json&sort=datedesc`;
+    const contextUrl = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(`[out:json][timeout:20];(node(around:25000,${lat},${lon})[place=village];way(around:25000,${lat},${lon})[highway];);out tags;`)}`;
+    const [weather, air, quakes, geo, news, context] = await Promise.all([
+      request(`weather_${lat}_${lon}`, weatherUrl, json => ({ temperature: json.current?.temperature_2m, humidity: json.current?.relative_humidity_2m, wind: json.current?.wind_speed_10m, condition: conditionLabel(json.current?.weather_code), rainProbability: json.hourly?.precipitation_probability?.[0], daily: { labels: (json.daily?.time || []).slice(0, 7), rain: json.daily?.precipitation_sum || [], probability: json.daily?.precipitation_probability_max || [] } })),
+      request(`air_${lat}_${lon}`, airUrl, json => {
+        const sensors = json.results?.[0]?.sensors || [];
+        const read = name => sensors.find(sensor => sensor.parameter?.name === name)?.latest?.value ?? null;
+        const pm25 = read('pm25'), aqi = Number.isFinite(Number(pm25)) ? Math.round(Number(pm25) * 2) : null;
+        return { aqi, pm25, pm10: read('pm10'), no2: read('no2'), so2: read('so2'), co: read('co'), status: statusForAqi(aqi), source: 'OpenAQ' };
+      }),
+      request(`quakes_${lat}_${lon}`, quakeUrl, json => (json.features || []).map(item => ({ magnitude: item.properties?.mag, time: item.properties?.time, distance: Math.round(item.geometry?.coordinates?.[2] || 0), title: item.properties?.place }))),
+      request(`geo_${lat}_${lon}`, geoUrl, json => ({ district: json.address?.county || json.address?.state_district || profile.district, state: json.address?.state || profile.state, lat, lon })),
+      request(`news_${profile.state}`, newsUrl, json => (json.articles || []).map(item => ({ title: item.title, url: item.url, source: item.domain, time: item.seendate ? new Date(item.seendate).toLocaleString('en-IN') : 'Recent' }))),
+      request(`context_${lat}_${lon}`, contextUrl, json => {
+        const elements = json.elements || [];
+        return {
+          villages: elements.filter(item => item.tags?.place === 'village').length,
+          roads: elements.filter(item => item.tags?.highway).length,
+          population: null
+        };
+      }, { accept: 'text/plain' })
+    ]);
+    let airResult = air;
+    if (!airResult.data) {
+      airResult = await request(`air_fallback_${lat}_${lon}`, fallbackAirUrl, json => ({ aqi: json.current?.european_aqi, pm25: json.current?.pm2_5, pm10: json.current?.pm10, no2: json.current?.nitrogen_dioxide, so2: json.current?.sulphur_dioxide, co: json.current?.carbon_monoxide, status: statusForAqi(json.current?.european_aqi), source: 'Open-Meteo fallback' }));
+    }
+    const elevation = await request(`elevation_${lat}_${lon}`, `https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`, json => json.elevation?.[0]);
+    const flood = await request(`flood_${lat}_${lon}`, weatherUrl, json => {
+      const rainfall = Number(json.daily?.precipitation_sum?.[0]);
+      return { rainfall: Number.isFinite(rainfall) ? rainfall.toFixed(1) : null, risk: rainfall > 100 ? 'High' : rainfall > 40 ? 'Moderate' : rainfall >= 0 ? 'Low' : null };
+    });
+    state.data = { weather: weather.data, air: airResult.data, earthquakes: quakes.data, news: news.data, context: context.data, location: { district: profile.district, state: profile.state, lat, lon, ...(geo.data || {}), elevation: elevation.data }, flood: flood.data };
+    render(state.data, [weather, airResult, quakes, geo, news, context, elevation, flood].some(item => item.cached));
+    state.loading = false; setLoading(false);
+    window.dispatchEvent(new CustomEvent('landwatch:live-data', { detail: state.data }));
+    window.landWatchSelectLocation?.(profile.name, null, { silent: true });
   }
 
   function bind() {
     ensurePanel();
-    window.addEventListener('landwatch:location-changed', event => {
-      const profile = event.detail;
-      if (profile) syncLocation(profile);
-    });
-
-    if (window.landWatchState?.selectedProfile) {
-      syncLocation(window.landWatchState.selectedProfile);
-    }
+    window.addEventListener('landwatch:location-changed', event => loadForProfile(event.detail));
+    const initial = window.landWatchState?.selectedProfile;
+    if (initial) loadForProfile(initial);
   }
 
-  window.landWatchLandData = {
-    getProject: () => state.project,
-    refresh: () => {
-      const profile = window.landWatchState?.selectedProfile;
-      if (profile) syncLocation(profile);
-    }
-  };
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', bind, { once: true });
-  } else {
-    bind();
-  }
+  window.landWatchLiveData = { refresh: () => loadForProfile(state.location || window.landWatchState?.selectedProfile), getState: () => state };
+  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', bind, { once: true }) : bind();
+  window.setInterval(() => window.landWatchLiveData.refresh(), CACHE_TTL);
 })();

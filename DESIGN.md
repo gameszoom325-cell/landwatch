@@ -255,7 +255,7 @@ Recommended production persistence is PostgreSQL + PostGIS with `projects`, `par
 Use department identity federation, least privilege, encryption in transit and at rest, field-level protection for personal data, retention policies, and tamper-evident audit logs. Supported roles are District Officer, State Government, Central Ministry, Project Agency and Policy Maker, each with a scoped portfolio and action permissions.
 
 ### Government integration and analytics
-Potential deployment targets include NIC MeghRaj, AWS or Azure subject to government procurement and data-residency requirements. Integrations may include land records, court records, compensation, project management and notification systems. Grafana can provide operational observability; Plotly or Apache Superset can support analytical exploration.
+Potential deployment targets include approved government cloud, AWS or Azure subject to government procurement and data-residency requirements. Integrations may include land records, court records, compensation, project management and notification systems. Grafana can provide operational observability; Plotly or Apache Superset can support analytical exploration.
 
 ## SIH 2026 Product Experience
 

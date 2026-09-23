@@ -919,9 +919,12 @@
           <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold" data-i18n="track_tag">
             Citizen Transparency Portal
           </span>
-          <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="track_title">
-            Public Land Tracking Portal
-          </h2>
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold" data-i18n="track_title">
+              Public Land Tracking Portal
+            </h2>
+            <span class="lw-land-badge lw-land-estimated">PROTOTYPE / ILLUSTRATIVE DATA</span>
+          </div>
           <p class="font-body-lg text-body-lg text-on-surface-variant" data-i18n="track_subtitle">
             Enter your Case ID or Survey Number to track acquisition milestones, compensation schedules, and inspection notices without login.
           </p>
@@ -1172,7 +1175,10 @@
       <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
         <div class="max-w-3xl space-y-space-xs">
           <span class="lw-kicker">National intelligence explorer</span>
-          <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="intelligence-studio-title">AI Intelligence Preview</h2>
+          <div class="flex flex-wrap items-center gap-2">
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="intelligence-studio-title">AI Intelligence Preview</h2>
+            <span class="lw-land-badge lw-land-estimated">PROTOTYPE / ILLUSTRATIVE DATA</span>
+          </div>
           <p class="font-body-lg text-body-lg text-on-surface-variant">Search India’s synthetic land-acquisition coverage and move from a place or project to an explainable decision in one step.</p>
         </div>
         <div class="lw-explorer-bar">
@@ -1213,6 +1219,25 @@
           <div class="lw-panel-heading"><div><span class="lw-kicker">Operational notifications</span><h3>Notification Center</h3></div><span class="lw-count-badge">AI alerts</span></div>
           <div class="lw-notification-board"><div class="lw-notification-board-item critical"><strong>Critical · Compensation delay</strong><span>12 min ago · <b data-lw-location>selected location</b></span><small>Verify pending awards and schedule review within 3 days.</small></div><div class="lw-notification-board-item warning"><strong>Warning · Court case updated</strong><span>45 min ago · <b data-lw-location>selected location</b></span><small>Refresh legal verification before the next hearing checkpoint.</small></div><div class="lw-notification-board-item ai"><strong>AI Alert · Risk trajectory changed</strong><span>2 hours ago · <b data-lw-location>selected location</b></span><small>Review the 7-day and 15-day forecast before approving the next stage.</small></div></div>
         </article>
+      </div>
+    </section>
+
+    <section class="w-full py-space-lg bg-surface-container-low border-y border-surface-container-high" id="data-prototype-disclaimer" aria-labelledby="data-prototype-disclaimer-title">
+      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop">
+        <div class="bg-surface-container-lowest border border-surface-container-high rounded-xl p-space-lg shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-start gap-space-base">
+            <div class="flex items-center gap-2 shrink-0">
+              <span class="material-symbols-outlined text-secondary" aria-hidden="true">info</span>
+              <h2 class="font-headline-sm text-headline-sm text-primary font-bold" id="data-prototype-disclaimer-title">Data &amp; Prototype Disclaimer</h2>
+            </div>
+            <div class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed space-y-3">
+              <p>Important: LandWatch is a prototype demonstration system. The land, parcel, project, case, risk, compensation, environmental, and AI-generated information shown on this website may be synthetic, estimated, illustrative, or derived from sample data and may not be complete, current, or accurate.</p>
+              <p>Some values may differ from actual real-world or live values and should not be treated as official government records, legal advice, or verified land-acquisition information.</p>
+              <p>Where live information is available, such as news articles, it is retrieved from external public sources and may change over time. LandWatch does not guarantee the accuracy, completeness, or timeliness of third-party information.</p>
+              <p class="font-semibold text-primary">For demonstration and evaluation purposes only.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>

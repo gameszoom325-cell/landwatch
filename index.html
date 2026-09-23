@@ -6,8 +6,8 @@
   
   <!-- Primary SEO Metadata -->
   <title>LandWatch · Civic Intelligence &amp; Delay Warning System | SIH 2026</title>
-  <meta name="description" content="LandWatch is an officer-first statutory delay warning and GIS land monitoring platform under RFCTLARR Act 2013, designed for District Collectors and Land Acquisition Officers."/>
-  <meta name="keywords" content="LandWatch, GIS cadastral map, land acquisition, RFCTLARR Act 2013, delay warning system, civic intelligence, Smart India Hackathon, Chengalpattu, Tamil Nadu"/>
+  <meta name="description" content="LandWatch is an officer-first statutory delay warning and GIS land monitoring platform designed for District Collectors and Land Acquisition Officers."/>
+  <meta name="keywords" content="LandWatch, GIS cadastral map, land acquisition, delay warning system, civic intelligence, Smart India Hackathon, Chengalpattu, Tamil Nadu"/>
   <meta name="author" content="Team Stack Overflow(ed) · SRM Institute of Science and Technology, Vadapalani Campus"/>
   <meta name="robots" content="index, follow"/>
   <meta name="theme-color" content="#002444"/>
@@ -45,6 +45,8 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <!-- jsPDF is used only for the local, client-side demonstration report export. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" crossorigin="anonymous"></script>
+  <script src="js/live-data-land.js" defer></script>
+  <script src="js/land-news.js" defer></script>
 
   <!-- Compiled Production Stylesheet -->
   <link rel="stylesheet" href="css/styles.css"/>
@@ -59,7 +61,7 @@
         "name": "LandWatch Civic Intelligence",
         "applicationCategory": "GovernmentApplication",
         "operatingSystem": "All",
-        "description": "Officer-first predictive land acquisition intelligence system anticipating statutory bottlenecks under RFCTLARR Act 2013.",
+        "description": "Officer-first predictive land acquisition intelligence system anticipating statutory bottlenecks.",
         "url": "https://landwatch.gov.in/",
         "author": {
           "@type": "Organization",
@@ -152,14 +154,8 @@
           <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#analytics-section">
             <span aria-hidden="true">📈</span> <span data-i18n="nav_analytics">Analytics</span>
           </a>
-          <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#stakeholder-workspace">
-            <span aria-hidden="true">👥</span> <span>Stakeholders</span>
-          </a>
           <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#case-queue">
             <span aria-hidden="true">⚠️</span> <span data-i18n="nav_risk">Case Queue</span>
-          </a>
-          <a class="nav-link px-3 py-2 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-label-md transition-colors flex items-center gap-1.5" href="#architecture">
-            <span aria-hidden="true">ℹ️</span> <span data-i18n="nav_about">About</span>
           </a>
         </nav>
 
@@ -400,9 +396,6 @@
           </a>
           <a class="mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-medium text-label-md" href="#case-queue">
             <span aria-hidden="true">⚠️</span> <span data-i18n="nav_risk">High Risk Cases</span>
-          </a>
-          <a class="mobile-nav-link flex items-center gap-3 px-3.5 py-2.5 rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-primary font-medium text-label-md" href="#architecture">
-            <span aria-hidden="true">ℹ️</span> <span data-i18n="nav_about">About LandWatch</span>
           </a>
         </nav>
       </div>
@@ -1154,69 +1147,6 @@
       </div>
     </section>
 
-    <!-- 8. ARCHITECTURE, FEASIBILITY & CITATIONS -->
-    <section class="w-full py-space-2xl bg-surface-container-low border-t border-surface-container-high scroll-mt-header" id="architecture">
-      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
-        <div class="max-w-3xl space-y-space-xs">
-          <span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary font-bold">
-            Under the Hood &amp; Academic Rigor
-          </span>
-          <h2 class="font-headline-lg text-headline-lg text-primary font-bold">
-            Architecture, Feasibility &amp; Research Citations
-          </h2>
-          <p class="font-body-lg text-body-lg text-on-surface-variant">
-            Explore the technical blueprint, regulatory alignment, and empirical foundations of LandWatch.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter-desktop">
-          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-sm">
-            <div class="flex items-center gap-2 text-primary">
-              <span class="material-symbols-outlined text-[24px]" aria-hidden="true">memory</span>
-              <h3 class="font-headline-sm text-headline-sm font-bold">Technical Architecture</h3>
-            </div>
-            <p class="text-body-sm text-on-surface-variant">
-              Twin XGBoost regression &amp; classification models with integrated TreeSHAP explainer engine.
-            </p>
-            <ul class="text-body-sm text-on-surface-variant space-y-1.5 pt-1">
-              <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold" aria-hidden="true">✓</span> Python + FastAPI microservice</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold" aria-hidden="true">✓</span> PostgreSQL &amp; PostGIS spatial store</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold" aria-hidden="true">✓</span> NIC MeghRaj cloud container ready</li>
-            </ul>
-          </div>
-
-          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-sm">
-            <div class="flex items-center gap-2 text-primary">
-              <span class="material-symbols-outlined text-[24px]" aria-hidden="true">savings</span>
-              <h3 class="font-headline-sm text-headline-sm font-bold">Feasibility &amp; Privacy</h3>
-            </div>
-            <p class="text-body-sm text-on-surface-variant">
-              Engineered for standard government servers with zero dependency on expensive GPU clusters.
-            </p>
-            <ul class="text-body-sm text-on-surface-variant space-y-1.5 pt-1">
-              <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold" aria-hidden="true">✓</span> CPU-only inference under 150ms</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold" aria-hidden="true">✓</span> 100% open source technology stack</li>
-              <li class="flex items-center gap-1.5"><span class="text-emerald-700 font-bold" aria-hidden="true">✓</span> PII masking &amp; Aadhaar/PAN cryptographic hashing</li>
-            </ul>
-          </div>
-
-          <div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm border border-surface-container space-y-space-sm">
-            <div class="flex items-center gap-2 text-primary">
-              <span class="material-symbols-outlined text-[24px]" aria-hidden="true">menu_book</span>
-              <h3 class="font-headline-sm text-headline-sm font-bold">Policy &amp; Research Citations</h3>
-            </div>
-            <p class="text-body-sm text-on-surface-variant">
-              Formulated strictly upon Indian statutory law and peer-reviewed explainability frameworks.
-            </p>
-            <ul class="text-body-sm text-on-surface-variant space-y-1.5 pt-1">
-              <li class="flex items-center gap-1.5"><span class="text-primary font-bold" aria-hidden="true">·</span> RFCTLARR Act 2013 (Act 30 of 2013)</li>
-              <li class="flex items-center gap-1.5"><span class="text-primary font-bold" aria-hidden="true">·</span> DILRMP Spatial Standards (DoLR / MoRD)</li>
-              <li class="flex items-center gap-1.5"><span class="text-primary font-bold" aria-hidden="true">·</span> Lundberg &amp; Lee (NeurIPS 2017 - SHAP)</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
     <!-- ==================================================== -->
     <!-- 10. DISTRICT OPERATIONS COMMAND CENTRE -->
     <!-- ==================================================== -->
@@ -1321,104 +1251,21 @@
         </div>
       </div>
     </section>
-    <!-- 11. AI GOVERNMENT DECISION SUPPORT -->
-    <section class="lw-decision-support w-full py-space-2xl bg-surface scroll-mt-header" id="decision-support" aria-labelledby="decision-support-title">
+    <!-- LIVE LAND ACQUISITION NEWS -->
+    <section class="lw-land-news w-full py-space-2xl bg-surface scroll-mt-header" id="land-news" aria-labelledby="land-news-title">
       <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
-        <div class="max-w-3xl space-y-space-xs">
-          <span class="lw-kicker">Preventive governance layer</span>
-          <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="decision-support-title">AI Government Decision Support</h2>
-          <p class="font-body-lg text-body-lg text-on-surface-variant">Translate live land signals into explainable forecasts, accountable notifications, and preventive actions.</p>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-base">
+          <div class="max-w-3xl space-y-space-xs">
+            <span class="lw-kicker">Live public intelligence</span>
+            <h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="land-news-title">Live Land Acquisition Issues — India</h2>
+            <p class="font-body-lg text-body-lg text-on-surface-variant">Current public reporting on land acquisition disputes, delays, protests, and compensation issues across India.</p>
+          </div>
+          <span class="lw-chip" id="land-news-status" role="status">Loading latest reports</span>
         </div>
-
-        <div class="lw-grid-2">
-          <article class="lw-panel lw-prediction-engine">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">AI prediction engine</span><h3>Delay prediction for <span data-lw-location>selected location</span></h3></div><span class="lw-model-status">LW-RiskNet v2.4.1</span></div>
-            <div class="lw-prediction-summary"><div><span>Risk score</span><strong id="lw-risk-score">--<small>/100</small></strong></div><div><span>Delay probability</span><strong id="lw-delay-probability">--%</strong></div><div><span>Risk category</span><strong id="lw-risk-category">Awaiting data</strong></div></div>
-            <div class="lw-input-grid" aria-label="Prediction input parameters">
-              <label>Project type<select id="lw-project-type"><option>Highway expansion</option><option>Industrial corridor</option><option>Urban transit</option><option>Renewable energy</option></select></label>
-              <label>Land area<input id="lw-land-area" type="number" value="42" min="1" aria-label="Land area in hectares"/> <small>hectares</small></label>
-              <label>Affected families<input id="lw-affected-families" type="number" value="118" min="0" aria-label="Affected families"/></label>
-              <label>Possession status<select id="lw-possession-status"><option>Partial possession</option><option>Not started</option><option>Possession secured</option></select></label>
-            </div>
-            <div class="lw-prediction-note"><span class="material-symbols-outlined">model_training</span><span>Forecast uses location, legal, compensation, survey, approval, rehabilitation and historical performance signals.</span></div>
-          </article>
-          <article class="lw-panel lw-shap-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Explainable AI</span><h3>Explainable AI (SHAP Analysis)</h3></div><span class="lw-chip lw-chip-ai">SHAP enabled</span></div>
-            <div class="lw-shap-summary"><span>Feature impact on predicted delay risk</span><small><b class="lw-positive-key"></b>Increases risk <b class="lw-negative-key"></b>Reduces risk</small></div>
-            <div class="lw-factor-list" id="lw-dynamic-factors"><div><span>Loading location factors</span><strong>--%</strong><b><i style="width:0%"></i></b></div></div>
-            <div class="lw-recommendation-box lw-recommendation-engine"><span class="material-symbols-outlined">assistant</span><div><strong>AI Recommended Actions</strong><p id="lw-dynamic-recommendation">Select a location to generate an action plan.</p><ol id="lw-dynamic-actions"></ol></div></div>
-          </article>
-        </div>
-
-        <div class="lw-grid-2">
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Automated intervention queue</span><h3>Notification Center</h3></div><span class="lw-count-badge" id="lw-notification-count">3 active</span></div>
-            <div class="lw-notification-list" id="lw-notification-list">
-              <article class="lw-notification" data-severity="high"><span class="lw-alert-icon red">!</span><div><strong>High risk alert</strong><small>Compensation verification is the leading delay factor for <span data-lw-location>selected location</span>.</small><em>Recommend action within 7 days</em></div><button type="button" data-lw-notify-action="High risk alert acknowledged">Acknowledge</button></article>
-              <article class="lw-notification" data-severity="medium"><span class="lw-alert-icon amber">◷</span><div><strong>Approval delay alert</strong><small>Government approvals are below the model's readiness threshold.</small><em>Route to nodal officer</em></div><button type="button" data-lw-notify-action="Approval alert routed">Route</button></article>
-              <article class="lw-notification" data-severity="low"><span class="lw-alert-icon blue">↗</span><div><strong>Survey delay alert</strong><small>Field completion should be monitored in the next review cycle.</small><em>SMS / email / push ready</em></div><button type="button" data-lw-notify-action="Survey notification queued">Queue</button></article>
-            </div>
-            <div class="lw-service-row"><span>Notification Service</span><b>SMS API</b><b>Email API</b><b>Push API</b><small>Keys supplied through deployment environment only</small></div>
-          </article>
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Continuous improvement</span><h3>LandWatch AI Model Status</h3></div><span class="lw-chip lw-chip-green">Healthy</span></div>
-            <div class="lw-learning-grid"><div><span>Model</span><strong>LandWatch Predictive Engine</strong></div><div><span>Algorithm</span><strong>XGBoost / Random Forest</strong></div><div><span>Explainability</span><strong>SHAP enabled</strong></div><div><span>Training data</span><strong>Historical + real-time land cases</strong></div><div><span>Cases analysed</span><strong>25,000+</strong></div><div><span>Accuracy</span><strong class="lw-green-text">94.8%</strong></div><div><span>Last updated</span><strong>Today · 08:40 IST</strong></div><div><span>Drift monitor</span><strong class="lw-green-text">Within threshold</strong></div></div>
-            <div class="lw-learning-progress"><span>Model validation cycle</span><strong>82%</strong><b><i style="width:82%"></i></b></div>
-          </article>
-        </div>
-
-        <div class="lw-grid-2">
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Interoperability layer</span><h3>API Integration Hub</h3></div><span class="lw-chip lw-chip-amber">6 mock adapters</span></div>
-            <div class="lw-api-flow"><span>Government databases</span><i>↓</i><span>REST API / GraphQL</span><i>↓</i><span>LandWatch processing layer</span><i>↓</i><span>AI prediction engine</span><i>↓</i><span>Decision dashboard</span></div>
-            <div class="lw-api-grid"><div><span class="lw-api-dot"></span><strong>Land Records API</strong><small>GET /api/projects</small></div><div><span class="lw-api-dot"></span><strong>GIS API</strong><small>GET /api/location-data</small></div><div><span class="lw-api-dot"></span><strong>Compensation API</strong><small>GET /api/compensation</small></div><div><span class="lw-api-dot"></span><strong>Court Records API</strong><small>GET /api/legal-events</small></div><div><span class="lw-api-dot"></span><strong>Notification API</strong><small>POST /api/notifications</small></div><div><span class="lw-api-dot"></span><strong>Recommendations API</strong><small>GET /api/recommendations</small></div></div>
-          </article>
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Multi-stakeholder access</span><h3>Stakeholder Dashboard</h3></div><span class="lw-chip">RBAC enabled</span></div>
-            <div class="lw-stakeholder-grid"><button type="button" class="is-active" data-lw-stakeholder="District Officer"><span class="material-symbols-outlined">account_balance</span><strong>District Officer</strong><small>Case action queue</small></button><button type="button" data-lw-stakeholder="State Government"><span class="material-symbols-outlined">corporate_fare</span><strong>State Government</strong><small>Portfolio oversight</small></button><button type="button" data-lw-stakeholder="Central Ministry"><span class="material-symbols-outlined">public</span><strong>Central Ministry</strong><small>Programme signals</small></button><button type="button" data-lw-stakeholder="Project Agency"><span class="material-symbols-outlined">engineering</span><strong>Project Agency</strong><small>Delivery milestones</small></button><button type="button" data-lw-stakeholder="Policy Maker"><span class="material-symbols-outlined">policy</span><strong>Policy Maker</strong><small>Systemic patterns</small></button></div>
-          </article>
-        </div>
-
-        <article class="lw-panel">
-          <div class="lw-panel-heading"><div><span class="lw-kicker">Governance traceability</span><h3>Audit Trail</h3></div><span class="lw-chip">Append-only demo log</span></div>
-          <div class="lw-audit-table" role="table" aria-label="LandWatch audit trail"><div role="row" class="lw-audit-row lw-audit-head"><span>User</span><span>Action</span><span>Time</span><span>Location</span><span>Status</span></div><div id="lw-audit-rows"><div role="row" class="lw-audit-row"><span>District Officer</span><span>Officer uploaded survey data</span><span>10:30 IST</span><span data-lw-location>selected location</span><b class="lw-green-text">Recorded</b></div><div role="row" class="lw-audit-row"><span>LandWatch AI</span><span>AI recalculated risk</span><span>10:45 IST</span><span data-lw-location>selected location</span><b class="lw-green-text">Completed</b></div><div role="row" class="lw-audit-row"><span>Notification Service</span><span>Alert generated</span><span>11:00 IST</span><span data-lw-location>selected location</span><b class="lw-amber-text">Queued</b></div></div></div>
-        </article>
-      </div>
-    </section>
-    <!-- 12. STAKEHOLDER DECISION WORKSPACES AND TRANSPARENCY -->
-    <section class="lw-stakeholder-suite w-full py-space-2xl bg-surface-container-low border-y border-surface-container-high scroll-mt-header" id="stakeholder-workspace" aria-labelledby="stakeholder-suite-title">
-      <div class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop space-y-space-xl">
-        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-base">
-          <div class="space-y-space-xs"><span class="lw-kicker">Role-based decision support</span><h2 class="font-headline-lg text-headline-lg text-primary font-bold" id="stakeholder-suite-title">Stakeholder Workspaces</h2><p class="font-body-lg text-body-lg text-on-surface-variant">Each government role sees the same trusted location intelligence through a different operational lens.</p></div>
-          <label class="lw-suite-role">Role selector<select id="lw-suite-role-select" aria-label="Select stakeholder workspace"><option>Citizen</option><option selected>Field Officer</option><option>Tahsildar</option><option>District Collector</option><option>State Government</option><option>Central Ministry</option></select></label>
-        </div>
-        <div class="lw-role-summary" id="lw-role-summary" aria-live="polite"></div>
-        <div class="lw-grid-2">
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">AI Recommended Actions</span><h3>Preventive action queue</h3></div><span class="lw-chip lw-chip-ai">Decision ready</span></div>
-            <div class="lw-action-card"><span class="material-symbols-outlined">payments</span><div><strong id="lw-suite-action-title">Compensation review</strong><p id="lw-suite-action-copy">Prioritise the leading risk factor for the selected location.</p><small>Priority <b id="lw-suite-priority">HIGH</b> · Deadline <b>3 days</b> · Estimated delay reduction <b>45 days</b></small></div></div>
-            <div class="lw-action-card"><span class="material-symbols-outlined">fact_check</span><div><strong>Collector approval checkpoint</strong><p>Route unresolved legal and approval signals to the responsible authority.</p><small>Owner <b>District review cell</b> · Evidence linked to SHAP explanation</small></div></div>
-          </article>
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Model transparency</span><h3>LandWatch Risk Predictor</h3></div><span class="lw-chip lw-chip-green">SHAP based</span></div>
-            <div class="lw-learning-grid"><div><span>Version</span><strong>v1.2</strong></div><div><span>Last updated</span><strong id="lw-model-date">22 Sep 2026</strong></div><div><span>Records analysed</span><strong>12,450</strong></div><div><span>Prediction factors</span><strong>18</strong></div><div><span>Accuracy</span><strong class="lw-green-text">94.8%</strong></div><div><span>Explainability</span><strong>SHAP based</strong></div><div><span>Data mode</span><strong>Synthetic prototype</strong></div></div>
-          </article>
-        </div>
-        <article class="lw-panel">
-          <div class="lw-panel-heading"><div><span class="lw-kicker">Operational trace</span><h3>Activity Timeline</h3></div><span class="lw-chip">Audit ready</span></div>
-          <div class="lw-suite-timeline"><div><time>10:30 AM</time><span class="lw-timeline-dot"></span><p><strong>Officer uploaded survey data</strong><small>Evidence entered into the selected location workspace</small></p></div><div><time>11:00 AM</time><span class="lw-timeline-dot"></span><p><strong>AI recalculated risk</strong><small>Prediction and SHAP factors refreshed</small></p></div><div><time>11:15 AM</time><span class="lw-timeline-dot"></span><p><strong>Collector notified</strong><small>Preventive action queue generated</small></p></div><div><time>12:00 PM</time><span class="lw-timeline-dot"></span><p><strong>Action approved</strong><small>Statutory review checkpoint recorded</small></p></div></div>
-        </article>
-        <div class="lw-grid-2">
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Public accountability</span><h3>Data Sources &amp; AI Transparency</h3></div><span class="lw-chip">Open methodology</span></div>
-            <div class="lw-source-grid"><div><strong>Project Data</strong><small>Illustrative acquisition cases and milestones</small></div><div><strong>GIS Information</strong><small>Coordinates, land-use profiles and risk layers</small></div><div><strong>Legal Records</strong><small>Demo dispute and hearing indicators</small></div><div><strong>Compensation Data</strong><small>Illustrative award and payment status</small></div><div><strong>Administrative Workflow</strong><small>Survey, approval and rehabilitation signals</small></div></div>
-            <p class="lw-transparency-note">This prototype uses synthetic datasets based on real-world land acquisition workflows due to limited publicly labelled delay datasets. No production government system is represented as connected.</p>
-          </article>
-          <article class="lw-panel">
-            <div class="lw-panel-heading"><div><span class="lw-kicker">Integration registry</span><h3>System Integrations</h3></div><span class="lw-chip lw-chip-amber">Mock adapters</span></div>
-            <div class="lw-integration-list"><span>✓ SMS Notification Gateway <small>Mock</small></span><span>✓ Email Service Layer <small>Mock</small></span><span>✓ GIS Data API <small>Mock</small></span><span>✓ Land Record API <small>Mock</small></span><span>✓ Court Data API <small>Mock</small></span></div>
-            <p class="lw-transparency-note">Integration cards describe future API contracts only. They are not production-connected and contain no live credentials.</p>
-          </article>
+        <div class="lw-news-grid" id="land-news-list" aria-live="polite" aria-busy="true">
+          <article class="lw-news-card lw-news-skeleton" aria-hidden="true"><span></span><span></span><span></span></article>
+          <article class="lw-news-card lw-news-skeleton" aria-hidden="true"><span></span><span></span><span></span></article>
+          <article class="lw-news-card lw-news-skeleton" aria-hidden="true"><span></span><span></span><span></span></article>
         </div>
       </div>
     </section>
@@ -1581,7 +1428,6 @@
             <li><a class="hover:text-primary transition-colors" href="#dashboard-preview">AI Delay Dashboard</a></li>
             <li><a class="hover:text-primary transition-colors" href="#public-tracking">Citizen Tracker Portal</a></li>
             <li><a class="hover:text-primary transition-colors" href="#analytics-section">GovTech Analytics</a></li>
-            <li><a class="hover:text-primary transition-colors" href="#architecture">Architecture Notes</a></li>
           </ul>
         </div>
 
@@ -1604,7 +1450,6 @@
         <div class="flex items-center gap-space-lg">
           <a class="hover:text-primary transition-colors font-label-md" href="#cadastral-map">GIS Map</a>
           <span class="text-outline-variant" aria-hidden="true">·</span>
-          <a class="hover:text-primary transition-colors font-label-md" href="#architecture">Architecture Notes</a>
         </div>
       </div>
     </div>
@@ -2292,29 +2137,6 @@
         bannerLabel.textContent = "Officer: Tahsildar";
         bannerIcon.textContent = "👤";
       }
-      updateStakeholderWorkspace(role === 'admin' ? 'District Collector' : role === 'public' ? 'Citizen' : role);
-    }
-
-    function updateStakeholderWorkspace(role) {
-      const normalized = role || 'Field Officer';
-      const profile = window.landWatchState?.selectedProfile;
-      const analysis = window.landWatchState?.analysis;
-      const location = window.landWatchState?.selectedLocation || 'selected location';
-      const configs = {
-        Citizen: { title: 'Citizen dashboard', metrics: [['Application status', 'Under review'], ['Compensation status', 'Verification pending'], ['Expected timeline', `${analysis?.delayDays || 28} days`], ['Document status', '3 of 4 verified']], action: 'Track your application and upload any missing document.' },
-        'Field Officer': { title: 'Field officer dashboard', metrics: [['Assigned surveys', '18'], ['Pending verification', '7'], ['Priority tasks', '4'], ['Upload status', '92% complete']], action: 'Conduct the joint survey and attach verified field evidence.' },
-        Tahsildar: { title: 'Tahsildar dashboard', metrics: [['Village projects', profile?.sampleCases || 0], ['Pending approvals', '12'], ['Land records', '94% indexed'], ['Dispute cases', analysis?.reasons?.[1]?.pct || 18]], action: 'Resolve the leading legal and compensation bottlenecks.' },
-        'District Collector': { title: 'District Collector dashboard', metrics: [['Total projects', profile?.sampleCases || 0], ['Critical projects', analysis?.riskBand === 'High Risk' ? 'High attention' : 'Monitored'], ['AI recommendations', analysis?.recommendations?.actions?.length || 3], ['Expected delay reduction', '45 days']], action: 'Review the AI action queue and approve the next statutory checkpoint.' },
-        'State Government': { title: 'State government dashboard', metrics: [['District comparison', '18 districts'], ['Risk heatmap', 'Live'], ['Project ranking', 'Updated today'], ['Trend analysis', `${analysis?.delayProbability || 0}% avg delay`]], action: 'Compare district risk and direct resources to the highest-impact corridor.' },
-        'Central Ministry': { title: 'Central ministry dashboard', metrics: [['States covered', '18'], ['Projects monitored', '12,450'], ['Critical regions', '6'], ['Policy insights', '8 signals']], action: 'Review national patterns and issue policy guidance for systemic delay causes.' }
-      };
-      const config = configs[normalized] || configs['Field Officer'];
-      const summary = document.getElementById('lw-role-summary');
-      if (!summary) return;
-      document.getElementById('lw-suite-role')?.replaceChildren(document.createTextNode(normalized));
-      summary.innerHTML = `<div class="lw-role-heading"><span class="material-symbols-outlined">dashboard</span><div><strong>${escapeMapHtml(config.title)}</strong><small>${escapeMapHtml(location)} · shared LandWatch intelligence</small></div></div><div class="lw-role-metrics">${config.metrics.map(item => `<div><span>${escapeMapHtml(item[0])}</span><strong>${escapeMapHtml(item[1])}</strong></div>`).join('')}</div><p class="lw-role-action"><span class="material-symbols-outlined">tips_and_updates</span>${escapeMapHtml(config.action)}</p>`;
-      const action = document.getElementById('lw-suite-action-copy');
-      if (action) action.textContent = config.action;
     }
 
     function triggerActionRemark() {
@@ -3258,7 +3080,7 @@
       filter_all_taluks: "All Taluks", filter_tambaram: "Tambaram", filter_sriperumbudur: "Sriperumbudur", filter_chengalpattu: "Chengalpattu", filter_all_villages: "All Villages", filter_perungalathur: "Perungalathur", filter_vandalur: "Vandalur", filter_guduvanchery: "Guduvanchery", filter_oragadam: "Oragadam", filter_all_risks: "All Risks", filter_high_risk: "High Risk", filter_warning: "Warning", filter_on_schedule: "On Schedule", map_reset_view: "Reset View",
       chat_delay_answer: "Case {id} status: {q1}. Estimated delay: {days} days. Recommended action: {action}.",
       chart_tambaram: "Tambaram", chart_sriperumbudur: "Sriperumbudur", chart_chengalpattu: "Chengalpattu", chart_completed: "Completed on Schedule (%)", chart_delay_risk: "High Delay Risk (%)",
-      chat_compensation_answer: "Parcel #{id} land value and compensation will be calculated under the RFCTLARR Act 2013, including applicable solatium, after field boundary verification.",
+      chat_compensation_answer: "Parcel #{id} land value and compensation will be calculated under applicable land acquisition rules, including any required solatium, after field boundary verification.",
       chat_objection_answer: "A Section 15 objection should be submitted in writing to the District Land Acquisition Officer or Tahsildar within 60 days of the Gazette notification.",
       chat_default_answer: "Your question \"{question}\" was received. Current selection: {name} ({village}, {taluk}). Legal status: {status}. Contact the Tahsildar office for more information."
     });
@@ -3269,7 +3091,7 @@
       filter_all_taluks: "सभी तालुक", filter_tambaram: "ताम्बरम", filter_sriperumbudur: "श्रीपेरुम्बुदूर", filter_chengalpattu: "चेंगलपट्टू", filter_all_villages: "सभी गाँव", filter_perungalathur: "पेरुंगलाथुर", filter_vandalur: "वंडलूर", filter_guduvanchery: "गुडुवांचेरी", filter_oragadam: "ओरगडम", filter_all_risks: "सभी जोखिम", filter_high_risk: "उच्च जोखिम", filter_warning: "चेतावनी", filter_on_schedule: "समय पर", map_reset_view: "दृश्य रीसेट करें",
       chat_delay_answer: "मामला {id} स्थिति: {q1}। अनुमानित देरी: {days} दिन। अनुशंसित कार्रवाई: {action}।",
       chart_tambaram: "ताम्बरम", chart_sriperumbudur: "श्रीपेरुम्बुदूर", chart_chengalpattu: "चेंगलपट्टू", chart_completed: "समय पर पूर्ण (%)", chart_delay_risk: "उच्च देरी जोखिम (%)",
-      chat_compensation_answer: "क्षेत्र सीमा सत्यापन के बाद RFCTLARR अधिनियम 2013 के अनुसार लागू सोलैटियम सहित प्लॉट का भूमि मूल्य और मुआवज़ा निर्धारित किया जाएगा।",
+      chat_compensation_answer: "क्षेत्र सीमा सत्यापन के बाद लागू भूमि अधिग्रहण नियमों के अनुसार प्लॉट का भूमि मूल्य और मुआवज़ा निर्धारित किया जाएगा।",
       chat_objection_answer: "राजपत्र अधिसूचना के 60 दिनों के भीतर जिला भूमि अधिग्रहण अधिकारी या तहसीलदार को धारा 15 की आपत्ति लिखित रूप में जमा करें।",
       chat_default_answer: "आपका प्रश्न \"{question}\" प्राप्त हुआ। वर्तमान चयन: {name} ({village}, {taluk})। कानूनी स्थिति: {status}। अधिक जानकारी के लिए तहसीलदार कार्यालय से संपर्क करें।"
     });
@@ -3280,7 +3102,7 @@
       filter_all_taluks: "அனைத்து வட்டங்களும்", filter_tambaram: "தாம்பரம்", filter_sriperumbudur: "ஸ்ரீபெரும்புதூர்", filter_chengalpattu: "செங்கல்பட்டு", filter_all_villages: "அனைத்து கிராமங்களும்", filter_perungalathur: "பெருங்களத்தூர்", filter_vandalur: "வண்டலூர்", filter_guduvanchery: "கூடுவாஞ்சேரி", filter_oragadam: "ஒரகடம்", filter_all_risks: "அனைத்து அபாய நிலைகளும்", filter_high_risk: "அதிக அபாயம்", filter_warning: "எச்சரிக்கை", filter_on_schedule: "சரியான நேரம்", map_reset_view: "காட்சியை மீட்டமை",
       chat_delay_answer: "வழக்கு {id} நிலவரம்: {q1}. கணிக்கப்பட்ட தாமதம்: {days} நாட்கள். பரிந்துரைக்கப்பட்ட நடவடிக்கை: {action}.",
       chart_tambaram: "தாம்பரம்", chart_sriperumbudur: "ஸ்ரீபெரும்புதூர்", chart_chengalpattu: "செங்கல்பட்டு", chart_completed: "காலக்கெடுவில் முடிந்தது (%)", chart_delay_risk: "அதிக தாமத அபாயம் (%)",
-      chat_compensation_answer: "கள எல்லை சரிபார்ப்புக்குப் பிறகு RFCTLARR சட்டம் 2013-ன் படி பொருந்தும் சோலேடியம் உட்பட நில மதிப்பும் இழப்பீடும் கணக்கிடப்படும்.",
+      chat_compensation_answer: "கள எல்லை சரிபார்ப்புக்குப் பிறகு பொருந்தும் நிலம் கையகப்படுத்தும் விதிகளின்படி நில மதிப்பும் இழப்பீடும் கணக்கிடப்படும்.",
       chat_objection_answer: "அரசிதழ் அறிவிப்பு வெளியான 60 நாட்களுக்குள் மாவட்ட நில எடுப்பு அலுவலர் அல்லது வட்டாட்சியரிடம் பிரிவு 15 ஆட்சேபனையை எழுத்துப்பூர்வமாக சமர்ப்பிக்கவும்.",
       chat_default_answer: "உங்கள் கேள்வி \"{question}\" பெறப்பட்டது. தற்போதைய தேர்வு: {name} ({village}, {taluk}). சட்டப்பூர்வ நிலை: {status}. மேலும் தகவலுக்கு வட்டாட்சியர் அலுவலகத்தைத் தொடர்பு கொள்ளவும்."
     });
@@ -3946,27 +3768,65 @@
       }
 
       function analyseLocation(profile, record = {}) {
-        const source = { ...profile.factors, ...record };
+        const live = window.landWatchState?.liveProjectData || window.landWatchState?.liveRecord || {};
+        const source = { ...profile.factors, ...record, ...live };
+
+        const projectPendingLand = clamp(number(source.pending_land_percentage ?? source.pendingLand ?? source.land_pending ?? source.pendingLandPercentage ?? live.pendingLand ?? 0));
+        const projectLegalRisk = clamp(number(source.legal_risk_score ?? source.legalRiskScore ?? live.legalRiskScore ?? 0));
+        const compensationDelay = clamp(number(source.payment_delay_days ?? source.compensationDelayDays ?? source.delayDays ?? live.paymentDelayDays ?? 0));
+        const rrProgress = clamp(number(source.rr_progress ?? source.rrProgress ?? live.rrProgress ?? 0));
+        const stakeholderIssues = clamp(number(source.stakeholder_issues ?? source.stakeholderIssues ?? live.stakeholderIssues ?? 0));
+        const approvalDelay = clamp(number(source.approval_delay ?? source.approvalDelay ?? live.approvalDelay ?? 0));
         const ownership = clamp(number(source.ownership_conflicts ?? source.ownershipConflicts));
         const documents = clamp(number(source.pending_documents ?? source.pendingDocuments));
-        const legal = clamp(number(source.legal_disputes ?? source.legalDisputes));
-        const compensation = clamp(number(source.compensation_pending ?? source.compensationPending));
+        const legal = clamp(number(source.legal_disputes ?? source.legalDisputes) + projectLegalRisk / 2);
+        const compensation = clamp(number(source.compensation_pending ?? source.compensationPending) + compensationDelay * 0.35);
         const survey = clamp(number(source.survey_completion ?? source.surveyCompletion) || profile.factors.surveyCompletion);
         const approvals = clamp(number(source.government_approvals ?? source.governmentApprovals) || profile.factors.governmentApprovals);
         const rehab = clamp(number(source.rehabilitation_status ?? source.rehabilitationStatus) || profile.factors.rehabilitationStatus);
-        const surveyDelay = 100 - survey, approvalDelay = 100 - approvals, rehabDelay = 100 - rehab;
-        const score = clamp(ownership * .14 + documents * .10 + legal * .20 + compensation * .25 + surveyDelay * .14 + approvalDelay * .10 + rehabDelay * .07);
+        const surveyDelay = 100 - survey;
+        const approvalDelayBase = 100 - approvals + approvalDelay;
+        const rehabDelay = 100 - rehab;
+
+        const projectWeightedRisk = clamp(
+          legal * 0.25 +
+          compensationDelay * 0.25 +
+          projectPendingLand * 0.20 +
+          approvalDelayBase * 0.15 +
+          (100 - rrProgress) * 0.10 +
+          stakeholderIssues * 0.05
+        );
+
+        const score = clamp(ownership * .05 + documents * .05 + projectWeightedRisk * 0.75 + surveyDelay * .08 + rehabDelay * .07);
         const delayProbability = clamp(score + 4);
         const reasons = [
-          { name: 'Compensation Pending', pct: clamp(compensation * .25) },
-          { name: 'Legal Dispute', pct: clamp(legal * .2) },
-          { name: 'Survey Delay', pct: clamp(surveyDelay * .14) },
-          { name: 'Missing Documents', pct: clamp(documents * .1) },
-          { name: 'Approval Delay', pct: clamp(approvalDelay * .1) }
+          { name: 'Compensation Delay', pct: clamp(compensationDelay * 0.55 + compensation * 0.12) },
+          { name: 'Legal Dispute', pct: clamp(legal * 0.3 + projectLegalRisk * 0.2) },
+          { name: 'Pending Land', pct: clamp(projectPendingLand * 0.55) },
+          { name: 'Approval Delay', pct: clamp(approvalDelayBase * 0.25) },
+          { name: 'R&R Progress', pct: clamp((100 - rrProgress) * 0.35) },
+          { name: 'Stakeholder Issues', pct: clamp(stakeholderIssues * 0.45) }
         ];
         const total = reasons.reduce((sum, item) => sum + item.pct, 0) || 1;
         reasons.forEach(item => { item.pct = clamp((item.pct / total) * 100); });
-        const analysis = { riskScore: score, delayProbability, riskBand: riskBand(delayProbability), delayDays: Math.max(8, Math.round(delayProbability * .65)), reasons, survey, approvals, rehab, landType: record.land_type || Object.entries(profile.land).sort((a, b) => b[1] - a[1])[0][0], landCondition: profile.land };
+        const analysis = {
+          riskScore: score,
+          delayProbability,
+          riskBand: riskBand(delayProbability),
+          delayDays: Math.max(8, Math.round(delayProbability * .65 + compensationDelay * 0.26 + projectPendingLand * 0.20)),
+          reasons,
+          survey,
+          approvals,
+          rehab,
+          landType: record.land_type || Object.entries(profile.land).sort((a, b) => b[1] - a[1])[0][0],
+          landCondition: profile.land,
+          legalRiskScore: projectLegalRisk,
+          pendingLand: projectPendingLand,
+          compensationDelay,
+          rrProgress,
+          stakeholderIssues,
+          projectData: live
+        };
         analysis.shap = calculateSHAPExplanation(profile, analysis, record);
         analysis.recommendations = buildRecommendations(analysis.shap, analysis);
         return analysis;
@@ -4072,18 +3932,6 @@
         if (officerScope) officerScope.textContent = `District officer · ${location || 'selected portfolio'}`;
         const assignedOfficer = document.getElementById('insp-assigned-officer');
         if (assignedOfficer) assignedOfficer.textContent = `Assigned: District officer · ${location || 'selected location'}`;
-        const scoreCard = document.getElementById('lw-risk-score');
-        if (scoreCard) scoreCard.innerHTML = `${analysis.riskScore}<small>/100</small>`;
-        const delayCard = document.getElementById('lw-delay-probability');
-        if (delayCard) delayCard.textContent = `${analysis.delayProbability}%`;
-        const categoryCard = document.getElementById('lw-risk-category');
-        if (categoryCard) { categoryCard.textContent = analysis.riskBand.toUpperCase(); categoryCard.className = analysis.riskBand === 'High Risk' ? 'lw-red-text' : analysis.riskBand === 'Medium Risk' ? 'lw-amber-text' : 'lw-green-text'; }
-        const factors = document.getElementById('lw-dynamic-factors');
-        if (factors) factors.innerHTML = (analysis.shap || []).map(item => `<div class="${item.direction === 'decrease' ? 'is-negative' : 'is-positive'}"><span>${escapeMapHtml(item.feature)}</span><strong>${item.impact > 0 ? '+' : ''}${item.impact}%</strong><b><i style="width:${Math.min(100, Math.max(8, Math.abs(item.impact) * 2.2))}%"></i></b></div>`).join('');
-        const recommendation = document.getElementById('lw-dynamic-recommendation');
-        if (recommendation) recommendation.textContent = `${analysis.riskBand} detected · ${analysis.recommendations?.topFactor || 'Monitor statutory milestones'} is the leading model signal. Priority: ${analysis.recommendations?.priority || 'MEDIUM'}.`;
-        const actions = document.getElementById('lw-dynamic-actions');
-        if (actions) actions.innerHTML = (analysis.recommendations?.actions || []).map((action, index) => `<li><strong>${index + 1}.</strong> ${escapeMapHtml(action)} <small>${index === 0 ? `Priority: ${analysis.recommendations.priority}` : index === 1 ? 'Deadline: 7 days' : 'Owner: District review cell'}</small></li>`).join('');
         const reasons = document.getElementById('risk-reasons-list');
         if (reasons) reasons.innerHTML = [
           condition.green < 35 ? `Green cover pressure: ${condition.vegetation}% vegetation decline` : `Green cover remains at ${condition.green}%`,
@@ -4094,7 +3942,6 @@
         if (recommendationText) recommendationText.textContent = condition.pressure > 80 ? 'Protect green corridors, review high-density proposals, and prioritize environmental clearance.' : condition.water < 55 ? 'Prioritize water resilience, drainage review, and environmental safeguards.' : 'Maintain monitoring of green cover and statutory development milestones.';
         renderDynamicLandReport(location, profile, analysis, condition);
         updateIntelligenceStudio(location, profile, analysis);
-        updateStakeholderWorkspace(document.getElementById('lw-suite-role-select')?.value || 'Field Officer');
         updateDynamicCharts(profile, analysis);
         if (!options.skipMap) updateLocationHeatmap(profile, analysis);
         landWatchState.updatedAt = new Date();
@@ -4214,13 +4061,6 @@
         renderRecentIntelligenceSearches();
       }
 
-      const auditLog = [];
-      function addAudit(action, user = 'LandWatch AI', status = 'Recorded') {
-        auditLog.unshift({ user, action, time: new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' }), location: landWatchState.selectedLocation || 'All monitored areas', status });
-        const target = document.getElementById('lw-audit-rows');
-        if (target) target.innerHTML = auditLog.slice(0, 6).map(item => `<div role="row" class="lw-audit-row"><span>${escapeMapHtml(item.user)}</span><span>${escapeMapHtml(item.action)}</span><span>${item.time} IST</span><span>${escapeMapHtml(item.location)}</span><b class="${item.status === 'Queued' ? 'lw-amber-text' : 'lw-green-text'}">${escapeMapHtml(item.status)}</b></div>`).join('');
-      }
-
       window.landWatchApi = {
         get: async endpoint => ({ endpoint, data: dashboardDataset(), generatedAt: new Date().toISOString() }),
         post: async (endpoint, payload = {}) => ({ endpoint, accepted: true, payload, generatedAt: new Date().toISOString() }),
@@ -4242,24 +4082,24 @@
           const analysis = analyseLocation(profile, locationData?.record || {});
           return analysis.recommendations;
         },
-        getAlerts: () => Array.from(document.querySelectorAll('#lw-notification-list .lw-notification')).map(item => ({ severity: item.dataset.severity, title: item.querySelector('strong')?.textContent || '', location: landWatchState.selectedLocation }))
+        getAlerts: () => []
       };
 
-      function selectLocation(location, record) {
+      function selectLocation(location, record, options = {}) {
         const profile = profileFor(location);
         if (!profile) return false;
         landWatchState.selectedLocation = profile.name;
         landWatchState.selectedProfile = profile;
         landWatchState.analysis = analyseLocation(profile, record || landWatchState.dataset.find(item => String(item.location || item.city || '').toLowerCase() === profile.name.toLowerCase()) || {});
         updateDynamicUi(profile.name, profile, landWatchState.analysis);
-        if (document.getElementById('lw-audit-rows')) addAudit('AI recalculated risk', 'LandWatch AI', 'Completed');
+        if (!options.silent) window.dispatchEvent(new CustomEvent('landwatch:location-changed', { detail: profile }));
         return true;
       }
 
       function dashboardDataset() {
         const profile = landWatchState.selectedProfile || profileFor('Chennai');
         const analysis = currentAnalysis();
-        return { location: landWatchState.selectedLocation || 'India', state: profile.state, district: profile.district, profile, condition: getLandCondition(profile), analysis, dataset: landWatchState.dataset, timestamp: landWatchState.updatedAt || new Date() };
+        return { location: landWatchState.selectedLocation || 'India', state: profile.state, district: profile.district, profile, condition: getLandCondition(profile), analysis, live: landWatchState.liveData || null, dataset: landWatchState.dataset, timestamp: landWatchState.updatedAt || new Date() };
       }
 
       function exportDashboardPdf() {
@@ -4282,6 +4122,15 @@
         line(`Risk score: ${report.analysis.riskScore}% · ${report.analysis.riskBand}`, 12, [186, 26, 26]);
         line(`Delay probability: ${report.analysis.delayProbability}% · Predicted delay: ${report.analysis.delayDays} days`, 10);
         line(`Primary land type: ${titleCase(report.analysis.landType)} · Survey completion: ${report.analysis.survey}%`, 10);
+        if (report.live) {
+          line('Live public data', 12);
+          line(`Weather: ${report.live.weather?.temperature ?? 'Unavailable'} °C · ${report.live.weather?.condition || 'Unavailable'} · Rain probability: ${report.live.weather?.rainProbability ?? 'Unavailable'}%`, 10);
+          line(`AQI: ${report.live.air?.aqi ?? 'Unavailable'} (${report.live.air?.status || 'Unavailable'}) · PM2.5: ${report.live.air?.pm25 ?? 'Unavailable'}`, 10);
+          line(`Rainfall: ${report.live.flood?.rainfall ?? 'Unavailable'} mm · Flood risk: ${report.live.flood?.risk || 'Unavailable'}`, 10);
+          line(`Earthquakes within 100 km: ${report.live.earthquakes?.length ?? 'Unavailable'}`, 10);
+          line(`Coordinates: ${report.live.location?.lat ?? 'Unavailable'}, ${report.live.location?.lon ?? 'Unavailable'} · Elevation: ${report.live.location?.elevation ?? 'Unavailable'} m`, 10);
+          line(`Satellite layer: ${document.getElementById('gis-map-style')?.value || 'street'} · Map snapshot: included in dashboard view`, 10);
+        }
         y += 3; line('AI delay factors', 12);
         report.analysis.reasons.forEach(item => line(`• ${item.name}: ${item.pct}%`, 10));
         y += 3; line('SHAP explanation factors', 12);
@@ -4302,7 +4151,6 @@
         const charts = [...(window.smartLandCharts || []), ...(window.analyticsCharts || [])].filter(chart => chart?.canvas);
         charts.slice(0, 2).forEach(chart => { if (y > 245) { pdf.addPage(); y = 18; } pdf.addImage(chart.canvas.toDataURL('image/png'), 'PNG', 16, y, 82, 48); y += 54; });
         window.landWatchLastPdfBytes = pdf.output('arraybuffer').byteLength;
-        addAudit('Government intelligence report generated', 'District Officer', 'Completed');
         pdf.save(`landwatch-${report.location.toLowerCase().replace(/\s+/g, '-')}-intelligence-report.pdf`);
       }
 
@@ -4316,7 +4164,6 @@
           const selected = profileFor(location) ? location : 'Chennai';
           selectLocation(selected, rows.find(row => String(row.location || row.city || '').toLowerCase() === String(selected).toLowerCase()) || rows[0]);
           document.getElementById('landwatch-csv-status').textContent = `${rows.length} records loaded · dashboard and PDF now use this dataset`;
-          addAudit('Officer uploaded survey data', 'District Officer', 'Recorded');
         };
         reader.onerror = () => alert('The CSV could not be read. Please try a UTF-8 CSV file.');
         reader.readAsText(file);
@@ -4355,14 +4202,6 @@
         const area = document.getElementById('dashboard-area');
         const initial = area?.value && area.value !== 'all' ? area.value : 'Chennai';
         selectLocation(initial);
-        const roleSelect = document.getElementById('lw-suite-role-select');
-        roleSelect?.addEventListener('change', () => {
-          updateStakeholderWorkspace(roleSelect.value);
-          activeUserRole = roleSelect.value;
-          document.getElementById('banner-role-label').textContent = roleSelect.value;
-          document.getElementById('banner-role-icon').textContent = roleSelect.value === 'Citizen' ? '🌐' : roleSelect.value === 'Central Ministry' ? '🏛️' : '👤';
-        });
-        updateStakeholderWorkspace(roleSelect?.value || 'Field Officer');
         initialiseIntelligenceStudio();
         renderNationalLocations();
         document.getElementById('gis-india-overview')?.addEventListener('click', () => {
@@ -4372,16 +4211,6 @@
         });
         area?.addEventListener('change', () => selectLocation(area.value === 'all' ? 'Chennai' : area.value));
         document.getElementById('landwatch-csv-input')?.addEventListener('change', event => { const file = event.target.files?.[0]; if (file) loadCsv(file); });
-        document.querySelectorAll('[data-lw-notify-action]').forEach(button => button.addEventListener('click', () => {
-          button.textContent = 'Done';
-          button.disabled = true;
-          addAudit(button.dataset.lwNotifyAction, 'Notification Service', 'Queued');
-        }));
-        document.querySelectorAll('[data-lw-stakeholder]').forEach(button => button.addEventListener('click', () => {
-          document.querySelectorAll('[data-lw-stakeholder]').forEach(item => item.classList.remove('is-active'));
-          button.classList.add('is-active');
-          addAudit(`Opened ${button.dataset.lwStakeholder} workspace`, button.dataset.lwStakeholder, 'Recorded');
-        }));
         const locationOptions = document.getElementById('landwatch-location-options');
         if (locationOptions) Object.keys(locationProfiles).forEach(name => { const option = document.createElement('option'); option.value = name; locationOptions.appendChild(option); });
         document.getElementById('gis-search-form')?.addEventListener('submit', event => {
@@ -4409,4 +4238,4 @@
     })();
   </script>
 </body>
-</html>9
+</html>
